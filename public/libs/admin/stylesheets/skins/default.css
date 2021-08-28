@@ -313,9 +313,7 @@ p.drop-caps.colored.secundary:first-child:first-letter {
 	background: #0088cc;
 }
 /* Page Header */
-.page-header h2 {
-	border-bottom-color: #0088cc;
-}
+
 
 .page-header .sidebar-right-toggle:hover {
 	color: #0088cc;
