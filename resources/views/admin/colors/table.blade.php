@@ -1,4 +1,4 @@
-@section('title','List Banner | Admin')
+@section('title','List Color | Admin')
 @extends('.admin.layouts.table')
 @section('custom_style_level_2')
         .view-color{
