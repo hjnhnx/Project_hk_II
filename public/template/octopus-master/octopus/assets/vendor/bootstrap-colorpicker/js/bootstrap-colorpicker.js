@@ -40,7 +40,7 @@
 
         Color.prototype = {
             constructor: Color,
-            // 140 predefined colors from the HTML Colors spec
+            // 140 predefined colors from the HTML colors spec
             colors: {
                 "aliceblue": "#f0f8ff",
                 "antiquewhite": "#faebd7",

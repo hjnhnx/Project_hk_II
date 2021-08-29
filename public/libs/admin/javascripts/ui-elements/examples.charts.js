@@ -285,7 +285,7 @@
 					color: '#444' // Fill color
 				},
 				limitMax: 'true', // If true, the pointer will not go past the end of the gauge
-				colorStart: '#0088CC', // Colors
+				colorStart: '#0088CC', // colors
 				colorStop: '#0088CC', // just experiment with them
 				strokeColor: '#F1F1F1', // to see which ones work best for you
 				generateGradient: true
@@ -314,7 +314,7 @@
 					color: '#444' // Fill color
 				},
 				limitMax: 'true', // If true, the pointer will not go past the end of the gauge
-				colorStart: '#2BAAB1', // Colors
+				colorStart: '#2BAAB1', // colors
 				colorStop: '#2BAAB1', // just experiment with them
 				strokeColor: '#F1F1F1', // to see which ones work best for you
 				generateGradient: true

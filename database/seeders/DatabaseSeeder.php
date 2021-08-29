@@ -20,7 +20,10 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategoriesSeeder::class,
             ContactSeeder::class,
-            ConfigurationSeeder::class
+            ConfigurationSeeder::class,
+            SubCategoriesSeeder::class
+            ColorSeeder::class,
+            BannerSeeder::class
         ]);
     }
 }
