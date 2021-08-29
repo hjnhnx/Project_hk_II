@@ -32,11 +32,18 @@ class ConfigurationController extends Controller
             $query_builder->orderBy('created_at', 'DESC')->get();
         }
         if ($sort && $sort == Sort::SORT_VALUE_ASC) {
-            $query_builder->orderBy('value', 'ASC')->get();
+            $query_builder->orderBy('storage', 'ASC')->get();
         }
         if ($sort && $sort == Sort::SORT_VALUE_DESC) {
-            $query_builder->orderBy('value', 'DESC')->get();
+            $query_builder->orderBy('storage', 'DESC')->get();
         }
+        if ($sort && $sort == Sort::SORT_VALUER_ASC) {
+            $query_builder->orderBy('ram', 'ASC')->get();
+        }
+        if ($sort && $sort == Sort::SORT_VALUER_DESC) {
+            $query_builder->orderBy('ram', 'DESC')->get();
+        }
+
 
 
         $configuration = $query_builder->paginate(10);
