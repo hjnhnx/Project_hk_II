@@ -2091,7 +2091,7 @@ html.header-dark .header .input-search .input-group-btn .btn-default {
 		overflow-x: hidden;
 	}
 }
-/* Content With Menu - Menu Faux Column for Scroll and Boxed Layouts Colors */
+/* Content With Menu - Menu Faux Column for Scroll and Boxed Layouts colors */
 @media only screen and (min-width: 768px) {
 	html.scroll .content-with-menu:before,
 	html.boxed .content-with-menu:before {

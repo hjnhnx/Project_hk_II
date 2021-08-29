@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ConfigurationController;
 use App\Http\Controllers\Admin\UserController;
@@ -23,6 +25,13 @@ Route::prefix('contact')->group(function (){
 Route::prefix('configuration')->group(function (){
     Route::get('/list',[ConfigurationController::class,'index'])->name('list_configuration');
 });
+Route::prefix('color')->group(function (){
+    Route::get('/list',[ColorController::class,'index'])->name('list_color');
+});
+Route::prefix('banner')->group(function (){
+    Route::get('/list',[\App\Http\Controllers\Admin\BannerController::class,'index'])->name('list_banner');
+});
+
 
 
 
