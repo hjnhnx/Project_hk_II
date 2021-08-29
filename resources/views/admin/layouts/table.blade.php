@@ -1,5 +1,13 @@
 @extends('.admin.layouts.master')
-@section('title','Demo title | Admin')
+@section('custom_style')
+    <style>
+        @yield('custom_style_level_2')
+        .table_header {
+            position: relative;
+        }
+
+    </style>
+@endsection
 
 @section('main_content')
     <section class="panel">
@@ -7,40 +15,42 @@
             <h2 class="panel-title">@yield('title_table')</h2>
         </header>
         <div class="panel-body">
-            <div class="row">
-                <div class="col-sm-4">
+            <div class="row table_header">
+                <div class="col-sm-5">
                     <div class="mb-md">
                         <button id="addToTable" class="btn btn-primary">Add <i class="fa fa-plus"></i></button>
                     </div>
                 </div>
-                <div class="col-sm-8">
-
+                <div class=" container_filter col-sm-7">
+                    <form action="" method="get" class="form_filter">
+                        <div class="row col-12">
+                            @yield('filter_form')
+                        </div>
+                    </form>
                 </div>
             </div>
             <table class="table table-bordered table-striped mb-none" id="datatable-editable">
                 <thead>
-                <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th class="text-center">Actions</th>
-                </tr>
+                @yield('table_head')
                 </thead>
                 <tbody>
-                <tr class="gradeX">
-                    <td>Trident</td>
-                    <td>Internet
-                        Explorer 4.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td class="actions text-center">
-                        <a href="#" class="on-default edit-row text-primary"><i class="fa fa-pencil"></i></a>
-                        <a href="#" class="on-default remove-row text-danger"><i class="fa fa-trash-o"></i></a>
-                        <a href="#" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
-                    </td>
-                </tr>
+                @yield('table_body')
                 </tbody>
             </table>
+            <div class="row">
+                <div class="col-sm-7"></div>
+                <div class="col-sm-5">
+                    {{$list->links()}}
+                </div>
+            </div>
         </div>
     </section>
+@endsection
+
+@section('custom_js')
+    <script>
+        $('.sorted').change(function (){
+            $('.form_filter').submit()
+        })
+    </script>
 @endsection
