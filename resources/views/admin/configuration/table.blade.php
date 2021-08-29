@@ -20,10 +20,11 @@
         <select name="sort" id="" class="form-control sorted">
             <option {{$sort ==  \App\Enums\Sort::SORT_ID_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_ID_ASC}}">ID tăng dần</option>
             <option {{$sort ==  \App\Enums\Sort::SORT_ID_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_ID_DESC}}">ID giảm dần</option>
-            <option {{$sort ==  \App\Enums\Sort::SORT_NAME_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_NAME_ASC}}">Tên A - Z</option>
-            <option {{$sort ==  \App\Enums\Sort::SORT_NAME_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_NAME_DESC}}">Tên Z - A</option>
-            <option {{$sort ==  \App\Enums\Sort::SORT_CREATED_AT_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_CREATED_AT_ASC}}">Tham gia trước</option>
-            <option {{$sort ==  \App\Enums\Sort::SORT_CREATED_AT_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_CREATED_AT_DESC}}">Tham gia sau</option>
+            <option {{$sort ==  \App\Enums\Sort::SORT_VALUE_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_VALUE_ASC}}">Giá trị tăng dần </option>
+            <option {{$sort ==  \App\Enums\Sort::SORT_VALUE_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_VALUE_DESC}}">Giá trị giảm dần</option>
+            <option {{$sort ==  \App\Enums\Sort::SORT_CREATED_AT_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_CREATED_AT_DESC}}">Mới nhất trước</option>
+            <option {{$sort ==  \App\Enums\Sort::SORT_CREATED_AT_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_CREATED_AT_ASC}}">Cũ nhất trước</option>
+
 
         </select>
     </div>
@@ -31,14 +32,8 @@
 @section('table_head')
     <tr>
         <th>Id</th>
-        <th>Full name</th>
-        <th>Avatar</th>
-        <th>Address</th>
-        <th>Phone</th>
-        <th>Birthday</th>
-        <th>Email</th>
-        <th>DOJ</th>
-        <th>Role</th>
+        <th>Value</th>
+        <th>Created at</th>
         <th class="text-center">Actions</th>
     </tr>
 @endsection
@@ -46,22 +41,8 @@
     @foreach($list as $item)
         <tr class="gradeX">
             <td>{{$item->id}}</td>
-            <td>{{$item->firstname. ' ' .$item->lastname}}</td>
-            <td>
-                <img class="show_avatar" src="{{$item->avatar}}" alt="">
-            </td>
-            <td>{{$item->address}}</td>
-            <td>{{$item->phone}}</td>
-            <td>{{$item->birthday}}</td>
-            <td>{{$item->email}}</td>
+            <td>{{$item->value}}</td>
             <td>{{$item->created_at}}</td>
-            <td>
-                @if($item->role == 1)
-                    User
-                @else
-                    Admin
-                @endif
-            </td>
             <td class="actions text-center">
                 <a href="#" class="on-default edit-row text-primary"><i class="fa fa-pencil"></i></a>
                 <a href="#" class="on-default remove-row text-danger"><i class="fa fa-trash-o"></i></a>

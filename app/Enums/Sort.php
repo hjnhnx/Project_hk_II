@@ -20,4 +20,6 @@ final class Sort extends Enum
 
     const SORT_PRICE_ASC = 7;
     const SORT_PRICE_DESC = 8;
+    const SORT_VALUE_ASC = 9;
+    const SORT_VALUE_DESC = 10;
 }
