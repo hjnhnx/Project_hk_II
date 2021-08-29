@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             CategoriesSeeder::class,
             ContactSeeder::class,
             ConfigurationSeeder::class,
+            SubCategoriesSeeder::class
             ColorSeeder::class,
             BannerSeeder::class
         ]);
