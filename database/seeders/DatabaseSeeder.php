@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
             ContactSeeder::class,
             ConfigurationSeeder::class,
             SubCategoriesSeeder::class
+            ColorSeeder::class,
+            BannerSeeder::class
         ]);
     }
 }

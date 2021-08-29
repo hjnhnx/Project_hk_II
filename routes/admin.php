@@ -1,9 +1,12 @@
 <?php
-
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ConfigurationController;
 use App\Http\Controllers\admin\SubCategoryController;
+use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ConfigurationController;
+use App\Http\Controllers\Admin\ProductOptionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
@@ -32,6 +35,16 @@ Route::prefix('subcategory')->group(function (){
 Route::prefix('order')->group(function (){
     Route::get('/list',[OrderController::class,'index'])->name('list_order');
 });
+Route::prefix('product-option')->group(function (){
+    Route::get('/list',[ProductOptionController::class,'index'])->name('list_product_option');
+});
+Route::prefix('color')->group(function (){
+    Route::get('/list',[ColorController::class,'index'])->name('list_color');
+});
+Route::prefix('banner')->group(function (){
+    Route::get('/list',[\App\Http\Controllers\Admin\BannerController::class,'index'])->name('list_banner');
+});
+
 
 
 
