@@ -1,4 +1,4 @@
-@section('title','SubCategory | Admin')
+@section('title','List SubCategory | Admin')
 @extends('.admin.layouts.table')
 @section('custom_style_level_2')
     .Product_Action{

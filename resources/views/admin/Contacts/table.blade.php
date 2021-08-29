@@ -1,4 +1,4 @@
-@section('title','List category | Admin')
+@section('title','List Contact | Admin')
 @extends('.admin.layouts.table')
 @section('filter_form')
     <div class="form-group col-sm-5">

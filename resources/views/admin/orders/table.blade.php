@@ -1,4 +1,4 @@
-@section('title','Order | Admin')
+@section('title','list Order | Admin')
 @extends('.admin.layouts.table')
 @section('custom_style_level_2')
     .Product_Action{
