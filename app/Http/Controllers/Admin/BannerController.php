@@ -4,16 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\Sort;
 use App\Http\Controllers\Controller;
-use App\Models\Contact;
+use App\Models\Banner;
 use Illuminate\Http\Request;
 
-class ContactController extends Controller
+class BannerController extends Controller
 {
-    public function index(Request $request)
-    {
+    public function index(Request $request){
         $search = $request->query('search');
         $sort = $request->query('sort');
-        $query_builder = Contact::query();
+        $query_builder = Banner::query();
         if ($search && strlen($search) > 0) {
             $query_builder = $query_builder->where('name', 'like', '%' . $search . '%');
         }
@@ -29,13 +28,7 @@ class ContactController extends Controller
         if ($sort && $sort == Sort::SORT_CREATED_AT_DESC) {
             $query_builder->orderBy('created_at', 'DESC')->get();
         }
-        if ($sort && $sort == Sort::SORT_NAME_ASC) {
-            $query_builder->orderBy('name', 'ASC')->get();
-        }
-        if ($sort && $sort == Sort::SORT_NAME_DESC) {
-            $query_builder->orderBy('name', 'DESC')->get();
-        }
-        $contacts = $query_builder->paginate(10);
-        return view('admin.contacts.table', ['list' => $contacts,'key_search'=>$search,'sort'=>$sort]);
+        $banners = $query_builder->paginate(10);
+        return view('admin.banners.table', ['list' => $banners,'key_search'=>$search,'sort'=>$sort]);
     }
 }
