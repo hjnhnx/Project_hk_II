@@ -20,7 +20,7 @@ class ConfigurationSeeder extends Seeder
         $fake = Factory::create();
         for ($i = 0; $i < 20; $i++) {
             Configuration::create([
-                'ram'=>$i,
+                'ram'=>$i+1,
                 'storage'=>$i+64,
                 'created_at'=>Carbon::now()->addDay(-$i)
             ]);
