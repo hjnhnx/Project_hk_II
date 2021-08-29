@@ -26,13 +26,13 @@
 var factory = function( $, DataTable ) {
 "use strict";
 
-/** 
+/**
  * AutoFill provides Excel like auto-fill features for a DataTable
  *
  * @class AutoFill
  * @constructor
  * @param {object} oTD DataTables settings object
- * @param {object} oConfig Configuration object for AutoFill
+ * @param {object} oConfig ConfigurationController object for AutoFill
  */
 var AutoFill = function( oDT, oConfig )
 {
@@ -154,7 +154,7 @@ AutoFill.prototype = {
 	 * Initialisation
 	 *  @method _fnInit
 	 *  @param {object} dt DataTables settings object
-	 *  @param {object} config Configuration object for AutoFill
+	 *  @param {object} config ConfigurationController object for AutoFill
 	 *  @returns void
 	 */
 	"_fnInit": function ( dt, config )
@@ -330,7 +330,7 @@ AutoFill.prototype = {
 			height = offsetEnd.top + $(nEnd).outerHeight() - offsetStart.top + (2*border),
 			oStyle;
 
-		// Recalculate start and end (when dragging "backwards")  
+		// Recalculate start and end (when dragging "backwards")
 		if( offsetStart.left > offsetEnd.left) {
 			x1 = offsetEnd.left - border;
 			x2 = offsetStart.left + $(nStart).outerWidth();

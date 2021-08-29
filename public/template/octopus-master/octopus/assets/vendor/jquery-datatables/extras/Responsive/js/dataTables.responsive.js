@@ -62,7 +62,7 @@ var factory = function( $, DataTable ) {
  *
  *  @class
  *  @param {object} settings DataTables settings object for the host table
- *  @param {object} [opts] Configuration options
+ *  @param {object} [opts] ConfigurationController options
  *  @requires jQuery 1.7+
  *  @requires DataTables 1.10.1+
  *
@@ -515,7 +515,7 @@ Responsive.prototype = {
 				break;
 			}
 		}
-		
+
 		// Show the columns for that break point
 		var columns = this._columnsVisiblity( breakpoint );
 
@@ -560,7 +560,7 @@ Responsive.prototype = {
 		// includes all columns. As such, try to do this as little as possible.
 		dt.rows( { page: 'current' } ).indexes().each( function ( idx ) {
 			var clone = dt.row( idx ).node().cloneNode( true );
-			
+
 			if ( dt.columns( ':hidden' ).flatten().length ) {
 				$(clone).append( dt.cells( idx, ':hidden' ).nodes().to$().clone() );
 			}
