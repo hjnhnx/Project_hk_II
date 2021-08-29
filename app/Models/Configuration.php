@@ -10,6 +10,7 @@ class Configuration extends Model
     use HasFactory;
 
     protected $fillable=[
-        'value',
+        'ram',
+        'storage',
     ];
 }

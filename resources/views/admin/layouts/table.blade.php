@@ -16,12 +16,12 @@
         </header>
         <div class="panel-body">
             <div class="row table_header">
-                <div class="col-sm-5">
+                <div class="col-md-4 col-sm-4">
                     <div class="mb-md">
                         <button id="addToTable" class="btn btn-primary">Add <i class="fa fa-plus"></i></button>
                     </div>
                 </div>
-                <div class=" container_filter col-sm-7">
+                <div class=" container_filter col-md-8 col-sm-8">
                     <form action="" method="get" class="form_filter">
                         <div class="row col-12">
                             @yield('filter_form')
@@ -40,7 +40,7 @@
             <div class="row">
                 <div class="col-sm-7"></div>
                 <div class="col-sm-5">
-{{--                    {{$list->links()}}--}}
+                    {{$list->links()}}
                 </div>
             </div>
         </div>

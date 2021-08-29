@@ -10,7 +10,7 @@
 @endsection
 @section('filter_form')
     <div class="form-group col-sm-5">
-        <input type="text" class="form-control" placeholder="Enter keyword" name="search">
+        <input value="{{$key_search != null ? $key_search : ''}}" type="text" class="form-control" placeholder="Enter keyword" name="search">
     </div>
     <div class="form-group col-sm-4">
         <button class="btn btn-primary">Search</button>
@@ -20,8 +20,12 @@
         <select name="sort" id="" class="form-control sorted">
             <option {{$sort ==  \App\Enums\Sort::SORT_ID_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_ID_ASC}}">ID tăng dần</option>
             <option {{$sort ==  \App\Enums\Sort::SORT_ID_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_ID_DESC}}">ID giảm dần</option>
-            <option {{$sort ==  \App\Enums\Sort::SORT_VALUE_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_VALUE_ASC}}">Giá trị tăng dần </option>
-            <option {{$sort ==  \App\Enums\Sort::SORT_VALUE_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_VALUE_DESC}}">Giá trị giảm dần</option>
+            <option {{$sort ==  \App\Enums\Sort::SORT_VALUE_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_VALUE_ASC}}">STORAGE tăng dần </option>
+            <option {{$sort ==  \App\Enums\Sort::SORT_VALUE_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_VALUE_DESC}}">STORAGE giảm dần</option>
+
+            <option {{$sort ==  \App\Enums\Sort::SORT_VALUER_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_VALUER_ASC}}">RAM tăng dần </option>
+            <option {{$sort ==  \App\Enums\Sort::SORT_VALUER_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_VALUER_DESC}}">RAM giảm dần</option>
+
             <option {{$sort ==  \App\Enums\Sort::SORT_CREATED_AT_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_CREATED_AT_DESC}}">Mới nhất trước</option>
             <option {{$sort ==  \App\Enums\Sort::SORT_CREATED_AT_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_CREATED_AT_ASC}}">Cũ nhất trước</option>
 
@@ -32,7 +36,8 @@
 @section('table_head')
     <tr>
         <th>Id</th>
-        <th>Value</th>
+        <th>RAM</th>
+        <th>STORAGE</th>
         <th>Created at</th>
         <th class="text-center">Actions</th>
     </tr>
@@ -41,7 +46,8 @@
     @foreach($list as $item)
         <tr class="gradeX">
             <td>{{$item->id}}</td>
-            <td>{{$item->value}}</td>
+            <td>{{$item->ram}} / GB</td>
+            <td>{{$item->storage}} / GB</td>
             <td>{{$item->created_at}}</td>
             <td class="actions text-center">
                 <a href="#" class="on-default edit-row text-primary"><i class="fa fa-pencil"></i></a>

@@ -15,7 +15,7 @@
                     </a>
                     <ul class="nav nav-children">
                         <li>
-                            <a href="pages-signup.html">
+                            <a href="{{route('list_user')}}">
                                Xem tất cả
                             </a>
                         </li>
@@ -33,7 +33,7 @@
                     </a>
                     <ul class="nav nav-children">
                         <li>
-                            <a href="pages-signup.html">
+                            <a href="{{route('list_product')}}">
                                 Xem tất cả
                             </a>
                         </li>
@@ -69,12 +69,12 @@
                     </a>
                     <ul class="nav nav-children">
                         <li>
-                            <a href="pages-signup.html">
+                            <a href="{{route('list_category')}}">
                                 Xem tất cả
                             </a>
                         </li>
                         <li>
-                            <a href="pages-signin.html">
+                            <a href="">
                                 Thêm mới
                             </a>
                         </li>
@@ -123,7 +123,7 @@
                     </a>
                     <ul class="nav nav-children">
                         <li>
-                            <a href="pages-signup.html">
+                            <a href="{{route('list_configuration')}}">
                                 Xem tất cả
                             </a>
                         </li>
@@ -177,7 +177,7 @@
                     </a>
                     <ul class="nav nav-children">
                         <li>
-                            <a href="pages-signup.html">
+                            <a href="{{route('list_contact')}}">
                                 Xem tất cả
                             </a>
                         </li>
