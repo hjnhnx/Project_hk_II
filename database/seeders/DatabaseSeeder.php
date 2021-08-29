@@ -15,13 +15,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
 
+           UserSeeder::class,
+           ProductSeeder::class,
             UserSeeder::class,
             CategoriesSeeder::class,
-            ContactSeeder::class
-
-           
+            ContactSeeder::class,
             ConfigurationSeeder::class
-
         ]);
     }
 }
