@@ -41,4 +41,5 @@
 <script src="/libs/admin/javascripts/theme.init.js"></script>
 <!-- Examples -->
 <script src="/libs/admin/javascripts/dashboard/examples.dashboard.js"></script>
+<script src="/libs/admin/javascripts/ui-elements/examples.modals.js"></script>
 @yield('custom_js')
