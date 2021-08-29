@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Admin\OrderDetailController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ConfigurationController;
 use App\Http\Controllers\Admin\UserController;
@@ -23,6 +25,8 @@ Route::prefix('contact')->group(function (){
 Route::prefix('configuration')->group(function (){
     Route::get('/list',[ConfigurationController::class,'index'])->name('list_configuration');
 });
-
+Route::prefix('order-detail')->group(function (){
+    Route::get('/list',[OrderDetailController::class,'index'])->name('list_order_detail');
+});
 
 
