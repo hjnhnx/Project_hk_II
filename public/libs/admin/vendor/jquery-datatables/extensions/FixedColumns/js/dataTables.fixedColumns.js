@@ -46,7 +46,7 @@ var factory = function( $, DataTable ) {
  *  @param {object} dt DataTables instance. With DataTables 1.10 this can also
  *    be a jQuery collection, a jQuery selector, DataTables API instance or
  *    settings object.
- *  @param {object} [init={}] Configuration object for FixedColumns. Options are
+ *  @param {object} [init={}] ConfigurationController object for FixedColumns. Options are
  *    defined by {@link FixedColumns.defaults}
  *
  *  @requires jQuery 1.7+
@@ -382,7 +382,7 @@ FixedColumns.prototype = /** @lends FixedColumns.prototype */{
 	 * table, so you can pass in nodes from the master table, or the cloned
 	 * tables and get the index position for the data in the main table.
 	 *  @param {node} node TR, TH or TD element to get the information about
-	 *  @returns {int} If nNode is given as a TR, then a single index is 
+	 *  @returns {int} If nNode is given as a TR, then a single index is
 	 *    returned, or if given as a cell, an array of [row index, column index
 	 *    (visible), column index (all)] is given.
 	 */
