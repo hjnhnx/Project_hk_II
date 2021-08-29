@@ -2746,8 +2746,9 @@ textarea[data-toggle=autosize] {
 select {
 	border: 1px solid #E5E7E9;
 	border-radius: 6px;
-	height: 46px;
-	padding: 12px;
+	height: 35px;
+    min-width: 150px;
+    padding-left:10px ;
 	outline: none;
 }
 

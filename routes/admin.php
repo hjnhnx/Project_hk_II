@@ -1,11 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/',function (){
-    return view('admin.layouts.table');
-});
-Route::get('/2',function (){
-    return view('admin.layouts.form');
-});
+Route::get('user/list',[UserController::class,'index'])->name('list_user');
