@@ -45,7 +45,9 @@
             <td>
                 <img class="show_avatar" src="{{$item->image}}">
             </td>
-            <td></td>
+            <td>
+                <a slot="{{$item->video}}" class="mb-xs mt-xs mr-xs modal-basic btn btn-warning btn_show_video" href="#modalBasic">Review video</a>
+            </td>
             <td><a target="_blank" href="{{$item->link_to_product}}">{{$item->link_to_product}}</a></td>
             <td>{{$item->status}}</td>
             <td>{{$item->created_at}}</td>

@@ -11,6 +11,7 @@
 
 @section('main_content')
     <section class="panel">
+
         <header class="panel-heading">
             <h2 class="panel-title">@yield('title_table')</h2>
         </header>
@@ -43,6 +44,23 @@
 {{--                    {{$list->links()}}--}}
                 </div>
             </div>
+            <div id="modalBasic" class="modal-block mfp-hide">
+                <section class="panel">
+                    <header class="panel-heading">
+                        <h2 class="panel-title">Are you sure?</h2>
+                    </header>
+                    <div class="panel-body">
+                        <iframe class="show_video" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <footer class="panel-footer">
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <button class="btn btn-danger modal-dismiss close_video">Cancel</button>
+                            </div>
+                        </div>
+                    </footer>
+                </section>
+            </div>
         </div>
     </section>
 @endsection
@@ -51,6 +69,12 @@
     <script>
         $('.sorted').change(function (){
             $('.form_filter').submit()
+        })
+        $('.btn_show_video').click(function (){
+            $('.show_video').attr('src',this.slot)
+        })
+        $('.close_video').click(function (){
+            $('.show_video').attr('src','')
         })
     </script>
 @endsection
