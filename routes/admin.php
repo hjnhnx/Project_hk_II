@@ -45,6 +45,8 @@ Route::prefix('configuration')->group(function () {
     Route::get('/', [ConfigurationController::class, 'index'])->name('list_configuration');
     Route::get('/{id}/delete', [ConfigurationController::class, 'destroy'])->name('delete_configuration');
     Route::get('/update-status/{id}', [ConfigurationController::class, 'update_status'])->name('configuration_update_status');
+    Route::get('/create',[ConfigurationController::class,'create'])->name('create_configuration');
+    Route::post('/create',[ConfigurationController::class,'store'])->name('save_configuration');
 });
 
 Route::prefix('subcategory')->group(function () {
