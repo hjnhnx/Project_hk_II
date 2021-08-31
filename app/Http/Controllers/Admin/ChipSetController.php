@@ -57,4 +57,13 @@ class ChipSetController extends Controller
         }
         $chip_set->save();
     }
+    public function create(){
+        return view('admin.chip_sets.form');
+    }
+    public function store(Request $request){
+        $chip_set = new Chip_set();
+        $chip_set->fill($request->all());
+        $chip_set->save();
+        return redirect()->route('list_chip_set');
+    }
 }

@@ -73,6 +73,8 @@ Route::prefix('Chip-set')->group(function () {
     Route::get('/', [ChipSetController::class, 'index'])->name('list_chip_set');
     Route::get('/{id}/delete', [ChipSetController::class, 'destroy'])->name('delete_chip_set'); // chưa hoàn thành ( 50% )
     Route::get('/update-status/{id}', [ChipSetController::class, 'update_status'])->name('chip_set_update_status');
+    Route::get('/create',[ChipSetController::class,'create'])->name('create_Chip-set');
+    Route::post('/create',[ChipSetController::class,'store'])->name('save_Chip-set');
 });
 
 

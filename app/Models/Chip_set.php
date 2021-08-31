@@ -9,4 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Chip_set extends Model
 {
     use HasFactory,SoftDeletes;
+    protected $fillable = [
+        'name',
+        'process',
+        'manufacturer'
+    ];
 }
