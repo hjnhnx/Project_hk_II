@@ -55,6 +55,8 @@ Route::prefix('color')->group(function () {
     Route::get('/', [ColorController::class, 'index'])->name('list_color');
     Route::get('/{id}/delete', [ColorController::class, 'destroy'])->name('delete_color'); // chưa hoàn thành ( 50% )
     Route::get('/update-status/{id}', [ColorController::class, 'update_status'])->name('color_update_status');
+    Route::get('/create',[ColorController::class,'create'])->name('create_color');
+    Route::post('/create',[ColorController::class,'store'])->name('save_color');
 });
 
 Route::prefix('banner')->group(function () {
