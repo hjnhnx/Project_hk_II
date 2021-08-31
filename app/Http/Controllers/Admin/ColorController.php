@@ -54,4 +54,14 @@ class ColorController extends Controller
         }
         $color->save();
     }
+    public function create(){
+        return view('admin.colors.form');
+    }
+
+    public function store(Request $request){
+        $user = new Color();
+        $user->fill($request->all());
+        $user->save();
+        return redirect()->route('list_color');
+    }
 }

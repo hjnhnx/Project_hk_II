@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\Sort;
 use App\Http\Controllers\Controller;
+use App\Models\Categories;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 
