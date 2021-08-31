@@ -18,6 +18,8 @@ Route::prefix('user')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('list_user');
     Route::get('/{id}/delete', [UserController::class, 'destroy'])->name('delete_user');
     Route::get('/update-status/{id}', [UserController::class, 'update_status'])->name('user_update_status');
+    Route::get('/create',[UserController::class,'create'])->name('create_user');
+    Route::post('/create',[UserController::class,'store'])->name('save_user');
 });
 
 Route::prefix('product')->group(function () {

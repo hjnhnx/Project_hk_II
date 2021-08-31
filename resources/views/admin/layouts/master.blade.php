@@ -2,7 +2,7 @@
 <html lang="vi">
 @include('.admin.components.head')
 <body >
-<img class="load_page" style="width: 50px;height: 50px;display: block;margin: 50px auto" src="/images/load_page.gif" alt="">
+<img class="load_page" style="width: 50px;height: 50px;display: block;margin: 200px auto" src="/images/load_page.gif" alt="">
 <section class="body body_content" style="display: none">
     <!-- start: header -->
     @include('.admin.components.header')
