@@ -62,4 +62,13 @@ class ConfigurationController extends Controller
         }
         $configuration->save();
     }
+    public function create(){
+        return view('admin.configuration.form');
+    }
+    public function store(Request $request){
+        $configuration = new Configuration();
+        $configuration->fill($request->all());
+        $configuration->save();
+        return redirect()->route('list_configuration');
+    }
 }
