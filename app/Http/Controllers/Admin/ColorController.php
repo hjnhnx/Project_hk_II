@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\Sort;
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Models\Color;
 use Illuminate\Http\Request;
@@ -37,5 +38,20 @@ class ColorController extends Controller
         }
         $colors = $query_builder->paginate(10);
         return view('admin.colors.table', ['list' => $colors,'key_search'=>$search,'sort'=>$sort]);
+    }
+
+    public function destroy($id){
+        Color::find($id)->delete();
+        return back();
+    }
+
+    public function update_status($id){
+        $color = Color::find($id);
+        if ($color->status == Status::ACTIVE) {
+            $color->status = Status::IN_ACTIVE;
+        } else {
+            $color->status = Status::ACTIVE;
+        }
+        $color->save();
     }
 }

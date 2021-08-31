@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateConfigurationsTable extends Migration
+class CreateChipSetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,11 @@ class CreateConfigurationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('configurations', function (Blueprint $table) {
+        Schema::create('chip_sets', function (Blueprint $table) {
             $table->id();
-            $table->integer('ram');
-            $table->integer('storage');
+            $table->string('name');
+            $table->integer('process');
+            $table->string('manufacturer');
             $table->integer('status')->default(Status::ACTIVE);
             $table->timestamps();
             $table->softDeletes();
@@ -31,6 +32,6 @@ class CreateConfigurationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('configurations');
+        Schema::dropIfExists('chip_sets');
     }
 }

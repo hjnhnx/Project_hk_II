@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\Status;
 use App\Models\User;
 use Carbon\Carbon;
 use Faker\Factory;
@@ -24,6 +25,7 @@ class ProductSeeder extends Seeder
                'discount' => '50',
                'subcategory_id' => 1,
                'slug' => 'iPhone-12-64GB',
+               'status'=>Status::ACTIVE,
                'created_at'=>Carbon::now()->addDay(-1)
            ],
         ]);
@@ -34,6 +36,7 @@ class ProductSeeder extends Seeder
                 'discount' => '50',
                 'subcategory_id' => 2,
                 'slug' => 'iPhone-11-64GB',
+                'status'=>Status::IN_ACTIVE,
                 'created_at'=>Carbon::now()->addDay(-2)
             ],
         ]);
@@ -44,6 +47,7 @@ class ProductSeeder extends Seeder
                 'discount' => '50',
                 'subcategory_id' => 3,
                 'slug' => 'iPhone-X-64GB',
+                'status'=>Status::ACTIVE,
                 'created_at'=>Carbon::now()->addDay(-3)
             ],
         ]);
@@ -54,6 +58,7 @@ class ProductSeeder extends Seeder
                 'discount' => '50',
                 'subcategory_id' => 4,
                 'slug' => 'iPhone-8-64GB',
+                'status'=>Status::ACTIVE,
                 'created_at'=>Carbon::now()->addDay(-4)
             ],
         ]);

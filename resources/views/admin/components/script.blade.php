@@ -33,6 +33,7 @@
 <script src="/libs/admin/vendor/jqvmap/maps/continents/jquery.vmap.europe.js"></script>
 <script src="/libs/admin/vendor/jqvmap/maps/continents/jquery.vmap.north-america.js"></script>
 <script src="/libs/admin/vendor/jqvmap/maps/continents/jquery.vmap.south-america.js"></script>
+
 <!-- Theme Base, Components and Settings -->
 <script src="/libs/admin/javascripts/theme.js"></script>
 <!-- Theme Custom -->
@@ -40,6 +41,6 @@
 <!-- Theme Initialization Files -->
 <script src="/libs/admin/javascripts/theme.init.js"></script>
 <!-- Examples -->
-<script src="/libs/admin/javascripts/dashboard/examples.dashboard.js"></script>
+{{--<script src="/libs/admin/javascripts/dashboard/examples.dashboard.js"></script>--}}
 <script src="/libs/admin/javascripts/ui-elements/examples.modals.js"></script>
 @yield('custom_js')

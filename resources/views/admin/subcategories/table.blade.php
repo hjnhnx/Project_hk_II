@@ -1,5 +1,6 @@
 @section('title','List SubCategory | Admin')
 @extends('.admin.layouts.table')
+@section('title_table','Sub category table')
 @section('custom_style_level_2')
     .Product_Action{
     min-width:120px;
@@ -26,7 +27,8 @@
 @endsection
 @section('table_head')
     <tr>
-        <th>Category_id</th>
+        <th>ID</th>
+        <th>Category</th>
         <th>Name</th>
         <th>Status</th>
         <th>Created At</th>
@@ -36,13 +38,19 @@
 @section('table_body')
     @foreach($list as $item)
         <tr class="gradeX">
+            <td>{{$item->id}}</td>
             <td>{{$item->category_id}}</td>
             <td>{{$item->name}}</td>
-            <td>{{$item->status}}</td>
+            <td>
+                <label class="switch">
+                    <input onchange="changeStatus({{$item->id}})" type="checkbox" {{$item->status == \App\Enums\Status::ACTIVE ? 'checked' : '' }}>
+                    <span class="slider round"></span>
+                </label>
+            </td>
             <td>{{$item->created_at}}</td>
             <td class="actions text-center">
                 <a href="#" class="on-default edit-row text-primary"><i class="fa fa-pencil"></i></a>
-                <a href="#" class="on-default remove-row text-danger"><i class="fa fa-trash-o"></i></a>
+                <a onclick="return confirm('Xóa danh mục này cũng đồng nghĩa với xóa các sản phẩm có trong danh mục , Bạn có chắc chắn')" href="{{route('delete_subcategory',$item->id)}}" class="on-default remove-row text-danger"><i class="fa fa-trash-o"></i></a>
                 <a href="#" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
             </td>
         </tr>

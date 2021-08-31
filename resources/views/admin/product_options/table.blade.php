@@ -1,5 +1,6 @@
 @section('title','List Product Option | Admin')
 @extends('.admin.layouts.table')
+@section('title_table','Product options table')
 @section('custom_style_level_2')
     .Product_Action{
     min-width:120px;

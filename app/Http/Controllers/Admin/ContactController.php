@@ -38,4 +38,8 @@ class ContactController extends Controller
         $contacts = $query_builder->paginate(10);
         return view('admin.contacts.table', ['list' => $contacts,'key_search'=>$search,'sort'=>$sort]);
     }
+    public function destroy($id){
+        Contact::find($id)->delete();
+        return back();
+    }
 }

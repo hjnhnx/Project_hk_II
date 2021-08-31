@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\Role;
+use App\Enums\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -23,9 +25,10 @@ class CreateUsersTable extends Migration
             $table->date('birthday');
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('role')->default(1);
-            $table->integer('status')->default(1);
+            $table->integer('role')->default(Role::USER);
+            $table->integer('status')->default(Status::ACTIVE);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

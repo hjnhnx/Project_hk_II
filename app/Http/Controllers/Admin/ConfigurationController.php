@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\Sort;
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Models\Configuration;
 use App\Models\User;
@@ -43,11 +44,22 @@ class ConfigurationController extends Controller
         if ($sort && $sort == Sort::SORT_VALUER_DESC) {
             $query_builder->orderBy('ram', 'DESC')->get();
         }
-
-
-
         $configuration = $query_builder->paginate(10);
-
         return  view('admin.configuration.table', ['list' => $configuration,'key_search'=>$search,'sort'=>$sort]);
+    }
+
+    public function destroy($id){
+        Configuration::find($id)->delete();
+        return back();
+    }
+
+    public function update_status($id){
+        $configuration = Configuration::find($id);
+        if ($configuration->status == Status::ACTIVE) {
+            $configuration->status = Status::IN_ACTIVE;
+        } else {
+            $configuration->status = Status::ACTIVE;
+        }
+        $configuration->save();
     }
 }

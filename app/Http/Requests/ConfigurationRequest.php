@@ -24,13 +24,17 @@ class ConfigurationRequest extends FormRequest
     public function rules()
     {
         return [
-            'value'=>'required'
+            'ram'=>'required|numeric',
+            'storage'=>'required|numeric'
         ];
     }
     public function messages()
     {
         return [
-            'value.required'=>'Vui lòng nhập vào trường này!'
+            'ram.required'=>'Vui lòng nhập vào thông số RAM',
+            'ram.numeric'=>'Vui lòng nhập vào thông số RAM là một số nguyên',
+            'storage.required'=>'Vui lòng nhập vào thông số bộ nhớ',
+            'storage.numeric'=>'Vui lòng nhập vào thông số bộ nhớ là một số nguyên',
         ];
     }
 }

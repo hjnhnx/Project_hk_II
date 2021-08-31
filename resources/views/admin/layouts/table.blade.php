@@ -76,5 +76,14 @@
         $('.close_video').click(function (){
             $('.show_video').attr('src','')
         })
+        function changeStatus(id){
+            var perPage = window.location.href.split("/")[4];
+            var protocol = window.location.protocol
+            var host = window.location.hostname
+            var port = window.location.port
+            var url = protocol+'//'+host+':'+port
+            $.get(`${url}/admin/${perPage}/update-status/${id}`, function(data){});
+        }
     </script>
+    @yield('Extra_JS')
 @endsection

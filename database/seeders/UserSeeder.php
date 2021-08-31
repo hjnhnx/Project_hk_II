@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Enums\Role;
+use App\Enums\Status;
 use App\Models\User;
 use Carbon\Carbon;
 use Faker\Factory;
@@ -70,11 +72,11 @@ class UserSeeder extends Seeder
                 'phone'=>$fake->phoneNumber,
                 'birthday'=>$fake->date,
                 'email'=>$fake->email,
+                'role'=>Role::USER,
+                'status'=>Status::ACTIVE,
                 'password'=>random_int(123456,99999999),
                 'created_at'=>Carbon::now()->addDay(-$i)
             ]);
         }
-
-
     }
 }

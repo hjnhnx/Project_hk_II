@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\Status;
 use App\Http\Controllers\CategoryController;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -18,22 +19,22 @@ class CategoriesSeeder extends Seeder
     {
         DB::table('categories')->insert([
             'name' => 'Smart TV',
-            'status'=> 1,
+            'status'=> Status::ACTIVE,
             'created_at'=> Carbon::now()->addDay(-1)
         ]);
         DB::table('categories')->insert([
             'name' => 'Smart Phone',
-            'status'=> 1,
+            'status'=> Status::ACTIVE,
             'created_at'=> Carbon::now()->addDay(-2)
         ]);
         DB::table('categories')->insert([
             'name' => 'Laptop',
-            'status'=> 1,
+            'status'=> Status::IN_ACTIVE,
             'created_at'=> Carbon::now()->addDay(-3)
         ]);
         DB::table('categories')->insert([
             'name' => 'TabLed',
-            'status'=> 1,
+            'status'=> Status::ACTIVE,
             'created_at'=> Carbon::now()->addDay(-4)
         ]);
     }

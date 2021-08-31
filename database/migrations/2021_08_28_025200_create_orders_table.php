@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\CheckoutStatus;
+use App\Enums\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -22,9 +24,10 @@ class CreateOrdersTable extends Migration
             $table->string('email');
             $table->string('address');
             $table->string('note');
-            $table->integer('is_checkout');
-            $table->integer('status');
+            $table->integer('is_checkout')->default(CheckoutStatus::UNPAID);
+            $table->integer('status')->default(Status::ACTIVE);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

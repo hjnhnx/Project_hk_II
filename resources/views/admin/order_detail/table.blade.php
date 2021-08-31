@@ -1,4 +1,5 @@
 @section('title','List Order Detail | Admin')
+@section('title_table','Order detail table')
 @section('custom_style_level_2')
     .Product_Action{
     min-width:120px;

@@ -1,10 +1,11 @@
 @section('title','List Color | Admin')
 @extends('.admin.layouts.table')
+@section('title_table','Colors table')
 @section('custom_style_level_2')
         .view-color{
             height: 30px;
             width: 80%;
-            border: #7d7b7b 1px solid;
+            border: #b6b6b6 1px solid;
             border-radius: 3px;
         }
 @endsection
@@ -33,7 +34,7 @@
         <th>Id</th>
         <th>Name</th>
         <th>Color Code</th>
-        <th>Color Review</th>
+        <th>Color Preview</th>
         <th>Status</th>
         <th>Created At</th>
         <th class="text-center">Actions</th>
@@ -48,11 +49,16 @@
             <td>
                 <div class="view-color" style="background: {{$item->color_code}}"></div>
             </td>
-            <td>{{$item->status}}</td>
+            <td>
+                <label class="switch">
+                    <input onchange="changeStatus({{$item->id}})" type="checkbox" {{$item->status == \App\Enums\Status::ACTIVE ? 'checked' : '' }}>
+                    <span class="slider round"></span>
+                </label>
+            </td>
             <td>{{$item->created_at}}</td>
             <td class="actions text-center">
                 <a href="#" class="on-default edit-row text-primary"><i class="fa fa-pencil"></i></a>
-                <a href="#" class="on-default remove-row text-danger"><i class="fa fa-trash-o"></i></a>
+                <a onclick="return confirm('Bạn có chắc muốn xóa màu sắc này , Chọn OK thì các sản phẩm liên quan cũng sẽ bị xóa kèm')" href="{{route('delete_color',$item->id)}}" class="on-default remove-row text-danger"><i class="fa fa-trash-o"></i></a>
                 <a href="#" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
             </td>
         </tr>

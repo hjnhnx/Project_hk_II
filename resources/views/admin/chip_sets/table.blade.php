@@ -1,18 +1,17 @@
-@section('title','List user | Admin')
+@section('title','List Chipset | Admin')
 @extends('.admin.layouts.table')
-@section('title_table','Users table')
+@section('title_table','Chipset table')
 @section('custom_style_level_2')
-    .show_avatar {
-    height: 50px;
-    width: 50px;
-    object-fit: cover;
-    border-radius: 5px;
+    .view-color{
+    height: 30px;
+    width: 80%;
+    border: #b6b6b6 1px solid;
+    border-radius: 3px;
     }
 @endsection
 @section('filter_form')
     <div class="form-group col-sm-5">
-        <input value="{{$key_search != null ? $key_search : ''}}" type="text" class="form-control"
-               placeholder="Enter keyword" name="search">
+                <input value="{{$key_search != null ? $key_search : ''}}" type="text" class="form-control" placeholder="Enter keyword" name="search">
     </div>
     <div class="form-group col-sm-4">
         <button class="btn btn-primary">Search</button>
@@ -38,11 +37,11 @@
             </option>
             <option
                 {{$sort ==  \App\Enums\Sort::SORT_CREATED_AT_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_CREATED_AT_ASC}}">
-                Tham gia trước
+                Cũ nhất trước
             </option>
             <option
                 {{$sort ==  \App\Enums\Sort::SORT_CREATED_AT_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_CREATED_AT_DESC}}">
-                Tham gia sau
+                Mới nhất trước
             </option>
 
         </select>
@@ -51,15 +50,11 @@
 @section('table_head')
     <tr>
         <th>ID</th>
-        <th>Full name</th>
-        <th>Avatar</th>
-        <th>Address</th>
-        <th>Phone</th>
-        <th>Birthday</th>
-        <th>Email</th>
+        <th>Name</th>
+        <th>Process</th>
+        <th>Manufacturer</th>
         <th>Status</th>
-        <th>DOJ</th>
-        <th>Role</th>
+        <th>Created At</th>
         <th class="text-center">Actions</th>
     </tr>
 @endsection
@@ -67,35 +62,25 @@
     @foreach($list as $item)
         <tr class="gradeX">
             <td>{{$item->id}}</td>
-            <td>{{$item->firstname. ' ' .$item->lastname}}</td>
-            <td>
-                <img class="show_avatar" src="{{$item->avatar}}" alt="">
-            </td>
-            <td>{{$item->address}}</td>
-            <td>{{$item->phone}}</td>
-            <td>{{$item->birthday}}</td>
-            <td>{{$item->email}}</td>
+            <td>{{$item->name}}</td>
+            <td>{{$item->process}} nm</td>
+            <td>{{$item->manufacturer}}</td>
             <td>
                 <label class="switch">
-                    <input onchange="changeStatus({{$item->id}})" type="checkbox" {{$item->status == \App\Enums\Status::ACTIVE ? 'checked' : '' }}>
+                    <input onchange="changeStatus({{$item->id}})" type="checkbox" {{$item->status == \App\Enums\Status::ACTIVE ? 'checked' : ''}}>
                     <span class="slider round"></span>
                 </label>
             </td>
+
             <td>{{$item->created_at}}</td>
-            <td>
-                @if($item->role == 1)
-                    User
-                @else
-                    Admin
-                @endif
-            </td>
             <td class="actions text-center">
                 <a href="#" class="on-default edit-row text-primary"><i class="fa fa-pencil"></i></a>
-                <a onclick="return confirm('Bạn có chắc muốn xóa người dùng này ra khỏi hệ thống')"
-                   href="{{route('delete_user',$item->id)}}" class="on-default remove-row text-danger"><i
-                        class="fa fa-trash-o"></i></a>
+                <a onclick="return confirm('Bạn có chắc muốn xóa thông số Chip này khỏi hệ thống ,Chọn OK cũng sẽ xóa các sản phẩm đang chạy con Chip này khỏi hệ thống')" href="{{route('delete_chip_set',$item->id)}}" class="on-default remove-row text-danger"><i class="fa fa-trash-o"></i></a>
                 <a href="#" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
             </td>
         </tr>
     @endforeach
 @endsection
+
+
+

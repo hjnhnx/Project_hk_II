@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
             ConfigurationSeeder::class,
             SubCategoriesSeeder::class,
             ColorSeeder::class,
-            BannerSeeder::class
+            BannerSeeder::class,
+            ChipSetSeeder::class
         ]);
     }
 }

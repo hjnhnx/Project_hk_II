@@ -1,5 +1,6 @@
 @section('title','List Contact | Admin')
 @extends('.admin.layouts.table')
+@section('title_table','Contacts table')
 @section('filter_form')
     <div class="form-group col-sm-5">
         <input value="{{$key_search != null ? $key_search : ''}}" type="text" class="form-control" placeholder="Enter keyword" name="search">
@@ -39,8 +40,7 @@
             <td>{{$item->message}}</td>
             <td>{{$item->created_at}}</td>
             <td class="actions text-center">
-                <a href="#" class="on-default edit-row text-primary"><i class="fa fa-pencil"></i></a>
-                <a href="#" class="on-default remove-row text-danger"><i class="fa fa-trash-o"></i></a>
+                <a onclick="return confirm('Bạn có chắc muốn xóa liên hệ này')" href="{{route('delete_contact',$item->id)}}" class="on-default remove-row text-danger"><i class="fa fa-trash-o"></i></a>
                 <a href="#" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
             </td>
         </tr>
