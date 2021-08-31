@@ -63,7 +63,7 @@ class UserSeeder extends Seeder
             "https://cf.shopee.vn/file/feaf1b36c6a4684c9c8475396be3d249",
         );
         $fake = Factory::create();
-        for ($i = 0; $i < 200; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             User::create([
                 'firstname'=>$fake->firstName,
                 'lastname'=>$fake->lastName,
