@@ -32,6 +32,8 @@ Route::prefix('category')->group(function () {
     Route::get('/', [CategoryController::class, 'index'])->name('list_category');
     Route::get('/{id}/delete', [CategoryController::class, 'destroy'])->name('delete_category'); // chưa hoàn thiện ( 50% )
     Route::get('/update-status/{id}', [CategoryController::class, 'update_status'])->name('category_update_status');
+    Route::get('/create',[CategoryController::class,'create'])->name('create_category');
+    Route::post('/create',[CategoryController::class,'store'])->name('save_category');
 });
 
 Route::prefix('contact')->group(function () {
@@ -49,6 +51,8 @@ Route::prefix('subcategory')->group(function () {
     Route::get('/', [SubCategoryController::class, 'index'])->name('list_subcategory');
     Route::get('/{id}/delete', [SubCategoryController::class, 'destroy'])->name('delete_subcategory'); // chưa hoàn thành ( 50% )
     Route::get('/update-status/{id}', [SubCategoryController::class, 'update_status'])->name('subcategory_update_status');
+    Route::get('/create',[SubCategoryController::class,'create'])->name('create_subcategories');
+    Route::post('/create',[SubCategoryController::class,'store'])->name('save_subcategories');
 });
 
 Route::prefix('color')->group(function () {

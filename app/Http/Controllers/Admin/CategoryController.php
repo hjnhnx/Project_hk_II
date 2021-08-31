@@ -51,4 +51,13 @@ class CategoryController extends Controller
         }
         $category->save();
     }
+    public function create(){
+        return view('admin.categories.form');
+    }
+    public function store(Request $request){
+        $category = new Categories();
+        $category->fill($request->all());
+        $category->save();
+        return redirect()->route('list_category');
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Enums\Sort;
 use App\Enums\Status;
 use App\Http\Controllers\Controller;
+use App\Models\Categories;
 use App\Models\Product;
 use App\Models\SubCategories;
 use Illuminate\Http\Request;
@@ -53,6 +54,18 @@ class SubCategoryController extends Controller
             $subCategory->status = Status::ACTIVE;
         }
         $subCategory->save();
+    }
+    public function create(){
+        $categories = Categories::query()->where('status',Status::ACTIVE)->get();
+        return view('admin.subcategories.form',[
+            'categories'=>$categories
+        ]);
+    }
+    public function store(Request $request){
+        $sub = new SubCategories();
+        $sub->fill($request->all());
+        $sub->save();
+        return redirect()->route('list_subcategory');
     }
 
 }
