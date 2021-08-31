@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,7 +21,9 @@ class CreateProductsTable extends Migration
             $table->integer('discount');
             $table->integer('subcategory_id');
             $table->string('slug');
+            $table->integer('status')->default(Status::ACTIVE);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

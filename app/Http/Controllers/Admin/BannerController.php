@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\Sort;
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use Illuminate\Http\Request;
@@ -31,4 +32,20 @@ class BannerController extends Controller
         $banners = $query_builder->paginate(10);
         return view('admin.banners.table', ['list' => $banners,'key_search'=>$search,'sort'=>$sort]);
     }
+
+    public function destroy($id){
+        Banner::find($id)->delete();
+        return back();
+    }
+
+    public function update_status($id){
+        $banner = Banner::find($id);
+        if ($banner->status == Status::ACTIVE) {
+            $banner->status = Status::IN_ACTIVE;
+        } else {
+            $banner->status = Status::ACTIVE;
+        }
+        $banner->save();
+    }
+
 }

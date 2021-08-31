@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\Status;
 use App\Models\SubCategories;
 use App\Models\User;
 use Carbon\Carbon;
@@ -23,6 +24,7 @@ class SubCategoriesSeeder extends Seeder
             SubCategories::create([
                 'category_id'=>$i,
                 'name'=>$fake->name,
+                'status'=>Status::ACTIVE,
                 'created_at'=>Carbon::now()->addDay(-$i)
             ]);
         }

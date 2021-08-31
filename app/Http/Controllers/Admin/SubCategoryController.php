@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Enums\Sort;
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\SubCategories;
@@ -35,9 +36,23 @@ class SubCategoryController extends Controller
         if ($sort && $sort == Sort::SORT_NAME_DESC) {
             $query_builder->orderBy('name', 'DESC')->get();
         }
-
-
         $subcategories = $query_builder->paginate(10);
         return view('admin.subcategories.table', ['list' => $subcategories,'key_search'=>$search,'sort'=>$sort]);
     }
+
+    public function destroy($id){
+        SubCategories::find($id)->delete();
+        return back();
+    }
+
+    public function update_status($id){
+        $subCategory = SubCategories::find($id);
+        if ($subCategory->status == Status::ACTIVE) {
+            $subCategory->status = Status::IN_ACTIVE;
+        } else {
+            $subCategory->status = Status::ACTIVE;
+        }
+        $subCategory->save();
+    }
+
 }

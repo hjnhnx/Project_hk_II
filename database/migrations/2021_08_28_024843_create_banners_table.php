@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,8 +19,9 @@ class CreateBannersTable extends Migration
             $table->text('image');
             $table->string('video');
             $table->string('link_to_product');
-            $table->integer('status')->default(1);
+            $table->integer('status')->default(Status::ACTIVE);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

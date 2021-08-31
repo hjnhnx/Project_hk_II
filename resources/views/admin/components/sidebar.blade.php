@@ -16,12 +16,12 @@
                     <ul class="nav nav-children">
                         <li>
                             <a href="{{route('list_user')}}">
-                               Xem tất cả
+                                Xem tất cả
                             </a>
                         </li>
                         <li>
                             <a href="pages-signin.html">
-                               Thêm mới
+                                Thêm mới
                             </a>
                         </li>
                     </ul>
@@ -52,6 +52,24 @@
                     <ul class="nav nav-children">
                         <li>
                             <a href="{{route('list_product_option')}}">
+                                Xem tất cả
+                            </a>
+                        </li>
+                        <li>
+                            <a href="pages-signin.html">
+                                Thêm mới
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-parent">
+                    <a href="#">
+                        <i class="fa fa-joomla" aria-hidden="true"></i>
+                        <span>Chipset</span>
+                    </a>
+                    <ul class="nav nav-children">
+                        <li>
+                            <a href="{{route('list_chip_set')}}">
                                 Xem tất cả
                             </a>
                         </li>
@@ -154,12 +172,30 @@
                 </li>
                 <li class="nav-parent">
                     <a>
-                        <i class="fa fa-info    " aria-hidden="true"></i>
+                        <i class="fa fa-info" aria-hidden="true"></i>
                         <span>Chi tiết đơn hàng</span>
                     </a>
                     <ul class="nav nav-children">
                         <li>
                             <a href="{{route('list_order_detail')}}">
+                                Xem tất cả
+                            </a>
+                        </li>
+                        <li>
+                            <a href="pages-signin.html">
+                                Thêm mới
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-parent">
+                    <a>
+                        <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+                        <span>Banner</span>
+                    </a>
+                    <ul class="nav nav-children">
+                        <li>
+                            <a href="{{route('list_banner')}}">
                                 Xem tất cả
                             </a>
                         </li>

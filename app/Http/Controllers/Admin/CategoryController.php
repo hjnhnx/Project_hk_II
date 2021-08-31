@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\Sort;
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Models\Categories;
 use Illuminate\Http\Request;
@@ -36,5 +37,18 @@ class CategoryController extends Controller
         }
         $categories = $query_builder->paginate(10);
         return view('admin.categories.table', ['list' => $categories,'key_search'=>$search,'sort'=>$sort]);
+    }
+    public function destroy($id){
+        Categories::find($id)->delete();
+        return back();
+    }
+    public function update_status($id){
+        $category = Categories::find($id);
+        if ($category->status == Status::ACTIVE){
+            $category->status = Status::IN_ACTIVE;
+        }else{
+            $category->status = Status::ACTIVE;
+        }
+        $category->save();
     }
 }

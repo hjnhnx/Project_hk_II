@@ -1,5 +1,6 @@
 @section('title','List Product | Admin')
 @extends('.admin.layouts.table')
+@section('title_table','Products table')
 @section('custom_style_level_2')
    .Product_Action{
         min-width:120px;
@@ -30,6 +31,7 @@
         <th>Name</th>
         <th>Description</th>
         <th>Discount</th>
+        <th>Status</th>
         <th>Created At</th>
         <th class="text-center Product_Action">Actions</th>
     </tr>
@@ -41,10 +43,16 @@
             <td>{{$item->name}}</td>
             <td>{{$item->description}}</td>
             <td>{{$item->discount}}</td>
+            <td>
+                <label class="switch">
+                    <input onchange="changeStatus({{$item->id}})" type="checkbox" {{$item->status == \App\Enums\Status::ACTIVE ? 'checked' : '' }}>
+                    <span class="slider round"></span>
+                </label>
+            </td>
             <td>{{$item->created_at}}</td>
             <td class="actions text-center">
                 <a href="#" class="on-default edit-row text-primary"><i class="fa fa-pencil"></i></a>
-                <a href="#" class="on-default remove-row text-danger"><i class="fa fa-trash-o"></i></a>
+                <a onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này')" href="{{route('delete_product',$item->id)}}" class="on-default remove-row text-danger"><i class="fa fa-trash-o"></i></a>
                 <a href="#" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
             </td>
         </tr>
