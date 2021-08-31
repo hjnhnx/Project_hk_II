@@ -57,4 +57,15 @@ class UserController extends Controller
         }
         $user->save();
     }
+    public function create(){
+        return view('admin.users.form');
+    }
+
+    public function store(Request $request){
+        $user = new User();
+        $user->fill($request->all());
+        $user->save();
+        return redirect()->route('list_user');
+    }
+
 }
