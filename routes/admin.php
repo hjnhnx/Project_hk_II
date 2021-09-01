@@ -1,15 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin\BannerController;
-use App\Http\Controllers\Admin\ChipSetController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\OrderDetailController;
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\ConfigurationController;
-use App\Http\Controllers\admin\SubCategoryController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\ProductOptionController;
-use App\Http\Controllers\Admin\TheFirmController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
@@ -43,13 +40,7 @@ Route::prefix('contact')->group(function () {
     Route::get('/{id}/delete', [ContactController::class, 'destroy'])->name('delete_contact');
 });
 
-Route::prefix('configuration')->group(function () {
-    Route::get('/', [ConfigurationController::class, 'index'])->name('list_configuration');
-    Route::get('/{id}/delete', [ConfigurationController::class, 'destroy'])->name('delete_configuration');
-    Route::get('/update-status/{id}', [ConfigurationController::class, 'update_status'])->name('configuration_update_status');
-    Route::get('/create',[ConfigurationController::class,'create'])->name('create_configuration');
-    Route::post('/create',[ConfigurationController::class,'store'])->name('save_configuration');
-});
+
 
 Route::prefix('color')->group(function () {
     Route::get('/', [ColorController::class, 'index'])->name('list_color');
@@ -67,21 +58,15 @@ Route::prefix('banner')->group(function () {
     Route::post('/create',[BannerController::class,'store'])->name('save_banner');
 });
 
-Route::prefix('Chip-set')->group(function () {
-    Route::get('/', [ChipSetController::class, 'index'])->name('list_chip_set');
-    Route::get('/{id}/delete', [ChipSetController::class, 'destroy'])->name('delete_chip_set'); // chưa hoàn thành ( 50% )
-    Route::get('/update-status/{id}', [ChipSetController::class, 'update_status'])->name('chip_set_update_status');
-    Route::get('/create',[ChipSetController::class,'create'])->name('create_Chip_set');
-    Route::post('/create',[ChipSetController::class,'store'])->name('save_Chip-set');
-});
 
 
-Route::prefix('the-firm')->group(function () {
-    Route::get('/', [TheFirmController::class, 'index'])->name('list_the_firm');
-    Route::get('/{id}/delete', [TheFirmController::class, 'destroy'])->name('delete_the_firm'); // chưa hoàn thành ( 50% )
-    Route::get('/update-status/{id}', [TheFirmController::class, 'update_status'])->name('the_firm_update_status');
-    Route::get('/create',[TheFirmController::class,'create'])->name('create_the_firm');
-    Route::post('/create',[TheFirmController::class,'store'])->name('save_the_firm');
+
+Route::prefix('brand')->group(function () {
+    Route::get('/', [BrandController::class, 'index'])->name('list_brand');
+    Route::get('/{id}/delete', [BrandController::class, 'destroy'])->name('delete_brand'); // chưa hoàn thành ( 50% )
+    Route::get('/update-status/{id}', [BrandController::class, 'update_status'])->name('brand_update_status');
+    Route::get('/create',[BrandController::class,'create'])->name('create_brand');
+    Route::post('/create',[BrandController::class,'store'])->name('save_brand');
 });
 
 

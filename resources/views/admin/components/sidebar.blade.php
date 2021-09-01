@@ -58,24 +58,6 @@
                     </ul>
                 </li>
                 <li class="nav-parent">
-                    <a href="#">
-                        <i class="fa fa-joomla" aria-hidden="true"></i>
-                        <span>Chipset</span>
-                    </a>
-                    <ul class="nav nav-children">
-                        <li>
-                            <a href="{{route('list_chip_set')}}">
-                                Xem tất cả
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{route('create_Chip_set')}}">
-                                Thêm mới
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-parent">
                     <a>
                         <i class="fa fa- fa-quote-left" aria-hidden="true"></i>
                         <span>Danh mục</span>
@@ -100,12 +82,12 @@
                     </a>
                     <ul class="nav nav-children">
                         <li>
-                            <a href="{{route('list_the_firm')}}">
+                            <a href="{{route('list_brand')}}">
                                 Xem tất cả
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('create_the_firm')}}">
+                            <a href="{{route('create_brand')}}">
                                 Thêm mới
                             </a>
                         </li>
@@ -130,24 +112,6 @@
                     </ul>
                 </li>
 
-                <li class="nav-parent">
-                    <a>
-                        <i class="fa fa-ge" aria-hidden="true"></i>
-                        <span>Cấu hình</span>
-                    </a>
-                    <ul class="nav nav-children">
-                        <li>
-                            <a href="{{route('list_configuration')}}">
-                                Xem tất cả
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{route('create_configuration')}}">
-                                Thêm mới
-                            </a>
-                        </li>
-                    </ul>
-                </li>
                 <li class="nav-parent">
                     <a>
                         <i class="fa fa-share-square-o" aria-hidden="true"></i>

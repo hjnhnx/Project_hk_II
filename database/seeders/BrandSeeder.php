@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class TheFirmSeeder extends Seeder
+class BrandSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class TheFirmSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('the_firms')->insert([
+        DB::table('brands')->insert([
             [
                 'name'=>'Apple',
                 'status'=>Status::ACTIVE,

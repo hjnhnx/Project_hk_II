@@ -65,10 +65,8 @@ class ProductController extends Controller
 
     public function create(){
         $category = Categories::query()->where('status',Status::ACTIVE)->orderBy('name','ASC')->get();
-        $the_firms = TheFirm::query()->where('status',Status::ACTIVE)->orderBy('name','ASC')->get();
         $colors = Color::query()->where('status',Status::ACTIVE)->orderBy('name','ASC')->get();
-        $configuration = Configuration::query()->where('status',Status::ACTIVE)->orderBy('ram','ASC')->get();
-        return view('admin.products.form',['categories'=>$category,'the_firms'=>$the_firms,'colors'=>$colors,'configuration'=>$configuration]);
+        return view('admin.products.form',['categories'=>$category,'colors'=>$colors,]);
     }
 
 

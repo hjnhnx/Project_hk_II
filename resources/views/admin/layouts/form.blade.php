@@ -12,7 +12,7 @@
 
         @yield('size_form')
 
-        <form action="" method="post">
+        <form action="" method="post" id="form_admin">
             @csrf
             <section class="panel">
                 <header class="panel-heading">

@@ -1,6 +1,6 @@
-@section('title','List The firm | Admin')
+@section('title','List Brands | Admin')
 @extends('.admin.layouts.table')
-@section('title_table','The firm table')
+@section('title_table','Brands table')
 @section('custom_style_level_2')
     .show_avatar {
     height: 50px;
@@ -72,7 +72,7 @@
             <td class="actions text-center">
                 <a href="#" class="on-default edit-row text-primary"><i class="fa fa-pencil"></i></a>
                 <a onclick="return confirm('Bạn có chắc muốn xóa hãng này ra khỏi hệ thống , Chọn OK cũng sẽ xóa các sản phẩm thuộc về hãng này')"
-                   href="{{route('delete_the_firm',$item->id)}}" class="on-default remove-row text-danger"><i
+                   href="{{route('delete_brand',$item->id)}}" class="on-default remove-row text-danger"><i
                         class="fa fa-trash-o"></i></a>
                 <a href="#" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
             </td>
