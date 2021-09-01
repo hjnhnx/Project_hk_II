@@ -3,7 +3,7 @@
 @section('title_form','Create chip-set')
 
 @section('size_form')
-    <div class="col-md-12 text-center">
+    <div class="col-md-12">
         @endsection
 
         @section('input_form')
