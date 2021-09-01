@@ -58,7 +58,7 @@ class ColorController extends Controller
         return view('admin.colors.form');
     }
 
-    public function store(Request $request){
+    public function store(ColorRequest $request){
         $user = new Color();
         $user->fill($request->all());
         $user->save();
