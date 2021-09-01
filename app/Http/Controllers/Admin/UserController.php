@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\Sort;
 use App\Enums\Status;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -63,11 +64,10 @@ class UserController extends Controller
         return view('admin.users.form');
     }
 
-    public function store(Request $request){
+    public function store(UserRequest $request){
         $user = new User();
         $user->fill($request->all());
         $user->save();
         return redirect()->route('list_user');
     }
-
 }
