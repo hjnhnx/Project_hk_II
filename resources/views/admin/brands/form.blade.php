@@ -1,6 +1,6 @@
-@section('title','Form the firm | Admin')
+@section('title','Form Brand | Admin')
 @extends('.admin.layouts.form')
-@section('title_form','Create The firm')
+@section('title_form','Create Brand')
 
 @section('size_form')
     <div class="col-md-6">
@@ -10,7 +10,7 @@
             <div class="row form-group">
                 <div class="col-lg-12">
                     <label for="">Name</label>
-                    <input type="text" name="name" placeholder="Enter the firm Name" class="form-control">
+                    <input type="text" name="name" placeholder="Enter Brand Name" class="form-control">
                 </div>
             </div>
 @endsection

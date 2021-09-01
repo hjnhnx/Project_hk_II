@@ -5,16 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\Sort;
 use App\Enums\Status;
 use App\Http\Controllers\Controller;
-use App\Models\TheFirm;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
-class TheFirmController extends Controller
+class BrandController extends Controller
 {
     public function index(Request $request)
     {
         $search = $request->query('search');
         $sort = $request->query('sort');
-        $query_builder = TheFirm::query();
+        $query_builder = Brand::query();
         if ($search && strlen($search) > 0) {
             $query_builder = $query_builder->where('firstname', 'like', '%' . $search . '%')
                 ->orWhere('lastname', 'like', '%' . $search . '%')
@@ -42,18 +42,18 @@ class TheFirmController extends Controller
             $query_builder->orderBy('name', 'DESC')->get();
         }
         $the_firm = $query_builder->paginate(10);
-        return view('admin.the_firms.table', ['list' => $the_firm, 'key_search' => $search, 'sort' => $sort]);
+        return view('admin.brands.table', ['list' => $the_firm, 'key_search' => $search, 'sort' => $sort]);
     }
 
     public function destroy($id)
     {
-        TheFirm::find($id)->delete();
+        Brand::find($id)->delete();
         return back();
     }
 
     public function update_status($id)
     {
-        $theFirm = TheFirm::find($id);
+        $theFirm = Brand::find($id);
         if ($theFirm->status == Status::ACTIVE) {
             $theFirm->status = Status::IN_ACTIVE;
         } else {
@@ -64,16 +64,14 @@ class TheFirmController extends Controller
 
     public function create()
     {
-        return view('admin.the_firms.form');
+        return view('admin.brands.form');
     }
 
     public function store(Request $request)
     {
-        $the_firm = new TheFirm();
+        $the_firm = new Brand();
         $the_firm->fill($request->all());
         $the_firm->save();
-        return redirect()->route('list_the_firm');
+        return redirect()->route('list_brand');
     }
-
-
 }
