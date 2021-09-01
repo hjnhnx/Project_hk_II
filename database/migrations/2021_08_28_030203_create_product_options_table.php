@@ -17,7 +17,7 @@ class CreateProductOptionsTable extends Migration
         Schema::create('product_options', function (Blueprint $table) {
             $table->id();
             $table->integer('product_id');
-            $table->text('thumbnail');
+            $table->text('thumbnail')->nullable();
             $table->integer('color_id');
             $table->integer('configuration_id');
             $table->integer('quantity');
