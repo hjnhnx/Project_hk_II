@@ -10,6 +10,9 @@
                 <div class="col-lg-12">
                     <label for="">Name</label>
                     <input type="text" name="name" placeholder="Enter Color Name" class="form-control">
+                    @error('name')
+                    <span style="color: #f97d7d;font-size: 12px;font-weight: bold">{{ $message }}</span>
+                    @enderror
                 </div>
             </div>
             <br>
@@ -17,7 +20,6 @@
                 <div class="col-lg-12">
                     <label for="">Color Code</label>
                     <input type="color" name="color_code" placeholder="" class="form-control">
-
                 </div>
             </div>
             <br>
