@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\Sort;
 use App\Enums\Status;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BannerRequest;
 use App\Models\Banner;
 use Illuminate\Http\Request;
 
@@ -52,7 +53,7 @@ class BannerController extends Controller
         return view('admin.banners.form');
     }
 
-    public function store(Request $request){
+    public function store(BannerRequest $request){
         $user = new Banner();
         $user->fill($request->all());
         $user->save();

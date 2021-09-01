@@ -1,4 +1,4 @@
-@section('title','Form user | Admin')
+@section('title','FormBanner | Admin')
 @extends('.admin.layouts.form')
 @section('title_form','Create user')
 
@@ -11,6 +11,9 @@
                 <div class="col-lg-6">
                     <label for="">Image</label>
                     <input type="text" name="image" placeholder="Enter src image" class="form-control">
+                    @error('image')
+                    <span style="color: #f97d7d;font-size: 12px;font-weight: bold">{{$message}}</span>
+                    @enderror
                 </div>
 
                 <div class="mb-md hidden-lg hidden-xl"></div>
@@ -28,10 +31,12 @@
                 <div class="col-lg-12">
                     <label for="">Link to product</label>
                     <input type="text" name="link_to_product" placeholder="Link to product" class="form-control">
+                    @error('link_to_product')
+                    <span style="color: #f97d7d;font-size: 12px;font-weight: bold">{{$message}}</span>
+                    @enderror
                 </div>
             </div>
             <br>
-
 @endsection
 
 {{--        @section('Extra_js')--}}
