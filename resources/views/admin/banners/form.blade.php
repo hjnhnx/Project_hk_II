@@ -34,3 +34,30 @@
 
 @endsection
 
+{{--        @section('Extra_js')--}}
+{{--            <script>--}}
+{{--                $('#form_admin').validate({--}}
+{{--                    rules: {--}}
+{{--                        image:{--}}
+{{--                            required:true,--}}
+{{--                            url:true,--}}
+{{--                        },--}}
+{{--                        link_to_product:{--}}
+{{--                            required:true,--}}
+{{--                            url:true,--}}
+{{--                        },--}}
+{{--                    },--}}
+{{--                    messages:{--}}
+{{--                        image:{--}}
+{{--                            required:'Vui lòng chọn ảnh.',--}}
+{{--                            url:'Vui lòng chọn đúng định dạng ảnh',--}}
+{{--                        },--}}
+{{--                        link_to_product:{--}}
+{{--                            required:'Vui lòng nhập link sản phẩm.',--}}
+{{--                            url:'Vui lòng chọn đúng đường dẫn tới sản phẩm.',--}}
+{{--                        },--}}
+{{--                    }--}}
+{{--                })--}}
+{{--            </script>--}}
+{{--@endsection--}}
+
