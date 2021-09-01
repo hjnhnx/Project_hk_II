@@ -18,14 +18,85 @@ class ConfigurationSeeder extends Seeder
      */
     public function run()
     {
-        $fake = Factory::create();
-        for ($i = 0; $i < 20; $i++) {
-            Configuration::create([
-                'ram'=>$i+1,
-                'storage'=>$i+64,
-                'status'=>($i % 10 == 2 ? Status::IN_ACTIVE : Status::ACTIVE ),
-                'created_at'=>Carbon::now()->addDay(-$i)
-            ]);
-        }
+        DB::table('configurations')->insert([
+            'ram' => 2,
+            'storage' => 16
+        ]);
+        DB::table('configurations')->insert([
+            'ram' => 2,
+            'storage' => 32
+        ]);
+        DB::table('configurations')->insert([
+            'ram' => 2,
+            'storage' => 64
+        ]);
+        DB::table('configurations')->insert([
+            'ram' => 3,
+            'storage' => 16
+        ]);
+        DB::table('configurations')->insert([
+            'ram' => 3,
+            'storage' => 32
+        ]);
+        DB::table('configurations')->insert([
+            'ram' => 3,
+            'storage' => 64
+        ]);
+        DB::table('configurations')->insert([
+            'ram' => 3,
+            'storage' => 128
+        ]);
+        DB::table('configurations')->insert([
+            'ram' => 4,
+            'storage' => 16
+        ]);
+        DB::table('configurations')->insert([
+            'ram' => 4,
+            'storage' => 32
+        ]);
+        DB::table('configurations')->insert([
+            'ram' => 4,
+            'storage' => 64
+        ]);
+        DB::table('configurations')->insert([
+            'ram' => 4,
+            'storage' => 64
+        ]);
+        DB::table('configurations')->insert([
+            'ram' => 4,
+            'storage' => 128
+        ]);
+        DB::table('configurations')->insert([
+            'ram' => 6,
+            'storage' => 64
+        ]);
+        DB::table('configurations')->insert([
+            'ram' => 6,
+            'storage' => 128
+        ]);
+        DB::table('configurations')->insert([
+            'ram' => 6,
+            'storage' => 256
+        ]);
+        DB::table('configurations')->insert([
+            'ram' => 8,
+            'storage' => 64
+        ]);
+        DB::table('configurations')->insert([
+            'ram' => 8,
+            'storage' => 128
+        ]);
+        DB::table('configurations')->insert([
+            'ram' => 8,
+            'storage' => 256
+        ]);
+        DB::table('configurations')->insert([
+            'ram' => 12,
+            'storage' => 128
+        ]);
+        DB::table('configurations')->insert([
+            'ram' => 12,
+            'storage' => 256
+        ]);
     }
 }
