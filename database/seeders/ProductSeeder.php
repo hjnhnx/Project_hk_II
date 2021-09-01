@@ -23,7 +23,8 @@ class ProductSeeder extends Seeder
                'name' => 'iPhone 12 64GB',
                'description' => 'Apple đã trang bị con chip mới nhất của hãng (tính đến 11/2020) cho iPhone 12 đó là A14 Bionic, được sản xuất trên tiến trình 5 nm với hiệu suất ổn định hơn so với chip A13 được trang bị trên phiên bản tiền nhiệm iPhone 11.',
                'discount' => '50',
-               'subcategory_id' => 1,
+               'category_id' => 1,
+               'the_firm_id' => 1,
                'slug' => 'iPhone-12-64GB',
                'status'=>Status::ACTIVE,
                'created_at'=>Carbon::now()->addDay(-1)
@@ -34,7 +35,8 @@ class ProductSeeder extends Seeder
                 'name' => 'iPhone 11 64GB',
                 'description' => 'Apple đã trang bị con chip mới nhất của hãng (tính đến 11/2020) cho iPhone 12 đó là A14 Bionic, được sản xuất trên tiến trình 5 nm với hiệu suất ổn định hơn so với chip A13 được trang bị trên phiên bản tiền nhiệm iPhone 11.',
                 'discount' => '50',
-                'subcategory_id' => 2,
+                'category_id' => 2,
+                'the_firm_id' => 1,
                 'slug' => 'iPhone-11-64GB',
                 'status'=>Status::IN_ACTIVE,
                 'created_at'=>Carbon::now()->addDay(-2)
@@ -45,7 +47,8 @@ class ProductSeeder extends Seeder
                 'name' => 'iPhone X 64GB',
                 'description' => 'Apple đã trang bị con chip mới nhất của hãng (tính đến 11/2020) cho iPhone 12 đó là A14 Bionic, được sản xuất trên tiến trình 5 nm với hiệu suất ổn định hơn so với chip A13 được trang bị trên phiên bản tiền nhiệm iPhone 11.',
                 'discount' => '50',
-                'subcategory_id' => 3,
+                'category_id' => 3,
+                'the_firm_id' => 1,
                 'slug' => 'iPhone-X-64GB',
                 'status'=>Status::ACTIVE,
                 'created_at'=>Carbon::now()->addDay(-3)
@@ -56,7 +59,8 @@ class ProductSeeder extends Seeder
                 'name' => 'iPhone 8 64GB',
                 'description' => 'Apple đã trang bị con chip mới nhất của hãng (tính đến 11/2020) cho iPhone 12 đó là A14 Bionic, được sản xuất trên tiến trình 5 nm với hiệu suất ổn định hơn so với chip A13 được trang bị trên phiên bản tiền nhiệm iPhone 11.',
                 'discount' => '50',
-                'subcategory_id' => 4,
+                'category_id' => 4,
+                'the_firm_id' => 1,
                 'slug' => 'iPhone-8-64GB',
                 'status'=>Status::ACTIVE,
                 'created_at'=>Carbon::now()->addDay(-4)

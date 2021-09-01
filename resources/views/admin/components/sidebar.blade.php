@@ -20,7 +20,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="pages-signin.html">
+                            <a href="{{route('create_user')}}">
                                 Thêm mới
                             </a>
                         </li>
@@ -38,7 +38,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="pages-signin.html">
+                            <a href="">
                                 Thêm mới
                             </a>
                         </li>
@@ -55,11 +55,6 @@
                                 Xem tất cả
                             </a>
                         </li>
-                        <li>
-                            <a href="pages-signin.html">
-                                Thêm mới
-                            </a>
-                        </li>
                     </ul>
                 </li>
                 <li class="nav-parent">
@@ -74,7 +69,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="pages-signin.html">
+                            <a href="{{route('create_Chip_set')}}">
                                 Thêm mới
                             </a>
                         </li>
@@ -92,7 +87,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="{{route('create_category')}}">
                                 Thêm mới
                             </a>
                         </li>
@@ -100,17 +95,17 @@
                 </li>
                 <li class="nav-parent">
                     <a>
-                        <i class="fa fa-code-fork" aria-hidden="true"></i>
-                        <span>Danh mục con</span>
+                        <i class="fa fa-road" aria-hidden="true"></i>
+                        <span>Hãng</span>
                     </a>
                     <ul class="nav nav-children">
                         <li>
-                            <a href="{{route('list_subcategory')}}">
+                            <a href="{{route('list_the_firm')}}">
                                 Xem tất cả
                             </a>
                         </li>
                         <li>
-                            <a href="pages-signin.html">
+                            <a href="{{route('create_the_firm')}}">
                                 Thêm mới
                             </a>
                         </li>
@@ -128,12 +123,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="pages-signin.html">
+                            <a href="{{route('create_color')}}">
                                 Thêm mới
                             </a>
                         </li>
                     </ul>
                 </li>
+
                 <li class="nav-parent">
                     <a>
                         <i class="fa fa-ge" aria-hidden="true"></i>
@@ -146,7 +142,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="pages-signin.html">
+                            <a href="{{route('create_configuration')}}">
                                 Thêm mới
                             </a>
                         </li>
@@ -163,11 +159,6 @@
                                 Xem tất cả
                             </a>
                         </li>
-                        <li>
-                            <a href="pages-signin.html">
-                                Thêm mới
-                            </a>
-                        </li>
                     </ul>
                 </li>
                 <li class="nav-parent">
@@ -179,11 +170,6 @@
                         <li>
                             <a href="{{route('list_order_detail')}}">
                                 Xem tất cả
-                            </a>
-                        </li>
-                        <li>
-                            <a href="pages-signin.html">
-                                Thêm mới
                             </a>
                         </li>
                     </ul>
@@ -215,11 +201,6 @@
                         <li>
                             <a href="{{route('list_contact')}}">
                                 Xem tất cả
-                            </a>
-                        </li>
-                        <li>
-                            <a href="pages-signin.html">
-                                Thêm mới
                             </a>
                         </li>
                     </ul>

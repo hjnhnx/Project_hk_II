@@ -1,7 +1,17 @@
 @extends('.admin.layouts.master')
+@section('custom_style')
+
+        @yield('custom_style_level_2')
+
+@endsection
 @section('main_content')
     <div style="display: flex;justify-content: center">
+        <div style="display: none">
+            @yield('upload')
+        </div>
+
         @yield('size_form')
+
         <form action="" method="post">
             @csrf
             <section class="panel">
@@ -11,13 +21,19 @@
                 <div class="panel-body">
                     @yield('input_form')
                 </div>
+                <div class="panel-body">
+                    @yield('add_form')
+                </div>
                 <footer class="panel-footer">
-                    <button style="width: 200px" class="btn btn-primary">Submit</button>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button style="width: 200px" class="btn btn-warning" type="reset">Reset</button>
+                    <button style="width: 120px" class="btn btn-primary">Submit</button>
+                    <button style="width: 120px" class="btn btn-warning" type="reset">Reset</button>
                 </footer>
             </section>
         </form>
     </div>
     </div>
+@endsection
+@section('custom_js')
+
+    @yield('Extra_js')
 @endsection

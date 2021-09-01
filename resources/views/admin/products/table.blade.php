@@ -29,8 +29,8 @@
     <tr>
         <th>Id</th>
         <th>Name</th>
-        <th>Description</th>
         <th>Discount</th>
+        <th>The firm</th>
         <th>Status</th>
         <th>Created At</th>
         <th class="text-center Product_Action">Actions</th>
@@ -41,8 +41,8 @@
         <tr class="gradeX">
             <td>{{$item->id}}</td>
             <td>{{$item->name}}</td>
-            <td>{{$item->description}}</td>
             <td>{{$item->discount}}</td>
+            <td>{{\App\Models\TheFirm::find($item->the_firm_id)->name}}</td>
             <td>
                 <label class="switch">
                     <input onchange="changeStatus({{$item->id}})" type="checkbox" {{$item->status == \App\Enums\Status::ACTIVE ? 'checked' : '' }}>

@@ -57,6 +57,8 @@ class UserController extends Controller
         }
         $user->save();
     }
+
+
     public function create(){
         return view('admin.users.form');
     }
