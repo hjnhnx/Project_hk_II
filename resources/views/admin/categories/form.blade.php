@@ -14,4 +14,19 @@
                 </div>
             </div>
 @endsection
-
+        @section('Extra_js')
+            <script>
+                $('#form_admin').validate({
+                    rules: {
+                        name:{
+                            required: true
+                        }
+                    },
+                    messages:{
+                        name: {
+                            required:'Nhập tên danh mục'
+                        }
+                    }
+                })
+            </script>
+@endsection
