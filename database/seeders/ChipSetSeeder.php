@@ -79,14 +79,79 @@ class ChipSetSeeder extends Seeder
                 'manufacturer'=>'Huawei',
                 'status'=>Status::ACTIVE,
                 'created_at'=>Carbon::now()->addDay(-8)
-            ],
-            [
-                'name'=>'Kirin 970',
+            ],[
+                'name'=>'Kirin 910',
+                'process'=>17,
+                'manufacturer'=>'Huawei',
+                'status'=>Status::ACTIVE,
+                'created_at'=>Carbon::now()->addDay(-9)
+            ],[
+                'name'=>'Kirin 920',
+                'process'=>8,
+                'manufacturer'=>'Huawei',
+                'status'=>Status::ACTIVE,
+                'created_at'=>Carbon::now()->addDay(-10)
+            ],[
+                'name'=>'Kirin 930',
+                'process'=>9,
+                'manufacturer'=>'Huawei',
+                'status'=>Status::ACTIVE,
+                'created_at'=>Carbon::now()->addDay(-11)
+            ],[
+                'name'=>'Kirin 940',
                 'process'=>10,
                 'manufacturer'=>'Huawei',
-                'status'=>Status::IN_ACTIVE,
-                'created_at'=>Carbon::now()->addDay(-9)
-            ],
+                'status'=>Status::ACTIVE,
+                'created_at'=>Carbon::now()->addDay(-12)
+            ],[
+                'name'=>'Kirin 950',
+                'process'=>11,
+                'manufacturer'=>'Huawei',
+                'status'=>Status::ACTIVE,
+                'created_at'=>Carbon::now()->addDay(-13)
+            ],[
+                'name'=>'Kirin 960',
+                'process'=>5,
+                'manufacturer'=>'Huawei',
+                'status'=>Status::ACTIVE,
+                'created_at'=>Carbon::now()->addDay(-14)
+            ],[
+                'name'=>'Kirin 980',
+                'process'=>2,
+                'manufacturer'=>'Huawei',
+                'status'=>Status::ACTIVE,
+                'created_at'=>Carbon::now()->addDay(-15)
+            ],[
+                'name'=>'Kirin 990',
+                'process'=>6,
+                'manufacturer'=>'Huawei',
+                'status'=>Status::ACTIVE,
+                'created_at'=>Carbon::now()->addDay(-16)
+            ],[
+                'name'=>'Kirin 970',
+                'process'=>6,
+                'manufacturer'=>'Huawei',
+                'status'=>Status::ACTIVE,
+                'created_at'=>Carbon::now()->addDay(-17)
+            ],[
+                'name'=>'Kirin 940',
+                'process'=>9,
+                'manufacturer'=>'Huawei',
+                'status'=>Status::ACTIVE,
+                'created_at'=>Carbon::now()->addDay(-18)
+            ],[
+                'name'=>'Kirin 920',
+                'process'=>7,
+                'manufacturer'=>'Huawei',
+                'status'=>Status::ACTIVE,
+                'created_at'=>Carbon::now()->addDay(-19)
+            ],[
+                'name'=>'Kirin 980',
+                'process'=>9,
+                'manufacturer'=>'Huawei',
+                'status'=>Status::ACTIVE,
+                'created_at'=>Carbon::now()->addDay(-20)
+            ]
         ]);
     }
 }
