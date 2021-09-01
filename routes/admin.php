@@ -64,6 +64,8 @@ Route::prefix('banner')->group(function () {
     Route::get('/', [BannerController::class, 'index'])->name('list_banner');
     Route::get('/{id}/delete', [BannerController::class, 'destroy'])->name('delete_banner');
     Route::get('/update-status/{id}', [BannerController::class, 'update_status'])->name('banner_update_status');
+    Route::get('/create',[BannerController::class,'create'])->name('create_banner');
+    Route::post('/create',[BannerController::class,'store'])->name('save_banner');
 });
 
 Route::prefix('Chip-set')->group(function () {

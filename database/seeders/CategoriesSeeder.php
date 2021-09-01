@@ -43,7 +43,6 @@ class CategoriesSeeder extends Seeder
                 'status'=> Status::ACTIVE,
                 'created_at'=> Carbon::now()->addDay(-1)
             ],
-
         ]);
     }
 }

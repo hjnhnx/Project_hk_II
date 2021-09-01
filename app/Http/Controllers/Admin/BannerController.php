@@ -48,4 +48,15 @@ class BannerController extends Controller
         $banner->save();
     }
 
+    public function create(){
+        return view('admin.banners.form');
+    }
+
+    public function store(Request $request){
+        $user = new Banner();
+        $user->fill($request->all());
+        $user->save();
+        return redirect()->route('list_banner');
+    }
+
 }
