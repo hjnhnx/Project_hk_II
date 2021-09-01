@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\Sort;
 use App\Enums\Status;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BrandRequest;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 
@@ -67,7 +68,7 @@ class BrandController extends Controller
         return view('admin.brands.form');
     }
 
-    public function store(Request $request)
+    public function store(BrandRequest $request)
     {
         $the_firm = new Brand();
         $the_firm->fill($request->all());
