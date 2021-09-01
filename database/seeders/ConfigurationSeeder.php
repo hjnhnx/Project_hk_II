@@ -8,6 +8,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ConfigurationSeeder extends Seeder
 {

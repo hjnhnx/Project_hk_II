@@ -18,8 +18,8 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->text('thumbnail');
-            $table->text('images');
+            $table->text('thumbnail')->nullable();
+            $table->text('images')->nullable();
             $table->integer('discount');
             $table->integer('the_firm_id');
             $table->integer('category_id');
