@@ -18,24 +18,32 @@ class CategoriesSeeder extends Seeder
     public function run()
     {
         DB::table('categories')->insert([
-            'name' => 'Smart TV',
-            'status'=> Status::ACTIVE,
-            'created_at'=> Carbon::now()->addDay(-1)
-        ]);
-        DB::table('categories')->insert([
-            'name' => 'Smart Phone',
-            'status'=> Status::ACTIVE,
-            'created_at'=> Carbon::now()->addDay(-2)
-        ]);
-        DB::table('categories')->insert([
-            'name' => 'Laptop',
-            'status'=> Status::IN_ACTIVE,
-            'created_at'=> Carbon::now()->addDay(-3)
-        ]);
-        DB::table('categories')->insert([
-            'name' => 'TabLed',
-            'status'=> Status::ACTIVE,
-            'created_at'=> Carbon::now()->addDay(-4)
+            [
+                'name' => 'Smart phone IOS',
+                'status'=> Status::ACTIVE,
+                'created_at'=> Carbon::now()->addDay(-1)
+            ],
+            [
+                'name' => 'Smart phone Android',
+                'status'=> Status::ACTIVE,
+                'created_at'=> Carbon::now()->addDay(-1)
+            ],
+            [
+                'name' => 'Tabled Android',
+                'status'=> Status::ACTIVE,
+                'created_at'=> Carbon::now()->addDay(-1)
+            ],
+            [
+                'name' => 'Tabled IOS',
+                'status'=> Status::ACTIVE,
+                'created_at'=> Carbon::now()->addDay(-1)
+            ],
+            [
+                'name' => 'especially',
+                'status'=> Status::ACTIVE,
+                'created_at'=> Carbon::now()->addDay(-1)
+            ],
+
         ]);
     }
 }
