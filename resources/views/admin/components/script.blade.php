@@ -45,4 +45,5 @@
 <script src="/libs/admin/javascripts/ui-elements/examples.modals.js"></script>
 <script src="/libs/admin/vendor/summernote/summernote.js"></script>
 <script src="/libs/admin/javascripts/theme.init.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 @yield('custom_js')
