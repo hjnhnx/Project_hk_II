@@ -25,14 +25,12 @@ class ColorRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'color_code'=>'required',
         ];
     }
     public function messages()
     {
         return [
             'name.required'=>'Vui lòng không bỏ trống trường này',
-            'color_code.required'=>'Vui lòng không bỏ trống trường này',
         ];
     }
 }
