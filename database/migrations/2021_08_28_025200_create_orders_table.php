@@ -19,11 +19,10 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->integer('users_id');
             $table->double('total_price');
-            $table->string('users_name');
-            $table->string('phone');
-            $table->string('email');
-            $table->string('address');
-            $table->string('note');
+            $table->string('ship_phone');
+            $table->string('ship_email');
+            $table->string('ship_address');
+            $table->string('note')->nullable();
             $table->integer('is_checkout')->default(CheckoutStatus::UNPAID);
             $table->integer('status')->default(Status::ACTIVE);
             $table->timestamps();

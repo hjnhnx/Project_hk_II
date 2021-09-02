@@ -88,19 +88,20 @@
             </div>
             <div class="row form-group">
                 <div class="col-lg-12">
-                    <label>Content detail</label>
-                    <textarea name="content_detail" class="summernote" data-plugin-summernote
-                              data-plugin-options='{ "height": 180, "codemirror": { "theme": "ambiance" } }'
-                              placeholder="hello"></textarea>
+                    <label>Description</label>
+                    <textarea name="description" type="text" placeholder="Enter description" class="form-control"></textarea>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-lg-12">
-                    <label>Description</label>
-                    <input name="description" type="text" placeholder="Enter description" class="form-control">
+                    <label>Content detail</label>
+                    <textarea name="content_detail" class="summernote" data-plugin-summernote
+                              data-plugin-options='{ "height": 330, "codemirror": { "theme": "ambiance" } }'
+                              placeholder="hello"><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Màn hình:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">6.8 inches, Full HD+ (1080 x 2400 pixels, 20:9 ratio), 165Hz</span><br></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Hệ điều hành:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">Android 11, Redmagic 4.0</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Camera sau:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">64 MP, f/1.8 (wide), 8 MP, f/2.0 (ultrawide), 2 MP (macro)</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Camera trước:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">8 MP, f/2.0 (wide)</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">CPU:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">Qualcomm Snapdragon 888 (5 nm)</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">RAM:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">8-12GB</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Bộ nhớ trong:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">128-256GB</span><br></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Thẻ SIM:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">2 SIM</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Dung lượng pin:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">5050 mAh - Sạc nhanh 66W</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Thiết kế:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">Thiết kế 2 mặt kính, khung nhôm</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p></textarea>
                 </div>
             </div>
-            <div style="">
+
+            <div style="display: none">
                 <input type="text" name="thumbnail" id="thumbnail">
                 <input type="text" name="images" id="images">
                 <input type="text" name="slug" id="slug"><br><br>
@@ -248,8 +249,8 @@
                                 var images = res.data.split(',')
                                 for (let i = 0; i < images.length; i++) {
                                     var id = Math.random()
-                                    $('.show_images_product').append(`<div id="${id}" class="col-md-3" style="height: 160px;overflow: hidden;margin-bottom: 10px">
-                        <img class="product_image" style="width: 100%;height: 120px;object-fit: cover;border-radius: 5px;margin-bottom: 2px" src="${url + images[i]}" alt="">
+                                    $('.show_images_product').append(`<div id="${id}" class="col-md-3" style="height: 200px;overflow: hidden;margin-bottom: 10px">
+                        <img class="product_image" style="width: 100%;height: 160px;object-fit: cover;border-radius: 5px;margin-bottom: 2px" src="${url + images[i]}" alt="">
                         <button type="button" slot="${id}" onclick="delete_image(this.slot)" class="btn btn-info form-control">Close</button>
                     </div>`)
                                 }

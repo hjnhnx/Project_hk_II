@@ -38,6 +38,7 @@
         <th>Thumbnail</th>
         <th>Discount</th>
         <th>Brand</th>
+        <th>Category</th>
         <th>Status</th>
         <th>Created At</th>
         <th class="text-center Product_Action">Actions</th>
@@ -53,6 +54,7 @@
             </td>
             <td>{{$item->discount}}</td>
             <td>{{\App\Models\Brand::find($item->brand_id)->name}}</td>
+            <td>{{\App\Models\Categories::find($item->category_id)->name}}</td>
             <td>
                 <label class="switch">
                     <input onchange="changeStatus({{$item->id}})" type="checkbox" {{$item->status == \App\Enums\Status::ACTIVE ? 'checked' : '' }}>

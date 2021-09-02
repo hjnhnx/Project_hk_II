@@ -19,4 +19,10 @@ class Order extends Model
         'note',
         'is_checkout'
     ];
+
+    public function users(){
+        return $this->belongsTo(User::class,'users_id');
+    }
+
+
 }

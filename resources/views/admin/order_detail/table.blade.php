@@ -55,7 +55,7 @@
     <tr>
         <th>Id</th>
         <th>Product Name</th>
-        <th>View Color</th>
+        <th>Color</th>
         <th>Configuration</th>
         <th>User Name</th>
         <th>Quantity</th>
@@ -64,21 +64,23 @@
     </tr>
 @endsection
 @section('table_body')
-    <tr class="gradeX">
-        <td>1</td>
-        <td>Ip6 pro max</td>
-        <td>
-            <div class="view_color" style="background: gold"></div>
-        </td>
-        <td>4gb/ram 64GB</td>
-        <td>Vũ Hoàng Ngọc Anh</td>
-        <td>100</td>
-        <td>44444444</td>
-        <td class="actions text-center">
-            <a href="#" class="on-default edit-row text-primary"><i class="fa fa-pencil"></i></a>
-            <a href="#" class="on-default remove-row text-danger"><i class="fa fa-trash-o"></i></a>
-            <a href="#" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
-        </td>
-    </tr>
+    @foreach($list as $item)
+        <tr class="gradeX">
+            <td>1</td>
+            <td>Ip6 pro max</td>
+            <td>
+                <div class="view_color" style="background: gold"></div>
+            </td>
+            <td>4gb/ram 64GB</td>
+            <td>Vũ Hoàng Ngọc Anh</td>
+            <td>100</td>
+            <td>44444444</td>
+            <td class="actions text-center">
+                <a href="#" class="on-default edit-row text-primary"><i class="fa fa-pencil"></i></a>
+                <a href="#" class="on-default remove-row text-danger"><i class="fa fa-trash-o"></i></a>
+                <a href="#" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
+            </td>
+        </tr>
+    @endforeach
 @endsection
 

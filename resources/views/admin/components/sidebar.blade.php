@@ -150,7 +150,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="pages-signin.html">
+                            <a href="{{route('create_banner')}}">
                                 Thêm mới
                             </a>
                         </li>

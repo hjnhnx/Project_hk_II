@@ -17,11 +17,15 @@ class DatabaseSeeder extends Seeder
             BrandSeeder::class,
             UserSeeder::class,
             ProductSeeder::class,
+            ProductOptionSeeder::class,
             UserSeeder::class,
             CategoriesSeeder::class,
             ContactSeeder::class,
             ColorSeeder::class,
             BannerSeeder::class,
+            OrderSeeder::class,
+            OrderDetailSeeder::class
+
         ]);
     }
 }
