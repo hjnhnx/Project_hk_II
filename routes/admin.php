@@ -27,6 +27,8 @@ Route::prefix('product')->group(function () {
     Route::get('/update-status/{id}', [ProductController::class, 'update_status'])->name('product_update_status');
     Route::get('/create',[ProductController::class,'create'])->name('create_product');
     Route::post('/create',[ProductController::class,'store'])->name('save_product');
+    Route::get('/{id}/edit',[ProductController::class,'edit'])->name('edit_product');
+    Route::post('/{id}/edit',[ProductController::class,'update'])->name('update_product');
 });
 
 Route::prefix('category')->group(function () {

@@ -16,4 +16,7 @@ class Product_option extends Model
         'quantity',
         'price'
     ];
+    public function product(){
+        return $this->belongsTo(Product::class,'product_id');
+    }
 }
