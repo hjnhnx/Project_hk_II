@@ -1,6 +1,6 @@
 @section('title','Form color | Admin')
 @extends('.admin.layouts.form')
-@section('title_form','Create color')
+@section('title_form', $detail ?'Edit color' :'Create color')
 
 @section('size_form')
     <div class="col-md-6">
@@ -9,7 +9,7 @@
             <div class="row form-group">
                 <div class="col-lg-12">
                     <label for="">Name</label>
-                    <input type="text" name="name" placeholder="Enter Color Name" class="form-control">
+                    <input value="{{$detail ? $detail->name : ''}}" type="text" name="name" placeholder="Enter Color Name" class="form-control">
                     @error('name')
                     <span style="color: #f97d7d;font-size: 12px;font-weight: bold">{{ $message }}</span>
                     @enderror
@@ -19,7 +19,7 @@
             <div class="row form-group">
                 <div class="col-lg-12">
                     <label for="">Color Code</label>
-                    <input type="color" name="color_code" placeholder="" class="form-control">
+                    <input value="{{$detail ?$detail->color_code :''}}" type="color" name="color_code" placeholder="" class="form-control">
                 </div>
             </div>
             <br>

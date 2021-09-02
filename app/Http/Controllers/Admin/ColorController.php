@@ -56,7 +56,8 @@ class ColorController extends Controller
         $color->save();
     }
     public function create(){
-        return view('admin.colors.form');
+        $detail = null;
+        return view('admin.colors.form',['detail'=>$detail]);
     }
 
     public function store(ColorRequest $request){
@@ -65,4 +66,22 @@ class ColorController extends Controller
         $user->save();
         return redirect()->route('list_color');
     }
+
+
+
+
+    public function edit($id){
+        $detail = Color::find($id);
+        return view('admin.colors.form',['detail'=>$detail]);
+    }
+
+    public function update(Request $request,$id){
+        $color = Color::find($id);
+        $color->name = $request->name;
+        $color->color_code = $request->color_code;
+        $color->save();
+        return redirect()->route('list_color');
+    }
+
+
 }

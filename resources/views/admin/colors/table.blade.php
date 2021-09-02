@@ -57,7 +57,7 @@
             </td>
             <td>{{$item->created_at}}</td>
             <td class="actions text-center">
-                <a href="#" class="on-default edit-row text-primary"><i class="fa fa-pencil"></i></a>
+                <a href="{{route('edit_color',$item->id)}}" class="on-default edit-row text-primary"><i class="fa fa-pencil"></i></a>
                 <a onclick="return confirm('Bạn có chắc muốn xóa màu sắc này , Chọn OK thì các sản phẩm liên quan cũng sẽ bị xóa kèm')" href="{{route('delete_color',$item->id)}}" class="on-default remove-row text-danger"><i class="fa fa-trash-o"></i></a>
                 <a href="#" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
             </td>

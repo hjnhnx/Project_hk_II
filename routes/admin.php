@@ -48,6 +48,11 @@ Route::prefix('color')->group(function () {
     Route::get('/update-status/{id}', [ColorController::class, 'update_status'])->name('color_update_status');
     Route::get('/create',[ColorController::class,'create'])->name('create_color');
     Route::post('/create',[ColorController::class,'store'])->name('save_color');
+
+    Route::get('/{id}/edit',[ColorController::class,'edit'])->name('edit_color');
+    Route::post('/{id}/edit',[ColorController::class,'update'])->name('update_color');
+
+
 });
 
 Route::prefix('banner')->group(function () {
