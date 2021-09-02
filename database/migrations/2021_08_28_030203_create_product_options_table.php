@@ -19,7 +19,8 @@ class CreateProductOptionsTable extends Migration
             $table->integer('product_id');
             $table->text('thumbnail')->nullable();
             $table->integer('color_id');
-            $table->text('content_detail')->nullable();
+            $table->integer('ram');
+            $table->integer('rom');
             $table->integer('quantity');
             $table->double('price');
             $table->integer('status')->default(Status::ACTIVE);

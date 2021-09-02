@@ -13,7 +13,11 @@ class Product extends Model
         'name',
         'description',
         'discount',
-        'subcategory_id',
-        'slug'
+        'category_id',
+        'brand_id',
+        'slug',
+        'content_detail',
+        'thumbnail',
+        'images',
     ];
 }

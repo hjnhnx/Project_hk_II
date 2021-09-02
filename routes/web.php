@@ -27,3 +27,4 @@ Route::get('/', function () {
 });
 
 Route::post('/image/upload',[ImageUploadController::class,'upload'])->name('upload_image');
+Route::post('/image/uploads',[ImageUploadController::class,'uploads'])->name('upload_images');
