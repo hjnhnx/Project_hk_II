@@ -90,7 +90,7 @@
                 @endif
             </td>
             <td class="actions text-center">
-                <a href="#" class="on-default edit-row text-primary"><i class="fa fa-pencil"></i></a>
+                <a href="{{route('edit_user',$item->id)}}" class="on-default edit-row text-primary"><i class="fa fa-pencil"></i></a>
                 <a onclick="return confirm('Bạn có chắc muốn xóa người dùng này ra khỏi hệ thống')"
                    href="{{route('delete_user',$item->id)}}" class="on-default remove-row text-danger"><i
                         class="fa fa-trash-o"></i></a>

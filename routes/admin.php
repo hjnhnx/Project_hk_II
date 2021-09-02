@@ -18,6 +18,8 @@ Route::prefix('user')->group(function () {
     Route::get('/update-status/{id}', [UserController::class, 'update_status'])->name('user_update_status');
     Route::get('/create',[UserController::class,'create'])->name('create_user');
     Route::post('/create',[UserController::class,'store'])->name('save_user');
+    Route::get('/{id}/edit',[UserController::class,'edit'])->name('edit_user');
+    Route::post('/{id}/edit',[UserController::class,'update'])->name('update_user');
 });
 Route::prefix('product')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('list_product');
@@ -63,6 +65,8 @@ Route::prefix('banner')->group(function () {
     Route::get('/update-status/{id}', [BannerController::class, 'update_status'])->name('banner_update_status');
     Route::get('/create',[BannerController::class,'create'])->name('create_banner');
     Route::post('/create',[BannerController::class,'store'])->name('save_banner');
+    Route::get('/{id}/edit',[BannerController::class,'edit'])->name('edit_banner');
+    Route::post('/{id}/edit',[BannerController::class,'update'])->name('update_banner');
 });
 
 

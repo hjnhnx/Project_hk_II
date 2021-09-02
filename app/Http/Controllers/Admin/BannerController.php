@@ -50,7 +50,8 @@ class BannerController extends Controller
     }
 
     public function create(){
-        return view('admin.banners.form');
+        $detail = null;
+        return view('admin.banners.form',['detail'=>$detail]);
     }
 
     public function store(BannerRequest $request){
@@ -59,5 +60,14 @@ class BannerController extends Controller
         $user->save();
         return redirect()->route('list_banner');
     }
-
+    public function edit($id){
+        $detail = Banner::find($id);
+        return view('admin.banners.form',['detail'=>$detail]);
+    }
+    public function update(Request $request,$id){
+        $banner = Banner::find($id);
+        $banner->fill($request->all());
+        $banner->save();
+        return redirect()->route('list_banner');
+    }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -61,11 +62,27 @@ class UserController extends Controller
 
 
     public function create(){
-        return view('admin.users.form');
+        $detail = null;
+        return view('admin.users.form',[
+            'detail'=>$detail
+        ]);
     }
 
     public function store(UserRequest $request){
         $user = new User();
+        $user->fill($request->all());
+        $user->password=Hash::make($request->password);
+        $user->save();
+        return redirect()->route('list_user');
+    }
+    public function edit($id){
+        $detail = User::find($id);
+        return view('admin.users.form',[
+            'detail'=>$detail
+        ]);
+    }
+    public function update(Request $request,$id){
+        $user = User::find($id);
         $user->fill($request->all());
         $user->save();
         return redirect()->route('list_user');

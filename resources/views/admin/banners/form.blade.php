@@ -1,6 +1,6 @@
 @section('title','Form Banner | Admin')
 @extends('.admin.layouts.form')
-@section('title_form','Create banner')
+@section('title_form',$detail ?'Edit banner' :'Create banner')
 
 @section('upload')
     <form id="form_image" action="" method="post" enctype="multipart/form-data">
@@ -17,15 +17,15 @@
 
                 <div class="col-lg-6">
                     <label for="">Link to product</label>
-                    <input type="text" name="link_to_product" placeholder="Link to product" class="form-control">
+                    <input value="{{$detail ?$detail->link_to_product :''}}" type="text" name="link_to_product" placeholder="Link to product" class="form-control">
                     @error('link_to_product')
                     <span style="color: #f97d7d;font-size: 12px;font-weight: bold">{{$message}}</span>
                     @enderror
                 </div>
                 <div class="col-lg-6">
                     <label for="">Video</label>
-                    <input type="text" id="video_clone" placeholder="Enter video url" class="form-control">
-                    <input type="hidden" id="video" name="video" placeholder="Enter video url" class="form-control">
+                    <input value="{{$detail ?$detail->video :''}}" type="text" id="video_clone" placeholder="Enter video url" class="form-control">
+                    <input value="{{$detail ?$detail->video :''}}" type="hidden" id="video" name="video" placeholder="Enter video url" class="form-control">
                 </div>
             </div>
 
@@ -33,14 +33,14 @@
                 <div class="col-lg-5">
                     <label for="">Image</label>
                     <button type="button" class="form-control btn btn-danger choose_image">Choose Image banner</button>
-                    <input type="hidden" name="image" id="image" placeholder="Enter src image" >
+                    <input value="{{$detail ?$detail->image :''}}" type="hidden" name="image" id="image" placeholder="Enter src image" >
                     @error('image')
                     <span style="color: #f97d7d;font-size: 12px;font-weight: bold">{{$message}}</span>
                     @enderror
                 </div>
                 <div class="col-lg-7">
                     <label for="">Content</label>
-                    <input type="text" name="content" placeholder="Enter content banner" class="form-control" >
+                    <input value="{{$detail ?$detail->content :''}}" type="text" name="content" placeholder="Enter content banner" class="form-control" >
                     @error('content')
                     <span style="color: #f97d7d;font-size: 12px;font-weight: bold">{{$message}}</span>
                     @enderror
@@ -48,7 +48,11 @@
             </div>
             <div class="row form-group">
                 <div class="col-lg-12">
-                    <img id="bn0987" style="width: 100%;height: 400px;object-fit: cover;display: none" src="" alt="">
+                    @if($detail)
+                        <img id="bn0987" style="width: 100%;height: 400px;object-fit: cover" src="{{$detail->image}}" alt="">
+                    @else
+                        <img id="bn0987" style="width: 100%;height: 400px;object-fit: cover;display: none" src="" alt="">
+                    @endif
                 </div>
             </div>
             <br>
@@ -104,12 +108,7 @@
                             }
                         })
                     })
-
                 })
-
-
-
-
             </script>
 @endsection
 
