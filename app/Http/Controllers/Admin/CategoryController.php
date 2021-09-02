@@ -52,11 +52,23 @@ class CategoryController extends Controller
         $category->save();
     }
     public function create(){
-        return view('admin.categories.form');
+        $detail = null;
+        return view('admin.categories.form',[
+            'detail'=>$detail]);
     }
     public function store(Request $request){
         $category = new Categories();
         $category->fill($request->all());
+        $category->save();
+        return redirect()->route('list_category');
+    }
+    public function edit($id){
+        $detail = Categories::find($id);
+        return view('admin.categories.form',['detail'=>$detail]);
+    }
+    public function update(Request $request,$id){
+        $category = Categories::find($id);
+        $category->name = $request->name;
         $category->save();
         return redirect()->route('list_category');
     }

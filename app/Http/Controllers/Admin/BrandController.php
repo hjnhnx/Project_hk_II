@@ -65,7 +65,8 @@ class BrandController extends Controller
 
     public function create()
     {
-        return view('admin.brands.form');
+        $detail = null;
+        return view('admin.brands.form',['detail'=>$detail]);
     }
 
     public function store(BrandRequest $request)
@@ -73,6 +74,16 @@ class BrandController extends Controller
         $the_firm = new Brand();
         $the_firm->fill($request->all());
         $the_firm->save();
+        return redirect()->route('list_brand');
+    }
+    public function edit($id){
+        $detail = Brand::find($id);
+        return view('admin.brands.form',['detail'=>$detail]);
+    }
+    public function update(Request $request,$id){
+        $brand = Brand::find($id);
+        $brand->fill($request->all());
+        $brand->save();
         return redirect()->route('list_brand');
     }
 }
