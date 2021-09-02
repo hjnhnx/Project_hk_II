@@ -33,6 +33,8 @@ Route::prefix('category')->group(function () {
     Route::get('/update-status/{id}', [CategoryController::class, 'update_status'])->name('category_update_status');
     Route::get('/create',[CategoryController::class,'create'])->name('create_category');
     Route::post('/create',[CategoryController::class,'store'])->name('save_category');
+    Route::get('/{id}/edit',[CategoryController::class,'edit'])->name('edit_category');
+    Route::post('/{id}/edit',[CategoryController::class,'update'])->name('update_category');
 });
 
 Route::prefix('contact')->group(function () {
@@ -72,6 +74,8 @@ Route::prefix('brand')->group(function () {
     Route::get('/update-status/{id}', [BrandController::class, 'update_status'])->name('brand_update_status');
     Route::get('/create',[BrandController::class,'create'])->name('create_brand');
     Route::post('/create',[BrandController::class,'store'])->name('save_brand');
+    Route::get('/{id}/edit',[BrandController::class,'edit'])->name('edit_brand');
+    Route::post('/{id}/edit',[BrandController::class,'update'])->name('update_brand');
 });
 
 

@@ -62,7 +62,7 @@
             </td>
             <td>{{$item->created_at}}</td>
             <td class="actions text-center">
-                <a href="#" class="on-default edit-row text-primary"><i class="fa fa-pencil"></i></a>
+                <a href="{{route('edit_category',$item->id)}}" class="on-default edit-row text-primary"><i class="fa fa-pencil"></i></a>
                 <a onclick="return confirm('Bạn có chắc muốn xóa danh mục này { Xóa danh mục này đồng nghĩa với các sản phẩm liên quan cũng sẽ bị xóa khỏi hệ thống }')" href="{{route('delete_category',$item->id)}}" class="on-default remove-row text-danger"><i class="fa fa-trash-o"></i></a>
                 <a href="#" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
             </td>
