@@ -1,6 +1,6 @@
 @section('title','Form product | Admin')
 @extends('.admin.layouts.form')
-@section('title_form','Create product')
+@section('title_form',$detail ? 'Edit product' :'Create product')
 @section('custom_style_level_2')
     <style>
         .product_option_content {
@@ -51,13 +51,13 @@
             <div class="row form-group">
                 <div class="col-lg-6">
                     <label for="">Product name</label>
-                    <input type="text" name="name" placeholder="Enter product name" class="form-control product_name">
+                    <input value="{{$detail ?$detail->name :''}}" type="text" name="name" placeholder="Enter product name" class="form-control product_name">
                 </div>
                 <div class="col-lg-6">
                     <label for="">Category</label>
                     <select name="category_id" id="" class="form-control">
                         @foreach($categories as $item)
-                            <option value="{{$item->id}}">{{$item->name}}</option>
+                            <option {{$detail && $detail->category_id == $item->id ?'selected' :''}} value="{{$item->id}}">{{$item->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -65,14 +65,14 @@
             <div class="row form-group">
                 <div class="col-lg-6">
                     <label for="Discount">Discount</label>
-                    <input type="number" min="0" name="discount" placeholder="Enter discount ( % )"
-                           class="form-control" value="0">
+                    <input  type="number" min="0" name="discount" placeholder="Enter discount ( % )"
+                           class="form-control" value="{{$detail ?$detail->discount :0}}">
                 </div>
                 <div class="col-lg-6">
                     <label for="">Brand</label>
                     <select name="brand_id" id="" class="form-control">
                         @foreach($brands as $item)
-                            <option value="{{$item->id}}">{{$item->name}}</option>
+                            <option {{$detail && $detail->brand_id == $item->id ?'selected' :''}} value="{{$item->id}}">{{$item->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -84,12 +84,20 @@
                 </div>
                 <br>
                 <div class="col-lg-12 row show_images_product" style="margin-top: 30px">
+                    @if($detail)
+                        @for($i=0;$i<sizeof(json_decode($detail->images,true));$i++)
+                            <div id="image{{$i}}" class="col-md-3" style="height: 200px;overflow: hidden;margin-bottom: 10px">
+                                <img class="product_image" style="width: 100%;height: 160px;object-fit: cover;border-radius: 5px;margin-bottom: 2px" src="{{json_decode($detail->images,true)[$i]}}" alt="">
+                                <button type="button" slot="image{{$i}}" onclick="delete_image(this.slot)" class="btn btn-info form-control">Close</button>
+                            </div>
+                        @endfor
+                    @endif
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-lg-12">
                     <label>Description</label>
-                    <textarea name="description" type="text" placeholder="Enter description" class="form-control"></textarea>
+                    <textarea name="description" type="text" placeholder="Enter description" class="form-control">{{$detail ?$detail->description :''}}</textarea>
                 </div>
             </div>
             <div class="row form-group">
@@ -97,7 +105,9 @@
                     <label>Content detail</label>
                     <textarea name="content_detail" class="summernote" data-plugin-summernote
                               data-plugin-options='{ "height": 330, "codemirror": { "theme": "ambiance" } }'
-                              placeholder="hello"><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Màn hình:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">6.8 inches, Full HD+ (1080 x 2400 pixels, 20:9 ratio), 165Hz</span><br></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Hệ điều hành:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">Android 11, Redmagic 4.0</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Camera sau:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">64 MP, f/1.8 (wide), 8 MP, f/2.0 (ultrawide), 2 MP (macro)</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Camera trước:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">8 MP, f/2.0 (wide)</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">CPU:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">Qualcomm Snapdragon 888 (5 nm)</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">RAM:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">8-12GB</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Bộ nhớ trong:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">128-256GB</span><br></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Thẻ SIM:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">2 SIM</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Dung lượng pin:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">5050 mAh - Sạc nhanh 66W</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Thiết kế:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">Thiết kế 2 mặt kính, khung nhôm</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p></textarea>
+                              placeholder="hello">
+                        {{$detail ?$detail->content_detail :'<p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Màn hình:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">6.8 inches, Full HD+ (1080 x 2400 pixels, 20:9 ratio), 165Hz</span><br></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Hệ điều hành:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">Android 11, Redmagic 4.0</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Camera sau:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">64 MP, f/1.8 (wide), 8 MP, f/2.0 (ultrawide), 2 MP (macro)</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Camera trước:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">8 MP, f/2.0 (wide)</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">CPU:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">Qualcomm Snapdragon 888 (5 nm)</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">RAM:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">8-12GB</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Bộ nhớ trong:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">128-256GB</span><br></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Thẻ SIM:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">2 SIM</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Dung lượng pin:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">5050 mAh - Sạc nhanh 66W</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p><p><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px; font-weight: 700;">Thiết kế:</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;">Thiết kế 2 mặt kính, khung nhôm</span><span style="color: rgb(0, 0, 0); font-family: Arial; font-size: 14px;"><br></span></p>'}}
+                    </textarea>
                 </div>
             </div>
 
@@ -120,50 +130,57 @@
             <div class="col-md-12 product_option_content">
                 <h2>Options</h2>
                 <div class="options">
-                    <div class="option">
-                        <hr>
-                        <div class="row form-group">
-                            <div class="col-lg-7">
-                                <label for="Discount">Choose thumbnail</label>
-                                <button type="button" onclick="upload_image_option('0987987')"
-                                        class="btn btn-danger form-control Choose_thumbnail_option">Choose thumbnail
-                                </button>
+                    @if($detail)
+{{--                        @foreach()--}}
+{{--                            --}}
+{{--                        @endforeach--}}
+                    @else
+                        <div class="option">
+                            <hr>
+                            <div class="row form-group">
+                                <div class="col-lg-7">
+                                    <label for="Discount">Choose thumbnail</label>
+                                    <button type="button" onclick="upload_image_option('0987987')"
+                                            class="btn btn-danger form-control Choose_thumbnail_option">Choose thumbnail
+                                    </button>
+                                </div>
+                                <div class="col-lg-5">
+                                    <img alt="" class="demo_option_thumbnail" id="0987987img">
+                                </div>
                             </div>
-                            <div class="col-lg-5">
-                                <img alt="" class="demo_option_thumbnail" id="0987987img">
-                            </div>
-                        </div>
 
-                        <div class="row form-group">
-                            <div class="col-lg-4">
-                                <label>Quantity</label>
-                                <input type="number" class="form-control quantity" value="0" min="0">
+                            <div class="row form-group">
+                                <div class="col-lg-4">
+                                    <label>Quantity</label>
+                                    <input type="number" class="form-control quantity" value="0" min="0">
+                                </div>
+                                <div class="col-lg-4">
+                                    <label>Price</label>
+                                    <input type="number" class="form-control price" value="0">
+                                </div>
+                                <div class="col-lg-4">
+                                    <label for="">Color</label>
+                                    <select name="" id="" class="form-control color">
+                                        @foreach($colors as $item)
+                                            <option value="{{$item->id}}">{{$item->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                            <div class="col-lg-4">
-                                <label>Price</label>
-                                <input type="number" class="form-control price" value="0">
+                            <div class="row form-group">
+                                <div class="col-lg-4">
+                                    <label>Ram (GB)</label>
+                                    <input type="number" class="form-control ram" value="2" min="2">
+                                </div>
+                                <div class="col-lg-4">
+                                    <label>Rom (GB)</label>
+                                    <input type="number" class="form-control rom" value="16" min="16">
+                                </div>
                             </div>
-                            <div class="col-lg-4">
-                                <label for="">Color</label>
-                                <select name="" id="" class="form-control color">
-                                    @foreach($colors as $item)
-                                        <option value="{{$item->id}}">{{$item->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-lg-4">
-                                <label>Ram (GB)</label>
-                                <input type="number" class="form-control ram" value="2" min="2">
-                            </div>
-                            <div class="col-lg-4">
-                                <label>Rom (GB)</label>
-                                <input type="number" class="form-control rom" value="16" min="16">
-                            </div>
-                        </div>
 
-                    </div>
+                        </div>
+                    @endif
+
                 </div>
                 <hr>
                 <button type="button" class="btn btn-info btn_create_new_option">New option +</button>

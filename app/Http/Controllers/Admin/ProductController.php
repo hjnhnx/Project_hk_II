@@ -67,10 +67,11 @@ class ProductController extends Controller
     }
 
     public function create(){
+        $detail = null;
         $category = Categories::query()->where('status',Status::ACTIVE)->orderBy('name','ASC')->get();
         $colors = Color::query()->where('status',Status::ACTIVE)->orderBy('name','ASC')->get();
         $brand = Brand::query()->where('status',Status::ACTIVE)->orderBy('name','ASC')->get();
-        return view('admin.products.form',['categories'=>$category,'colors'=>$colors,'brands'=>$brand]);
+        return view('admin.products.form',['categories'=>$category,'colors'=>$colors,'brands'=>$brand,'detail'=>$detail]);
     }
 
     public function store(Request $request){
@@ -95,6 +96,14 @@ class ProductController extends Controller
             $product_option->save();
         }
         return redirect()->route('list_product');
+    }
+    public function edit($id){
+        $detail = Product::query()->where('id',$id)->with('product_option')->get();
+
+        $category = Categories::query()->where('status',Status::ACTIVE)->orderBy('name','ASC')->get();
+        $colors = Color::query()->where('status',Status::ACTIVE)->orderBy('name','ASC')->get();
+        $brand = Brand::query()->where('status',Status::ACTIVE)->orderBy('name','ASC')->get();
+        return view('admin.products.form',['categories'=>$category,'colors'=>$colors,'brands'=>$brand,'detail'=>$detail]);
     }
 
 

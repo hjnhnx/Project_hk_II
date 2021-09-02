@@ -20,4 +20,7 @@ class Product extends Model
         'thumbnail',
         'images',
     ];
+    public function product_option(){
+        return $this->hasMany(Product_option::class);
+    }
 }
