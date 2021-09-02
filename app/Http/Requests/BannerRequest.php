@@ -25,6 +25,7 @@ class BannerRequest extends FormRequest
     {
         return [
             'image'=>'required|url',
+            'content'=>'required',
             'video'=>'nullable',
             'link_to_product'=>'required|url'
         ];
@@ -35,7 +36,8 @@ class BannerRequest extends FormRequest
             'image.required'=>'Vui lòng chọn ảnh',
             'image.url'=>'Vui lòng chọn ảnh đúng định dạng',
             'link_to_product.required'=>'Vui lòng không bỏ trống trường này',
-            'link_to_product.url'=>'Vui lòng nhập đúng đường dẫn tới sản phẩm'
+            'link_to_product.url'=>'Vui lòng nhập đúng đường dẫn tới sản phẩm',
+            'content.required'=>'Vui lòng nhập trường này'
         ];
     }
 }

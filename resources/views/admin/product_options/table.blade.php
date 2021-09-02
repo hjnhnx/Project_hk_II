@@ -23,7 +23,7 @@
 @endsection
 @section('filter_form')
     <div class="form-group col-sm-5">
-        {{--        <input value="{{$key_search != null ? $key_search : ''}}" type="text" class="form-control" placeholder="Enter keyword" name="search">--}}
+{{--        <input value="{{$key_search != null ? $key_search : ''}}" type="text" class="form-control" placeholder="Enter keyword" name="search">--}}
     </div>
     <div class="form-group col-sm-4">
         <button class="btn btn-primary">Search</button>
@@ -61,7 +61,9 @@
             <td>
                 <img class="show_avatar" src="{{$item->thumbnail}}" alt="">
             </td>
-            <td>{{\App\Models\Color::find($item->color_id)->name}} <p style="border: #bababa 1px solid;height: 30px;width: 30px;float: left;margin-right: 5px;background: {{\App\Models\Color::find($item->color_id)->color_code}}"></p></td>
+            <td>{{\App\Models\Color::find($item->color_id)->name}} <p
+                    style="border: #bababa 1px solid;height: 30px;width: 30px;float: left;margin-right: 5px;background: {{\App\Models\Color::find($item->color_id)->color_code}}"></p>
+            </td>
             <td>{{$item->ram}}BG/RAM : {{$item->rom}}BG/ROM</td>
             <td>{{$item->quantity}}</td>
             <td><p style="color: #ff5454;font-weight: bold">{{$item->price}} $</p></td>

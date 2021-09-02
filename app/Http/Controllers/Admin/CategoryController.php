@@ -6,6 +6,8 @@ use App\Enums\Sort;
 use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Models\Categories;
+use App\Models\Product;
+use App\Models\Product_option;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -39,6 +41,11 @@ class CategoryController extends Controller
         return view('admin.categories.table', ['list' => $categories,'key_search'=>$search,'sort'=>$sort]);
     }
     public function destroy($id){
+        $products = Product::query()->where('category_id',$id)->get();
+        foreach ($products as $product){
+            Product_option::query()->where('product_id',$product->id)->delete();
+            $product->delete();
+        }
         Categories::find($id)->delete();
         return back();
     }
