@@ -38,7 +38,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="{{route('create_product')}}">
                                 Thêm mới
                             </a>
                         </li>

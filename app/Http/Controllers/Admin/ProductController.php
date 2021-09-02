@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\Sort;
 use App\Enums\Status;
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Categories;
 use App\Models\Color;
 use App\Models\Configuration;
 use App\Models\Product;
+use App\Models\Product_option;
 use App\Models\TheFirm;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -49,6 +51,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         Product::find($id)->delete();
+        Product_option::query()->where('product_id',$id)->delete();
         return back();
     }
 
@@ -66,7 +69,32 @@ class ProductController extends Controller
     public function create(){
         $category = Categories::query()->where('status',Status::ACTIVE)->orderBy('name','ASC')->get();
         $colors = Color::query()->where('status',Status::ACTIVE)->orderBy('name','ASC')->get();
-        return view('admin.products.form',['categories'=>$category,'colors'=>$colors,]);
+        $brand = Brand::query()->where('status',Status::ACTIVE)->orderBy('name','ASC')->get();
+        return view('admin.products.form',['categories'=>$category,'colors'=>$colors,'brands'=>$brand]);
+    }
+
+    public function store(Request $request){
+        $product = new Product();
+        $product->fill($request->all());
+        $product->save();
+        $option_images = json_decode($request->sm_option_images);
+        $option_quanties = json_decode($request->sm_option_quantity);
+        $option_prices = json_decode($request->sm_option_price);
+        $option_colors = json_decode($request->sm_option_color);
+        $option_rams = json_decode($request->sm_option_ram);
+        $option_roms = json_decode($request->sm_option_rom);
+        for ($i = 0 ; $i < sizeof($option_images); $i++){
+            $product_option = new Product_option();
+            $product_option->product_id = $product->id;
+            $product_option->thumbnail = $option_images[$i];
+            $product_option->quantity = $option_quanties[$i];
+            $product_option->price = $option_prices[$i];
+            $product_option->color_id = $option_colors[$i];
+            $product_option->ram = $option_rams[$i];
+            $product_option->rom = $option_roms[$i];
+            $product_option->save();
+        }
+        return redirect()->route('list_product');
     }
 
 

@@ -25,8 +25,10 @@
                     @yield('add_form')
                 </div>
                 <footer class="panel-footer">
-                    <button style="width: 120px" class="btn btn-primary">Submit</button>
+                    <button style="width: 120px" class="btn btn-primary btn_submit">Submit</button>
+                    @yield('Extra_btn')
                     <button style="width: 120px" class="btn btn-warning" type="reset">Reset</button>
+
                 </footer>
             </section>
         </form>

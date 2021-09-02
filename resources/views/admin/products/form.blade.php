@@ -28,7 +28,9 @@
             object-fit: cover;
         }
 
-
+        .btn_submit {
+            display: none;
+        }
     </style>
 @endsection
 
@@ -49,7 +51,7 @@
             <div class="row form-group">
                 <div class="col-lg-6">
                     <label for="">Product name</label>
-                    <input type="text" name="name" placeholder="Enter product name" class="form-control">
+                    <input type="text" name="name" placeholder="Enter product name" class="form-control product_name">
                 </div>
                 <div class="col-lg-6">
                     <label for="">Category</label>
@@ -63,37 +65,68 @@
             <div class="row form-group">
                 <div class="col-lg-6">
                     <label for="Discount">Discount</label>
-                    <input type="number" min="1" name="discount" placeholder="Enter discount ( % )"
-                           class="form-control">
+                    <input type="number" min="0" name="discount" placeholder="Enter discount ( % )"
+                           class="form-control" value="0">
                 </div>
                 <div class="col-lg-6">
-                    <label for="">The firm</label>
-                    <select name="the_firm_id" id="" class="form-control">
-                        @foreach($the_firms as $item)
+                    <label for="">Brand</label>
+                    <select name="brand_id" id="" class="form-control">
+                        @foreach($brands as $item)
                             <option value="{{$item->id}}">{{$item->name}}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
             <div class="row form-group">
+                <div class="col-lg-6">
+                    <label >Choose images</label>
+                    <button type="button" class="btn btn-danger form-control btn_choose_images">Choose images +</button>
+                </div>
+                <br>
+                <div class="col-lg-12 row show_images_product" style="margin-top: 30px">
+                </div>
+            </div>
+            <div class="row form-group">
                 <div class="col-lg-12">
-                    <label>Description</label>
-                    <textarea class="summernote" data-plugin-summernote
+                    <label>Content detail</label>
+                    <textarea name="content_detail" class="summernote" data-plugin-summernote
                               data-plugin-options='{ "height": 180, "codemirror": { "theme": "ambiance" } }'
                               placeholder="hello"></textarea>
                 </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-12">
+                    <label>Description</label>
+                    <input name="description" type="text" placeholder="Enter description" class="form-control">
+                </div>
+            </div>
+            <div style="">
+                <input type="text" name="thumbnail" id="thumbnail">
+                <input type="text" name="images" id="images">
+                <input type="text" name="slug" id="slug"><br><br>
+{{--                option field--}}
+                <input type="text" name="sm_option_images" id="sm_option_images">
+                <input type="text" name="sm_option_quantity" id="sm_option_quantity">
+                <input type="text" name="sm_option_price" id="sm_option_price">
+                <input type="text" name="sm_option_color" id="sm_option_color">
+                <input type="text" name="sm_option_ram" id="sm_option_ram">
+                <input type="text" name="sm_option_rom" id="sm_option_rom">
+
             </div>
         @endsection
 
         @section('add_form')
             <div class="col-md-12 product_option_content">
+                <h2>Options</h2>
                 <div class="options">
                     <div class="option">
                         <hr>
                         <div class="row form-group">
                             <div class="col-lg-7">
                                 <label for="Discount">Choose thumbnail</label>
-                                <button type="button" onclick="upload_image_option('0987987')" class="btn btn-danger form-control Choose_thumbnail_option">Choose thumbnail</button>
+                                <button type="button" onclick="upload_image_option('0987987')"
+                                        class="btn btn-danger form-control Choose_thumbnail_option">Choose thumbnail
+                                </button>
                             </div>
                             <div class="col-lg-5">
                                 <img alt="" class="demo_option_thumbnail" id="0987987img">
@@ -101,35 +134,34 @@
                         </div>
 
                         <div class="row form-group">
-                            <div class="col-lg-6">
-                                <label for="Discount">Quantity</label>
-                                <input type="number" class="form-control" name="quantity" value="0" min="0">
+                            <div class="col-lg-4">
+                                <label>Quantity</label>
+                                <input type="number" class="form-control quantity" value="0" min="0">
                             </div>
-                            <div class="col-lg-6">
-                                <label for="">Configuration</label>
-                                <select name="configuration_id" id="" class="form-control">
-                                    @foreach($configuration as $item)
-                                        <option value="{{$item->id}}">{{$item->ram}} GB/Ram : {{$item->storage}}
-                                            GB/ROM
-                                        </option>
-                                    @endforeach
-                                </select>
+                            <div class="col-lg-4">
+                                <label>Price</label>
+                                <input type="number" class="form-control price" value="0">
                             </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-lg-6">
-                                <label for="Discount">Price</label>
-                                <input type="number" class="form-control" name="quantity" value="0" min="1">
-                            </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <label for="">Color</label>
-                                <select name="the_firm_id" id="" class="form-control">
+                                <select name="" id="" class="form-control color">
                                     @foreach($colors as $item)
                                         <option value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
+                        <div class="row form-group">
+                            <div class="col-lg-4">
+                                <label>Ram (GB)</label>
+                                <input type="number" class="form-control ram" value="2" min="2">
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Rom (GB)</label>
+                                <input type="number" class="form-control rom" value="16" min="16">
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <hr>
@@ -137,10 +169,14 @@
             </div>
         @endsection
 
+        @section('Extra_btn')
+            <button style="width: 120px" class="btn btn-primary btn_check_and_create_data" type="button">Submit</button>
+        @endsection
+
         @section('Extra_js')
             <script>
-                document.addEventListener('DOMContentLoaded',function (){
-                    $('.btn_create_new_option').click(function (){
+                document.addEventListener('DOMContentLoaded', function () {
+                    $('.btn_create_new_option').click(function () {
                         var id = Math.random()
                         $('.options').append(`
                     <div class="option" id="${id}">
@@ -157,51 +193,131 @@
                         </div>
 
                         <div class="row form-group">
-                            <div class="col-lg-6">
-                                <label for="Discount">Quantity</label>
-                                <input type="number" class="form-control" name="quantity" value="0" min="0">
+                           <div class="col-lg-4">
+                                <label >Quantity</label>
+                                <input type="number" class="form-control quantity" value="0" min="0">
                             </div>
-                            <div class="col-lg-6">
-                                <label for="">Configuration</label>
-                                <select name="configuration_id" id="" class="form-control">
-                                    @foreach($configuration as $item)
-                        <option value="{{$item->id}}">{{$item->ram}} GB/Ram : {{$item->storage}}
-                        GB/ROM
-                    </option>
-@endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-lg-6">
-                        <label for="Discount">Price</label>
-                        <input type="number" class="form-control" name="quantity" value="0" min="1">
-                    </div>
-                    <div class="col-lg-6">
-                        <label for="">Color</label>
-                        <select name="the_firm_id" id="" class="form-control">
-@foreach($colors as $item)
+                            <div class="col-lg-4">
+                                <label >Price</label>
+                                <input type="number" class="form-control price" value="0">
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="">Color</label>
+                                <select name="" id="" class="form-control color">
+                                    @foreach($colors as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach
                         </select>
                     </div>
-                </div>
-            </div>
+        </div>
+        <div class="row form-group">
+                            <div class="col-lg-4">
+                                <label >Ram (GB)</label>
+                                <input type="number" class="form-control ram" value="2" min="2">
+                            </div>
+                            <div class="col-lg-4">
+                                <label >Rom (GB)</label>
+                                <input type="number" class="form-control rom" value="16" min="16">
+                            </div>
+                        </div>
+
+    </div>
 `)
                     })
-                })
-                var img_code
+                    $('.btn_choose_images').click(function () {
+                        $('.image_files').click()
+                    })
+                    $('.image_files').change(function () {
+                        $('#form_images').submit()
+                    })
+                    $('#form_images').on('submit', function (event) {
+                        event.preventDefault()
+                        $.ajax({
+                            url: "{{route('upload_images')}}",
+                            method: "POST",
+                            data: new FormData(this),
+                            dataType: "JSON",
+                            contentType: false,
+                            cache: false,
+                            processData: false,
+                            success: function (res) {
+                                var protocol = window.location.protocol
+                                var host = window.location.hostname
+                                var port = window.location.port
+                                var url = protocol + '//' + host + ':' + port + '/images/admin_data/images/'
+                                var images = res.data.split(',')
+                                for (let i = 0; i < images.length; i++) {
+                                    var id = Math.random()
+                                    $('.show_images_product').append(`<div id="${id}" class="col-md-3" style="height: 160px;overflow: hidden;margin-bottom: 10px">
+                        <img class="product_image" style="width: 100%;height: 120px;object-fit: cover;border-radius: 5px;margin-bottom: 2px" src="${url + images[i]}" alt="">
+                        <button type="button" slot="${id}" onclick="delete_image(this.slot)" class="btn btn-info form-control">Close</button>
+                    </div>`)
+                                }
+                            }
+                        })
+                    })
+                    $('.btn_check_and_create_data').click(function () {
+                        var product_images = document.querySelectorAll('.product_image')
+                        var demo_option_thumbnails = document.querySelectorAll('.demo_option_thumbnail')
+                        var demo_option_quantity = document.querySelectorAll('.quantity')
+                        var demo_option_color = document.querySelectorAll('.color')
+                        var demo_option_price = document.querySelectorAll('.price')
+                        var demo_option_ram = document.querySelectorAll('.ram')
+                        var demo_option_rom = document.querySelectorAll('.rom')
+                        var data_images = []
 
-                function upload_image_option(code){
-                    img_code = code
-                    $('.image_file').click()
-                    $('.image_file').change(function (){
-                        $('#form_image').submit()
+                        var data_option_images = []
+                        var option_quanties = []
+                        var option_prices = []
+                        var option_colors = []
+                        var option_rams = []
+                        var option_roms = []
+                        for (let i = 0; i < product_images.length; i++) {
+                            data_images.push(product_images[i].src)
+                        }
+                        for (let i = 0; i < demo_option_thumbnails.length; i++) {
+                            if (demo_option_thumbnails[i].src !== "") {
+                                data_option_images.push(demo_option_thumbnails[i].src)
+                                option_quanties.push(demo_option_quantity[i].value)
+                                option_prices.push(demo_option_price[i].value)
+                                option_colors.push(demo_option_color[i].value)
+                                option_rams.push(demo_option_ram[i].value)
+                                option_roms.push(demo_option_rom[i].value)
+                            }
+                        }
+                        var slug = (document.querySelector('.product_name').value +'-'+ Math.floor(Math.random() * 1000) + 1)
+                        $('#thumbnail').val(product_images[0].src)
+                        $('#images').val(JSON.stringify(data_images))
+                        $('#slug').val(JSON.stringify(slug.replaceAll(' ','-')))
+
+
+                        $('#sm_option_images').val(JSON.stringify(data_option_images))
+                        $('#sm_option_quantity').val(JSON.stringify(option_quanties))
+                        $('#sm_option_price').val(JSON.stringify(option_prices))
+                        $('#sm_option_color').val(JSON.stringify(option_colors))
+                        $('#sm_option_ram').val(JSON.stringify(option_rams))
+                        $('#sm_option_rom').val(JSON.stringify(option_roms))
+                        $('.btn_submit').click()
                     })
 
+
+                })
+
+                function delete_image(id) {
+                    document.getElementById(id).remove()
                 }
 
-                $('#form_image').on('submit',function (event){
+                var img_code
+
+                function upload_image_option(code) {
+                    img_code = code
+                    $('.image_file').click()
+                    $('.image_file').change(function () {
+                        $('#form_image').submit()
+                    })
+                }
+
+                $('#form_image').on('submit', function (event) {
                     event.preventDefault()
                     $.ajax({
                         url: "{{route('upload_image')}}",
@@ -212,17 +328,20 @@
                         cache: false,
                         processData: false,
                         success: function (res) {
-                            var img = document.getElementById(img_code+'img')
-                            console.log(img)
-                            img.src = `http://localhost:8000/images/admin_data/images/${res.data}`
+                            var protocol = window.location.protocol
+                            var host = window.location.hostname
+                            var port = window.location.port
+                            var url = protocol + '//' + host + ':' + port + '/images/admin_data/images/'
+                            var img = document.getElementById(img_code + 'img')
+                            img.src = `${url + res.data}`
                         }
                     })
                 })
 
-
-
-                function close_option(id){
+                function close_option(id) {
                     document.getElementById(id).remove()
                 }
+
+
             </script>
 @endsection
