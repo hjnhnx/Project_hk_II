@@ -84,7 +84,6 @@ Route::prefix('brand')->group(function () {
     Route::post('/{id}/edit', [BrandController::class, 'update'])->name('update_brand');
 });
 
-
 Route::prefix('order')->group(function () {
     Route::get('/', [OrderController::class, 'index'])->name('list_order');
 });
@@ -95,4 +94,6 @@ Route::prefix('order-detail')->group(function () {
 
 Route::prefix('product-option')->group(function () {
     Route::get('/', [ProductOptionController::class, 'index'])->name('list_product_option');
+    Route::get('/{id}/edit',[ProductOptionController::class,'edit'])->name('edit_product_option');
+    Route::post('/{id}/edit',[ProductOptionController::class,'update'])->name('update_product_option');
 });

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class OrderDetailController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         $order_detail = Order_Detail::all();
         return view('admin.order_detail.table',['list'=>$order_detail]);
     }
