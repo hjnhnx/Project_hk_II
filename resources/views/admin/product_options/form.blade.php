@@ -63,7 +63,8 @@
                         <div class="row form-group">
                             <div class="col-lg-4">
                                 <label>Quantity</label>
-                                <input name="quantity" value="{{$detail->quantity}}" type="number" class="form-control quantity" min="0">
+                                <input name="quantity" value="{{$detail->quantity}}" type="number"
+                                       class="form-control quantity" min="0">
                             </div>
                             <div class="col-lg-4">
                                 <label>Price</label>
@@ -73,8 +74,9 @@
                                 <label for="">Color</label>
                                 <select name="color_id" id="" class="form-control color">
                                     @foreach($color as $item)
-                                        <option {{$item->id == $detail->color_id ?'selected' :''}} value="{{$item->id}}">{{$item->name}}</option>
-                                        @endforeach
+                                        <option
+                                            {{$item->id == $detail->color_id ?'selected' :''}} value="{{$item->id}}">{{$item->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -89,36 +91,74 @@
                             </div>
                         </div>
                     </div>
-        @endsection
-        @section('Extra_js')
-            <script>
-                $('.Choose_thumbnail_option').click(function () {
-                    $('.image_file').click()
-                })
-                $('.image_file').change(function (){
-                    $('#form_image').submit()
-                })
-                $('#form_image').on('submit', function (event) {
-                    event.preventDefault()
-                    $.ajax({
-                        url: "{{route('upload_image')}}",
-                        method: "POST",
-                        data: new FormData(this),
-                        dataType: "JSON",
-                        contentType: false,
-                        cache: false,
-                        processData: false,
-                        success: function (res) {
-                            var protocol = window.location.protocol
-                            var host = window.location.hostname
-                            var port = window.location.port
-                            var url = protocol + '//' + host + ':' + port + '/images/admin_data/images/'
-                            var img = document.getElementById('0987987img')
-                            document.getElementById('thumbnail').value = `${url + res.data}`
-                            img.src = `${url + res.data}`
-                        }
-                    })
-                })
-            </script>
+                    @endsection
+                    @section('Extra_js')
+                        <script>
+                            $('#form_admin').validate({
+                                rules: {
+                                    thumbnail: {
+                                        required: true
+                                    },
+                                    quantity: {
+                                        required: true
+                                    },
+                                    price: {
+                                        required: true
+                                    },
+                                    ram: {
+                                        required: true
+                                    },
+                                    rom: {
+                                        required: true
+                                    }
+                                },
+                                messages: {
+                                    thumbnail: {
+                                        required: 'Thumbnail không được bỏ trốn',
+                                    },
+                                    quantity: {
+                                        required: 'Quantity không đực bỏ trống',
+                                    },
+                                    price: {
+                                        required: 'Gía không dược bỏ trống',
+                                    },
+                                    ram: {
+                                        required: 'Ram không được bỏ trống',
+                                    },
+                                    rom: {
+                                        required: 'Rom không đực bỏ trống',
+                                    }
+                                }
+                            })
+                        </script>
+                        <script>
+                            $('.Choose_thumbnail_option').click(function () {
+                                $('.image_file').click()
+                            })
+                            $('.image_file').change(function () {
+                                $('#form_image').submit()
+                            })
+                            $('#form_image').on('submit', function (event) {
+                                event.preventDefault()
+                                $.ajax({
+                                    url: "{{route('upload_image')}}",
+                                    method: "POST",
+                                    data: new FormData(this),
+                                    dataType: "JSON",
+                                    contentType: false,
+                                    cache: false,
+                                    processData: false,
+                                    success: function (res) {
+                                        var protocol = window.location.protocol
+                                        var host = window.location.hostname
+                                        var port = window.location.port
+                                        var url = protocol + '//' + host + ':' + port + '/images/admin_data/images/'
+                                        var img = document.getElementById('0987987img')
+                                        document.getElementById('thumbnail').value = `${url + res.data}`
+                                        img.src = `${url + res.data}`
+                                    }
+                                })
+                            })
+                        </script>
 @endsection
 
