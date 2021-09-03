@@ -37,7 +37,7 @@ class CategoryController extends Controller
         if ($sort && $sort == Sort::SORT_NAME_DESC) {
             $query_builder->orderBy('name', 'DESC')->get();
         }
-        $categories = $query_builder->paginate(10);
+        $categories = $query_builder->orderBy('id','DESC')->paginate(10);
         return view('admin.categories.table', ['list' => $categories,'key_search'=>$search,'sort'=>$sort]);
     }
     public function destroy($id){
@@ -49,6 +49,7 @@ class CategoryController extends Controller
         Categories::find($id)->delete();
         return back();
     }
+
     public function update_status($id){
         $category = Categories::find($id);
         if ($category->status == Status::ACTIVE){

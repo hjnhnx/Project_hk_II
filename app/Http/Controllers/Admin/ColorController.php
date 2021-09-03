@@ -7,6 +7,8 @@ use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ColorRequest;
 use App\Models\Color;
+use App\Models\Product;
+use App\Models\Product_option;
 use Illuminate\Http\Request;
 
 class ColorController extends Controller
@@ -37,11 +39,19 @@ class ColorController extends Controller
         if ($sort && $sort == Sort::SORT_NAME_DESC) {
             $query_builder->orderBy('name', 'DESC')->get();
         }
-        $colors = $query_builder->paginate(10);
+        $colors = $query_builder->orderBy('id','DESC')->paginate(10);
         return view('admin.colors.table', ['list' => $colors,'key_search'=>$search,'sort'=>$sort]);
     }
 
     public function destroy($id){
+        $product_option = Product_option::query()->where('color_id',$id)->get();
+
+        foreach ($product_option as $option){
+            if (sizeof(Product_option::query()->where('product_id',$option->product_id)->get()) == 1) {
+                Product::find($option->product_id)->delete();
+            }
+            $option->delete();
+        }
         Color::find($id)->delete();
         return back();
     }
