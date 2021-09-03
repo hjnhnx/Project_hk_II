@@ -50,6 +50,10 @@ class ProductController extends Controller
         if ($request->category_s && strlen($request->category_s) > 0){
             $query_builder->where('category_id',$request->category_s);
         }
+        if ($request->status){
+            $query_builder->where('status',$request->status);
+        }
+
 
         $products = $query_builder->orderBy('id','DESC')->paginate(10);
         $brands = Brand::query()->orderBy('name','ASC')->where('status',Status::ACTIVE)->get();
@@ -60,10 +64,10 @@ class ProductController extends Controller
             'brands'=>$brands,
             'brand_s'=>$request->brand_s,
             'categories'=>$categories,
-            'category_s'=>$request->category_s
+            'category_s'=>$request->category_s,
+            'status'=>$request->status
             ]);
     }
-
     public function destroy($id)
     {
         Product::find($id)->delete();
