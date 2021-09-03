@@ -44,8 +44,11 @@ class BrandController extends Controller
         if ($sort && $sort == Sort::SORT_NAME_DESC) {
             $query_builder->orderBy('name', 'DESC')->get();
         }
+        if ($request->status){
+            $query_builder->where('status',$request->status);
+        }
         $the_firm = $query_builder->orderBy('id','DESC')->paginate(10);
-        return view('admin.brands.table', ['list' => $the_firm, 'key_search' => $search, 'sort' => $sort]);
+        return view('admin.brands.table', ['list' => $the_firm, 'key_search' => $search, 'sort' => $sort,'status'=>$request->status]);
     }
 
     public function destroy($id)

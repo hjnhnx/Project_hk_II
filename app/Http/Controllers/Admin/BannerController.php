@@ -30,8 +30,11 @@ class BannerController extends Controller
         if ($sort && $sort == Sort::SORT_CREATED_AT_DESC) {
             $query_builder->orderBy('created_at', 'DESC')->get();
         }
+        if ($request->status){
+            $query_builder->where('status',$request->status);
+        }
         $banners = $query_builder->orderBy('id','DESC')->paginate(10);
-        return view('admin.banners.table', ['list' => $banners,'key_search'=>$search,'sort'=>$sort]);
+        return view('admin.banners.table', ['list' => $banners,'key_search'=>$search,'sort'=>$sort,'status'=>$request->status]);
     }
 
     public function destroy($id){
