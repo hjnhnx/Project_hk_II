@@ -33,7 +33,7 @@ Route::prefix('product')->group(function () {
 
 Route::prefix('category')->group(function () {
     Route::get('/', [CategoryController::class, 'index'])->name('list_category');
-    Route::get('/{id}/delete', [CategoryController::class, 'destroy'])->name('delete_category'); // chưa hoàn thiện ( 50% )
+    Route::get('/{id}/delete', [CategoryController::class, 'destroy'])->name('delete_category');
     Route::get('/update-status/{id}', [CategoryController::class, 'update_status'])->name('category_update_status');
     Route::get('/create',[CategoryController::class,'create'])->name('create_category');
     Route::post('/create',[CategoryController::class,'store'])->name('save_category');
@@ -50,15 +50,12 @@ Route::prefix('contact')->group(function () {
 
 Route::prefix('color')->group(function () {
     Route::get('/', [ColorController::class, 'index'])->name('list_color');
-    Route::get('/{id}/delete', [ColorController::class, 'destroy'])->name('delete_color'); // chưa hoàn thành ( 50% )
+    Route::get('/{id}/delete', [ColorController::class, 'destroy'])->name('delete_color');
     Route::get('/update-status/{id}', [ColorController::class, 'update_status'])->name('color_update_status');
     Route::get('/create',[ColorController::class,'create'])->name('create_color');
     Route::post('/create',[ColorController::class,'store'])->name('save_color');
-
     Route::get('/{id}/edit',[ColorController::class,'edit'])->name('edit_color');
     Route::post('/{id}/edit',[ColorController::class,'update'])->name('update_color');
-
-
 });
 
 Route::prefix('banner')->group(function () {
@@ -70,8 +67,6 @@ Route::prefix('banner')->group(function () {
     Route::get('/{id}/edit',[BannerController::class,'edit'])->name('edit_banner');
     Route::post('/{id}/edit',[BannerController::class,'update'])->name('update_banner');
 });
-
-
 
 
 Route::prefix('brand')->group(function () {

@@ -34,7 +34,7 @@ class OrderController extends Controller
         if ($sort && $sort == Sort::SORT_CREATED_AT_DESC) {
             $query_builder->orderBy('created_at', 'DESC')->get();
         }
-        $orders = $query_builder->paginate(10);
+        $orders = $query_builder->orderBy('id','DESC')->paginate(10);
         return view('admin.orders.table', ['list' => $orders, 'key_search' => $search,'sort'=>$sort]);
     }
 }

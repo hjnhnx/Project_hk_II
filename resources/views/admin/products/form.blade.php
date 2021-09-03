@@ -23,7 +23,6 @@
         .demo_option_thumbnail {
             height: 100px;
             width: 100px;
-            border: #9d9d9d 1px solid;
             outline: none;
             object-fit: cover;
         }
@@ -131,9 +130,99 @@
                 <h2>Options</h2>
                 <div class="options">
                     @if($detail)
-{{--                        @foreach()--}}
-{{--                            --}}
-{{--                        @endforeach--}}
+                        @foreach($detail->product_option as $key => $item)
+                            @if($key == 0)
+                                <div class="option">
+                                    <hr>
+                                    <div class="row form-group">
+                                        <div class="col-lg-7">
+                                            <label for="Discount">Choose thumbnail</label>
+                                            <button type="button" onclick="upload_image_option('0987987')"
+                                                    class="btn btn-danger form-control Choose_thumbnail_option">Choose thumbnail
+                                            </button>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <img src="{{$item->thumbnail}}" alt="" class="demo_option_thumbnail" id="0987987img">
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <div class="col-lg-4">
+                                            <label>Quantity</label>
+                                            <input type="number" class="form-control quantity" value="{{$item->quantity}}" min="0">
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label>Price</label>
+                                            <input type="number" class="form-control price" value="{{$item->price}}">
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label for="">Color</label>
+                                            <select name="" id="" class="form-control color">
+                                                @foreach($colors as $items)
+                                                    <option {{$item->color_id == $items->id ? 'selected' : ''}} value="{{$items->id}}">{{$items->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-lg-4">
+                                            <label>Ram (GB)</label>
+                                            <input type="number" class="form-control ram" value="{{$item->ram}}" min="2">
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label>Rom (GB)</label>
+                                            <input type="number" class="form-control rom" value="{{$item->rom}}" min="16">
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="option" id="close{{$key}}">
+                                    <hr>
+                                    <div class="row form-group">
+                                        <div class="col-lg-7">
+                                            <label for="Discount">Choose thumbnail</label>
+                                            <button type="button" onclick="upload_image_option('upload_image_id_{{$key}}')"
+                                                    class="btn btn-danger form-control Choose_thumbnail_option">Choose thumbnail
+                                            </button>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <img src="{{$item->thumbnail}}" alt="" class="demo_option_thumbnail" id="upload_image_id_{{$key}}">
+                                            <span onclick="close_option('close{{$key}}')" class="btn_close" title="close this option">&times;</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <div class="col-lg-4">
+                                            <label>Quantity</label>
+                                            <input type="number" class="form-control quantity" value="{{$item->quantity}}" min="0">
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label>Price</label>
+                                            <input type="number" class="form-control price" value="{{$item->price}}">
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label for="">Color</label>
+                                            <select name="" id="" class="form-control color">
+                                                @foreach($colors as $items)
+                                                    <option {{$item->color_id == $items->id ? 'selected' : ''}} value="{{$items->id}}">{{$items->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-lg-4">
+                                            <label>Ram (GB)</label>
+                                            <input type="number" class="form-control ram" value="{{$item->ram}}" min="2">
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label>Rom (GB)</label>
+                                            <input type="number" class="form-control rom" value="{{$item->rom}}" min="16">
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                        @endforeach
                     @else
                         <div class="option">
                             <hr>

@@ -2,9 +2,8 @@
 <html lang="vi">
 @include('.admin.components.head')
 <body >
-{{--<img class="load_page" style="width: 50px;height: 50px;display: block;margin: 200px auto" src="/images/load_page.gif" alt="">--}}
-<section class="body body_content" >
-{{--<section class="body body_content" style="display: none">--}}
+
+<section class="body " >
     <!-- start: header -->
     @include('.admin.components.header')
     <!-- end: header -->
@@ -35,7 +34,9 @@
                     </ol>
                 </div>
             </header>
-            <div class="row">
+            <img class="load_page" style="width: 50px;height: 50px;display: block;margin: 150px auto" src="/images/load_page.gif" alt="">
+            <div class="row body_content" style="display: none">
+
                 @yield('main_content')
             </div>
         </section>
@@ -43,10 +44,10 @@
 </section>
 @include('.admin.components.script')
 <script>
- // document.addEventListener('DOMContentLoaded',function (){
- //     $('.body_content').css('display','block')
- //     $('.load_page').css('display','none')
- // })
+ document.addEventListener('DOMContentLoaded',function (){
+     $('.body_content').css('display','block')
+     $('.load_page').css('display','none')
+ })
 </script>
 </body>
 </html>

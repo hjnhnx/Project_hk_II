@@ -36,7 +36,7 @@ class ContactController extends Controller
         if ($sort && $sort == Sort::SORT_NAME_DESC) {
             $query_builder->orderBy('name', 'DESC')->get();
         }
-        $contacts = $query_builder->paginate(10);
+        $contacts = $query_builder->orderBy('id','DESC')->paginate(10);
         return view('admin.contacts.table', ['list' => $contacts,'key_search'=>$search,'sort'=>$sort]);
     }
     public function destroy($id){

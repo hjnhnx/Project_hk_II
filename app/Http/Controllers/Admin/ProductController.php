@@ -44,7 +44,7 @@ class ProductController extends Controller
         if ($sort && $sort == Sort::SORT_NAME_DESC) {
             $query_builder->orderBy('name', 'DESC')->get();
         }
-        $products = $query_builder->paginate(10);
+        $products = $query_builder->orderBy('id','DESC')->paginate(10);
         return view('admin.products.table', ['list' => $products, 'key_search' => $search, 'sort' => $sort]);
     }
 
@@ -98,12 +98,36 @@ class ProductController extends Controller
         return redirect()->route('list_product');
     }
     public function edit($id){
-        $detail = Product::query()->where('id',$id)->with('product_option')->get();
-
+        $detail = Product::query()->where('id',$id)->with('product_option')->first();
         $category = Categories::query()->where('status',Status::ACTIVE)->orderBy('name','ASC')->get();
         $colors = Color::query()->where('status',Status::ACTIVE)->orderBy('name','ASC')->get();
         $brand = Brand::query()->where('status',Status::ACTIVE)->orderBy('name','ASC')->get();
         return view('admin.products.form',['categories'=>$category,'colors'=>$colors,'brands'=>$brand,'detail'=>$detail]);
+    }
+
+    public function update(Request $request,$id){
+        Product_option::query()->where('product_id',$id)->delete();
+        $option_images = json_decode($request->sm_option_images);
+        $option_quanties = json_decode($request->sm_option_quantity);
+        $option_prices = json_decode($request->sm_option_price);
+        $option_colors = json_decode($request->sm_option_color);
+        $option_rams = json_decode($request->sm_option_ram);
+        $option_roms = json_decode($request->sm_option_rom);
+        for ($i = 0 ; $i < sizeof($option_images); $i++){
+            $product_option = new Product_option();
+            $product_option->product_id = $id;
+            $product_option->thumbnail = $option_images[$i];
+            $product_option->quantity = $option_quanties[$i];
+            $product_option->price = $option_prices[$i];
+            $product_option->color_id = $option_colors[$i];
+            $product_option->ram = $option_rams[$i];
+            $product_option->rom = $option_roms[$i];
+            $product_option->save();
+        }
+        $product = Product::find($id);
+        $product->fill($request->all());
+        $product->save();
+        return redirect()->route('list_product');
     }
 
 

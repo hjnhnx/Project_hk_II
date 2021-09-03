@@ -43,7 +43,7 @@ class UserController extends Controller
         if ($sort && $sort == Sort::SORT_NAME_DESC) {
             $query_builder->orderBy('firstname', 'DESC')->get();
         }
-        $users = $query_builder->paginate(10);
+        $users = $query_builder->orderBy('id','DESC')->paginate(10);
         return view('admin.users.table', ['list' => $users,'key_search'=>$search,'sort'=>$sort]);
     }
     public function destroy($id){

@@ -7,6 +7,8 @@ use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BrandRequest;
 use App\Models\Brand;
+use App\Models\Product;
+use App\Models\Product_option;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -42,12 +44,17 @@ class BrandController extends Controller
         if ($sort && $sort == Sort::SORT_NAME_DESC) {
             $query_builder->orderBy('name', 'DESC')->get();
         }
-        $the_firm = $query_builder->paginate(10);
+        $the_firm = $query_builder->orderBy('id','DESC')->paginate(10);
         return view('admin.brands.table', ['list' => $the_firm, 'key_search' => $search, 'sort' => $sort]);
     }
 
     public function destroy($id)
     {
+        $products = Product::query()->where('brand_id',$id)->get();
+        foreach ($products as $product){
+            Product_option::query()->where('product_id',$product->id)->delete();
+            $product->delete();
+        }
         Brand::find($id)->delete();
         return back();
     }
