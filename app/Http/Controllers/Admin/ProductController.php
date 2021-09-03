@@ -44,8 +44,24 @@ class ProductController extends Controller
         if ($sort && $sort == Sort::SORT_NAME_DESC) {
             $query_builder->orderBy('name', 'DESC')->get();
         }
+        if ($request->brand_s && strlen($request->brand_s) > 0){
+            $query_builder->where('brand_id',$request->brand_s);
+        }
+        if ($request->category_s && strlen($request->category_s) > 0){
+            $query_builder->where('category_id',$request->category_s);
+        }
+
         $products = $query_builder->orderBy('id','DESC')->paginate(10);
-        return view('admin.products.table', ['list' => $products, 'key_search' => $search, 'sort' => $sort]);
+        $brands = Brand::query()->orderBy('name','ASC')->where('status',Status::ACTIVE)->get();
+        $categories = Categories::query()->orderBy('name','ASC')->where('status',Status::ACTIVE)->get();
+        return view('admin.products.table', ['list' => $products,
+            'key_search' => $search,
+            'sort' => $sort,
+            'brands'=>$brands,
+            'brand_s'=>$request->brand_s,
+            'categories'=>$categories,
+            'category_s'=>$request->category_s
+            ]);
     }
 
     public function destroy($id)

@@ -12,13 +12,34 @@
    border-radius: 5px;
    }
 @endsection
+
+@section('option_filter')
+    <div class="form-group col-sm-6" style="padding: 0">
+        <select name="brand_s" id="" class="form-control sorted2">
+            <option value="0">Brands</option>
+            @foreach($brands as $item)
+                <option {{$item->id == $brand_s ? 'selected' : ''}} value="{{$item->id}}">{{$item->name}}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group col-sm-6" style="padding-left: 2px">
+        <select name="category_s" id="" class="form-control sorted2">
+        <option value="0">Category</option>
+            @foreach($categories as $item)
+                <option {{$item->id == $category_s ? 'selected' : ''}} value="{{$item->id}}">{{$item->name}}</option>
+            @endforeach
+        </select>
+    </div>
+
+@endsection
+
 @section('filter_form')
     <div class="form-group col-sm-5">
         <input value="{{$key_search != null ? $key_search : ''}}" type="text" class="form-control" placeholder="Enter keyword" name="search">
     </div>
     <div class="form-group col-sm-4">
         <button class="btn btn-primary">Search</button>
-        <button class="btn btn-danger">Clear filter</button>
+        <a href="{{route('list_product')}}" class="btn btn-danger">Clear filter</a>
     </div>
     <div class="form-group col-sm-3">
         <select name="sort" id="" class="form-control sorted">

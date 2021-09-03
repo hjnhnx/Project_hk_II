@@ -48,9 +48,9 @@
                     <label for="">Avatar</label>
                     <button type="button" class="form-control btn btn-danger choose_avatar">Choose Avatar</button>
                     @if($detail)
-                        <img id="show_avatar" style="height: 200px;width: 100%;object-fit: cover;margin-top: 2px" src="{{$detail->avatar}}">
+                        <img id="show_avatar" style="height: 250px;width: 100%;object-fit: cover;margin-top: 2px" src="{{$detail->avatar}}">
                     @else
-                        <img id="show_avatar" style="height: 200px;width: 100%;object-fit: cover;margin-top: 2px; display: none">
+                        <img id="show_avatar" style="height: 250px;width: 100%;object-fit: cover;margin-top: 2px; display: none">
                     @endif
                     <img id="show_avatar" style="height: 200px;width: 100%;object-fit: cover;margin-top: 2px; display: none">
                     <input value="{{$detail ?$detail->avatar :''}}" id="avatar" type="hidden" name="avatar" placeholder="Enter url avatar" class="form-control">
