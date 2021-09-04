@@ -12,9 +12,10 @@ class Product_option extends Model
     protected $fillable = [
         'product_id',
         'color_id',
-        'configuration_id',
         'quantity',
-        'price'
+        'price',
+        'rom',
+        'ram'
     ];
     public function product(){
         return $this->belongsTo(Product::class,'product_id');
