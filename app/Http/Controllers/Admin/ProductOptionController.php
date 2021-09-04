@@ -64,6 +64,7 @@ class ProductOptionController extends Controller
         $product_option->thumbnail = $request->thumbnail;
         $product_option->quantity = $request->quantity;
         $product_option->color_id = $request->color_id;
+        $product_option->price = $request->price;
         $product_option->ram = $request->ram;
         $product_option->rom = $request->rom;
         $product_option->save();

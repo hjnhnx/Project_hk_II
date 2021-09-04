@@ -65,7 +65,7 @@
                 <div class="col-lg-6">
                     <label for="Discount">Discount</label>
                     <input  type="number" min="0" name="discount" placeholder="Enter discount ( % )"
-                           class="form-control" value="{{$detail ?$detail->discount :0}}">
+                            class="form-control" value="{{$detail ?$detail->discount :0}}">
                 </div>
                 <div class="col-lg-6">
                     <label for="">Brand</label>
@@ -80,6 +80,10 @@
                 <div class="col-lg-6">
                     <label >Choose images</label>
                     <button type="button" class="btn btn-danger form-control btn_choose_images">Choose images +</button>
+                </div>
+                <div class="col-lg-6">
+                    <label >Price</label>
+                    <input value="{{$detail ? $detail->price : ''}}" name="price" type="text" placeholder="Vui lòng nhập giá co sản phẩm này" class="form-control">
                 </div>
                 <br>
                 <div class="col-lg-12 row show_images_product" style="margin-top: 30px">
@@ -96,7 +100,7 @@
             <div class="row form-group">
                 <div class="col-lg-12">
                     <label>Description</label>
-                    <textarea name="description" type="text" placeholder="Enter description" class="form-control">{{$detail ?$detail->description :''}}</textarea>
+                    <textarea style="height: 100px" name="description" type="text" placeholder="Enter description" class="form-control">{{$detail ?$detail->description :''}}</textarea>
                 </div>
             </div>
             <div class="row form-group">
@@ -114,7 +118,7 @@
                 <input type="text" name="thumbnail" id="thumbnail">
                 <input type="text" name="images" id="images">
                 <input type="text" name="slug" id="slug"><br><br>
-{{--                option field--}}
+                {{--                option field--}}
                 <input type="text" name="sm_option_images" id="sm_option_images">
                 <input type="text" name="sm_option_quantity" id="sm_option_quantity">
                 <input type="text" name="sm_option_price" id="sm_option_price">
@@ -152,7 +156,7 @@
                                             <input type="number" class="form-control quantity" value="{{$item->quantity}}" min="0">
                                         </div>
                                         <div class="col-lg-4">
-                                            <label>Price</label>
+                                            <label>Price plus</label>
                                             <input type="number" class="form-control price" value="{{$item->price}}">
                                         </div>
                                         <div class="col-lg-4">
@@ -197,7 +201,7 @@
                                             <input type="number" class="form-control quantity" value="{{$item->quantity}}" min="0">
                                         </div>
                                         <div class="col-lg-4">
-                                            <label>Price</label>
+                                            <label>Price plus</label>
                                             <input type="number" class="form-control price" value="{{$item->price}}">
                                         </div>
                                         <div class="col-lg-4">
@@ -244,7 +248,7 @@
                                     <input type="number" class="form-control quantity" value="0" min="0">
                                 </div>
                                 <div class="col-lg-4">
-                                    <label>Price</label>
+                                    <label>Price plus</label>
                                     <input type="number" class="form-control price" value="0">
                                 </div>
                                 <div class="col-lg-4">
@@ -305,7 +309,7 @@
                                 <input type="number" class="form-control quantity" value="0" min="0">
                             </div>
                             <div class="col-lg-4">
-                                <label >Price</label>
+                                <label >Price plus</label>
                                 <input type="number" class="form-control price" value="0">
                             </div>
                             <div class="col-lg-4">
@@ -448,7 +452,5 @@
                 function close_option(id) {
                     document.getElementById(id).remove()
                 }
-
-
             </script>
 @endsection

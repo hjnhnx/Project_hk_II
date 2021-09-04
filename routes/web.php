@@ -35,5 +35,6 @@ Route::post('/image/uploads',[ImageUploadController::class,'uploads'])->name('up
 
 
 Route::get('/',[Controller::class,'home'])->name('home_page');
+Route::get('/product/{slug}',[Controller::class,'product_detail'])->name('product_detail');
 
 
