@@ -13,6 +13,7 @@ class Banner extends Model
     protected $fillable=[
         'image',
         'video',
+        'type',
         'content',
         'link_to_product'
     ];

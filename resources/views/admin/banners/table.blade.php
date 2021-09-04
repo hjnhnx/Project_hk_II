@@ -59,6 +59,7 @@
         <th>Image</th>
         <th>Video</th>
         <th>Link To Product</th>
+        <th>Type</th>
         <th>Status</th>
         <th>Created At</th>
         <th class="text-center">Actions</th>
@@ -76,6 +77,9 @@
                    href="#modalBasic">Video Preview</a>
             </td>
             <td><a target="_blank" href="{{$item->link_to_product}}">{{$item->link_to_product}}</a></td>
+            <td>
+                {{$item->type == \App\Enums\BannerType::BANNER ? 'Banner' : 'Sub banner'}}
+            </td>
             <td>
                 <label class="switch">
                     <input onchange="changeStatus({{$item->id}})"

@@ -15,14 +15,21 @@
         @section('input_form')
             <div class="row form-group">
 
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <label for="">Link to product</label>
                     <input value="{{$detail ?$detail->link_to_product :''}}" type="text" name="link_to_product" placeholder="Link to product" class="form-control">
                     @error('link_to_product')
                     <span style="color: #f97d7d;font-size: 12px;font-weight: bold">{{$message}}</span>
                     @enderror
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-2">
+                    <label for="">Type</label>
+                    <select name="type" id="" class="form-control">
+                        <option value="{{\App\Enums\BannerType::BANNER}}">Banner</option>
+                        <option value="{{\App\Enums\BannerType::SUBBANNER}}">Sub Banner</option>
+                    </select>
+                </div>
+                <div class="col-lg-5">
                     <label for="">Video</label>
                     <input value="{{$detail ?$detail->video :''}}" type="text" id="video_clone" placeholder="Enter video url" class="form-control">
                     <input value="{{$detail ?$detail->video :''}}" type="hidden" id="video" name="video" placeholder="Enter video url" class="form-control">

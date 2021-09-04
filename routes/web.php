@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Service\ImageUploadController;
 use App\Http\Middleware\CheckIsAdmin;
 use Illuminate\Support\Facades\Route;
@@ -27,11 +28,12 @@ Route::post('admin/user/login', [UserController::class, 'process_login'])->name(
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+
 
 Route::post('/image/upload',[ImageUploadController::class,'upload'])->name('upload_image');
 Route::post('/image/uploads',[ImageUploadController::class,'uploads'])->name('upload_images');
+
+
+Route::get('/',[Controller::class,'home'])->name('home_page');
 
 
