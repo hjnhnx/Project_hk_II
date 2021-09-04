@@ -21,9 +21,19 @@
     border-radius: 5px;
     }
 @endsection
+@section('option_filter')
+    <div class="form-group col-sm-6" style="padding: 0 1px">
+        <select name="color_s" id="" class="form-control sorted2">
+            <option value="0">Colors</option>
+            @foreach($colors as $item)
+                <option {{$item->id == $color_s ? 'selected' : ''}} value="{{$item->id}}">{{$item->name}}</option>
+            @endforeach
+        </select>
+    </div>
+@endsection
 @section('filter_form')
     <div class="form-group col-sm-5">
-{{--        <input value="{{$key_search != null ? $key_search : ''}}" type="text" class="form-control" placeholder="Enter keyword" name="search">--}}
+        <input value="{{$key_search != null ? $key_search : ''}}" type="text" class="form-control" placeholder="Enter keyword" name="search">
     </div>
     <div class="form-group col-sm-4">
         <button class="btn btn-primary">Search</button>
@@ -31,13 +41,13 @@
     </div>
     <div class="form-group col-sm-3">
         <select name="sort" id="" class="form-control sorted">
-            {{--            <option value="" hidden>Sắp xếp</option>--}}
-            {{--            <option {{$sort ==  \App\Enums\Sort::SORT_ID_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_ID_ASC}}">ID tăng dần</option>--}}
-            {{--            <option {{$sort ==  \App\Enums\Sort::SORT_ID_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_ID_DESC}}">ID giảm dần</option>--}}
-            {{--            <option {{$sort ==  \App\Enums\Sort::SORT_NAME_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_NAME_ASC}}">Tên A - Z</option>--}}
-            {{--            <option {{$sort ==  \App\Enums\Sort::SORT_NAME_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_NAME_DESC}}">Tên Z - A</option>--}}
-            {{--            <option {{$sort ==  \App\Enums\Sort::SORT_CREATED_AT_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_CREATED_AT_ASC}}">Cũ nhất trước</option>--}}
-            {{--            <option {{$sort ==  \App\Enums\Sort::SORT_CREATED_AT_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_CREATED_AT_DESC}}">Mới nhất trước</option>--}}
+                        <option value="" hidden>Sắp xếp</option>
+                        <option {{$sort ==  \App\Enums\Sort::SORT_ID_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_ID_ASC}}">ID tăng dần</option>
+                        <option {{$sort ==  \App\Enums\Sort::SORT_ID_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_ID_DESC}}">ID giảm dần</option>
+                        <option {{$sort ==  \App\Enums\Sort::SORT_PRICE_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_PRICE_ASC}}">giá từ thấp đến cao</option>
+                        <option {{$sort ==  \App\Enums\Sort::SORT_PRICE_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_PRICE_DESC}}">Giá từ cao đến thấp</option>
+                        <option {{$sort ==  \App\Enums\Sort::SORT_CREATED_AT_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_CREATED_AT_ASC}}">Cũ nhất trước</option>
+                        <option {{$sort ==  \App\Enums\Sort::SORT_CREATED_AT_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_CREATED_AT_DESC}}">Mới nhất trước</option>
         </select>
     </div>
 @endsection

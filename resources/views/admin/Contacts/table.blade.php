@@ -2,15 +2,6 @@
 @extends('.admin.layouts.table')
 @section('title_table','Contacts table')
 @section('filter_form')
-@section('option_filter')
-    <div class="form-group col-sm-4" style="padding-left: 2px">
-        <select name="status" id="" class="form-control sorted2">
-            <option value="0">Status</option>
-            <option {{$status == \App\Enums\Status::ACTIVE ?'selected' :'' }} value="{{\App\Enums\Status::ACTIVE}}">Active</option>
-            <option {{$status == \App\Enums\Status::IN_ACTIVE ?'selected' :'' }} value="{{\App\Enums\Status::IN_ACTIVE}}">In Active</option>
-        </select>
-    </div>
-@endsection
     <div class="form-group col-sm-5">
         <input value="{{$key_search != null ? $key_search : ''}}" type="text" class="form-control" placeholder="Enter keyword" name="search">
     </div>

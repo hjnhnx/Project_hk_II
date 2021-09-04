@@ -19,12 +19,7 @@ class BrandController extends Controller
         $sort = $request->query('sort');
         $query_builder = Brand::query();
         if ($search && strlen($search) > 0) {
-            $query_builder = $query_builder->where('firstname', 'like', '%' . $search . '%')
-                ->orWhere('lastname', 'like', '%' . $search . '%')
-                ->orWhere('address', 'like', '%' . $search . '%')
-                ->orWhere('phone', 'like', '%' . $search . '%')
-                ->orWhere('email', 'like', '%' . $search . '%')
-                ->orWhere('birthday', 'like', '%' . $search . '%');
+            $query_builder = $query_builder->where('name', 'like', '%' . $search . '%');
         }
         if ($sort && $sort == Sort::SORT_ID_ASC) {
             $query_builder->orderBy('id', 'ASC')->get();
@@ -50,7 +45,6 @@ class BrandController extends Controller
         $the_firm = $query_builder->orderBy('id','DESC')->paginate(10);
         return view('admin.brands.table', ['list' => $the_firm, 'key_search' => $search, 'sort' => $sort,'status'=>$request->status]);
     }
-
     public function destroy($id)
     {
         $products = Product::query()->where('brand_id',$id)->get();

@@ -10,6 +10,9 @@
     border-radius: 3px;
     border: #929292 1px solid;
     }
+    #addToTable{
+    display:none;
+    }
 @endsection
 @extends('.admin.layouts.table')
 
@@ -24,58 +27,44 @@
     </div>
     <div class="form-group col-sm-3">
         <select name="sort" id="" class="form-control sorted">
-{{--            <option value="" hidden>Sắp xếp</option>--}}
-{{--            <option--}}
-{{--                {{$sort ==  \App\Enums\Sort::SORT_ID_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_ID_ASC}}">ID--}}
-{{--                tăng dần--}}
-{{--            </option>--}}
-{{--            <option--}}
-{{--                {{$sort ==  \App\Enums\Sort::SORT_ID_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_ID_DESC}}">--}}
-{{--                ID giảm dần--}}
-{{--            </option>--}}
-{{--            <option--}}
-{{--                {{$sort ==  \App\Enums\Sort::SORT_NAME_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_NAME_ASC}}">--}}
-{{--                Tên A - Z--}}
-{{--            </option>--}}
-{{--            <option--}}
-{{--                {{$sort ==  \App\Enums\Sort::SORT_NAME_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_NAME_DESC}}">--}}
-{{--                Tên Z - A--}}
-{{--            </option>--}}
-{{--            <option--}}
-{{--                {{$sort ==  \App\Enums\Sort::SORT_CREATED_AT_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_CREATED_AT_ASC}}">--}}
-{{--                Cũ nhất trước--}}
-{{--            </option>--}}
-{{--            <option--}}
-{{--                {{$sort ==  \App\Enums\Sort::SORT_CREATED_AT_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_CREATED_AT_DESC}}">--}}
-{{--                Mới nhất trước--}}
-{{--            </option>--}}
+            <option value="" hidden>Sắp xếp</option>
+            <option
+                {{$sort ==  \App\Enums\Sort::SORT_CREATED_AT_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_CREATED_AT_ASC}}">
+                Cũ nhất trước
+            </option>
+            <option
+                {{$sort ==  \App\Enums\Sort::SORT_CREATED_AT_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_CREATED_AT_DESC}}">
+                Mới nhất trước
+            </option>
         </select>
     </div>
 @endsection
 @section('table_head')
     <tr>
-        <th>Id</th>
+        <th>ID</th>
         <th>Product Name</th>
         <th>Color</th>
         <th>Configuration</th>
         <th>User Name</th>
         <th>Quantity</th>
-        <th>Total</th>
+        <th>Total price</th>
+        <th>unit price</th>
         <th class="text-center Product_Action">Actions</th>
     </tr>
 @endsection
 @section('table_body')
     @foreach($list as $item)
         <tr class="gradeX">
-            <td>1</td>
-            <td>Ip6 pro max</td>
+            <td>{{$item->id}}</td>
+            <td>{{\App\Models\Product::find($item->product_option->product_id)->name}}</td>
             <td>
-                <div class="view_color" style="background: gold"></div>
+                <div class="view_color" style="background: {{\App\Models\Color::find($item->product_option->color_id)->color_code}}"></div>
             </td>
-            <td>4gb/ram 64GB</td>
-            <td>Vũ Hoàng Ngọc Anh</td>
-            <td>100</td>
-            <td>44444444</td>
+            <td>{{$item->product_option->ram}}GB/RAM - {{$item->product_option->rom}}GB/ROM</td>
+            <td>{{\App\Models\User::find($item->order->users_id)->firstname . ' ' . \App\Models\User::find($item->order->users_id)->lastname }}</td>
+            <td>{{$item->quantity}}</td>
+            <td>$ {{$item->unit_price * $item->quantity}}</td>
+            <td>$ {{$item->unit_price}}</td>
             <td class="actions text-center">
                 <a href="#" class="on-default edit-row text-primary"><i class="fa fa-pencil"></i></a>
                 <a href="#" class="on-default remove-row text-danger"><i class="fa fa-trash-o"></i></a>
@@ -84,4 +73,3 @@
         </tr>
     @endforeach
 @endsection
-

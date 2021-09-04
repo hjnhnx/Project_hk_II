@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Service\ImageUploadController;
+use App\Http\Middleware\CheckIsAdmin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('admin')->group(function (){
+//Route::prefix('admin')->group(function (){
+Route::prefix('admin')->middleware(['auth',CheckIsAdmin::class])->group(function (){
     require_once __DIR__ . '/admin.php';
 });
+Route::get('admin/user/login', [UserController::class, 'login'])->name('admin_login');
+Route::post('admin/user/login', [UserController::class, 'process_login'])->name('admin_process_login');
 
 
 
@@ -24,7 +29,9 @@ Route::prefix('admin')->group(function (){
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::post('/image/upload',[ImageUploadController::class,'upload'])->name('upload_image');
 Route::post('/image/uploads',[ImageUploadController::class,'uploads'])->name('upload_images');
+
+
