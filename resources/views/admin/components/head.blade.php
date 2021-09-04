@@ -29,8 +29,11 @@
     <link rel="stylesheet" href="/libs/admin/stylesheets/theme-custom.css">
     @yield('custom_style')
 
+
     <!-- Head Libs -->
     <script src="/libs/admin/vendor/modernizr/modernizr.js"></script>
     <link rel="stylesheet" href="/libs/admin/vendor/summernote/summernote.css" />
     <link rel="stylesheet" href="/libs/admin/vendor/summernote/summernote-bs3.css" />
+
+
 </head>

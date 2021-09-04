@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\BannerType;
 use App\Enums\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -18,7 +19,7 @@ class CreateBannersTable extends Migration
             $table->id();
             $table->text('image');
             $table->text('content');
-            $table->integer('type')->default(\App\Enums\BannerType::BANNER);
+            $table->integer('type')->default(BannerType::BANNER);
             $table->text('video')->nullable();
             $table->text('link_to_product');
             $table->integer('status')->default(Status::ACTIVE);

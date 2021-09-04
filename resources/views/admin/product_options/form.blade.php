@@ -56,7 +56,7 @@
                             </div>
                             <div class="col-lg-5">
                                 <img src="{{$detail->thumbnail}}" alt="" class="demo_option_thumbnail" id="0987987img">
-                                <input type="hidden" name="thumbnail" id="thumbnail">
+                                <input type="hidden" name="thumbnail" id="thumbnail" value="{{$detail->thumbnail}}">
                             </div>
                         </div>
 

@@ -71,13 +71,11 @@
                     rules: {
                         link_to_product:{
                             required:true,
-                            url:true,
                         },
                     },
                     messages:{
                         link_to_product:{
                             required:'Vui lòng nhập link sản phẩm.',
-                            url:'Vui lòng chọn đúng đường dẫn tới sản phẩm.',
                         },
                     }
                 })

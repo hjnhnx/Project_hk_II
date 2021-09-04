@@ -28,7 +28,8 @@ class ProductRequest extends FormRequest
             'description'=>'required|min:5|max:20',
             'discount'=>'nulllable|numeric',
             'subcategory_id'=>'required',
-            'slug'=>'required'
+            'slug'=>'required',
+            'price'=>'required|numeric'
         ];
     }
     public function messages()
@@ -43,6 +44,8 @@ class ProductRequest extends FormRequest
             'discount.numeric'=>'Vui lòng nhập giá trị số cho trường này.',
             'subcategory_id.required'=>'Vui lòng không để trống trường này.',
             'slug.required'=>'Vui lòng không để trống trường này.',
+            'price.required'=>'Vui lòng nhập vào giá sản phẩm',
+            'price.numeric'=>'Giá của sản phẩm phải là số'
         ];
     }
 }

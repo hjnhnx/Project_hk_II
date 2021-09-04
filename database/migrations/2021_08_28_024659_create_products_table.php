@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('category_id');
+            $table->double('price');
             $table->integer('discount');
             $table->integer('brand_id');
             $table->text('thumbnail');

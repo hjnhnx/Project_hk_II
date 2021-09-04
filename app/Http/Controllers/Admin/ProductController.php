@@ -97,13 +97,16 @@ class ProductController extends Controller
     public function store(Request $request){
         $product = new Product();
         $product->fill($request->all());
+
         $product->save();
+
         $option_images = json_decode($request->sm_option_images);
         $option_quanties = json_decode($request->sm_option_quantity);
         $option_prices = json_decode($request->sm_option_price);
         $option_colors = json_decode($request->sm_option_color);
         $option_rams = json_decode($request->sm_option_ram);
         $option_roms = json_decode($request->sm_option_rom);
+
         for ($i = 0 ; $i < sizeof($option_images); $i++){
             $product_option = new Product_option();
             $product_option->product_id = $product->id;

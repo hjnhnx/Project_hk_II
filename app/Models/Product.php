@@ -16,11 +16,15 @@ class Product extends Model
         'category_id',
         'brand_id',
         'slug',
+        'price',
         'content_detail',
         'thumbnail',
         'images',
     ];
     public function product_option(){
         return $this->hasMany(Product_option::class);
+    }
+    public function brand(){
+        return $this->belongsTo(Brand::class,'brand_id');
     }
 }
