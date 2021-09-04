@@ -19,4 +19,8 @@ class Product_option extends Model
     public function product(){
         return $this->belongsTo(Product::class,'product_id');
     }
+
+    public function order_detail(){
+        return $this->hasMany(Order_Detail::class);
+    }
 }

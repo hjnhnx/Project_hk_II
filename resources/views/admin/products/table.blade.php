@@ -14,7 +14,7 @@
 @endsection
 
 @section('option_filter')
-    <div class="form-group col-sm-4" style="padding: 0">
+    <div class="form-group col-sm-4" style="padding: 0 1px">
         <select name="brand_s" id="" class="form-control sorted2">
             <option value="0">Brands</option>
             @foreach($brands as $item)
@@ -22,7 +22,7 @@
             @endforeach
         </select>
     </div>
-    <div class="form-group col-sm-4" style="padding-left: 2px">
+    <div class="form-group col-sm-4" style="padding: 0 1px">
         <select name="category_s" id="" class="form-control sorted2">
         <option value="0">Category</option>
             @foreach($categories as $item)
@@ -30,7 +30,7 @@
             @endforeach
         </select>
     </div>
-    <div class="form-group col-sm-4" style="padding-left: 2px">
+    <div class="form-group col-sm-4" style="padding: 0 1px">
         <select name="status" id="" class="form-control sorted2">
             <option value="0">Status</option>
             <option {{$status == \App\Enums\Status::ACTIVE ?'selected' :'' }} value="{{\App\Enums\Status::ACTIVE}}">Active</option>

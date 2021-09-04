@@ -9,6 +9,22 @@
     border-radius: 5px;
     }
 @endsection
+@section('option_filter')
+    <div class="form-group col-sm-6" style="padding: 0 1px">
+        <select name="role_s" id="" class="form-control sorted2">
+            <option value="0">Role</option>
+            <option {{$role == \App\Enums\Role::ADMIN ? 'selected' :''}} value="{{\App\Enums\Role::ADMIN}}">Admin</option>
+            <option {{$role == \App\Enums\Role::USER ? 'selected' :''}} value="{{\App\Enums\Role::USER}}">User</option>
+        </select>
+    </div>
+    <div class="form-group col-sm-6" style="padding: 0 1px">
+        <select name="status" id="" class="form-control sorted2">
+            <option value="0">Status</option>
+            <option {{$status == \App\Enums\Status::ACTIVE ?'selected' :'' }} value="{{\App\Enums\Status::ACTIVE}}">Active</option>
+            <option {{$status == \App\Enums\Status::IN_ACTIVE ?'selected' :'' }} value="{{\App\Enums\Status::IN_ACTIVE}}">In Active</option>
+        </select>
+    </div>
+@endsection
 @section('filter_form')
     <div class="form-group col-sm-5">
         <input value="{{$key_search != null ? $key_search : ''}}" type="text" class="form-control"
@@ -45,7 +61,6 @@
                 {{$sort ==  \App\Enums\Sort::SORT_CREATED_AT_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_CREATED_AT_DESC}}">
                 Tham gia sau
             </option>
-
         </select>
     </div>
 @endsection
@@ -54,9 +69,7 @@
         <th>ID</th>
         <th>Full name</th>
         <th>Avatar</th>
-        <th>Address</th>
         <th>Phone</th>
-        <th>Birthday</th>
         <th>Email</th>
         <th>Status</th>
         <th>DOJ</th>
@@ -72,9 +85,7 @@
             <td>
                 <img class="show_avatar" src="{{$item->avatar}}" alt="">
             </td>
-            <td>{{$item->address}}</td>
             <td>{{$item->phone}}</td>
-            <td>{{$item->birthday}}</td>
             <td>{{$item->email}}</td>
             <td>
                 <label class="switch">
@@ -95,7 +106,7 @@
                 <a onclick="return confirm('Bạn có chắc muốn xóa người dùng này ra khỏi hệ thống')"
                    href="{{route('delete_user',$item->id)}}" class="on-default remove-row text-danger"><i
                         class="fa fa-trash-o"></i></a>
-                <a href="#" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
+                <a href="{{route('show_profile',$item->id)}}" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
             </td>
         </tr>
     @endforeach

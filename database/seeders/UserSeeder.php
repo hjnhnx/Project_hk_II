@@ -8,6 +8,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -18,6 +19,8 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        $fake = Factory::create();
+
         $images = array(
             "https://bcasolutions.vn/wp-content/uploads/2020/08/kd-quan-ao-online-2-1-2.jpg",
             "https://nhaphang247.com/upload/d0af8d677481df75fb2c396639f8fa11_31-07-2019_11-01.jpg",
@@ -62,7 +65,6 @@ class UserSeeder extends Seeder
             "https://cf.shopee.vn/file/10316de791fb743e84896d2875759c8a",
             "https://cf.shopee.vn/file/feaf1b36c6a4684c9c8475396be3d249",
         );
-        $fake = Factory::create();
         for ($i = 0; $i < 100; $i++) {
             User::create([
                 'firstname'=>$fake->firstName,
@@ -72,9 +74,9 @@ class UserSeeder extends Seeder
                 'phone'=>$fake->phoneNumber,
                 'birthday'=>$fake->date,
                 'email'=>$fake->email,
-                'role'=>Role::USER,
+                'role'=>$i %10 == 0 ? Role::ADMIN : Role::USER,
                 'status'=>Status::ACTIVE,
-                'password'=>random_int(123456,99999999),
+                'password'=>'$2y$10$1xqTYSwqFKNQyQjq1BWLi.Aee4xPHX8xwXTDMcBvH9EL57lOS0kQW',
                 'created_at'=>Carbon::now()->addDay(-$i)
             ]);
         }

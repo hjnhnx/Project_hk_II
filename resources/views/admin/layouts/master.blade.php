@@ -22,11 +22,10 @@
         <section role="main" class="content-body">
             <header class="page-header">
                 <h2>Dashboard</h2>
-
-                <div class="right-wrapper pull-right">
+                <div class="right-wrapper pull-right" style="margin-right: 20px">
                     <ol class="breadcrumbs">
                         <li>
-                            <a href="index.html">
+                            <a href="/admin">
                                 <i class="fa fa-home"></i>
                             </a>
                         </li>

@@ -20,7 +20,7 @@
 @endsection
 @section('filter_form')
     <div class="form-group col-sm-5">
-        {{--        <input value="{{$key_search != null ? $key_search : ''}}" type="text" class="form-control" placeholder="Enter keyword" name="search">--}}
+                <input value="{{$key_search != null ? $key_search : ''}}" type="text" class="form-control" placeholder="Enter keyword" name="search">
     </div>
     <div class="form-group col-sm-4">
         <button class="btn btn-primary">Search</button>

@@ -5,14 +5,16 @@
     .Product_Action{
     min-width:120px;
     }
+    #addToTable{
+    display:none;
+    }
 @endsection
 @section('option_filter')
-    <div class="form-group col-sm-4" style="padding-left: 2px">
+    <div class="form-group col-sm-6" style="padding-left: 2px">
         <select name="status" id="" class="form-control sorted2">
-            <option value="0">Status</option>
-            <option {{$status == \App\Enums\Status::ACTIVE ?'selected' :'' }} value="{{\App\Enums\Status::ACTIVE}}">Active</option>
-            <option {{$status == \App\Enums\Status::IN_ACTIVE ?'selected' :'' }} value="{{\App\Enums\Status::IN_ACTIVE}}">In Active</option>
-
+            <option value="0">Trạng thái</option>
+            <option {{$status == \App\Enums\Status::ACTIVE ?'selected' :'' }} value="{{\App\Enums\Status::ACTIVE}}">Chờ nhận hàng</option>
+            <option {{$status == \App\Enums\Status::IN_ACTIVE ?'selected' :'' }} value="{{\App\Enums\Status::IN_ACTIVE}}">Đã nhận hàng</option>
         </select>
     </div>
 @endsection

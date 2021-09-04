@@ -27,7 +27,7 @@ class ProductOptionSeeder extends Seeder
                 'created_at'=>Carbon::now()
             ],
             [
-                'product_id'=>1,
+                'product_id'=>2,
                 'thumbnail'=>'https://www.dungplus.com/wp-content/uploads/2019/12/girl-xinh-1-480x600.jpg',
                 'color_id'=>3,
                 'ram'=>12,
@@ -37,7 +37,7 @@ class ProductOptionSeeder extends Seeder
                 'created_at'=>Carbon::now(-1)
             ],
             [
-                'product_id'=>1,
+                'product_id'=>3,
                 'thumbnail'=>'https://www.dungplus.com/wp-content/uploads/2019/12/girl-xinh-1-480x600.jpg',
                 'color_id'=>6,
                 'ram'=>16,

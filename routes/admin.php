@@ -12,15 +12,19 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::prefix('user')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('list_user');
+    Route::get('/logout',[UserController::class,'logout'])->name('user_logout');
     Route::get('/{id}/delete', [UserController::class, 'destroy'])->name('delete_user');
     Route::get('/update-status/{id}', [UserController::class, 'update_status'])->name('user_update_status');
     Route::get('/create',[UserController::class,'create'])->name('create_user');
     Route::post('/create',[UserController::class,'store'])->name('save_user');
     Route::get('/{id}/edit',[UserController::class,'edit'])->name('edit_user');
     Route::post('/{id}/edit',[UserController::class,'update'])->name('update_user');
+    Route::get('/{id}/profile',[UserController::class,'detail'])->name('show_profile');
 });
+
 Route::prefix('product')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('list_product');
     Route::get('/{id}/delete', [ProductController::class, 'destroy'])->name('delete_product');
