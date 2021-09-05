@@ -156,7 +156,7 @@
                                             <input type="number" class="form-control quantity" value="{{$item->quantity}}" min="0">
                                         </div>
                                         <div class="col-lg-4">
-                                            <label>Price plus</label>
+                                            <label>Additional price</label>
                                             <input type="number" class="form-control price" value="{{$item->price}}">
                                         </div>
                                         <div class="col-lg-4">
@@ -190,7 +190,7 @@
                                             </button>
                                         </div>
                                         <div class="col-lg-5">
-                                            <img src="{{$item->thumbnail}}" alt="" class="demo_option_thumbnail" id="upload_image_id_{{$key}}">
+                                            <img src="{{$item->thumbnail}}" alt="" class="demo_option_thumbnail" id="upload_image_id_{{$key}}img">
                                             <span onclick="close_option('close{{$key}}')" class="btn_close" title="close this option">&times;</span>
                                         </div>
                                     </div>
@@ -201,7 +201,7 @@
                                             <input type="number" class="form-control quantity" value="{{$item->quantity}}" min="0">
                                         </div>
                                         <div class="col-lg-4">
-                                            <label>Price plus</label>
+                                            <label>Additional price</label>
                                             <input type="number" class="form-control price" value="{{$item->price}}">
                                         </div>
                                         <div class="col-lg-4">
@@ -248,7 +248,7 @@
                                     <input type="number" class="form-control quantity" value="0" min="0">
                                 </div>
                                 <div class="col-lg-4">
-                                    <label>Price plus</label>
+                                    <label>Additional price</label>
                                     <input type="number" class="form-control price" value="0">
                                 </div>
                                 <div class="col-lg-4">
@@ -309,7 +309,7 @@
                                 <input type="number" class="form-control quantity" value="0" min="0">
                             </div>
                             <div class="col-lg-4">
-                                <label >Price plus</label>
+                                <label >Additional price</label>
                                 <input type="number" class="form-control price" value="0">
                             </div>
                             <div class="col-lg-4">
@@ -396,10 +396,10 @@
                                 option_roms.push(demo_option_rom[i].value)
                             }
                         }
-                        var slug = (document.querySelector('.product_name').value +'-'+ Math.floor(Math.random() * 1000) + 1)
+                        var slug = document.querySelector('.product_name').value
                         $('#thumbnail').val(product_images[0].src)
                         $('#images').val(JSON.stringify(data_images))
-                        $('#slug').val(JSON.stringify(slug.replaceAll(' ','-')))
+                        $('#slug').val(slug.replaceAll(' ','-'))
 
 
                         $('#sm_option_images').val(JSON.stringify(data_option_images))

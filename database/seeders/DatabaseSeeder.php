@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ProductSeeder::class,
             ProductOptionSeeder::class,
-            UserSeeder::class,
+//            UserSeeder::class,
             CategoriesSeeder::class,
             ContactSeeder::class,
             ColorSeeder::class,

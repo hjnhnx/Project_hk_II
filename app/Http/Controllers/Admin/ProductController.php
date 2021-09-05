@@ -97,7 +97,9 @@ class ProductController extends Controller
     public function store(Request $request){
         $product = new Product();
         $product->fill($request->all());
-
+        if (sizeof(Product::query()->where('slug',$product->slug)->get()) > 0){
+            $product->slug = $request->slug .'-'. random_int(1000,9999);
+        }
         $product->save();
 
         $option_images = json_decode($request->sm_option_images);
@@ -148,7 +150,14 @@ class ProductController extends Controller
             $product_option->save();
         }
         $product = Product::find($id);
+        $name = $product->name;
+        $slug = $product->slug;
         $product->fill($request->all());
+        if ($name != $request->name && sizeof(Product::query()->where('slug',$product->slug)->where('id','!=',$id)->get()) > 0){
+            $product->slug = $request->slug .'-'. random_int(1000,9999);
+        }else {
+            $product->slug = $slug;
+        }
         $product->save();
         return redirect()->route('list_product');
     }

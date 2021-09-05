@@ -1,4 +1,5 @@
 @extends('client.layouts.master')
+@section('title','Trang Chủ')
 
 @section('main_content')
     @foreach($brands as $item)
@@ -17,24 +18,16 @@
                                 @endif
                                 <div class="product-item-home product product-item-list">
                                     <div class="product-top">
-                                        <div class="sale-off">{{$item->product[$i]->discount}} %</div>
+                                        <div class="sale-off" style="height: 19px;display: {{$item->product[$i]->discount == 0 ? 'none' :''}}">Giảm {{$item->product[$i]->discount}} %</div>
                                     </div>
                                     <div class="product-mid">
                                         <div class="product-image">
-                                            <figure class="image-wrapper">
-                                                <a rel="nofollow"
-                                                   href=""
-                                                   title="{{$item->product[$i]->name}}">
-                                                    <picture class="lazy-picture">
-                                                        <source type="image/png" data-srcset="{{$item->product[$i]->thumbnail}}"><img data-src="{{$item->product[$i]->thumbnail}}">
-                                                    </picture>
-                                                </a>
-                                            </figure>
+                                            <img src="{{$item->product[$i]->thumbnail}}" style="height: 100%;width: 100%;object-fit: cover">
                                         </div>
                                         <h3 class="product-name"><a
                                                 href="https://www.hnammobile.com/dien-thoai/samsung-galaxy-s21-ultra-5g-g998-256gb.21524.html">{{$item->product[$i]->name}}</a></h3>
                                         <div class="product-price ">
-                                            <b>$ {{$item->product[$i]->price - $item->product[$i]->price * $item->product[$i]->discount/100 }}</b><span><del>$ {{$item->product[$i]->price}}</del></span></div>
+                                            <b>$ {{$item->product[$i]->price - $item->product[$i]->price * $item->product[$i]->discount/100 }}</b><span style="display: {{$item->product[$i]->discount == 0 ? 'none' :''}}"><del>$ {{$item->product[$i]->price}}</del></span></div>
                                     </div>
                                     <div class="product-bottom">
                                         <a rel="nofollow" href="https://www.hnammobile.com/cart/add?itemid=21524"
@@ -44,10 +37,7 @@
                                            class="btn pay-0">Xem chi tiết</a>
                                     </div>
                                 </div>
-
                             @endfor
-
-
                         </div>
                     </div>
                 </div>
