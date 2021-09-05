@@ -1,7 +1,9 @@
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <link rel="icon" href="/images/favicon.png" type="image/x-icon"/>
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title>Sun Mobile | Giá cao</title>
+    <title>Sun Mobile | @yield('title')</title>
     <meta name="author" content="Công ty TNHH Thương mại Dịch vụ Di Động Sao Việt"/>
     <meta name="resource-type" content="Document"/>
     <meta name="distribution" content="Global"/>

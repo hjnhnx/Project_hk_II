@@ -2,6 +2,7 @@
 <html lang="vi">
 @include('client.components.head')
 <body class="">
+
 @include('client.components.header')
 <main id="main" style="margin-top: 10px">
     @include('client.components.banner')

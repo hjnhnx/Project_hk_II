@@ -2,6 +2,8 @@
 
     <!-- Basic -->
     <meta charset="UTF-8">
+    <link rel="icon" href="/images/favicon.png" type="image/x-icon"/>
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon"/>
 
     <title>@yield('title')</title>
     <meta name="keywords" content="HTML5 Admin Template"/>

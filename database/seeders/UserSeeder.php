@@ -65,20 +65,20 @@ class UserSeeder extends Seeder
             "https://cf.shopee.vn/file/10316de791fb743e84896d2875759c8a",
             "https://cf.shopee.vn/file/feaf1b36c6a4684c9c8475396be3d249",
         );
-        for ($i = 0; $i < 100; $i++) {
-            User::create([
-                'firstname'=>$fake->firstName,
-                'lastname'=>$fake->lastName,
-                'avatar'=>$images[random_int(0,sizeof($images)-1)],
-                'address'=>$fake->address,
-                'phone'=>$fake->phoneNumber,
-                'birthday'=>$fake->date,
-                'email'=>$fake->email,
-                'role'=>$i %10 == 0 ? Role::ADMIN : Role::USER,
-                'status'=>Status::ACTIVE,
-                'password'=>'$2y$10$1xqTYSwqFKNQyQjq1BWLi.Aee4xPHX8xwXTDMcBvH9EL57lOS0kQW',
-                'created_at'=>Carbon::now()->addDay(-$i)
-            ]);
-        }
+//        for ($i = 0; $i < 100; $i++) {
+//            User::create([
+//                'firstname'=>$fake->firstName,
+//                'lastname'=>$fake->lastName,
+//                'avatar'=>$images[random_int(0,sizeof($images)-1)],
+//                'address'=>$fake->address,
+//                'phone'=>$fake->phoneNumber,
+//                'birthday'=>$fake->date,
+//                'email'=>$fake->email,
+//                'role'=>$i %10 == 0 ? Role::ADMIN : Role::USER,
+//                'status'=>Status::ACTIVE,
+//                'password'=>'$2y$10$1xqTYSwqFKNQyQjq1BWLi.Aee4xPHX8xwXTDMcBvH9EL57lOS0kQW',
+//                'created_at'=>Carbon::now()->addDay(-$i)
+//            ]);
+//        }
     }
 }

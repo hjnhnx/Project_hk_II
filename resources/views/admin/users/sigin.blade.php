@@ -6,6 +6,7 @@
 <section class="body-sign">
     <div class="center-sign">
         <div class="panel panel-sign">
+            <h2 style="transform: translateY(50px)">Sign In Admin Account</h2>
             <div class="panel-title-sign mt-xl text-right">
                 <h2 class="title text-uppercase text-bold m-none"><i class="fa fa-user mr-xs"></i> Sign In</h2>
             </div>
@@ -37,7 +38,6 @@
 									</span>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-sm-12 text-right">
                             <button type="submit" class="btn btn-primary " style="width: 150px">Sign In</button>
