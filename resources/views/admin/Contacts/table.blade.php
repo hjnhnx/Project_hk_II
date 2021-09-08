@@ -18,7 +18,6 @@
             <option {{$sort ==  \App\Enums\Sort::SORT_NAME_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_NAME_DESC}}">Tên Z - A</option>
             <option {{$sort ==  \App\Enums\Sort::SORT_CREATED_AT_ASC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_CREATED_AT_ASC}}">Cũ nhất trước</option>
             <option {{$sort ==  \App\Enums\Sort::SORT_CREATED_AT_DESC ? 'selected' : ''}} value="{{\App\Enums\Sort::SORT_CREATED_AT_DESC}}">Mới nhất trước</option>
-
         </select>
     </div>
 @endsection
@@ -27,6 +26,7 @@
         <th>Id</th>
         <th>Name</th>
         <th>Email</th>
+        <th>Phone number</th>
         <th>Message</th>
         <th>Created At</th>
         <th class="text-center">Actions</th>
@@ -38,6 +38,7 @@
             <td>{{$item->id}}</td>
             <td>{{$item->name}}</td>
             <td>{{$item->email}}</td>
+            <td>{{$item->phone}}</td>
             <td>{{$item->message}}</td>
             <td>{{$item->created_at}}</td>
             <td class="actions text-center">

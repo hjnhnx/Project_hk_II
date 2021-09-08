@@ -4,38 +4,41 @@ namespace App\Http\Controllers\Service;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use JD\Cloudder\Facades\Cloudder;
 
 class ImageUploadController extends Controller
 {
     public function upload(Request $request)
     {
-        $request->validate([
-            'image' => 'required|mimes:jpg,png,jpeg,webp|max:5048'
+        $this->validate($request,[
+            'image'=>'required|mimes:jpeg,bmp,jpg,png,webp|between:1, 6000',
         ]);
-        $image_name = time() . '_' . random_int(1000000, 9999999) . '_' . random_int(1000000, 9999999) . '.' . $request->image->extension();
-        $request->image->move(public_path('images/admin_data/images'), $image_name);
+        $image_name = $request->file('image')->getRealPath();
+        Cloudder::upload($image_name, null);
+
         return response()->json([
             'code' => 201,
             'message' => 'Lấy ảnh thành công',
-            'data' => $image_name
+            'data' => Cloudder::getResult()
         ], 201);
     }
 
     public function uploads(Request $request){
         $images = $request->file('files');
         if ($request->hasFile('files')) :
+            $data = array();
+
             foreach ($images as $item):
-                $var = date_create();
-                $time = date_format($var, 'YmdHis');
-                $imageName = $time . '-'.random_int(100000,999999). $item->getClientOriginalName();
-                $item->move(public_path('images/admin_data/images'), $imageName);
-                $arr[] = $imageName;
+                $image_name = $item->getRealPath();
+            Cloudder::upload($image_name, null);
+                $result = Cloudder::getResult();
+                array_push($data,$result);
             endforeach;
-            $image = implode(",", $arr);
+
             return response()->json([
                 'code' => 201,
                 'message' => 'Lấy ảnh thành công',
-                'data' => $image
+                'data' => $data
             ], 201);
         else:
             return '';

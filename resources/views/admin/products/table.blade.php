@@ -65,6 +65,7 @@
         <th>Id</th>
         <th>Name</th>
         <th>Thumbnail</th>
+        <th>Price</th>
         <th>Discount</th>
         <th>Brand</th>
         <th>Category</th>
@@ -81,6 +82,7 @@
             <td>
                 <img class="show_avatar" src="{{$item->thumbnail}}" alt="">
             </td>
+            <td>{{$item->price}}</td>
             <td>{{$item->discount}}</td>
             <td>{{\App\Models\Brand::find($item->brand_id)->name}}</td>
             <td>{{\App\Models\Categories::find($item->category_id)->name}}</td>
