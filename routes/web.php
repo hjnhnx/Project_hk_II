@@ -26,15 +26,12 @@ Route::post('admin/user/login', [UserController::class, 'process_login'])->name(
 
 
 
-
-
-
-
 Route::post('/image/upload',[ImageUploadController::class,'upload'])->name('upload_image');
 Route::post('/image/uploads',[ImageUploadController::class,'uploads'])->name('upload_images');
 
 
 Route::get('/',[Controller::class,'home'])->name('home_page');
+Route::get('/product',[Controller::class,'product'])->name('product');
 Route::get('/product/{slug}',[Controller::class,'product_detail'])->name('product_detail');
 
 

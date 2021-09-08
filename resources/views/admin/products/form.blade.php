@@ -352,15 +352,10 @@
                             cache: false,
                             processData: false,
                             success: function (res) {
-                                var protocol = window.location.protocol
-                                var host = window.location.hostname
-                                var port = window.location.port
-                                var url = protocol + '//' + host + ':' + port + '/images/admin_data/images/'
-                                var images = res.data.split(',')
-                                for (let i = 0; i < images.length; i++) {
+                                for (let i = 0; i < res.data.length; i++) {
                                     var id = Math.random()
                                     $('.show_images_product').append(`<div id="${id}" class="col-md-3" style="height: 200px;overflow: hidden;margin-bottom: 10px">
-                        <img class="product_image" style="width: 100%;height: 160px;object-fit: cover;border-radius: 5px;margin-bottom: 2px" src="${url + images[i]}" alt="">
+                        <img class="product_image" style="width: 100%;height: 160px;object-fit: cover;border-radius: 5px;margin-bottom: 2px" src="${res.data[i].url}" alt="">
                         <button type="button" slot="${id}" onclick="delete_image(this.slot)" class="btn btn-info form-control">Close</button>
                     </div>`)
                                 }
@@ -410,10 +405,7 @@
                         $('#sm_option_rom').val(JSON.stringify(option_roms))
                         $('.btn_submit').click()
                     })
-
-
                 })
-
                 function delete_image(id) {
                     document.getElementById(id).remove()
                 }
@@ -439,12 +431,8 @@
                         cache: false,
                         processData: false,
                         success: function (res) {
-                            var protocol = window.location.protocol
-                            var host = window.location.hostname
-                            var port = window.location.port
-                            var url = protocol + '//' + host + ':' + port + '/images/admin_data/images/'
                             var img = document.getElementById(img_code + 'img')
-                            img.src = `${url + res.data}`
+                            img.src = `${res.data.url}`
                         }
                     })
                 })

@@ -18,24 +18,28 @@ class ContactSeeder extends Seeder
         DB::table('contacts')->insert([
             'name' => 'Đạt',
             'email' => '@gmail.com',
+            'phone' => '0987987789',
             'message'=>'mình là Lê Thành Đạt',
             'created_at'=> Carbon::now()->addDay(-1)
         ]);
         DB::table('contacts')->insert([
             'name' => 'Đẹt',
             'email' => '@gmail.com',
+            'phone' => '0987987789',
             'message'=>'mình là Lê Thành Đạt',
             'created_at'=> Carbon::now()->addDay(-2)
         ]);
         DB::table('contacts')->insert([
             'name' => 'Đạt nè',
             'email' => '@gmail.com',
+            'phone' => '0987987789',
             'message'=>'mình là Lê Thành Đạt',
             'created_at'=> Carbon::now()->addDay(-3)
         ]);
         DB::table('contacts')->insert([
             'name' => 'Đạt hihi',
             'email' => '@gmail.com',
+            'phone' => '0987987789',
             'message'=>'mình là Lê Thành Đạt',
             'created_at'=> Carbon::now()->addDay(-4)
         ]);

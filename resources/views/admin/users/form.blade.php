@@ -199,14 +199,10 @@
                         cache: false,
                         processData: false,
                         success: function (res) {
-                            var protocol = window.location.protocol
-                            var host = window.location.hostname
-                            var port = window.location.port
-                            var url = protocol + '//' + host + ':' + port + '/images/admin_data/images/'
                             var img = document.getElementById('show_avatar')
                             img.style.display = 'block'
-                            document.getElementById('avatar').value = `${url + res.data}`
-                            img.src = `${url + res.data}`
+                            document.getElementById('avatar').value = `${res.data.url}`
+                            img.src = `${res.data.url}`
                         }
                     })
                 })

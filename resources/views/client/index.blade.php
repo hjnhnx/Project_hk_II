@@ -27,7 +27,7 @@
                                         <h3 class="product-name"><a
                                                 href="https://www.hnammobile.com/dien-thoai/samsung-galaxy-s21-ultra-5g-g998-256gb.21524.html">{{$item->product[$i]->name}}</a></h3>
                                         <div class="product-price ">
-                                            <b>$ {{$item->product[$i]->price - $item->product[$i]->price * $item->product[$i]->discount/100 }}</b><span style="display: {{$item->product[$i]->discount == 0 ? 'none' :''}}"><del>$ {{$item->product[$i]->price}}</del></span></div>
+                                            <b>{{number_format($item->product[$i]->price - $item->product[$i]->price * $item->product[$i]->discount/100 )}} vnđ</b><span style="display: {{$item->product[$i]->discount == 0 ? 'none' :''}}"><del>{{number_format($item->product[$i]->price) }} vnđ</del></span></div>
                                     </div>
                                     <div class="product-bottom">
                                         <a rel="nofollow" href="https://www.hnammobile.com/cart/add?itemid=21524"
