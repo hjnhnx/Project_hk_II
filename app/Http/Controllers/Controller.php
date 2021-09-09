@@ -6,6 +6,7 @@ use App\Enums\BannerType;
 use App\Enums\Status;
 use App\Models\Banner;
 use App\Models\Brand;
+use App\Models\Contact;
 use App\Models\Product;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -93,5 +94,14 @@ class Controller extends BaseController
             'product_new'=>$product_new,
             'brands'=>$brands
         ]);
+    }
+    public function view_contact(){
+        return view('client.contactus',[ 'banner'=>null, 'sub_banner'=>null,]);
+    }
+    public function contact(Request $request){
+        $contact = new Contact();
+        $contact->fill($request->all());
+        $contact->save();
+        return back()->with('message','Thông tin của bạn đã gửi thành công!');
     }
 }

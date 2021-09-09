@@ -14,8 +14,8 @@
         "laravel/framework": "^8.54",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "cloudinary/cloudinary_php": "1.20",
-        "ext-http": "*"
+        "cloudinary/cloudinary_php": "1.20"
+
     },
     "require-dev": {
         "facade/ignition": "^2.5",
