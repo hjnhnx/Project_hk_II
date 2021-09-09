@@ -34,6 +34,8 @@ Route::get('/',[Controller::class,'home'])->name('home_page');
 Route::get('/product',[Controller::class,'product'])->name('product');
 Route::get('/product/{slug}',[Controller::class,'product_detail'])->name('product_detail');
 
+Route::get('/contactus',[Controller::class,'view_contact'])->name('contactus_view');
+Route::post('/contactus',[Controller::class,'contact'])->name('contactus_send');
 Route::get('/signin',[Controller::class,'view_login'])->name('login_register');
 
 Route::post('/register',[UserController::class,'register'])->name('register');
