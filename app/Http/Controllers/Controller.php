@@ -94,4 +94,10 @@ class Controller extends BaseController
             'brands'=>$brands
         ]);
     }
+    public function view_login(){
+        return view('client.login_register',[
+            'banner'=>null,
+            'sub_banner'=>null,
+        ]);
+    }
 }
