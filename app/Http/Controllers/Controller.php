@@ -103,5 +103,10 @@ class Controller extends BaseController
         $contact->fill($request->all());
         $contact->save();
         return back()->with('message','Thông tin của bạn đã gửi thành công!');
+    public function view_login(){
+        return view('client.login_register',[
+            'banner'=>null,
+            'sub_banner'=>null,
+        ]);
     }
 }
