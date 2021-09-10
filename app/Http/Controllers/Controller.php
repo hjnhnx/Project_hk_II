@@ -94,4 +94,10 @@ class Controller extends BaseController
             'brands'=>$brands
         ]);
     }
+    public function view_about_us(){
+        return view('client.about_us',[
+            'banner'=>null,
+            'sub_banner'=>null,
+        ]);
+    }
 }

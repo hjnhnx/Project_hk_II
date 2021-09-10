@@ -34,4 +34,6 @@ Route::get('/',[Controller::class,'home'])->name('home_page');
 Route::get('/product',[Controller::class,'product'])->name('product');
 Route::get('/product/{slug}',[Controller::class,'product_detail'])->name('product_detail');
 
+Route::get('/about-us',[Controller::class, 'view_about_us'])->name('view_about_us');
+
 
