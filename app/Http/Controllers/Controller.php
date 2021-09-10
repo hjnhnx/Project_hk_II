@@ -95,6 +95,12 @@ class Controller extends BaseController
             'brands'=>$brands
         ]);
     }
+public function view_about_us(){
+        return view('client.about_us',[
+            'banner'=>null,
+            'sub_banner'=>null,
+        ]);
+    }
     public function view_contact(){
         return view('client.contactus',[ 'banner'=>null, 'sub_banner'=>null,]);
     }
@@ -103,6 +109,7 @@ class Controller extends BaseController
         $contact->fill($request->all());
         $contact->save();
         return back()->with('message','Thông tin của bạn đã gửi thành công!');
+    }
     public function view_login(){
         return view('client.login_register',[
             'banner'=>null,
