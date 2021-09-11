@@ -37,3 +37,6 @@ Route::get('/product/{slug}',[Controller::class,'product_detail'])->name('produc
 Route::get('/contactus',[Controller::class,'view_contact'])->name('contactus_view');
 Route::post('/contactus',[Controller::class,'contact'])->name('contactus_send');
 
+Route::get('/cart',[Controller::class,'view_cart'])->name('cart_view');
+
+

@@ -104,4 +104,8 @@ class Controller extends BaseController
         $contact->save();
         return back()->with('message','Thông tin của bạn đã gửi thành công!');
     }
+
+    public function view_cart(){
+        return view('client.cart',[ 'banner'=>null, 'sub_banner'=>null,]);
+    }
 }
