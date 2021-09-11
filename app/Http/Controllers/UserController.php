@@ -32,4 +32,10 @@ class UserController extends Controller
             return back()->with(['msg_login' => $message]);
         }
     }
+    public function profile(){
+       return view('client.profile',[
+           'banner'=>null,
+           'sub_banner'=>null,
+       ]);
+    }
 }
