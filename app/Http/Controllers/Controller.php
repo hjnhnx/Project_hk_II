@@ -105,4 +105,8 @@ class Controller extends BaseController
             'sub_banner'=>null,
         ]);
     }
+
+    public function view_cart(){
+        return view('client.cart',[ 'banner'=>null, 'sub_banner'=>null,]);
+    }
 }
