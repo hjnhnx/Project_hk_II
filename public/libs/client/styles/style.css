@@ -1,3 +1,4 @@
+
 *{
     margin:0;
     padding: 0;
@@ -39,129 +40,9 @@ section .container .containerinfo h2{
 }
 section .container .containerinfo li{
     position: relative;
+}
+ul {
     list-style: none;
-    display: flex;
-    margin: 20px 0;
-    cursor: pointer;
-    align-items: flex-start;
-}
-section .container .containerinfo li a{
-    color: #fff;
-    margin-left: 10px;
-    font-weight: 300;
-    opacity: 0.5;
-    font-size: 20px;
-}
-/*Hiệu Ứng Hover Cho Thẻ Li*/
-section .container .containerinfo li:hover a{
-    opacity: 1;
-}
-section .container .containerinfo .sci{
-    position: relative;
-    display:flex;
-}
-section .container .containerinfo .sci li{
-    list-style: none;
-    margin-right: 15px;
-}
-section .container .containerinfo .sci li a{
-    text-decoration: none;
-    opacity: 0.5;
-    color: #fff;
-    font-size: 32px;
-}
-/*Hiệu Ứng Hover Icon*/
-section .container .containerinfo .sci li:hover a{
-    opacity: 1;
-}
-section .container .containerForm{
-    position: absolute;
-    padding: 70px 50px;
-    background: #fff;
-    margin-left: 150px;
-    padding-left: 250px;
-    width: calc(100% - 150px);
-    height: 100%;
-    box-shadow: #676666 1px 2px 3px;
-}
-section .container .containerForm h2{
-    color: #F15A25;
-    font-size: 24px;
-    font-weight: 500;
-}
-section .container .containerForm .formBox{
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding-top: 30px;
-}
-section .container .containerForm .formBox .inputBox{
-    position: relative;
-    margin: 0 0 35px 0;
-}
-section .container .containerForm .formBox .inputBox.w50{
-    width: 60%;
-    padding: 5px 0;
-    resize: none;
-    font-size: 18px;
-    font-weight: 400;
-    color: #333;
-    border: none;
-    border-bottom: 1px solid #777;
-    outline: none;
-}
-section .container .containerForm .formBox .inputBox.w100{
-    width: 100%;
-}
-section .container .containerForm .formBox .inputBox textarea{
-    width: 100%;
-    padding: 5px 0;
-    resize: none;
-    font-size: 18px;
-    font-weight: 400;
-    color: #333;
-    border: none;
-    border-bottom: 1px solid #777;
-    outline: none;
-}
-section .container .containerForm .formBox .inputBox textarea{
-    min-height: 120px;
-}
-section .container .containerForm .formBox .inputBox input[type="submit"]{
-    position: relative;
-    cursor: pointer;
-    background: #b74011;
-    color: #fff;
-    border: none;
-    max-width: 150px;
-    padding: 12px;
-}
-section .container .containerForm .formBox .inputBox input[type="submit"]:hover{
-    background:  #F15A25;
-}
-section .container .containerForm .formBox .inputBox span{
-    position: absolute;
-    left: 0;
-    padding: 5px 0;
-    font-size: 18px;
-    font-weight: 400;
-    color: #333;
-    transition: 0.5s;
-    pointer-events: none;
-}
-section .container .containerForm .formBox .inputBox input:focus ~ span,
-section .container .containerForm .formBox .inputBox textarea:focus ~ span,
-section .container .containerForm .formBox .inputBox input:valid ~ span,
-section .container .containerForm .formBox .inputBox textarea:valid ~ span{
-    transform: translateY(-20px);
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 1px;
-    color: #F15A25
-}
-.error{
-    color: red;
 }
 
 /* Shopping Cart */

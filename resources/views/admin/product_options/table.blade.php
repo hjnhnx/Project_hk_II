@@ -65,7 +65,7 @@
     </tr>
 @endsection
 @section('table_body')
-    @foreach($product_options as $item)
+    @foreach($list as $item)
         <tr class="gradeX">
             <td>{{$item->id}}</td>
             <td>{{\App\Models\Product::find($item->product_id)->name}}</td>
@@ -77,7 +77,7 @@
             </td>
             <td>{{$item->ram}}BG/RAM : {{$item->rom}}BG/ROM</td>
             <td>{{$item->quantity}}</td>
-            <td><p style="color: #ff5454;font-weight: bold">$ {{$item->price + \App\Models\Product::find($item->product_id)->price}}</p></td>
+            <td><p style="color: #ff5454;font-weight: bold">{{number_format($item->price + \App\Models\Product::find($item->product_id)->price)}} vnđ</p></td>
             <td>{{$item->created_at->format('d/m/Y')}}</td>
             <td class="actions text-center">
                 <a href="{{route('edit_product_option',$item->id)}}" class="on-default edit-row text-primary"><i class="fa fa-pencil"></i></a>
