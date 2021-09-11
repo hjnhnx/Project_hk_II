@@ -42,7 +42,6 @@ Route::get('/signin',[Controller::class,'view_login'])->name('login_register');
 
 Route::get('/cart',[Controller::class,'view_cart'])->name('cart_view');
 
-
-Route::post('/register',[UserController::class,'register'])->name('register');
-Route::post('/login',[UserController::class,'login'])->name('user_login');
-Route::get('/user/profile',[UserController::class,'profile'])->name('user_profile');
+Route::post('/register',[User::class,'register'])->name('register');
+Route::post('/login',[User::class,'login'])->name('user_login');
+Route::get('/user/profile',[User::class,'profile'])->name('user_profile');
