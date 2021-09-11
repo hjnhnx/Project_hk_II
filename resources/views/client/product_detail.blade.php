@@ -104,7 +104,11 @@
                     </div>
                     <hr>
                     <div class="col-12 m-0 p-0">
-                        {!! $detail->content_detail !!}
+                        <div style="height: 600px;overflow: hidden" class="content_detail">{!! $detail->content_detail !!}</div>
+                        <br>
+                        <div class="d-flex justify-content-center mb-5">
+                            <button class="btn btn-info col-6 show_mor">Xem Thêm</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -131,6 +135,18 @@
             $('.sale_price').html(sale_price + ' vnđ')
             $('.price').html(price + ' vnđ')
             $('.show_ram').html(ram)
+        })
+        var show = false
+        $('.show_mor').click(function (){
+            if (!show){
+                $('.content_detail').css('height','auto')
+                $('.show_mor').text('Ẩn bớt')
+                show = true
+            }else {
+                $('.content_detail').css('height','600')
+                $('.show_mor').text('Xem thêm')
+                show = false
+            }
         })
     </script>
 @endsection

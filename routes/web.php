@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Service\ImageUploadController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserController as User;
 use App\Http\Middleware\CheckIsAdmin;
 use Illuminate\Support\Facades\Route;
 
@@ -24,8 +25,6 @@ Route::prefix('admin')->middleware(['auth',CheckIsAdmin::class])->group(function
 Route::get('admin/user/login', [UserController::class, 'login'])->name('admin_login');
 Route::post('admin/user/login', [UserController::class, 'process_login'])->name('admin_process_login');
 
-
-
 Route::post('/image/upload',[ImageUploadController::class,'upload'])->name('upload_image');
 Route::post('/image/uploads',[ImageUploadController::class,'uploads'])->name('upload_images');
 
@@ -36,10 +35,10 @@ Route::get('/product/{slug}',[Controller::class,'product_detail'])->name('produc
 
 Route::get('/about-us',[Controller::class, 'view_about_us'])->name('view_about_us');
 
-Route::get('/contactus',[Controller::class,'view_contact'])->name('contactus_view');
-Route::post('/contactus',[Controller::class,'contact'])->name('contactus_send');
-Route::get('/signin',[Controller::class,'view_login'])->name('login_register');
+Route::get('/contact-us',[Controller::class,'view_contact'])->name('contactus_view');
+Route::post('/contact-us',[Controller::class,'contact'])->name('contactus_send');
 
+Route::get('/signin',[Controller::class,'view_login'])->name('login_register');
 
 Route::post('/register',[UserController::class,'register'])->name('register');
 Route::post('/login',[UserController::class,'login'])->name('user_login');

@@ -2,39 +2,33 @@
 @section('title','Trang Chủ')
 @section('custom_style')
     <style>
-        .wrap-form-account {
-            height: 700px;
-
+        .form_container {
+            height: 600px;
+            margin: 30px 0;
+            transition: 0.4s;
         }
-        .error{
-            color: red;
+        .form_container > div {
+            overflow: hidden;
         }
-
-        #formaccount {
-            position: relative;
+        .head_form > div {
+            font-size: 25px;
+            font-weight: bold;
+            padding-top: 10px;
+            cursor: pointer;
         }
-        #login {
-            transform: translateX(0px
-            );
+        .head_form > p {
+            height: 4px;
+            background: #ff3030;
+            padding: 2px 0 0 0 ;
+            margin-top: 7px;
+            transition: 0.4s;
         }
-
-        #login, #register {
-            position: absolute;
-            width: 33%;
-            top: 66px;
-            transition: transform .4s;
+        .content_form > div{
+            width: 200%;
+            transition: 0.4s;
         }
-
-        #register {
-            left: -45px;
-            opacity: 0;
-        }
-        #indicator {
-            height: 3px;
-            width: 87px;
-            background: black;
-            margin: 10px 0;
-            transition: transform .4s;
+        .error {
+            color: #f55050;
         }
     </style>
 @endsection
@@ -46,96 +40,130 @@
                 <strong>Error </strong>{{session('msg_error')}}
             </div>
         @endif
-        <div class="d-flex justify-content-center" id="formaccount">
-            <div class="text-center" style="font-size: 20px;cursor: pointer">
-                <span class="p-2 mx-2" onclick="login()">Login</span>
-                <span class="p-2 mx-2" onclick="register()">Register</span>
-                <hr id="indicator">
+        <div class="col-12 form_container d-flex justify-content-center" >
+            <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-6 border">
+                <div class="col-12 p-0">
+                    <div class="col-12 head_form row m-0 p-0">
+                        <div class="col-6 d-flex justify-content-center btn_show_login text-danger">Đăng nhập</div>
+                        <div class="col-6 d-flex justify-content-center btn_show_register">Đăng ký</div>
+                        <p class="col-6 border under_line_form"></p>
+                    </div>
+                    <div class="col-12 content_form p-0 m-0">
+                        <div class="row m-0">
+                            <form id="login" class="col-6 pt-5 pl-5 pr-5" action="{{route('user_login')}}" method="post">
+                                @csrf
+                                <div class="row">
+                                    <div class="form-group col-12">
+                                        <label for="">Email</label>
+                                        <input type="text" name="email" class="form-control">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="form-group col-12">
+                                        <label for="">Mật khẩu</label>
+                                        <input type="text" name="password" class="form-control">
+                                    </div>
+                                </div>
+                                <br><br>
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <button class="btn-danger btn form-control">Đăng nhập</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <form id="register" class="col-6 pt-3 pl-4 pr-4" action="{{route('register')}}" method="post">
+                                @csrf
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <label for="">Họ tên đệm</label>
+                                        <input name="firstname" type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label for="">Tên</label>
+                                        <input name="lastname" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <label for="">Số điện thoại</label>
+                                        <input name="phone" type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label for="">Ngày sinh</label>
+                                        <input name="birthday" type="date" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <label for="">Mật khẩu</label>
+                                        <input name="password" type="password" class="form-control" id="password">
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label for="">Nhập lại mật khẩu</label>
+                                        <input type="password" class="form-control" name="Confirm_Password">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-12">
+                                        <label for="">Email</label>
+                                        <input name="email" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-12">
+                                        <label for="">Địa chỉ</label>
+                                        <textarea class="form-control" name="address" id="" cols="30" rows="2"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <label for="">Avatar</label>
+                                        <input type="hidden" name="avatar" value="https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg">
+                                        <button type="button" class="btn btn-warning form-control">Chọn ảnh</button>
+                                    </div>
+                                    <div class="form-group col-6 d-flex justify-content-center">
+                                        <img src="https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg" alt="" style="height: 100px;width: 100px;border-radius: 5px">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-12">
+                                        <button class="btn-primary btn form-control">Đăng Ký</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <form id="login" action="{{route('user_login')}}" method="post" name="dang_nhap">
-                @csrf
-                <div class="form-group">
-                    <input class="form-control" type="text" name="email" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" name="password" placeholder="Password">
-                </div>
-                <div class="form-group text-center">
-                    <button class="btn btn-danger form-control">login</button>
-                </div>
-            </form>
-            <form id="register" action="{{route('register')}}" method="post">
-                @csrf
-                <div class="row">
-                    <div class="col-6 form-group">
-                        <input class="form-control" type="text" name="firstname" placeholder="FirstName">
-                    </div>
-                    <div class="form-group col-6">
-                        <input class="form-control" type="text" name="lastname" placeholder="LastName">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 form-group">
-                        <input class="form-control" type="text" name="phone" placeholder="PhoneNumber">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 form-group">
-                        <input class="form-control" type="date" name="birthday" placeholder="Birthday">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 form-group">
-                        <input class="form-control" type="text" name="email" placeholder="Email">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 form-group">
-                        <input class="form-control" type="text" name="address" placeholder="Address">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 form-group">
-                        <input id="password" class="form-control" type="password" name="password" placeholder="Password">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 form-group">
-                        <input class="form-control" type="text" name="Confirm_Password" placeholder="Confirm Password">
-                    </div>
-                </div>
-                <div class="form-group text-center">
-                    <button class="form-control btn btn-info">Register</button>
-                </div>
-            </form>
         </div>
     </div>
-    </div>
+
+
+
+
+@endsection
+
+@section('custom_js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js">
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
     <script>
-        var LoginForm = document.getElementById("login")
-        var RegisterForm = document.getElementById('register')
-        var Indicator = document.getElementById('indicator')
+        $('.btn_show_register').click(function (){
+            $('.under_line_form').css('transform','translateX(100%)')
+            $('.btn_show_register').addClass('text-danger')
+            $('.btn_show_login').removeClass('text-danger')
+            $('.content_form > div').css('transform','translateX(-50%)')
+            $('.form_container').css('height','800px')
+        })
+        $('.btn_show_login').click(function (){
+            $('.under_line_form').css('transform','translateX(0%)')
+            $('.btn_show_login').addClass('text-danger')
+            $('.btn_show_register').removeClass('text-danger')
+            $('.content_form > div').css('transform','translateX(0%)')
+            $('.form_container').css('height','600px')
+        })
 
-        function login() {
-            LoginForm.style.transform = "translateX(0px)"
-            RegisterForm.style.transform = "translateX(0px)"
-            Indicator.style.transform = "translateX(0px)";
-            LoginForm.style.opacity = "1";
-            RegisterForm.style.opacity = "0";
-        }
-
-        function register() {
-            LoginForm.style.transform = "translateX(417px)"
-            RegisterForm.style.transform = "translateX(417px)"
-            Indicator.style.transform = "translateX(97px)";
-            LoginForm.style.opacity = "0";
-            RegisterForm.style.opacity = "1";
-        }
-    </script>
-    <script>
         $('#login').validate({
             rules:{
                 email :{
@@ -150,10 +178,11 @@
                     required : 'Vui lòng nhập email'
                 },
                 password :{
-                    required : 'Vui lòng nhập password'
+                    required : 'Vui lòng nhập mật khẩu'
                 }
             }
         })
+
         $('#register').validate({
             rules: {
                 firstname: {
@@ -192,32 +221,32 @@
             },
             messages:{
                 firstname: {
-                    required: 'Họ tên không được bỏ trống',
+                    required: 'Họ tên là bắt buộc',
                     minlength: 'Vui lòng nhập họ tên đầy đủ',
                 },
                 lastname: {
                     required: 'Tên không được bỏ trống',
-                    minlength: 'Vui lòng nhập đúng tên',
+                    minlength: 'Vui lòng nhập tên đầy đủ',
                 },
                 phone: {
-                    required: 'Phone không được bỏ trống',
-                    minlength: 'Số điện thoại không đúng định dạng',
-                    maxlength: 'Số điện thoại không đúng định dạng'
+                    required: 'Số điện thoại là bắt buộc',
+                    minlength: 'Số điện thoại sai định dạng',
+                    maxlength: 'Số điện thoại sai định dạng'
                 },
                 birthday: {
-                    required: 'Birthday không được bỏ trống',
+                    required: 'Nhập ngày sinh của bạn',
                 },
                 email: {
                     required: 'Email không được bỏ trống',
-                    minlength: 'Email không ngắn hơn 10 ký tự',
-                    email: 'Vui lòng nhập đúng định dạng @gmail.com'
+                    minlength: 'Email sai định dạng',
+                    email: 'Email sai định dạng'
                 },
                 address: {
-                    required: 'Address không được bỏ trống',
+                    required: 'Vui lòng nhập địa chỉ',
                     minlength: 'Vui lòng nhập địa chỉ cụ thể',
                 },
                 password: {
-                    required: 'Password không được bỏ trống',
+                    required: 'Mật khẩu không được bỏ trống',
                     minlength: 'Mật khẩu cần ít nhất 6 kí tự',
                 },
                 Confirm_Password:{
@@ -226,5 +255,6 @@
                 }
             }
         })
+
     </script>
 @endsection
