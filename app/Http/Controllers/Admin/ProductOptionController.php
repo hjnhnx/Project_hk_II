@@ -47,7 +47,7 @@ class ProductOptionController extends Controller
 
 
         return view('admin.product_options.table', [
-            'product_options' => $product_option,
+            'list' => $product_option,
             'key_search'=>$search,
             'sort'=>$sort,
             'colors'=>$colors,

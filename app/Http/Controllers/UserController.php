@@ -16,7 +16,6 @@ class UserController extends Controller
         }else{
             $user = new User();
             $user->fill($request->all());
-            $user->avatar = 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-image-icon-default-avatar-profile-icon-social-media-user-vector-image-209162840.jpg';
             $user->password = Hash::make($request->password);
             $user->save();
         }

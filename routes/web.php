@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Service\ImageUploadController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserController as User;
 use App\Http\Middleware\CheckIsAdmin;
 use Illuminate\Support\Facades\Route;
 
@@ -34,9 +35,11 @@ Route::get('/',[Controller::class,'home'])->name('home_page');
 Route::get('/product',[Controller::class,'product'])->name('product');
 Route::get('/product/{slug}',[Controller::class,'product_detail'])->name('product_detail');
 
+
 Route::get('/contactus',[Controller::class,'view_contact'])->name('contactus_view');
 Route::post('/contactus',[Controller::class,'contact'])->name('contactus_send');
-Route::get('/signin',[Controller::class,'view_login'])->name('login_register');
 
-Route::post('/register',[UserController::class,'register'])->name('register');
-Route::post('/login',[UserController::class,'login'])->name('user_login');
+
+Route::get('/signin',[Controller::class,'view_login'])->name('login_register');
+Route::post('/register',[User::class,'register'])->name('register');
+Route::post('/login',[User::class,'login'])->name('user_login');
