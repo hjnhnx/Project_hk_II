@@ -10,6 +10,7 @@
     <meta name="revisit-after" content="1 days"/>
     <meta name="generator" content="Công ty TNHH Thương mại Dịch vụ Di Động Sao Việt"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/libs/client/styles/index.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -19,6 +20,13 @@
     <style>
         .header_item{
             color: #F15A25;
+        }
+        #cat-nav  i {
+            margin-right: 5px;
+            color:#0056b3 ;
+        }
+        #cat-nav  a {
+            text-decoration: none!important;
         }
 
     </style>
