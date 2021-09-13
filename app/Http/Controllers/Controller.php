@@ -38,12 +38,16 @@ class Controller extends BaseController
     public function product(Request $request)
     {
         $brand_s = $request->brand_s;
+        $smart_phone = $request->smart_phone;
         $price_s = $request->price_s;
 
 
         $query_builder = Product::query();
         if ($brand_s) {
             $query_builder->orderBy('price', 'DESC')->where('status', Status::ACTIVE)->where('brand_id', Brand::query()->where('name', $brand_s)->first()->id);
+        }
+        if ($smart_phone){
+            $query_builder->orderBy('price', 'DESC')->where('status', Status::ACTIVE)->where('name','like','%' . $smart_phone . '%');
         }
 
 
@@ -85,9 +89,9 @@ class Controller extends BaseController
         return view('client.about_us',[
             'banner'=>null,
             'sub_banner'=>null,
-        ]); 
+        ]);
     }
-  
+
     public function view_contact(){
         return view('client.contactus',[ 'banner'=>null, 'sub_banner'=>null,]);
     }
@@ -104,9 +108,5 @@ class Controller extends BaseController
             'banner'=>null,
             'sub_banner'=>null,
         ]);
-    }
-
-    public function view_cart(){
-        return view('client.cart',[ 'banner'=>null, 'sub_banner'=>null,]);
     }
 }

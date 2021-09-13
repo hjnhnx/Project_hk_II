@@ -1,7 +1,6 @@
 @extends('client.layouts.master')
 @section('title','Contactus')
 @section('custom_style')
-    <link rel="stylesheet" href="/libs/client/styles/style.css">
     <style>
         .error {
             color: #f74c4c;

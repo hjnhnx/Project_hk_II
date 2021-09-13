@@ -1,106 +1,113 @@
-
 @extends('client.layouts.master')
-@section('title','Contactus')
-@section('contactus-css')
-    <link rel="stylesheet" href="/libs/client/styles/style.css">
-@endsection
-@section('cart-js')
-    <script type="text/javascript" src="/libs/client/scripts/cart.js"></script>
+@section('title','Shopping cart')
+@section('custom_style')
+    <style>
+        .content_cart {
+            padding: 20px 0;
+            min-height: 600px;
+            max-width: 1450px !important;
+        }
+
+        .btn_choice_option {
+            padding: 3px;
+            height: 30px;
+            width: 30px;
+            cursor: pointer;
+            border-radius: 50%;
+            margin: 30%  auto;
+        }
+
+        .checked_option::before {
+            content: '';
+            display: block;
+            border-radius: 50%;
+            height: 100%;
+            width: 100%;
+            background-color: #01b201;
+        }
+
+    </style>
 @endsection
 @section('main_content')
-    <section class="container">
-        <div class="shopping-cart">
-            <div class="column-labels">
-                <label class="product-image">Image</label>
-                <label class="product-details">Product</label>
-                <label class="product-price">Giá</label>
-                <label class="product-quantity">Số lượng</label>
-                <label class="product-removal">Remove</label>
-                <label class="product-line-price">Tổng giá</label>
-            </div>
-            <div class="product">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="checkall" name="check">
-                    <label class="custom-control-label" for="checkall">All</label>
+    <section class="container content_cart">
+        <div class="col-12 m-0 p-0">
+            <h2>Giỏ hàng</h2>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">Chọn</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Ảnh</th>
+                    <th scope="col">Cấu hình</th>
+                    <th scope="col" style="width: 120px">Số lượng</th>
+                    <th scope="col">Giá / 1</th>
+                    <th scope="col">Thao tác</th>
+                    <th scope="col">Thành tiền</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($list as $index=>$item)
+                    <tr id="cart_id_{{$item->id}}">
+                        <td>
+                            <div id="price_id_{{$item->id}}" slot="{{$item->price * $item->quantity}}" class="border btn_choice_option"></div>
+                        </td>
+                        <td>{{$item->product_name}}</td>
+                        <td>
+                            <img style="height: 70px" src="{{$item->thumbnail}}" alt="">
+                        </td>
+                        <td><span
+                                style="height: 20px;width: 20px;background: {{$item->color}};display: inline-block;transform: translateY(5px)"></span> {{$item->ram}}
+                            GB / {{$item->rom}}GB
+                        </td>
+                        <td>
+                            <input type="number" name="cart_item_{{$index}}" class="form-control"
+                                   value="{{$item->quantity}}">
+                        </td>
+                        <td>{{number_format($item->price)}} vnđ</td>
+                        <td>
+                            <button onclick="update_cart(`cart_item_{{$index}}`,{{$item->id}})" class="btn btn-primary">
+                                Cập nhật
+                            </button>
+                            <button onclick="remove_cart(`{{$item->id}}`)" class="btn btn-danger">Xóa</button>
+                        </td>
+                        <td><span id="all_price{{$item->id}}">{{number_format($item->price * $item->quantity)}} </span>
+                            vnđ
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+            <div class=" border col-12 row m-0 p-0" style="height: 80px">
+                <div class="col-6 d-flex align-items-center">
+                    <button class="btn btn-primary" style="width: 150px">Mua hàng</button>
                 </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="check1" name="check">
-                    <label class="custom-control-label" for="check1"></label>
-                </div>
-                <br>
-                <div class="product-image">
-                    <img src="https://lh3.googleusercontent.com/proxy/gpTWeM2351Aef4_rx2x1_L6-mGhGVPYID2SzdwNNCLWI13Qe3JooajR8KSfan_9v1ztlyh3WuTRe0sTNAu6NZSUXRDEnVzsVEt2n3oYeqzIzxulyoaKNb4y4iQ">
-                </div>
-                <div class="product-details">
-                    <div class="product-title">iPhone 12</div>
-                    <p class="product-description"> Apple đã trang bị con chip mới nhất của hãng (tính đến 11/2020) cho iPhone 12 đó là A14 Bionic, được sản xuất trên tiến trình 5 nm với hiệu suất ổn định hơn so với chip A13 được trang bị trên phiên bản tiền nhiệm iPhone 11.</p>
-                </div>
-                <div class="product-price">20.490.000</div>
-                <div class="product-quantity">
-                    <input type="number" value="2" min="1">
-                </div>
-                <div class="product-removal">
-                    <button class="remove-product btn btn-danger">
-                        Xóa
-                    </button>
-                    <br><br>
-                    <button class="remove-product btn btn-warning">
-                        Cập nhật
-                    </button>
-                </div>
-                <div class="product-line-price">20.490.000</div>
-            </div>
-            <div class="product">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="check2" name="check">
-                    <label class="custom-control-label" for="check2"></label>
-                </div>
-                <br><br>
-                <div class="product-image">
-                    <img src="https://cdn1.viettelstore.vn/images/Product/ProductImage/medium/465883758.jpeg">
-                </div>
-                <div class="product-details">
-                    <div class="product-title">iphone 12 Pro Max</div>
-                    <p class="product-description">Đẳng cấp từ tên gọi đến từng chi tiết. Ngay từ khi chỉ là tin đồn thì chiếc smartphone này đã làm đứng ngồi không yên bao “fan cứng” nhà Apple, với những nâng cấp vô cùng nổi bật hứa hẹn sẽ mang đến những trải nghiệm tốt nhất về mọi mặt mà chưa một chiếc iPhone tiền nhiệm nào có được.</p>
-                </div>
-                <div class="product-price">39.990.000</div>
-                <div class="product-quantity">
-                    <input type="number" value="1" min="1">
-                </div>
-                <div class="product-removal">
-                    <button class="remove-product btn btn-danger">
-                        Xóa
-                    </button>
-                    <br><br>
-                    <button class="remove-product btn btn-warning">
-                        Cập nhật
-                    </button>
-                </div>
-                <div class="product-line-price">39.990.000</div>
-            </div>
-            <div class="totals">
-                <div class="totals-item">
-                    <label>Tổng</label>
-                    <div class="totals-value" id="cart-subtotal">60.980.000</div>
-                </div>
-                <div class="totals-item">
-                    <label>Thuế (5%)</label>
-                    <div class="totals-value" id="cart-tax"></div>
-                </div>
-                <div class="totals-item">
-                    <label>Phí ship</label>
-                    <div class="totals-value" id="cart-shipping"></div>
-                </div>
-                <div class="totals-item totals-item-total">
-                    <label>Tổng cộng</label>
-                    <div class="totals-value" id="cart-total">60.980.000</div>
+                <div class="col-6 d-flex justify-content-center align-items-center">
+                    <p class="" style="font-size: 18px;font-weight: bold">
+                        Thanh toán : <span class="show_price_is_choice">0</span> vnđ / Tổng số : <span class="show_total_price"> {{number_format($total_price)}} </span> vnđ
+                    </p>
                 </div>
             </div>
-            <button class="checkout">Thanh toán</button>
         </div>
     </section>
+@endsection
 
-
+@section('custom_js')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            $('.btn_choice_option').click(function () {
+                this.classList.toggle('checked_option')
+                show_choice_price()
+            })
+        })
+        function show_choice_price(){
+            var choice = document.querySelectorAll('.checked_option')
+            var price = 0
+            for (let i = 0; i < choice.length; i++) {
+                price += Number(choice[i].slot)
+            }
+            $('.show_price_is_choice').text(number_format(price,'vi-VN'))
+        }
+    </script>
 @endsection
 
 
