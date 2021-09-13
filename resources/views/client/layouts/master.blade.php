@@ -5,6 +5,7 @@
 
 @include('client.components.header')
 <main id="main" style="margin-top: 10px">
+    @csrf
     @include('client.components.banner')
     @yield('main_content')
 </main>
