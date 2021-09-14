@@ -40,6 +40,12 @@
                 <strong>Error </strong>{{session('msg_error')}}
             </div>
         @endif
+        @if(session('msg_authentication'))
+                <div class="alert alert-warning mt-5" role="alert">
+                    Bạn phải đăng nhập để có thể tiếp tục
+                </div>
+        @endif
+
         <div class="col-12 form_container d-flex justify-content-center" >
             <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-6 border">
                 <div class="col-12 p-0">
@@ -62,7 +68,7 @@
                                 <div class="row">
                                     <div class="form-group col-12">
                                         <label for="">Mật khẩu</label>
-                                        <input type="text" name="password" class="form-control">
+                                        <input type="password" name="password" class="form-control">
                                     </div>
                                 </div>
                                 <br><br>

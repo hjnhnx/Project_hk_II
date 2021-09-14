@@ -39,7 +39,7 @@
                         <button style="width: 100%;height: 55px">Mua ngay</button>
                     </div>
                     <div class="col-6">
-                        <button style="width: 100%;height: 55px;background: #30a4fe">Thêm vào giỏ hàng</button>
+                        <button onclick="add_to_cart($('#option_id').val())" style="width: 100%;height: 55px;background: #30a4fe">Thêm vào giỏ hàng</button>
                     </div>
                 </div>
                 <div class="col-12 row p-4">
@@ -78,10 +78,10 @@
 
                     <p class="text-secondary m-0">options</p>
                     <div class="row col-12 p-0 m-0">
+                        <input type="hidden" id="option_id">
 
                         @for($i = 0 ; $i < sizeof($detail->product_option) ; $i++)
-                            <div
-                                slot="{{$detail->product_option[$i]->thumbnail}}~!!!~{{number_format($detail->price+$detail->product_option[$i]->price - ($detail->price+$detail->product_option[$i]->price) * $detail->discount/100 )}}~!!!~{{number_format($detail->price+$detail->product_option[$i]->price)}}~!!!~{{$detail->product_option[$i]->ram}}"
+                            <div id="{{$detail->product_option[$i]->id}}" slot="{{$detail->product_option[$i]->thumbnail}}~!!!~{{number_format($detail->price+$detail->product_option[$i]->price - ($detail->price+$detail->product_option[$i]->price) * $detail->discount/100 )}}~!!!~{{number_format($detail->price+$detail->product_option[$i]->price)}}~!!!~{{$detail->product_option[$i]->ram}}"
                                 class="col-6 border p-1 choice_option" style="height: 80px;padding: 0;cursor: pointer">
                                 <div style="height: 100%;width: 80px;float: left;padding-right: 5px">
                                     <img style=";object-fit: cover;height: 100%;width: 100%"
@@ -125,6 +125,7 @@
             $('.show_image').attr('src', this.src)
         })
         $('.choice_option').click(function () {
+            $('#option_id').val(this.id)
             $('.option_active').removeClass('option_active')
             this.classList.add('option_active')
             var image = this.slot.split('~!!!~')[0]
