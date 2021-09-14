@@ -45,3 +45,4 @@ Route::get('/cart',[Controller::class,'view_cart'])->name('cart_view');
 Route::post('/register',[User::class,'register'])->name('register');
 Route::post('/login',[User::class,'login'])->name('user_login');
 Route::get('/user/profile',[User::class,'profile'])->name('user_profile');
+Route::get('/edit/profile',[User::class,'edit_profile'])->name('edit_profile');

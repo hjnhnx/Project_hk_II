@@ -37,4 +37,10 @@ class UserController extends Controller
            'sub_banner'=>null,
        ]);
     }
+    public function edit_profile(){
+        return view('client.edit_profile',[
+            'banner'=>null,
+            'sub_banner'=>null,
+        ]);
+    }
 }
