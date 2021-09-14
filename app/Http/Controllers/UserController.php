@@ -46,4 +46,10 @@ class UserController extends Controller
         Auth::logout();
         return redirect()->route('login_register');
     }
+    public function edit_profile(){
+        return view('client.edit_profile',[
+            'banner'=>null,
+            'sub_banner'=>null,
+        ]);
+    }
 }
