@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ShoppingCartController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Service\ImageUploadController;
@@ -40,10 +41,19 @@ Route::post('/contact-us',[Controller::class,'contact'])->name('contactus_send')
 
 Route::get('/signin',[Controller::class,'view_login'])->name('login_register');
 
-Route::get('/cart',[Controller::class,'view_cart'])->name('cart_view');
+Route::get('/cart',[ShoppingCartController::class,'show_cart'])->name('cart_view');
 
 Route::post('/register',[User::class,'register'])->name('register');
 Route::post('/login',[User::class,'login'])->name('user_login');
 Route::get('/user/profile',[User::class,'profile'])->name('user_profile');
+
 Route::get('/edit/profile',[User::class,'edit_profile'])->name('edit_profile');
+
 Route::post('/edit/profile',[User::class,'update'])->name('update_profile');
+
+
+Route::get('/user/logout',[User::class,'logout'])->name('user_logout');
+
+Route::post('/add-to-cart',[ShoppingCartController::class,'add_to_cart'])->name('add_to_cart');
+Route::post('/remove_from_cart',[ShoppingCartController::class,'remove'])->name('remove_cart');
+
