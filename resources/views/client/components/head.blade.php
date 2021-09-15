@@ -29,5 +29,23 @@
             text-decoration: none!important;
         }
 
+        .call_now > i{
+            color: white;
+        }
+
+        .call_now {
+            height: 55px;
+            width: 55px;
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background: #f15a25;
+            display: flex;
+            border-radius: 50%;
+            justify-content: center;
+            align-items: center;
+        }
+
     </style>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-61177547f7ce676c"></script>
 </head>

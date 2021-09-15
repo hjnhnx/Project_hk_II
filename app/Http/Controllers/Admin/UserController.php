@@ -89,7 +89,6 @@ class UserController extends Controller
         $user->save();
         return redirect()->route('list_user');
     }
-
     public function edit($id)
     {
         $detail = User::find($id);
@@ -138,6 +137,5 @@ class UserController extends Controller
         Auth::logout();
         return back();
     }
-
 
 }

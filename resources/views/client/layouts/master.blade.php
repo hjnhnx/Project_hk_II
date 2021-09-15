@@ -12,6 +12,6 @@
 @include('client.components.footer')
 
 @include('client.components.script')
-
+<a class="call_now" href="tel:0369042217"><i class="fas fa-phone-alt"></i></a>
 </body>
 </html>

@@ -41,8 +41,6 @@ class Controller extends BaseController
         $brand_s = $request->brand_s;
         $smart_phone = $request->smart_phone;
         $price_s = $request->price_s;
-
-
         $query_builder = Product::query();
         if ($brand_s) {
             $query_builder->orderBy('price', 'DESC')->where('status', Status::ACTIVE)->where('brand_id', Brand::query()->where('name', $brand_s)->first()->id);
@@ -50,8 +48,6 @@ class Controller extends BaseController
         if ($smart_phone){
             $query_builder->orderBy('price', 'DESC')->where('status', Status::ACTIVE)->where('name','like','%' . $smart_phone . '%');
         }
-
-
         if ($price_s && $price_s == 't->c') {
             $query_builder->orderBy('price', 'ASC')->where('status', Status::ACTIVE);
         } elseif ($price_s && $price_s == 'c->t') {
@@ -69,8 +65,6 @@ class Controller extends BaseController
         } elseif ($price_s && $price_s == '>20tr') {
             $query_builder->where('price', '>=', 20000000)->where('status', Status::ACTIVE);
         }
-
-
         $product_new = Product::query()->orderBy('id', 'DESC')->where('status', Status::ACTIVE)->take(5)->get();
         $product_sale = Product::query()->orderBy('discount', 'DESC')->where('status', Status::ACTIVE)->take(5)->get();
         $brands = Brand::query()->where('status', Status::ACTIVE)->get();
@@ -92,7 +86,6 @@ class Controller extends BaseController
             'sub_banner'=>null,
         ]);
     }
-
     public function view_contact(){
         return view('client.contactus',[ 'banner'=>null, 'sub_banner'=>null,]);
     }
@@ -106,6 +99,24 @@ class Controller extends BaseController
     }
     public function view_login(){
         return view('client.login_register',[
+            'banner'=>null,
+            'sub_banner'=>null,
+        ]);
+    }
+
+    public function send_mail(){
+        $data = [
+            'name'=>'SunMobile',
+        ];
+        Mail::send('send_mail',$data,function ($message){
+            $message->from('SunMobile@outlook.com.vn','SunMobile');
+            $message->to('cuongnmth2009037@fpt.edu.vn','cuong');
+            $message->subject('Cảm ơn bạn đã mua hàng tại SunMobile.');
+        });
+    }
+
+    public function show_order(){
+        return view('client.order_detail',[
             'banner'=>null,
             'sub_banner'=>null,
         ]);

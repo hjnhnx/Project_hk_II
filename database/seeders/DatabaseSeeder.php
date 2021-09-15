@@ -55,8 +55,8 @@ class DatabaseSeeder extends Seeder
             ContactSeeder::class,
             ColorSeeder::class,
             BannerSeeder::class,
-            OrderSeeder::class,
-            OrderDetailSeeder::class
+//            OrderSeeder::class,
+//            OrderDetailSeeder::class
         ]);
 
 
