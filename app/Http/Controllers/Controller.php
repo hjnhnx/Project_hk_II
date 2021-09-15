@@ -120,4 +120,11 @@ class Controller extends BaseController
             $message->subject('Cảm ơn bạn đã mua hàng tại SunMobile.');
         });
     }
+
+    public function show_order(){
+        return view('client.order_detail',[
+            'banner'=>null,
+            'sub_banner'=>null,
+        ]);
+    }
 }

@@ -23,4 +23,8 @@ class OrderDetailController extends Controller
         return view('admin.order_detail.table',['list'=>$order_detail,'sort'=>$sort]);
         return view('admin.order_detail.table',['list'=>$order_detail]);
     }
+
+    public function showDetail(){
+        return view('admin.order_detail.showOrderDetail');
+    }
 }
