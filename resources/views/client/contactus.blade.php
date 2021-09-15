@@ -27,6 +27,7 @@
                 </div>
                 <div class="col-8 pt-4 pb-4">
                     <h2 class="text-danger">Để lại liên hệ</h2>
+                
                     <form action="{{route('contactus_send')}}" class="col-12" method="post" id="contact">
                         @csrf
                         <div class="row">
