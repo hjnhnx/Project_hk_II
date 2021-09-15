@@ -38,6 +38,7 @@ Route::get('/about-us',[Controller::class, 'view_about_us'])->name('view_about_u
 
 Route::get('/contact-us',[Controller::class,'view_contact'])->name('contactus_view');
 Route::post('/contact-us',[Controller::class,'contact'])->name('contactus_send');
+Route::get('/send-mail',[Controller::class,'send_mail'])->name('mail_send');
 
 Route::get('/signin',[Controller::class,'view_login'])->name('login_register');
 

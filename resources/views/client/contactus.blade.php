@@ -23,6 +23,7 @@
                 <div class="col-8 pt-4 pb-4">
                     <h2 class="text-danger">Để lại liên hệ</h2>
                     <form action="" class="col-12" method="post" id="contact">
+                        @csrf
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="">Họ và tên</label>

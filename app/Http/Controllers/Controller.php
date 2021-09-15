@@ -13,6 +13,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Mail;
 
 class Controller extends BaseController
 {
@@ -108,5 +109,15 @@ class Controller extends BaseController
             'banner'=>null,
             'sub_banner'=>null,
         ]);
+    }
+    public function send_mail(){
+        $data = [
+            'name'=>'SunMobile',
+        ];
+        Mail::send('send_mail',$data,function ($message){
+            $message->from('SunMobile@outlook.com.vn','SunMobile');
+            $message->to('cuongnmth2009037@fpt.edu.vn','cuong');
+            $message->subject('Cảm ơn bạn đã mua hàng tại SunMobile.');
+        });
     }
 }
