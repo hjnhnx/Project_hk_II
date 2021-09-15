@@ -49,6 +49,9 @@ Route::get('/user/profile',[User::class,'profile'])->name('user_profile');
 
 Route::get('/edit/profile',[User::class,'edit_profile'])->name('edit_profile');
 
+Route::post('/edit/profile',[User::class,'update'])->name('update_profile');
+
+
 Route::get('/user/logout',[User::class,'logout'])->name('user_logout');
 
 Route::post('/add-to-cart',[ShoppingCartController::class,'add_to_cart'])->name('add_to_cart');
