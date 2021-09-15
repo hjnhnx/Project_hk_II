@@ -109,4 +109,10 @@ class Controller extends BaseController
             'sub_banner'=>null,
         ]);
     }
+    public function show_order(){
+        return view('client.order_detail',[
+            'banner'=>null,
+            'sub_banner'=>null,
+        ]);
+    }
 }

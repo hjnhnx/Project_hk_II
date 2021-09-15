@@ -57,3 +57,5 @@ Route::get('/user/logout',[User::class,'logout'])->name('user_logout');
 Route::post('/add-to-cart',[ShoppingCartController::class,'add_to_cart'])->name('add_to_cart');
 Route::post('/remove_from_cart',[ShoppingCartController::class,'remove'])->name('remove_cart');
 
+
+Route::get('/order',[Controller::class,'show_order'])->name('show_order');
