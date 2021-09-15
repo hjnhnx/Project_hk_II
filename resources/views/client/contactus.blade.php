@@ -9,6 +9,11 @@
 @endsection
 
 @section('main_content')
+    @if(session('message'))
+        <div class="alert alert-success" role="alert">
+            Thông tin gửi thành công!!!
+        </div>
+    @endif
     <section>
         <div class="container d-flex justify-content-center p-5">
             <div class="col-11 border row p-0 m-0">
@@ -22,7 +27,9 @@
                 </div>
                 <div class="col-8 pt-4 pb-4">
                     <h2 class="text-danger">Để lại liên hệ</h2>
-                    <form action="" class="col-12" method="post" id="contact">
+                
+                    <form action="{{route('contactus_send')}}" class="col-12" method="post" id="contact">
+                        @csrf
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="">Họ và tên</label>

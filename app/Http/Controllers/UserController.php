@@ -46,4 +46,22 @@ class UserController extends Controller
         Auth::logout();
         return redirect()->route('login_register');
     }
+    public function edit_profile(){
+        if (Auth::check()){
+            return view('client.edit_profile',[
+                'user'=>Auth::user(),
+                'banner'=>null,
+                'sub_banner'=>null,
+            ]);
+        }else{
+            return redirect()->route('login_register')->with('msg_authentication','Bạn phải đăng nhập để tiếp tục');
+        }
+    }
+    public function update(Request $request){
+        $user = User::find(Auth::id());
+        $user->fill($request->all());
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect()->route('user_profile');
+    }
 }

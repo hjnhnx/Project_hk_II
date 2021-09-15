@@ -1,83 +1,78 @@
 @extends('client.layouts.master')
 @section('title','Trang Chủ')
+@section('custom_style')
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+        }
 
-@section('main_content')
-    <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            body {
-                font-family: Arial, Helvetica, sans-serif;
-                margin: 0;
-            }
+        html {
+            box-sizing: border-box;
+        }
 
-            html {
-                box-sizing: border-box;
-            }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
 
-            *, *:before, *:after {
-                box-sizing: inherit;
-            }
+        .column {
+            float: left;
+            width: 33.3%;
+            margin-bottom: 16px;
+            padding: 0 8px;
+        }
 
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            margin: 8px;
+        }
+
+        .about-section {
+            padding: 50px;
+            text-align: center;
+            background-color: #f5462a;
+            color: white;
+        }
+
+        .container {
+            padding: 0 16px;
+        }
+
+        .container::after, .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .title {
+            color: grey;
+        }
+
+        .button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #262424;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+
+        @media screen and (max-width: 650px) {
             .column {
-                float: left;
-                width: 33.3%;
-                margin-bottom: 16px;
-                padding: 0 8px;
-            }
-
-            .card {
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-                margin: 8px;
-            }
-
-            .about-section {
-                padding: 50px;
-                text-align: center;
-                background-color: #f5462a;
-                color: white;
-            }
-
-            .container {
-                padding: 0 16px;
-            }
-
-            .container::after, .row::after {
-                content: "";
-                clear: both;
-                display: table;
-            }
-
-            .title {
-                color: grey;
-            }
-
-            .button {
-                border: none;
-                outline: 0;
-                display: inline-block;
-                padding: 8px;
-                color: white;
-                background-color: #262424;
-                text-align: center;
-                cursor: pointer;
                 width: 100%;
+                display: block;
             }
-
-            .button:hover {
-                background-color: #555;
-            }
-
-            @media screen and (max-width: 650px) {
-                .column {
-                    width: 100%;
-                    display: block;
-                }
-            }
-        </style>
-    </head>
-    <body>
-
+        }
+    </style>
+@endsection
+@section('main_content')
     <div class="about-section">
         <h1>Trang giới thiệu</h1>
         <p>Một số thông tin về website và website làm gì.</p>
@@ -87,7 +82,8 @@
     <div class="row">
         <div class="column">
             <div class="card">
-                <img src="https://image-us.24h.com.vn/upload/2-2015/images/2015-06-22/1434977888-hivu13_wxzx.jpg" alt="Jane" style="width:100%">
+                <img src="https://image-us.24h.com.vn/upload/2-2015/images/2015-06-22/1434977888-hivu13_wxzx.jpg"
+                     alt="Jane" style="width:100%">
                 <div class="container">
                     <h2>Nguyễn Xuân Hinh</h2>
                     <p class="title">CEO & Founder</p>
@@ -104,21 +100,21 @@
             <div class="card">
                 <img src="https://sieupet.com/sites/default/files/cho-pug-bieu-cam_0.jpg" alt="Mike" style="width:100%">
                 <div class="container">
-                    <h2>Lê Thành Đạt
-                        <h2>
-                            <p class="title">Art Director</p>
-                            <p>LH:098686123</p>
-                            <p>Thanhdat@gmail.com</p>
-                            <p>
-                                <button class="button">Theo dõi</button>
-                            </p>
+                    <h2>Lê Thành Đạt</h2>
+                        <p class="title">Art Director</p>
+                        <p>LH:098686123</p>
+                        <p>Thanhdat@gmail.com</p>
+                        <p>
+                            <button class="button">Theo dõi</button>
+                        </p>
                 </div>
             </div>
         </div>
 
         <div class="column">
             <div class="card">
-                <img src="https://anhdep123.com/wp-content/uploads/2021/02/hinh-anh-hai-huoc-ve-cho.jpg" alt="John" style="width:100%">
+                <img src="https://anhdep123.com/wp-content/uploads/2021/02/hinh-anh-hai-huoc-ve-cho.jpg" alt="John"
+                     style="width:100%">
                 <div class="container">
                     <h2>Nguyễn Mạnh Cường</h2>
                     <p class="title">Designer</p>
@@ -144,8 +140,7 @@
             Nhiệt Tình của hơn 2 triệu lượt Khách - Tập Thể Sun Mobile đã phần nào đạt được những mục tiêu và thành
             tựu
             nhất định. </p>
-        <h2>2/ TẦM NHÌN – SỨ MỆNH – GIÁ TRỊ CỐT LÕI
-            <h2>
+        <h2>2/ TẦM NHÌN – SỨ MỆNH – GIÁ TRỊ CỐT LÕI</h2>
                 <p>2.1/ Tầm Nhìn</p>
                 <p class="title">- Trở thành nhà bán lẻ mặt hàng công nghệ chính hãng có chất lượng và dịch vụ TOP 5
                     tại
@@ -179,8 +174,7 @@
                     3. Dịch vụ: Sự hài lòng cao nhất của khách hàng luôn luôn được đặt lên đầu tiên, trên cả lợi ích
                     của
                     công ty.</p>
-                <h2>3/ GIẢI THƯỞNG VÀ DANH HIỆU
-                    <h2>
+                <h2>3/ GIẢI THƯỞNG VÀ DANH HIỆU</h2>
                         <p class="title">Danh hiệu Top 500 website hàng đầu Việt Nam do Alexa thống kê - từ năm 2007
                             đến
                             2011
@@ -208,6 +202,4 @@
                             Giải thưởng "Best Nokia - Kênh bán lẻ tốt nhất" do Nokia Vietnam trao tặng – năm 2017.
                         </p>
     </div>
-    </body>
-    </html>
 @endsection

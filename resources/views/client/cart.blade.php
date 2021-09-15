@@ -181,6 +181,3 @@
         }
     </script>
 @endsection
-
-
-
