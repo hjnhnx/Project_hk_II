@@ -12,16 +12,8 @@ class OrderController extends Controller
 {
     public function index(Request $request)
     {
-        $search = $request->query('search');
         $sort = $request->query('sort');
         $query_builder = Order::query();
-        $query_builder->whereHas('users', function ($query) use ($search) {
-            $query->where('firstname', 'like', '%' . $search . '%')
-                ->orWhere('lastname', 'like', '%' . $search . '%')
-                ->orWhere('ship_phone', 'like', '%' . $search . '%')
-                ->orWhere('ship_email', 'like', '%' . $search . '%')
-                ->orWhere('ship_address', 'like', '%' . $search . '%');
-        });
         if ($sort && $sort == Sort::SORT_ID_ASC) {
             $query_builder->orderBy('id', 'ASC')->get();
         }
@@ -38,6 +30,15 @@ class OrderController extends Controller
             $query_builder->where('status',$request->status);
         }
         $orders = $query_builder->orderBy('id','DESC')->paginate(10);
-        return view('admin.orders.table', ['list' => $orders, 'key_search' => $search,'sort'=>$sort,'status'=>$request->status]);
+        return view('admin.orders.table', ['list' => $orders, 'key_search' => '','sort'=>$sort,'status'=>$request->status]);
+    }
+
+    public function update_status(Request $request){
+        foreach (json_decode($request->array_id) as $item){
+            $order = Order::find($item);
+            $order->status = $request->desire;
+            $order->save();
+        }
+        return back();
     }
 }

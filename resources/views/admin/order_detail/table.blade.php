@@ -49,7 +49,6 @@
         <th>Quantity</th>
         <th>Total price</th>
         <th>unit price</th>
-        <th class="text-center Product_Action">Actions</th>
     </tr>
 @endsection
 @section('table_body')
@@ -61,15 +60,10 @@
                 <div class="view_color" style="background: {{\App\Models\Color::find($item->product_option->color_id)->color_code}}"></div>
             </td>
             <td>{{$item->product_option->ram}}GB/RAM - {{$item->product_option->rom}}GB/ROM</td>
-            <td>{{\App\Models\User::find($item->order->users_id)->firstname . ' ' . \App\Models\User::find($item->order->users_id)->lastname }}</td>
+            <td>{{$item->order->ship_name}}</td>
             <td>{{$item->quantity}}</td>
-            <td>$ {{$item->unit_price * $item->quantity}}</td>
-            <td>$ {{$item->unit_price}}</td>
-            <td class="actions text-center">
-                <a href="#" class="on-default edit-row text-primary"><i class="fa fa-pencil"></i></a>
-                <a href="#" class="on-default remove-row text-danger"><i class="fa fa-trash-o"></i></a>
-                <a href="#" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
-            </td>
+            <td>{{number_format($item->unit_price * $item->quantity)}} vnđ</td>
+            <td>{{number_format($item->unit_price)}} vnđ</td>
         </tr>
     @endforeach
 @endsection
