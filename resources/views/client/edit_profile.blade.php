@@ -18,7 +18,7 @@
     <div class="col-12 head_form row m-0 p-0 d-flex justify-content-center">
         <div style="border: #bdbcbc solid 1px" class="m-5">
             <div class="col-3 d-flex justify-content-center btn_show_register"></div>
-            <form id="register" class="col-12 pt-3 pl-4 pr-4" action="{{route('register')}}" method="post">
+            <form id="register" class="col-12 pt-3 pl-4 pr-4" action="{{route('update_profile')}}" method="post">
                 @csrf
                 <div class="row">
                     <div class="form-group col-6">
@@ -77,7 +77,7 @@
 
                 <div class="row">
                     <div class="form-group col-12">
-                        <button class="btn-primary btn form-control">Đăng Ký</button>
+                        <button class="btn-primary btn form-control">Cập Nhật</button>
                     </div>
                 </div>
             </form>

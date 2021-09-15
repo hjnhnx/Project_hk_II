@@ -34,7 +34,7 @@
                     </tr>
                     </thead>
                 </table>
-                <button style="" class="btn btn-danger">Chỉnh sửa thông tin <i class="fas fa-cog"></i></button>
+                <a href="{{route('edit_profile')}}"><button style="" class="btn btn-danger">Chỉnh sửa thông tin <i class="fas fa-cog"></i></button></a>
                 <a href="{{route('user_logout')}}"><button style="" class="btn btn-danger">Đăng xuất <i class="fas fa-sign-out-alt"></i></button></a>
             </div>
         </div>
