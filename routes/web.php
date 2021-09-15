@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ShoppingCartController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\Service\ImageUploadController;
 use App\Http\Controllers\UserController as User;
 use App\Http\Middleware\CheckIsAdmin;
@@ -38,7 +39,6 @@ Route::get('/about-us',[Controller::class, 'view_about_us'])->name('view_about_u
 
 Route::get('/contact-us',[Controller::class,'view_contact'])->name('contactus_view');
 Route::post('/contact-us',[Controller::class,'contact'])->name('contactus_send');
-Route::get('/send-mail',[Controller::class,'send_mail'])->name('mail_send');
 
 Route::get('/signin',[Controller::class,'view_login'])->name('login_register');
 
@@ -51,3 +51,5 @@ Route::get('/user/logout',[User::class,'logout'])->name('user_logout');
 
 Route::post('/add-to-cart',[ShoppingCartController::class,'add_to_cart'])->name('add_to_cart');
 Route::post('/remove_from_cart',[ShoppingCartController::class,'remove'])->name('remove_cart');
+
+Route::get('/send-mail',[MailController::class,'send_mail'])->name('mail_send');
