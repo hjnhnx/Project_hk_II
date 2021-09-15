@@ -86,6 +86,7 @@ Route::prefix('brand')->group(function () {
 
 Route::prefix('order')->group(function () {
     Route::get('/', [OrderController::class, 'index'])->name('list_order');
+    Route::post('/update_status', [OrderController::class, 'update_status'])->name('update_status');
 });
 
 Route::prefix('order-detail')->group(function () {

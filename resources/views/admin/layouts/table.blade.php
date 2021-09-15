@@ -13,7 +13,7 @@
     <section class="panel">
 
         <header class="panel-heading">
-            <h2 class="panel-title">@yield('title_table') <a href="#" id="addToTable" style="float: right;transform: translateY(-5px)" class="btn btn-primary">Add <i class="fa fa-plus"></i></a></h2>
+            <h2 class="panel-title">@yield('title_table')</h2>
         </header>
         <div class="panel-body">
             <div class="row table_header">
@@ -31,6 +31,7 @@
                         </div>
                     </form>
                 </div>
+                @yield('extra_filter')
             </div>
             <table class="table table-bordered table-striped mb-none" id="datatable-editable">
                 <thead>

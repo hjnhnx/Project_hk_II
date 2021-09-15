@@ -111,7 +111,15 @@
                 }
             });
         }
+    }
 
+    function get_id(){
+        var ids = document.querySelectorAll('.checked_option')
+        var arr_id = []
+        for (let i = 0; i < ids.length; i++) {
+            arr_id.push(ids[i].nonce)
+        }
+        $('.all_id').val(JSON.stringify(arr_id))
     }
 
 
