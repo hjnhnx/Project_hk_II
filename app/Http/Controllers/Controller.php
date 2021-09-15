@@ -103,6 +103,7 @@ class Controller extends BaseController
             'sub_banner'=>null,
         ]);
     }
+
     public function send_mail(){
         $data = [
             'name'=>'SunMobile',
