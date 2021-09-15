@@ -1,5 +1,6 @@
 @extends('client.layouts.master')
 @section('title','Trang Chủ')
+@section('title_form',$user ?'Edit profile' :'Create edit_profile')
 @section('custom_style')
     <style>
         .head_form > div {
@@ -23,22 +24,22 @@
                     <div class="form-group col-6">
                         <label for="">Họ tên đệm</label>
                         <label>
-                            <input name="firstname" type="text" class="form-control">
+                            <input value="{{$user->firstname}}" name="firstname" type="text" class="form-control">
                         </label>
                     </div>
                     <div class="form-group col-6">
                         <label for="">Tên</label>
-                        <input name="lastname" type="text" class="form-control">
+                        <input value="{{$user->lastname}}" name="lastname" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-6">
                         <label for="">Số điện thoại</label>
-                        <input name="phone" type="text" class="form-control">
+                        <input value="{{$user->phone}}" name="phone" type="text" class="form-control">
                     </div>
                     <div class="form-group col-6">
                         <label for="">Ngày sinh</label>
-                        <input name="birthday" type="date" class="form-control">
+                        <input value="{{$user->birthday}}" name="birthday" type="date" class="form-control">
                     </div>
                 </div>
                 <div class="row">
@@ -54,23 +55,23 @@
                 <div class="row">
                     <div class="form-group col-12">
                         <label for="">Email</label>
-                        <input name="email" type="text" class="form-control">
+                        <input value="{{$user->email}}" name="email" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-12">
                         <label for="">Địa chỉ</label>
-                        <textarea class="form-control" name="address" id="" cols="30" rows="2"></textarea>
+                        <textarea class="form-control" name="address" id="" cols="30" rows="2">{{$user->address}}</textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-6">
                         <label for="">Avatar</label>
-                        <input type="hidden" name="avatar" value="https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg">
+                        <input type="hidden" name="avatar" value="{{$user->avatar}}">
                         <button type="button" class="btn btn-warning form-control">Chọn ảnh</button>
                     </div>
                     <div class="form-group col-6 d-flex justify-content-center">
-                        <img src="https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg" alt="" style="height: 100px;width: 100px;border-radius: 5px">
+                        <img src="{{$user->avatar}}" alt="" style="height: 100px;width: 100px;border-radius: 5px;object-fit: cover">
                     </div>
                 </div>
 

@@ -39,8 +39,16 @@ class UserController extends Controller
     }
     public function edit_profile(){
         return view('client.edit_profile',[
+            'user'=>Auth::user(),
             'banner'=>null,
             'sub_banner'=>null,
         ]);
+    }
+    public function update(Request $request,$id){
+        $user = User::find($id);
+        $user->fill($request->all());
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect()->route('edit_profile');
     }
 }
