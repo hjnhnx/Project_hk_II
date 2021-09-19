@@ -96,7 +96,7 @@
             <td class="actions text-center">
                 <a href="{{route('edit_product',$item->id)}}" class="on-default edit-row text-primary"><i class="fa fa-pencil"></i></a>
                 <a onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này , Chọn OK tất cả option liên quan cũng sẽ được xóa đi')" href="{{route('delete_product',$item->id)}}" class="on-default remove-row text-danger"><i class="fa fa-trash-o"></i></a>
-                <a href="#" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
+                <a href="{{route('product_detail',$item->slug)}}" target="_blank" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
             </td>
         </tr>
     @endforeach

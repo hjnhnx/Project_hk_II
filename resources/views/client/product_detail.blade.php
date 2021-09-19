@@ -16,7 +16,7 @@
     </style>
 @endsection
 @section('main_content')
-    <div class="container">
+    <div class="container containerA">
         <div class="row col-12" style="margin: 0;box-sizing: border-box">
             <div class="col-7 row" style="height: 500px;padding: 0">
                 <div class="col-2 images"
@@ -39,7 +39,7 @@
                         <button style="width: 100%;height: 55px">Mua ngay</button>
                     </div>
                     <div class="col-6">
-                        <button onclick="add_to_cart($('#option_id').val())" style="width: 100%;height: 55px;background: #30a4fe">Thêm vào giỏ hàng</button>
+                        <button id="btn_add_to_cartA" onclick="add_to_cart($('#option_id').val())" style="width: 100%;height: 55px;background: #30a4fe">Thêm vào giỏ hàng</button>
                     </div>
                 </div>
                 <div class="col-12 row p-4">
@@ -49,7 +49,7 @@
                             <p style="top: 15px;right: 15px;position: absolute;padding-left: 10px;border-radius: 3px;color: white;height: 22px;background: #ff5959;width: 100px;display: {{$item->discount == 0 ? 'none' :''}}">Giảm {{$item->discount}} %</p>
                             <div style="height: 100% ; width: 100%;justify-content: center;flex-wrap: wrap"
                                  class="border d-flex pt-1">
-                                <img src="{{$item->thumbnail}}" alt="" style="width: 80%;height: 60%;object-fit: cover">
+                                <img class="other_product_thumbnail" src="{{$item->thumbnail}}" alt="" style="width: 80%;height: 60%;object-fit: cover">
                                 <h6 style="width: 80%">{{$item->name}}</h6>
                                 <h6 style="font-size: 14px"><span style="color: red">{{number_format($item->price - $item->price * $item->discount/100) }} vnđ </span><span
                                         class="text-secondary" style="text-decoration:line-through">{{number_format($item->price)}}  vnđ</span>
@@ -64,16 +64,11 @@
             <div class="col row p-0" style="min-height: 1150px">
                 <div class="col-12 pl-4" style="padding-right: 0">
                     <h3 class="text-secondary">{{$detail->name}}</h3>
-                    <h5 class="text-secondary">Giá : <span
-                            class="text-danger sale_price">{{number_format($detail->price - $detail->price * $detail->discount/100 )}} vnđ</span>
-                        <span class="text-secondary price"
-                              style="text-decoration: line-through;font-size: 18px;display: {{$detail->discount == 0 ? 'none' : ''}}">{{$detail->discount != 0 ? number_format($detail->price) . ' vnđ' : ''}}</span>
+                    <h5 class="text-secondary">Giá : <span class="text-danger sale_price">{{number_format($detail->price - $detail->price * $detail->discount/100 )}} vnđ</span>
+                        <span class="text-secondary price" style="text-decoration: line-through;font-size: 18px;display: {{$detail->discount == 0 ? 'none' : ''}}">{{$detail->discount != 0 ? number_format($detail->price) . ' vnđ' : ''}}</span>
                     </h5>
-                    <p class="text-secondary m-0"
-                       style="font-size: 16px">{{$detail->discount != 0 ? 'Khuyến mãi : ' . $detail->discount . '%' : ''}}</p>
-
-                    <p class="text-primary m-0" style="font-size: 16px">Ram : <span
-                            class="show_ram">{{\App\Models\Product_option::query()->where('product_id',$detail->id)->first()->ram}}</span>GB
+                    <p class="text-secondary m-0" style="font-size: 16px">{{$detail->discount != 0 ? 'Khuyến mãi : ' . $detail->discount . '%' : ''}}</p>
+                    <p class="text-primary m-0" style="font-size: 16px">Ram : <span class="show_ram">{{\App\Models\Product_option::query()->where('product_id',$detail->id)->first()->ram}}</span>GB
                     </p>
 
                     <p class="text-secondary m-0">options</p>
@@ -82,7 +77,7 @@
 
                         @for($i = 0 ; $i < sizeof($detail->product_option) ; $i++)
                             <div id="{{$detail->product_option[$i]->id}}" slot="{{$detail->product_option[$i]->thumbnail}}~!!!~{{number_format($detail->price+$detail->product_option[$i]->price - ($detail->price+$detail->product_option[$i]->price) * $detail->discount/100 )}}~!!!~{{number_format($detail->price+$detail->product_option[$i]->price)}}~!!!~{{$detail->product_option[$i]->ram}}"
-                                class="col-6 border p-1 choice_option" style="height: 80px;padding: 0;cursor: pointer">
+                                class="col-lg-12 col-xl-6  border p-1 choice_option" style="height: 80px;padding: 0;cursor: pointer">
                                 <div style="height: 100%;width: 80px;float: left;padding-right: 5px">
                                     <img style=";object-fit: cover;height: 100%;width: 100%"
                                          src="{{$detail->product_option[$i]->thumbnail}}" alt="">
@@ -94,9 +89,7 @@
                                             class="text-danger">{{number_format($detail->price+$detail->product_option[$i]->price - ($detail->price+$detail->product_option[$i]->price) * $detail->discount/100)}} vnđ </span>
                                     </p>
                                     <p style="height: 10px;margin: 0;transform: translateY(8px);font-size: 13px">Giá gốc
-                                        : <span
-                                            class="text-secondary"
-                                            style="text-decoration: line-through;font-size: 14px;display: {{$detail->discount == 0 ? 'none' : ''}}">{{number_format($detail->price+$detail->product_option[$i]->price)}} vnđ</span>
+                                        : <span class="text-secondary" style="text-decoration: line-through;font-size: 14px;display: {{$detail->discount == 0 ? 'none' : ''}}">{{number_format($detail->price+$detail->product_option[$i]->price)}} vnđ</span>
                                     </p>
                                 </div>
                             </div>
@@ -110,6 +103,73 @@
                             <button class="btn btn-info col-6 show_mor">Xem Thêm</button>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="container containerB" style="display: none">
+        <div class="main_content_B" style="flex-wrap: wrap">
+            <div class="col-12 col-sm-12 col-md-8 border p-2 m-auto" style="height: 30rem">
+                <img class="show_image" src="{{$detail->thumbnail}}" alt="" style="height: 100%;width: 100%;object-fit: cover">
+            </div>
+            <div class="col-12 col-sm-12 col-md-8 p-2 m-auto" style="padding-right: 10px;overflow: hidden">
+                <marquee behavior="" direction="">{{$detail->description}}</marquee>
+            </div>
+            <div class="col-12 col-sm-12 col-md-8 border p-2 m-auto">
+                <div class=" m-0" style="height: 100px;overflow: scroll">
+                    <div style="height: 100%;width: 10000px" class="row m-0">
+                        @for( $i=0 ; $i<sizeof(json_decode($detail->images,true)) ; $i++)
+                            <div style="height: 100px;width: 100px;object-fit: cover" class="p-1">
+                                <img class="border product_image" src="{{json_decode($detail['images'],true)[$i]}}" alt="" style="height: 100%;width: 100%;object-fit: cover">
+                            </div>
+                        @endfor
+                    </div>
+                </div>
+                <div style="width: 100%">
+                    <h4 class="text-secondary">{{$detail->name}}</h4>
+                    <h5>Giá : <span class="text-danger sale_price">{{number_format($detail->price - $detail->price * $detail->discount/100 )}} vnđ</span>
+                        <span style="font-size: 14px;text-decoration: line-through" class="text-secondary price">{{$detail->discount != 0 ? number_format($detail->price) . ' vnđ' : ''}}</span></h5>
+                    <p class="text-secondary m-0" style="font-size: 14px">{{$detail->discount != 0 ? 'Khuyến mãi : ' . $detail->discount . '%' : ''}}</p>
+                    <p class="m-0 text-primary">Ram : <span class="show_ram">{{\App\Models\Product_option::query()->where('product_id',$detail->id)->first()->ram}}</span> GB</p>
+                </div>
+                <div style="width: 100%">
+                    @for($i = 0 ; $i < sizeof($detail->product_option) ; $i++)
+                        <div slot="{{$detail->product_option[$i]->id}}" class="col-lg-12 col-xl-6 choice_optionB border p-1" style="height: 80px;padding: 0;cursor: pointer">
+                            <div style="height: 100%;width: 80px;float: left;padding-right: 5px">
+                                <img style=";object-fit: cover;height: 100%;width: 100%"
+                                     src="{{$detail->product_option[$i]->thumbnail}}" alt="">
+                            </div>
+                            <div style="height: 100%;float: left">
+                                    <span
+                                        style="height: 25px;display:inline-block;transform: translateY(-6px);font-size: 14px;font-weight: bold">{{\App\Models\Color::find($detail->product_option[$i]->color_id)->name}} ({{$detail->product_option[$i]->rom}} GB)</span>
+                                <p style="height: 10px;margin: 0;transform: translateY(-6px)">Giá : <span
+                                        class="text-danger">{{number_format($detail->price+$detail->product_option[$i]->price - ($detail->price+$detail->product_option[$i]->price) * $detail->discount/100)}} vnđ </span>
+                                </p>
+                                <p style="height: 10px;margin: 0;transform: translateY(8px);font-size: 13px;display: {{$detail->discount == 0 ? 'none' : ''}}">Giá gốc
+                                    : <span class="text-secondary" style="text-decoration: line-through;font-size: 14px">{{number_format($detail->price+$detail->product_option[$i]->price)}} vnđ</span>
+                                </p>
+                            </div>
+                        </div>
+                    @endfor
+                </div>
+                <div style="height: 100%" class="row m-0 d-flex justify-content-center pt-2">
+                    <button class="m-auto" style="display: block;height: 40px;width: 49%">Đặt hàng ngay</button>
+                    <button class="btn_add_to_cartB m-auto" style="display: block;height: 40px;width: 49%;background: #66b8ff">Thêm vào giỏ hàng</button>
+                </div>
+                <div style="width: 100%;overflow: hidden">
+                    <p class="mt-5" style="font-size: 16px;font-weight: 600">Cấu hình</p>
+                    {!! $detail->content_detail !!}
                 </div>
             </div>
         </div>
@@ -149,5 +209,19 @@
                 show = false
             }
         })
+
+
+        $('.choice_optionB').click(function (){
+            choice_optionB(this.slot)
+            $('.option_active').removeClass('option_active')
+            this.classList.add('option_active')
+        })
+        function choice_optionB(id){
+            document.getElementById(id).click()
+        }
+        $('.btn_add_to_cartB').click(function (){
+            $('#btn_add_to_cartA').click()
+        })
+
     </script>
 @endsection

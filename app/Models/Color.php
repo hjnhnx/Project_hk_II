@@ -14,4 +14,8 @@ class Color extends Model
         'name',
         'color_code',
     ];
+
+    public function product_option(){
+        return $this->hasMany(Product_option::class);
+    }
 }

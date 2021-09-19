@@ -43,7 +43,6 @@
             <td>{{$item->created_at}}</td>
             <td class="actions text-center">
                 <a onclick="return confirm('Bạn có chắc muốn xóa liên hệ này')" href="{{route('delete_contact',$item->id)}}" class="on-default remove-row text-danger"><i class="fa fa-trash-o"></i></a>
-                <a href="#" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
             </td>
         </tr>
     @endforeach

@@ -13,9 +13,9 @@
 
 <p>Thông tin đơn hàng của bạn.</p>
 
-<p>Mã đơn hàng: S001</p>
+<p>Mã đơn hàng: # {{$order->order_code}}</p>
 
-<p>Ngày đặt hàng: 14/09/2021</p>
+<p>Ngày đặt hàng: {{date_format($order->created_at,'d/m/Y')}}</p>
 
 <p>Chi tiết sản phẩm</p>
 
@@ -30,27 +30,21 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>1</td>
-        <td>Iphone 12 pro Max</td>
-        <td>40.000.000</td>
-        <td>2</td>
-        <td>80.000.000</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>Iphone 11 pro </td>
-        <td>20.000.000</td>
-        <td>2</td>
-        <td>40.000.000</td>
-    </tr>
+    @foreach($order_detail as $key=>$item)
+        <tr>
+            <td>{{$key+1}}</td>
+            <td>{{\App\Models\Product::find(\App\Models\Product_option::find($item->product_option_id)->product_id)->name}}</td>
+            <td>{{number_format($item->unit_price)}} vnđ</td>
+            <td>{{$item->quantity}}</td>
+            <td>{{number_format($item->unit_price * $item->quantity)}} vnđ</td>
+        </tr>
+    @endforeach
     </tbody>
 </table>
-<h3>Tổng tiền thanh toán:</h3>
-<p>Số tiền viết bằng số: 120.000.000</p>
-<p>Số tiền viết bằng chữ: Một trăm hai mươi triệu đồng</p>
-<p>Mọi thắc mắc vui lòng liên hệ qua số Hotline: 0369.042.217</p>
-<p>hoặc phản hồi trực tiếp cho chúng tôi qua Email này.</p>
+<h3>Tổng giá trị kiện hàng : {{number_format($order->total_price)}} vnđ</h3>
+<p>Mọi thắc mắc vui lòng liên hệ qua số Hotline: <a href="tel:0987987789">0987.987.789</a></p>
+<p>hoặc phản hồi trực tiếp cho chúng tôi <a href="mailto:nguyenhjnh2002@gmail.com">tại đây</a></p>
+
 <p>Trân trọng!</p>
 </body>
 </html>
