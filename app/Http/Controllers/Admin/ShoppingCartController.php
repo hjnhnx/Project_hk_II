@@ -132,40 +132,58 @@ class ShoppingCartController extends Controller
     }
 
     public function create_order(Request $request){
-        $shopping_cart = Session::get('shoppingCart');
-        $buy_item = [];
-        $amount = 0;
-        foreach (json_decode($request->all_id) as $key => $item){
-            $id_cart = json_decode($request->all_id)[$key];
-            array_push($buy_item , $id_cart);
-            $amount += $shopping_cart[$id_cart]->price * $shopping_cart[$id_cart]->quantity;
-        }
+        if (!$request->no_cart == 1){
+            $shopping_cart = Session::get('shoppingCart');
+            $buy_item = [];
+            $amount = 0;
+            foreach (json_decode($request->all_id) as $key => $item){
+                $id_cart = json_decode($request->all_id)[$key];
+                array_push($buy_item , $id_cart);
+                $amount += $shopping_cart[$id_cart]->price * $shopping_cart[$id_cart]->quantity;
+            }
 
+            $order = new Order();
+            $order->fill($request->all());
+            $order->total_price = $amount;
+            if (Auth::check()){
+                $order->user_id = Auth::id();
+            }
+            $order->order_code = random_int(100000000,999999999);
+            $order->save();
 
-
-
-
-        $order = new Order();
-        $order->fill($request->all());
-        $order->total_price = $amount;
-        if (Auth::check()){
-            $order->user_id = Auth::id();
-        }
-        $order->order_code = random_int(100000000,999999999);
-        $order->save();
-
-        foreach ($buy_item as $item){
-            $product_option = Product_option::find($item);
+            foreach ($buy_item as $item){
+                $product_option = Product_option::find($item);
+                $order_detail = new Order_Detail();
+                $order_detail->product_option_id = $product_option->id;
+                $order_detail->quantity = $shopping_cart[$item]->quantity;
+                $order_detail->unit_price = $shopping_cart[$item]->price;
+                $order_detail->order_id = $order->id;
+                $order_detail->save();
+                $this->delete_cart($item);
+            }
+        }else{
+            $order = new Order();
+            $order->fill($request->all());
+            $order->total_price = $request->total_price;
+            if (Auth::check()){
+                $order->user_id = Auth::id();
+            }
+            $order->order_code = random_int(100000000,999999999);
+            $order->save();
+            $product_option = Product_option::find(json_decode($request->all_id)[0]);
             $order_detail = new Order_Detail();
             $order_detail->product_option_id = $product_option->id;
-            $order_detail->quantity = $shopping_cart[$item]->quantity;
-            $order_detail->unit_price = $shopping_cart[$item]->price;
+            $order_detail->quantity = 1;
+            $order_detail->unit_price = $request->total_price;
             $order_detail->order_id = $order->id;
             $order_detail->save();
-            $this->delete_cart($item);
         }
 
-        return redirect()->route('cart_view');
+        return view('client.checkout',[
+            'order'=>Order::query()->where('id',$order->id)->with('order_detail')->first(),
+            'banner' => null,
+            'sub_banner' => null,
+        ]);
 
     }
 

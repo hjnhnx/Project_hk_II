@@ -26,7 +26,7 @@ class UserController extends Controller
         $email = $request->email;
         $password = $request->password;
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
-                return redirect()->route('product');
+                return redirect()->route('user_profile');
         } else {
             $message = 'Sai tên đăng nhập hoặc mật khẩu !';
             return back()->with(['msg_login' => $message]);

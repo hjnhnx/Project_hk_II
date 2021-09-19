@@ -8563,8 +8563,8 @@ section.section-product-detail .left-image .carousel-container:hover .prev, sect
     display: none;
     cursor: pointer;
     position: absolute;
-    top: 10px;
-    left: 10px
+    top: 20px;
+    right: 10px
 }
 
 .mobile-menu-btn .bar1, .mobile-menu-btn .bar2, .mobile-menu-btn .bar3 {
@@ -9779,9 +9779,6 @@ section.home-about > .container .right-content ul li p {
 }
 
 @media only screen and (max-width: 1199.98px) {
-    .header .search-bar {
-        width: 215px
-    }
 
     .header .header-container {
         max-width: 100%;
@@ -9789,7 +9786,7 @@ section.home-about > .container .right-content ul li p {
     }
 
     .header-right {
-        max-width: 600px
+        max-width: 350px
     }
 
     .header-right > div:not(:nth-last-of-type(1)) {

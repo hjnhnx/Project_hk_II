@@ -38,7 +38,7 @@ Route::get('/about-us',[Controller::class, 'view_about_us'])->name('view_about_u
 
 Route::get('/contact-us',[Controller::class,'view_contact'])->name('contactus_view');
 Route::post('/contact-us',[Controller::class,'contact'])->name('contactus_send');
-Route::get('/send-mail',[Controller::class,'send_mail'])->name('mail_send');
+Route::get('/send-mail/{id}',[Controller::class,'send_mail'])->name('mail_send');
 
 Route::get('/signin',[Controller::class,'view_login'])->name('login_register');
 
@@ -60,5 +60,5 @@ Route::post('/remove_from_cart',[ShoppingCartController::class,'remove'])->name(
 
 Route::post('/create_order',[ShoppingCartController::class,'create_order'])->name('create_order');
 
-Route::get('/order',[Controller::class,'show_order'])->name('show_order');
+Route::get('/orders',[Controller::class,'list_order'])->name('list_order_client');
 

@@ -1,6 +1,6 @@
-@section('title','list Order | Admin')
+@section('title','Danh sách đơn hàng | Admin')
 @extends('.admin.layouts.table')
-@section('title_table','Orders table')
+@section('title_table','Danh sách đơn hàng')
 @section('custom_style_level_2')
     .Product_Action{
     min-width:120px;
@@ -32,8 +32,8 @@
         <input value="{{$key_search != null ? $key_search : ''}}" type="text" class="form-control" placeholder="Enter keyword" name="search">
     </div>
     <div class="form-group col-sm-4">
-        <button class="btn btn-primary">Search</button>
-        <button class="btn btn-danger">Clear filter</button>
+        <button class="btn btn-primary">Tìm kiếm</button>
+        <button class="btn btn-danger">Loại bỏ bộ lọc</button>
     </div>
     <div class="form-group col-sm-3">
         <select name="sort" id="" class="form-control sorted">
@@ -47,29 +47,42 @@
 @endsection
 
 @section('extra_filter')
-{{--    <div style="height: 100px" class="col-md-12 row">--}}
-{{--        <div class="form-group col-md-3">--}}
-{{--            <input type="text" class="form-control">--}}
-{{--        </div>--}}
-{{--        <div class="form-group col-md-3">--}}
-{{--            <input type="text" class="form-control">--}}
-{{--        </div>--}}
-{{--        <div class="form-group col-md-3">--}}
-{{--            <input type="text" class="form-control">--}}
-{{--        </div>--}}
-{{--        <div class="form-group col-md-3">--}}
-{{--            <input type="text" class="form-control">--}}
-{{--        </div>--}}
-{{--        <div class="form-group col-md-3">--}}
-{{--            <input type="text" class="form-control">--}}
-{{--        </div>--}}
-{{--        <div class="form-group col-md-3">--}}
-{{--            <input type="text" class="form-control">--}}
-{{--        </div>--}}
-{{--        <div class="form-group col-md-3">--}}
-{{--            <input type="text" class="form-control">--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    <div style="height: 100px" class="col-md-12 row">
+        <div class="form-group col-md-3">
+            <input type="text" class="form-control" placeholder="Tìm kiếm theo tên người nhận">
+        </div>
+        <div class="form-group col-md-3">
+            <input type="text" class="form-control" placeholder="Tìm kiếm theo email">
+        </div>
+        <div class="form-group col-md-3">
+            <input type="text" class="form-control" placeholder="Tìm kiếm theo địa chỉ">
+        </div>
+        <div class="form-group col-md-3">
+            <input type="text" class="form-control" placeholder="Tìm kiếm theo mã đơn hàng">
+        </div>
+        <div class="form-group col-md-3">
+            <input type="text" class="form-control" placeholder="Tìm kiếm theo số điện thoại">
+        </div>
+        <div class="form-group col-md-3">
+            <select name="" id="" class="form-control">
+                <option hidden>Lọc theo thành viên</option>
+                <option value="">Người dùng là thành viên hệ thống</option>
+                <option value="">Người dùng không là thành viên hệ thống</option>
+            </select>
+        </div>
+        <div class="form-group col-md-3">
+            <select name="" id="" class="form-control">
+                <option hidden>Lọc theo ngày</option>
+                <option value="">Hôm nay</option>
+                <option value="">7 ngày gần đây</option>
+                <option value="">15 ngày gần đây</option>
+                <option value="">1 tháng gần đây</option>
+            </select>
+        </div>
+        <div class="form-group col-md-3">
+            <button class="btn btn-primary form-control">Tất cả</button>
+        </div>
+    </div>
 @endsection
 
 @section('table_head')
@@ -85,7 +98,6 @@
         <th>Trạng thái thanh toán</th>
         <th>Trạng thái đơn hàng</th>
         <th>Ngày tạo</th>
-        <th class="text-center ">Thao tác</th>
     </tr>
 @endsection
 @section('table_body')
@@ -113,10 +125,7 @@
                     Đã hủy đơn hàng
                 @endif
             </td>
-            <td>29-08-2021</td>
-            <td class="actions text-center">
-                <a href="#" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
-            </td>
+            <td>{{date_format($item->created_at,'d/m/Y')}}</td>
         </tr>
     @endforeach
     <div style="position: absolute;bottom: 20px">

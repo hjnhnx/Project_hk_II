@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ShoppingCartController;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,5 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/get-data-product/{id}',[Controller::class,'get_data_product'])->name('get_data_product');
 
 

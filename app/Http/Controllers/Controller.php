@@ -7,12 +7,16 @@ use App\Enums\Status;
 use App\Models\Banner;
 use App\Models\Brand;
 use App\Models\Contact;
+use App\Models\Order;
+use App\Models\Order_Detail;
 use App\Models\Product;
+use App\Models\Product_option;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class Controller extends BaseController
@@ -21,11 +25,28 @@ class Controller extends BaseController
 
     public function home()
     {
-        $brands = Brand::query()->with('product')->orderBy('name', 'ASC')->where('status',Status::ACTIVE)->get();
+        $p_hot = Product::query()->where('status', Status::ACTIVE)->where('price', '<', 25000000)->orderBy('price', 'DESC')->take(6)->get();
+        $p_new = Product::query()->where('status', Status::ACTIVE)->orderBy('id', 'DESC')->take(6)->get();
+        $p_sale = Product::query()->where('status', Status::ACTIVE)->orderBy('discount', 'DESC')->take(6)->get();
+        $p_flagship = Product::query()->where('status', Status::ACTIVE)->orderBy('price', 'DESC')->take(6)->get();
+        $p_midrange = Product::query()->where('status', Status::ACTIVE)->where('price', '<', 12000000)->where('price', '>', 5000000)->orderBy('price', 'DESC')->take(6)->get();
+        $p_cheap = Product::query()->where('status', Status::ACTIVE)->where('price', '<', 5000000)->orderBy('price', 'DESC')->take(6)->get();
+
+
         $banner = Banner::query()->where('type', BannerType::BANNER)->get();
         $sub_banner = Banner::query()->where('type', BannerType::SUBBANNER)->take(3)->get();
-        return view('client.index', ['brands' => $brands, 'banner' => $banner, 'sub_banner' => $sub_banner]);
+        return view('client.index', [
+            'p_sale' => $p_sale,
+            'p_new' => $p_new,
+            'p_hot' => $p_hot,
+            'banner' => $banner,
+            'sub_banner' => $sub_banner,
+            'p_flagship' => $p_flagship,
+            'p_midrange' => $p_midrange,
+            'p_cheap' => $p_cheap,
+        ]);
     }
+
 
     public function product_detail($slug)
     {
@@ -45,8 +66,8 @@ class Controller extends BaseController
         if ($brand_s) {
             $query_builder->orderBy('price', 'DESC')->where('status', Status::ACTIVE)->where('brand_id', Brand::query()->where('name', $brand_s)->first()->id);
         }
-        if ($smart_phone){
-            $query_builder->orderBy('price', 'DESC')->where('status', Status::ACTIVE)->where('name','like','%' . $smart_phone . '%');
+        if ($smart_phone) {
+            $query_builder->orderBy('price', 'DESC')->where('status', Status::ACTIVE)->where('name', 'like', '%' . $smart_phone . '%');
         }
         if ($price_s && $price_s == 't->c') {
             $query_builder->orderBy('price', 'ASC')->where('status', Status::ACTIVE);
@@ -69,7 +90,7 @@ class Controller extends BaseController
         $product_sale = Product::query()->orderBy('discount', 'DESC')->where('status', Status::ACTIVE)->take(5)->get();
         $brands = Brand::query()->where('status', Status::ACTIVE)->get();
 
-        $products = $query_builder->paginate(20);
+        $products = $query_builder->orderBy('id', 'DESC')->paginate(20);
 
         return view('client.products', [
             'list' => $products,
@@ -77,17 +98,22 @@ class Controller extends BaseController
             'sub_banner' => null,
             'product_sale' => $product_sale,
             'product_new' => $product_new,
-            'brands' => $brands
+            'brands' => $brands,
+            'brand_s' => $brand_s
         ]);
     }
-    public function view_about_us(){
-        return view('client.about_us',[
-            'banner'=>null,
-            'sub_banner'=>null,
+
+    public function view_about_us()
+    {
+        return view('client.about_us', [
+            'banner' => null,
+            'sub_banner' => null,
         ]);
     }
-    public function view_contact(){
-        return view('client.contactus',[ 'banner'=>null, 'sub_banner'=>null,]);
+
+    public function view_contact()
+    {
+        return view('client.contactus', ['banner' => null, 'sub_banner' => null,]);
     }
 
     public function contact(Request $request)
@@ -97,27 +123,69 @@ class Controller extends BaseController
         $contact->save();
         return back()->with('message', 'Thông tin của bạn đã gửi thành công!');
     }
-    public function view_login(){
-        return view('client.login_register',[
-            'banner'=>null,
-            'sub_banner'=>null,
-        ]);
-    }
-    public function send_mail(){
-        $data = [
-            'name'=>'SunMobile',
-        ];
-        Mail::send('send_mail',$data,function ($message){
-            $message->from('SunMobile@outlook.com.vn','SunMobile');
-            $message->to('cuongnmth2009037@fpt.edu.vn','cuong');
-            $message->subject('Cảm ơn bạn đã mua hàng tại SunMobile.');
-        });
+
+    public function view_login()
+    {
+        if (Auth::check()) {
+            return redirect()->route('user_profile');
+        } else {
+            return view('client.login_register', [
+                'banner' => null,
+                'sub_banner' => null,
+            ]);
+        }
+
     }
 
-    public function show_order(){
-        return view('client.order_detail',[
-            'banner'=>null,
-            'sub_banner'=>null,
+    public function send_mail($id)
+    {
+        $order = Order::find($id);
+        $order_detail = Order_Detail::query()->where('order_id',$id)->get();
+        $toName = $order->ship_name;
+        $userEmail = $order->ship_email;
+        Mail::send('send_mail', ['order'=>$order,'order_detail'=>$order_detail], function ($message) use ($toName, $userEmail) {
+            $message->to($userEmail, $toName)
+                ->subject('Cảm ơn bạn đã mua hàng tại Sun Mobile.');
+            $message->from(env('MAIL_USERNAME'), 'Sun Mobile');
+        });
+        return redirect()->route('home_page');
+    }
+
+    public function list_order(Request $request)
+    {
+        if (Auth::check()) {
+            $order = Order::query()->where('user_id', Auth::id())->orderBy('id', 'DESC')->with('order_detail')->get();
+            return view('client.order_detail', [
+                'list' => $order,
+                'banner' => null,
+                'sub_banner' => null,
+            ]);
+        } else if ($request->ship_email && $request->ship_phone) {
+            $order = Order::query()->where(['ship_email'=>$request->ship_email,'ship_phone'=>$request->ship_phone])->orderBy('id', 'DESC')->with('order_detail')->get();
+            if ($order != null){
+                return view('client.order_detail', [
+                    'list' => $order,
+                    'banner' => null,
+                    'sub_banner' => null,
+                ]);
+            }else {
+                return back()->with('error_message','Không tìm thấy đơn hàng tương ứng');
+            }
+        } else {
+            return view('client.order_detail', [
+                'list'=>null,
+                'banner' => null,
+                'sub_banner' => null,
+            ]);
+        }
+    }
+
+    public function get_data_product($id){
+        $product = Product::query()->where('id',$id)->with('product_option')->first();
+        $product_option = Product_option::query()->where('product_id',$id)->with('color')->get();
+        return response()->json([
+            'product'=>$product,
+            'product_option'=>$product_option
         ]);
     }
 }

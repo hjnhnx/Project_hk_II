@@ -1,0 +1,172 @@
+@media only screen and (min-width: 992px) {
+    #mobile_view_cart{
+        display: none;
+    }
+    .hidden_item {
+        display: none!important;
+    }
+}
+@media only screen and (max-width: 991px) {
+    .container-contact1 {
+        padding: 30px;
+    }
+    .table_show_order_destop {
+        display: none;
+    }
+    .table_show_order_mobile {
+        display: block!important;
+    }
+    .show_profile_desktop {
+        display: none!important;
+    }
+    .show_profile_mobile {
+        display: block!important;
+    }
+    #login {
+        padding: 20px!important;
+    }
+    #register {
+        padding: 15px!important;
+    }
+    #register .form-group {
+        padding: 0 15px;
+    }
+    .form_container {
+        height: auto!important;
+        overflow: scroll!important;
+    }
+    .mini_shoppingcart {
+        display: block!important;
+        font-size:18px ;
+        position: absolute;
+        right: 65px;
+        top: 17px;
+        color: #ff791f;
+    }
+    .text_mini {
+        font-size: 13px!important;
+    }
+    .hotline {
+        display: none;
+    }
+    .product-image > img {
+        width: 80%!important;
+        height: 80%!important;
+    }
+    .call_now {
+        height: 55px;
+        width: 55px;
+        position: fixed;
+        bottom: 60px;
+        left: 10px;
+        background: #f15a25;
+        display: flex;
+        border-radius: 50%;
+        justify-content: center;
+        align-items: center;
+    }
+    .containerA {
+        display: none;
+    }
+    .containerB {
+        display: block!important;
+    }
+
+    .desktopView {
+        display: none!important;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .other_product_thumbnail {
+        height: 60%!important;
+    }
+}
+@media only screen and (max-width: 1199px) {
+    .container-contact1 {
+        padding: 30px!important;
+    }
+    #home-banner-gallery {
+        height: 400px;
+    }
+    .other_product_thumbnail {
+        height: 43%!important;
+    }
+    .images {
+        padding: 0!important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #home-banner-gallery {
+        height: 250px!important;
+    }
+    .btn_play_video , .btn_go_to_product {
+        height: 35px!important;
+        width: 120px!important;
+        border-radius: 3px;
+    }
+    .hotline {
+        display: none;
+    }
+    .product-image > img {
+        width: 100%!important;
+        height: 100%!important;
+    }
+    .call_now {
+        height: 55px;
+        width: 55px;
+        position: fixed;
+        bottom: 60px!important;
+        left: 10px;
+        background: #f15a25;
+        display: flex;
+        border-radius: 50%;
+        justify-content: center;
+        align-items: center;
+    }
+    .container-contact1 {
+        padding: 5px!important;
+    }
+    .mobile_container {
+        padding: 10px!important;
+    }
+}
+
+
+
+.modal_menu ul {
+    list-style: none;
+    padding: 40px 0;
+}
+
+.modal_menu ul li a {
+    height: 100%;
+    width: 100%;
+    display: block;
+    line-height: 35px;
+    text-align: center;
+}
+
+.modal_menu ul li {
+    border-radius: 3px;
+    height: 35px;
+    width: 80%;
+    display: block;
+    text-align: center;
+    margin: 10px auto;
+    background: whitesmoke;
+}
+#close_modal_menu{
+    font-size: 35px;
+    color: white;
+    position: fixed;
+    top: -5px;
+    right: 5px;
+}
+
+.modal-dialog {
+    margin: 5rem auto!important;
+}
+.option_active {
+    border: #f88989 2px solid !important;
+}
