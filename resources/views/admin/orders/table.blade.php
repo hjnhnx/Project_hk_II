@@ -115,7 +115,7 @@
             </td>
             <td>29-08-2021</td>
             <td class="actions text-center">
-                <a href="#" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
+                <a href="/admin/order-detail/{{$item->id}}/show" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
             </td>
         </tr>
     @endforeach

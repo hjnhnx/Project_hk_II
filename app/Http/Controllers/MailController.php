@@ -9,7 +9,6 @@ class MailController extends Controller
 {
     public function send_mail(){
         $data = [
-            'name'=>'SunMobile',
         ];
         Mail::send('send_mail',$data,function ($message){
             $message->from('SunMobile@outlook.com.vn','SunMobile');
