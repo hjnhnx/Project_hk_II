@@ -155,17 +155,11 @@
                 $('.show_mini_images').append(`<img class="mr-2" onclick="change_img(this)" style="object-fit: cover;height: 100%;width: 85px" src="${images[i]}" alt="">`)
             }
 
-            $('.after_price').text(`${new Intl.NumberFormat('vi-VN', {
-                style: 'currency',
-                currency: 'VND'
-            }).format(data.product.price + data.product_option[0].price - (data.product.price + data.product_option[0].price) * data.product.discount / 100)}`)
-            $('.before_price').text(`${new Intl.NumberFormat('vi-VN', {
-                style: 'currency',
-                currency: 'VND'
-            }).format(data.product.price + data.product_option[0].price)}`)
+            $('.after_price').text(`${formatNumber(data.product.price + data.product_option[0].price - (data.product.price + data.product_option[0].price) * data.product.discount / 100)} vnđ`)
+            $('.before_price').text(`${formatNumber(data.product.price + data.product_option[0].price)} vnđ`)
             $('.show_option').html('')
             for (let i = 0; i < data.product_option.length; i++) {
-                $('.show_option').append(`<div onclick="choi_option(this)" id="${data.product_option[i].id}" slot="${data.product_option[i].thumbnail}~!!!~${data.product.price + data.product_option[i].price - (data.product.price + data.product_option[i].price) * data.product.discount / 100}~!!!~${number_format(data.product.price + data.product_option[i].price)}~!!!~${data.product_option[i].ram}" style="border: #bdbdbd 1px solid;height: 90px;overflow: hidden;margin: 5px 0"
+                $('.show_option').append(`<div onclick="choi_option(this)" id="${data.product_option[i].id}" slot="${data.product_option[i].thumbnail}~!!!~${data.product.price + data.product_option[i].price - (data.product.price + data.product_option[i].price) * data.product.discount / 100}~!!!~${formatNumber(data.product.price + data.product_option[i].price)}~!!!~${data.product_option[i].ram}" style="border: #bdbdbd 1px solid;height: 90px;overflow: hidden;margin: 5px 0"
 class="row p-0">
                             <img style="height: 90px;width: 90px;object-fit: cover" src="${data.product_option[i].thumbnail}" alt="">
                             <div class="col" style="height: 100%">
@@ -173,11 +167,8 @@ class="row p-0">
                                 <p class="m-0 pt-1 text-danger ">${new Intl.NumberFormat('vi-VN', {
                     style: 'currency',
                     currency: 'VND'
-                }).format(data.product.price + data.product_option[i].price - (data.product.price + data.product_option[i].price) * data.product.discount / 100)}</p>
-                                <p style="text-decoration: line-through" class="text-secondary m-0 pt-1">${new Intl.NumberFormat('vi-VN', {
-                    style: 'currency',
-                    currency: 'VND'
-                }).format(data.product.price + data.product_option[i].price)}</p>
+                }).format(data.product.price + data.product_option[i].price - (data.product.price + data.product_option[i].price) * data.product.discount / 100)} vnđ</p>
+                                <p style="text-decoration: line-through" class="text-secondary m-0 pt-1">${formatNumber(data.product.price + data.product_option[i].price)} vnđ</p>
                             </div>
                         </div>`)
             }
@@ -197,8 +188,8 @@ class="row p-0">
         var price = item.slot.split('~!!!~')[2]
         var ram = item.slot.split('~!!!~')[3]
         $('.show_image').attr('src', image)
-        $('.sale_price').html(new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(Number(sale_price)))
-        $('.price').html(price + ' đ')
+        $('.sale_price').html(formatNumber(sale_price)+' vnđ')
+        $('.price').html(price + ' vnđ')
         $('.total_price').val(Number(sale_price))
     }
 
@@ -209,6 +200,10 @@ class="row p-0">
         $('.no_cart').val(1)
         $('.exampleModal1').click()
     })
+
+    function formatNumber(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
 
 
 </script>
