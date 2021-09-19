@@ -44,6 +44,18 @@ class DatabaseSeeder extends Seeder
                 'password'=>'$2y$10$1xqTYSwqFKNQyQjq1BWLi.Aee4xPHX8xwXTDMcBvH9EL57lOS0kQW',
                 'created_at'=>Carbon::now()
             ],
+            ['firstname'=>'Nguyen Xuan',
+                'lastname'=>'Hjnh',
+                'avatar'=>'https://kenh14cdn.com/2020/8/28/photo-1-15986171022051518128948.jpg',
+                'address'=>'ha noi viet nam chau a thai binh duong nguoi dung',
+                'phone'=>'088888888',
+                'birthday'=>Carbon::now()->addYear(-20),
+                'email'=>'nguyenhjnh2002@gmail.com',
+                'role'=>Role::ADMIN,
+                'status'=>Status::ACTIVE,
+                'password'=>'$2y$10$1xqTYSwqFKNQyQjq1BWLi.Aee4xPHX8xwXTDMcBvH9EL57lOS0kQW',
+                'created_at'=>Carbon::now()
+            ],
         ]);
         $this->call([
             BrandSeeder::class,
