@@ -13,7 +13,15 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'smtp'),
+    'default' => env('MAIL_DRIVER', 'smtp'),
+
+    'stream' => [
+        'ssl' => [
+            'allow_self_signed' => true,
+            'verify_peer'       => false,
+            'verify_peer_name'  => false,
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------
