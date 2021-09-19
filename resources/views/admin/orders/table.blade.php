@@ -98,6 +98,7 @@
         <th>Trạng thái thanh toán</th>
         <th>Trạng thái đơn hàng</th>
         <th>Ngày tạo</th>
+        <th>Thao tác</th>
     </tr>
 @endsection
 @section('table_body')
