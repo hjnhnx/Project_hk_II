@@ -6,6 +6,9 @@ use App\Enums\Sort;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Order_Detail;
+use App\Models\Product;
+use App\Models\Product_option;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class OrderDetailController extends Controller
@@ -24,7 +27,9 @@ class OrderDetailController extends Controller
         return view('admin.order_detail.table',['list'=>$order_detail]);
     }
 
-    public function showDetail(){
-        return view('admin.order_detail.showOrderDetail');
+    public function showDetail($id){
+        $order = Order::query()->where('id',$id)->first();
+        $order_details = Order_Detail::query()->where('order_id',$order->id)->with('product_option')->get();
+        return view('admin.order_detail.showOrderDetail',['order'=>$order],['order_details'=>$order_details]);
     }
 }

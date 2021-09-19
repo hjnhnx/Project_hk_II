@@ -126,6 +126,10 @@
                 @endif
             </td>
             <td>{{date_format($item->created_at,'d/m/Y')}}</td>
+            <td class="actions text-center">
+                <a href="/admin/order-detail/{{$item->id}}/show" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
+            </td>
+
         </tr>
     @endforeach
     <div style="position: absolute;bottom: 20px">

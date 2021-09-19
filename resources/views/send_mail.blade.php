@@ -44,6 +44,7 @@
 <h3>Tổng giá trị kiện hàng : {{number_format($order->total_price)}} vnđ</h3>
 <p>Mọi thắc mắc vui lòng liên hệ qua số Hotline: <a href="tel:0987987789">0987.987.789</a></p>
 <p>hoặc phản hồi trực tiếp cho chúng tôi <a href="mailto:nguyenhjnh2002@gmail.com">tại đây</a></p>
+
 <p>Trân trọng!</p>
 </body>
 </html>

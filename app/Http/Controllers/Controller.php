@@ -137,6 +137,7 @@ class Controller extends BaseController
 
     }
 
+
     public function send_mail($id)
     {
         $order = Order::find($id);
