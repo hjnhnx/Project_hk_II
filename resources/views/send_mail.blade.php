@@ -49,7 +49,7 @@
 <h3>Tổng tiền thanh toán:</h3>
 <p>Số tiền viết bằng số: 120.000.000</p>
 <p>Số tiền viết bằng chữ: Một trăm hai mươi triệu đồng</p>
-<p>Mọi thắc mắc vui lòng liên hệ qua số Hotline: 0888.888.888</p>
+<p>Mọi thắc mắc vui lòng liên hệ qua số Hotline: 0369.042.217</p>
 <p>hoặc phản hồi trực tiếp cho chúng tôi qua Email này.</p>
 <p>Trân trọng!</p>
 </body>
