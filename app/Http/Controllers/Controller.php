@@ -147,7 +147,7 @@ class Controller extends BaseController
         Mail::send('send_mail', ['order'=>$order,'order_detail'=>$order_detail], function ($message) use ($toName, $userEmail) {
             $message->to($userEmail, $toName)
                 ->subject('Cảm ơn bạn đã mua hàng tại Sun Mobile.');
-            $message->from('hjnhhjnh1403@outlook.com', 'Sun Mobile');
+            $message->from(env('MAIL_USERNAME'), 'Sun Mobile');
         });
         return redirect()->route('home_page');
     }
