@@ -155,20 +155,17 @@
                 $('.show_mini_images').append(`<img class="mr-2" onclick="change_img(this)" style="object-fit: cover;height: 100%;width: 85px" src="${images[i]}" alt="">`)
             }
 
-            $('.after_price').text(`${formatNumber(data.product.price + data.product_option[0].price - (data.product.price + data.product_option[0].price) * data.product.discount / 100)} vnđ`)
+            $('.after_price').text(`${formatNumber(Number(data.product.price) + Number(data.product_option[0].price) - ((Number(data.product.price) + Number(data.product_option[0].price)) * Number(data.product.discount) / 100))} vnđ`)
             $('.before_price').text(`${formatNumber(data.product.price + data.product_option[0].price)} vnđ`)
             $('.show_option').html('')
             for (let i = 0; i < data.product_option.length; i++) {
-                $('.show_option').append(`<div onclick="choi_option(this)" id="${data.product_option[i].id}" slot="${data.product_option[i].thumbnail}~!!!~${data.product.price + data.product_option[i].price - (data.product.price + data.product_option[i].price) * data.product.discount / 100}~!!!~${formatNumber(data.product.price + data.product_option[i].price)}~!!!~${data.product_option[i].ram}" style="border: #bdbdbd 1px solid;height: 90px;overflow: hidden;margin: 5px 0"
+                $('.show_option').append(`<div onclick="choi_option(this)" id="${data.product_option[i].id}" slot="${data.product_option[i].thumbnail}~!!!~${Number(data.product.price) + Number(data.product_option[i].price) - ((Number(data.product.price) + Number(data.product_option[i].price)) * Number(data.product.discount) / 100)}~!!!~${formatNumber(Number(data.product.price) + Number(data.product_option[i].price))}~!!!~${data.product_option[i].ram}" style="border: #bdbdbd 1px solid;height: 90px;overflow: hidden;margin: 5px 0"
 class="row p-0">
                             <img style="height: 90px;width: 90px;object-fit: cover" src="${data.product_option[i].thumbnail}" alt="">
                             <div class="col" style="height: 100%">
                                 <p class="m-0 pt-1 ">${data.product_option[i].color.name} - ${data.product_option[i].ram} / ${data.product_option[i].rom}GB</p>
-                                <p class="m-0 pt-1 text-danger ">${new Intl.NumberFormat('vi-VN', {
-                    style: 'currency',
-                    currency: 'VND'
-                }).format(data.product.price + data.product_option[i].price - (data.product.price + data.product_option[i].price) * data.product.discount / 100)} vnđ</p>
-                                <p style="text-decoration: line-through" class="text-secondary m-0 pt-1">${formatNumber(data.product.price + data.product_option[i].price)} vnđ</p>
+                                <p class="m-0 pt-1 text-danger ">${formatNumber(Number(data.product.price) + Number(data.product_option[i].price) - ((Number(data.product.price) + Number(data.product_option[i].price)) * Number(data.product.discount) / 100))} vnđ</p>
+                                <p style="text-decoration: line-through" class="text-secondary m-0 pt-1">${formatNumber(Number(data.product.price) + Number(data.product_option[i].price))} vnđ</p>
                             </div>
                         </div>`)
             }
