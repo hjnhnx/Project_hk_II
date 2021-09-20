@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-//        $fake = Factory::create();
         DB::table('users')->insert([
             ['firstname'=>'Nguyễn Xuân',
                 'lastname'=>'Hjnh',
@@ -62,13 +61,12 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ProductSeeder::class,
             ProductOptionSeeder::class,
-//            UserSeeder::class,
             CategoriesSeeder::class,
             ContactSeeder::class,
             ColorSeeder::class,
             BannerSeeder::class,
-//            OrderSeeder::class,
-//            OrderDetailSeeder::class
+            OrderSeeder::class,
+            OrderDetailSeeder::class
         ]);
 
 

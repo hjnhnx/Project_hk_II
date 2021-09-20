@@ -21,4 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::get('/get-data-product/{id}',[Controller::class,'get_data_product'])->name('get_data_product');
 
-
+Route::get('/brand',[Controller::class,'get_data_brand']);

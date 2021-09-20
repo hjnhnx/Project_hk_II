@@ -80,10 +80,7 @@
                             toán khi nhận hàng</a></button>
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 d-block p-2">
-                    <button style="height: 50px;width: 100%"><a href=""
-                                                                class="d-flex justify-content-center align-items-center"
-                                                                style="height: 100%;width: 100%;text-decoration: none;color: white">Thanh
-                            toán luôn với vnpay</a></button>
+                    <button style="height: 50px;width: 100%"><a href="{{route('payment',$order->id)}}" class="d-flex justify-content-center align-items-center" style="height: 100%;width: 100%;text-decoration: none;color: white">Thanh toán luôn với vnpay</a></button>
                 </div>
             </div>
         </div>

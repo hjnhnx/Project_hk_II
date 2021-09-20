@@ -26,7 +26,7 @@
                                 </p>
                                 <p class="m-0" style="font-weight: 600">Trạng thái đơn hàng : <span class="text-danger">
                                     @if($item->status == \App\Enums\OrderStatus::Create)
-                                            Chờ xác nhận
+                                            Đã nhận đơn hàng
                                         @elseif($item->status == \App\Enums\OrderStatus::Delivery)
                                             Đang giao hàng
                                         @elseif($item->status == \App\Enums\OrderStatus::Complete)
@@ -78,7 +78,7 @@
                                 </p>
                                 <p class="m-0" style="font-weight: 600">Trạng thái đơn hàng : <span class="text-danger">
                                     @if($item->status == \App\Enums\OrderStatus::Create)
-                                            Chờ xác nhận
+                                            Đã nhận đơn hàng
                                         @elseif($item->status == \App\Enums\OrderStatus::Delivery)
                                             Đang giao hàng
                                         @elseif($item->status == \App\Enums\OrderStatus::Complete)

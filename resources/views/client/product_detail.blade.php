@@ -36,10 +36,10 @@
                 </div>
                 <div class="col-12 pt-4 row">
                     <div class="col-6">
-                        <button style="width: 100%;height: 55px">Mua ngay</button>
+                        <button  class="btn_buy_now2" style="width: 100%;height: 55px">Mua ngay</button>
                     </div>
                     <div class="col-6">
-                        <button id="btn_add_to_cartA" onclick="add_to_cart($('#option_id').val())" style="width: 100%;height: 55px;background: #30a4fe">Thêm vào giỏ hàng</button>
+                        <button slot="{{$detail->product_option[0]->id}}" id="btn_add_to_cartA" onclick="add_to_cart($('#option_id').val(),this)" style="width: 100%;height: 55px;background: #30a4fe">Thêm vào giỏ hàng</button>
                     </div>
                 </div>
                 <div class="col-12 row p-4">
@@ -77,7 +77,7 @@
 
                         @for($i = 0 ; $i < sizeof($detail->product_option) ; $i++)
                             <div id="{{$detail->product_option[$i]->id}}" slot="{{$detail->product_option[$i]->thumbnail}}~!!!~{{number_format($detail->price+$detail->product_option[$i]->price - ($detail->price+$detail->product_option[$i]->price) * $detail->discount/100 )}}~!!!~{{number_format($detail->price+$detail->product_option[$i]->price)}}~!!!~{{$detail->product_option[$i]->ram}}"
-                                class="col-lg-12 col-xl-6  border p-1 choice_option" style="height: 80px;padding: 0;cursor: pointer">
+                                class="col-lg-12 col-xl-6  border p-1 choice_option {{$i == 0 ? 'option_active' : ''}}" style="height: 80px;padding: 0;cursor: pointer">
                                 <div style="height: 100%;width: 80px;float: left;padding-right: 5px">
                                     <img style=";object-fit: cover;height: 100%;width: 100%"
                                          src="{{$detail->product_option[$i]->thumbnail}}" alt="">

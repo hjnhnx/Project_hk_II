@@ -48,40 +48,42 @@
 
 @section('extra_filter')
     <div style="height: 100px" class="col-md-12 row">
-        <div class="form-group col-md-3">
-            <input type="text" class="form-control" placeholder="Tìm kiếm theo tên người nhận">
-        </div>
-        <div class="form-group col-md-3">
-            <input type="text" class="form-control" placeholder="Tìm kiếm theo email">
-        </div>
-        <div class="form-group col-md-3">
-            <input type="text" class="form-control" placeholder="Tìm kiếm theo địa chỉ">
-        </div>
-        <div class="form-group col-md-3">
-            <input type="text" class="form-control" placeholder="Tìm kiếm theo mã đơn hàng">
-        </div>
-        <div class="form-group col-md-3">
-            <input type="text" class="form-control" placeholder="Tìm kiếm theo số điện thoại">
-        </div>
-        <div class="form-group col-md-3">
-            <select name="" id="" class="form-control">
-                <option hidden>Lọc theo thành viên</option>
-                <option value="">Người dùng là thành viên hệ thống</option>
-                <option value="">Người dùng không là thành viên hệ thống</option>
-            </select>
-        </div>
-        <div class="form-group col-md-3">
-            <select name="" id="" class="form-control">
-                <option hidden>Lọc theo ngày</option>
-                <option value="">Hôm nay</option>
-                <option value="">7 ngày gần đây</option>
-                <option value="">15 ngày gần đây</option>
-                <option value="">1 tháng gần đây</option>
-            </select>
-        </div>
-        <div class="form-group col-md-3">
-            <button class="btn btn-primary form-control">Tất cả</button>
-        </div>
+        <form action="" method="get" id="form_filter">
+            <div class="form-group col-md-3">
+                <input type="text" class="form-control" name="user_name" placeholder="Tìm kiếm theo tên người nhận">
+            </div>
+            <div class="form-group col-md-3">
+                <input type="text" class="form-control" name="user_email" placeholder="Tìm kiếm theo email">
+            </div>
+            <div class="form-group col-md-3">
+                <input type="text" class="form-control" name="ship_address" placeholder="Tìm kiếm theo địa chỉ">
+            </div>
+            <div class="form-group col-md-3">
+                <input type="text" class="form-control" name="order_code" placeholder="Tìm kiếm theo mã đơn hàng">
+            </div>
+            <div class="form-group col-md-3">
+                <input type="text" class="form-control" name="user_phone" placeholder="Tìm kiếm theo số điện thoại">
+            </div>
+            <div class="form-group col-md-3">
+                <select name="member" id="is_member" class="form-control">
+                    <option hidden>Lọc theo thành viên</option>
+                    <option value="1">Người dùng là thành viên hệ thống</option>
+                    <option value="2">Người dùng không là thành viên hệ thống</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <select name="date_filter" id="" class="form-control date_filter">
+                    <option value="" hidden>Lọc theo ngày</option>
+                    <option value="now">Hôm nay</option>
+                    <option value="7day">7 ngày gần đây</option>
+                    <option value="15day">15 ngày gần đây</option>
+                    <option value="30day">1 tháng gần đây</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <button class="btn btn-primary form-control">Tất cả</button>
+            </div>
+        </form>
     </div>
 @endsection
 
@@ -130,10 +132,10 @@
             <td class="actions text-center">
                 <a href="/admin/order-detail/{{$item->id}}/show" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
             </td>
-
         </tr>
     @endforeach
     <div style="position: absolute;bottom: 20px">
+        <p>Doanh thu : {{number_format($amount)}} vnđ</p>
         <span style="margin-right: 30px">Check all <input id="check_all" type="checkbox" style="transform: translateY(2px)"></span>
         <select name="order_status" id="order_status" style="width: 130px">
             <option hidden>Change status</option>
@@ -181,6 +183,12 @@
                     $('#form_update_status').submit()
                 }
             })
+        })
+        $('#is_member').change(function (){
+            $('#form_filter').submit()
+        })
+        $('.date_filter').change(function (){
+            $('#form_filter').submit()
         })
     </script>
 @endsection

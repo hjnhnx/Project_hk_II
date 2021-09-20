@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Order_Detail;
+use App\Models\Product;
+use App\Models\Product_option;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,19 +17,25 @@ class OrderDetailSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('order_details')->insert([
-            [
-                'product_option_id'=>1,
-                'order_id'=>1,
+        for ($i = 1; $i <= 239; $i++) {
+            $product_option = Product_option::query()->where('id',$i)->first();
+            Order_Detail::create([
+                'product_option_id'=>$product_option->id,
+                'product_id'=>$product_option->product_id,
+                'order_id'=>$i,
                 'quantity'=>2,
-                'unit_price'=>100,
-            ],
-            [
-                'product_option_id'=>2,
-                'order_id'=>2,
-                'quantity'=>1,
-                'unit_price'=>150,
-            ],
-        ]);
+                'unit_price'=>Product::find($product_option->product_id)->price + $product_option->price,
+            ]);
+        }
+        for ($i = 240; $i <= 500; $i++) {
+            $product_option = Product_option::query()->where('id',random_int(1,239))->first();
+            Order_Detail::create([
+                'product_option_id'=>$product_option->id,
+                'product_id'=>$product_option->product_id,
+                'order_id'=>$i,
+                'quantity'=>2,
+                'unit_price'=>Product::find($product_option->product_id)->price + $product_option->price,
+            ]);
+        }
     }
 }

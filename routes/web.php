@@ -56,3 +56,7 @@ Route::post('/remove_from_cart',[ShoppingCartController::class,'remove'])->name(
 Route::post('/create_order',[ShoppingCartController::class,'create_order'])->name('create_order');
 Route::get('/orders',[Controller::class,'list_order'])->name('list_order_client');
 
+Route::get('/payment/{id}',[Controller::class,'payment'])->name('payment');
+Route::get('/payment/response',function (){
+    return redirect('/');
+});

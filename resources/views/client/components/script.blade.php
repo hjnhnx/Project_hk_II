@@ -46,7 +46,10 @@
         }
     });
 
-    function add_to_cart(id) {
+    document.addEventListener('DOMContentLoaded',function (){
+        console.log(document.getElementById('option_id'))
+    })
+    function add_to_cart(id,item) {
         if (id !== '') {
             $.post('{{route('add_to_cart')}}', {
                     product_option_id: id,
@@ -63,7 +66,20 @@
                 }
             )
         } else {
-            toastr.warning('Vui lòng chọn phiên bản trước');
+            $.post('{{route('add_to_cart')}}', {
+                    product_option_id: item.slot,
+                    _token: $('input[name = "_token"]').val()
+                }, function (res) {
+                    if (res.code === 200) {
+                        toastr.success('Đã thêm sản phẩm vào giỏ hàng thành công');
+                        $('.cart_count').text(res.p_quantity)
+                    } else if (res.code === 401) {
+                        toastr.error(res.message);
+                    } else {
+                        toastr.error('Đã có lỗi xảy ra vui lòng thử lại sau');
+                    }
+                }
+            )
         }
     }
 
@@ -181,13 +197,14 @@ class="row p-0">
         $('.option_active').removeClass('option_active')
         item.classList.add('option_active')
         var image = item.slot.split('~!!!~')[0]
-        var sale_price = item.slot.split('~!!!~')[1]
-        var price = item.slot.split('~!!!~')[2]
+        var sale_price = Number(item.slot.split('~!!!~')[1].replaceAll(',',''))
+        var price = item.slot.split('~!!!~')[2].replaceAll(',','')
         var ram = item.slot.split('~!!!~')[3]
         $('.show_image').attr('src', image)
         $('.sale_price').html(formatNumber(sale_price)+' vnđ')
         $('.price').html(price + ' vnđ')
         $('.total_price').val(Number(sale_price))
+
     }
 
     $('.btn_buy_now').click(function (){
@@ -197,6 +214,18 @@ class="row p-0">
         $('.no_cart').val(1)
         $('.exampleModal1').click()
     })
+
+    $('.btn_buy_now2').click(function (){
+        choi_option(document.querySelector('.option_active'))
+        var arr_id = []
+        arr_id.push(document.querySelector('.option_active').id)
+        $('.all_id').val(JSON.stringify(arr_id))
+        $('.no_cart').val(1)
+        $('.exampleModal1').click()
+    })
+
+
+
 
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')

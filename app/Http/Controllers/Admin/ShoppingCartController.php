@@ -155,6 +155,7 @@ class ShoppingCartController extends Controller
                 $product_option = Product_option::find($item);
                 $order_detail = new Order_Detail();
                 $order_detail->product_option_id = $product_option->id;
+                $order_detail->product_id = $product_option->product_id;
                 $order_detail->quantity = $shopping_cart[$item]->quantity;
                 $order_detail->unit_price = $shopping_cart[$item]->price;
                 $order_detail->order_id = $order->id;
@@ -173,6 +174,7 @@ class ShoppingCartController extends Controller
             $product_option = Product_option::find(json_decode($request->all_id)[0]);
             $order_detail = new Order_Detail();
             $order_detail->product_option_id = $product_option->id;
+            $order_detail->product_id = $product_option->product_id;
             $order_detail->quantity = 1;
             $order_detail->unit_price = $request->total_price;
             $order_detail->order_id = $order->id;

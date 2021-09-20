@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\BannerType;
+use App\Enums\CheckoutStatus;
 use App\Enums\Status;
 use App\Models\Banner;
 use App\Models\Brand;
@@ -46,8 +47,6 @@ class Controller extends BaseController
             'p_cheap' => $p_cheap,
         ]);
     }
-
-
     public function product_detail($slug)
     {
         $banner = Banner::query()->where('type', BannerType::BANNER)->get();
@@ -55,8 +54,6 @@ class Controller extends BaseController
         $product = Product::query()->where('slug', $slug)->with('product_option')->first();
         return view('client.product_detail', ['detail' => $product, 'banner' => $banner, 'sub_banner' => $sub_banner]);
     }
-
-
     public function product(Request $request)
     {
         $brand_s = $request->brand_s;
@@ -102,7 +99,6 @@ class Controller extends BaseController
             'brand_s' => $brand_s
         ]);
     }
-
     public function view_about_us()
     {
         return view('client.about_us', [
@@ -110,12 +106,10 @@ class Controller extends BaseController
             'sub_banner' => null,
         ]);
     }
-
     public function view_contact()
     {
         return view('client.contactus', ['banner' => null, 'sub_banner' => null,]);
     }
-
     public function contact(Request $request)
     {
         $contact = new Contact();
@@ -123,7 +117,6 @@ class Controller extends BaseController
         $contact->save();
         return back()->with('message', 'Thông tin của bạn đã gửi thành công!');
     }
-
     public function view_login()
     {
         if (Auth::check()) {
@@ -136,8 +129,6 @@ class Controller extends BaseController
         }
 
     }
-
-
     public function send_mail($id)
     {
         $order = Order::find($id);
@@ -151,7 +142,6 @@ class Controller extends BaseController
         });
         return redirect()->route('home_page');
     }
-
     public function list_order(Request $request)
     {
         if (Auth::check()) {
@@ -180,7 +170,6 @@ class Controller extends BaseController
             ]);
         }
     }
-
     public function get_data_product($id){
         $product = Product::query()->where('id',$id)->with('product_option')->first();
         $product_option = Product_option::query()->where('product_id',$id)->with('color')->get();
@@ -189,4 +178,147 @@ class Controller extends BaseController
             'product_option'=>$product_option
         ]);
     }
+    public function get_data_brand(Request $request){
+        $order = Order::query()->where('is_checkout',CheckoutStatus::PAID)->with('order_detail')->get();
+        $brands = Brand::all();
+        $data_brands = [];
+        foreach ($brands as $i){
+            $count = 0;
+            foreach (Product::query()->where('brand_id',$i->id)->get() as $item){
+                $count += sizeof(Order_Detail::query()->where('product_id',$item->id)->get());
+            }
+            array_push($data_brands,$count);
+        }
+        return $data_brands;
+    }
+
+
+    public function payment ($id){
+        $order = Order::find($id);
+        $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+        $vnp_Returnurl = "http://sun-mobile.herokuapp.com/payment/response";
+        $vnp_TmnCode = "R2D13ZQR";
+        $vnp_HashSecret = "DPTXZMEMIYANCSFRSMRAXWGAFCQCFTMG";
+        $vnp_TxnRef = $order->id;
+        $vnp_OrderInfo = "Thanh toan don hang ";
+        $vnp_OrderType = "billpayment";
+        $vnp_Amount = $order->total_price * 100;
+        $vnp_Locale = "vn";
+        $vnp_IpAddr = request()->ip();
+
+        $inputData = array(
+            "vnp_Version" => "2.1.0",
+            "vnp_TmnCode" => $vnp_TmnCode,
+            "vnp_Amount" => $vnp_Amount,
+            "vnp_Command" => "pay",
+            "vnp_CreateDate" => date('YmdHis'),
+            "vnp_CurrCode" => "VND",
+            "vnp_IpAddr" => $vnp_IpAddr,
+            "vnp_Locale" => $vnp_Locale,
+            "vnp_OrderInfo" => $vnp_OrderInfo,
+            "vnp_OrderType" => $vnp_OrderType,
+            "vnp_ReturnUrl" => $vnp_Returnurl,
+            "vnp_TxnRef" => $vnp_TxnRef,
+        );
+        if (isset($vnp_BankCode) && $vnp_BankCode != null) {
+            $inputData['vnp_BankCode'] = $vnp_BankCode;
+        }
+        ksort($inputData);
+        $query = "";
+        $i = 0;
+        $hashdata = "";
+        foreach ($inputData as $key => $value) {
+            if ($i == 1) {
+                $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
+            } else {
+                $hashdata .= urlencode($key) . "=" . urlencode($value);
+                $i = 1;
+            }
+            $query .= urlencode($key) . "=" . urlencode($value) . '&';
+        }
+
+        $vnp_Url = $vnp_Url . "?" . $query;
+        if (isset($vnp_HashSecret)) {
+            $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret);
+            $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
+        }
+        return redirect($vnp_Url);
+    }
+
+
+    public function ipnResponse(Request $request)
+    {
+        Log::debug('An informational message.');
+        $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+        $vnp_HashSecret = "ZGZKUWRMIPLAZFFGCMMRDRTQUKFOMGLS";
+        $inputData = array();
+        $returnData = array();
+        foreach ($_GET as $key => $value) {
+            if (substr($key, 0, 4) == "vnp_") {
+                $inputData[$key] = $value;
+            }
+        }
+
+        $vnp_SecureHash = $inputData['vnp_SecureHash'];
+        unset($inputData['vnp_SecureHash']);
+        ksort($inputData);
+        $i = 0;
+        $hashData = "";
+        foreach ($inputData as $key => $value) {
+            if ($i == 1) {
+                $hashData = $hashData . '&' . urlencode($key) . "=" . urlencode($value);
+            } else {
+                $hashData = $hashData . urlencode($key) . "=" . urlencode($value);
+                $i = 1;
+            }
+        }
+        $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
+        $vnp_Amount = $inputData['vnp_Amount'] / 100;
+        $order = Order::find($request->vnp_TxnRef);
+        $floatVar = floatval(preg_replace("/[^-0-9\.]/", "", $order->total_price));
+        try {
+            if ($secureHash === $vnp_SecureHash) {
+                if ($order != NULL) {
+                    if ($floatVar == $vnp_Amount) {
+                        if ($order->payment_method != NULL && $order->payment_method == 0) {
+                            if ($request->vnp_ResponseCode == '00' || $request->vnp_TransactionStatus == '00') {
+                                $order->update(['payment_method' => true]);
+                                $order->save();
+                                $notification = new Notification();
+                                $notification->sender_id = $order->user_id;
+                                $notification->link = "/myorder/".$order->id;
+                                $notification->message = "Đơn hàng của bạn đã được xác nhân thanh toán với giá trị: ".$order->total_price."đơn hàng sẽ được giao trong thời gian sớm nhất";
+                                $notification->save();
+                                $returnData['RspCode'] = '00';
+                                $returnData['Message'] = 'Confirm Success';
+                                return $returnData;
+                            } else {
+                                $Status = 2;
+                            }
+                        } else {
+                            $returnData['RspCode'] = '02';
+                            $returnData['Message'] = 'Order already confirmed';
+                            return $returnData;
+                        }
+                    } else {
+                        $returnData['RspCode'] = '04';
+                        $returnData['Message'] = 'invalid amount';
+                        return $returnData;
+                    }
+                } else {
+                    $returnData['RspCode'] = '01';
+                    $returnData['Message'] = 'Order not found';
+                    return $returnData;
+                }
+            } else {
+                $returnData['RspCode'] = '97';
+                $returnData['Message'] = 'Invalid signature';
+                return $returnData;
+            }
+        } catch (Exception $e) {
+            $returnData['RspCode'] = '99';
+            $returnData['Message'] = 'Unknow error';
+        }
+    }
+
 }
