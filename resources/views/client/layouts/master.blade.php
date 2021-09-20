@@ -3,7 +3,7 @@
 @include('client.components.head')
 <body class="">
 <!-- Messenger Plugin chat Code -->
-<div id="fb-root"></div>
+<div id="fb-root" style="position: fixed!important;top: 10px!important;"></div>
 
 <!-- Your Plugin chat code -->
 <div id="fb-customer-chat" class="fb-customerchat">
