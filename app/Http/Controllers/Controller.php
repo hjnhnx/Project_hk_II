@@ -142,6 +142,7 @@ class Controller extends BaseController
         });
         return redirect()->route('home_page');
     }
+
     public function list_order(Request $request)
     {
         if (Auth::check()) {

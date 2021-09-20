@@ -12,7 +12,7 @@
                 <div class="col-12 m-0 row" style="padding: 10px 0">
                     @foreach($list as $item)
                         <div style="min-height: 300px" class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 row m-0 p-2">
-                            <div style="min-height: 300px;width: 100%" class="border border-primary p-2">
+                            <div style="min-height: 300px;width: 100%" class="border border-secondary p-2">
                                 <p class="m-0" style="font-weight: 600">Mã đơn hàng : <span
                                         class="text-danger">#{{$item->order_code}}</span></p>
                                 <p class="m-0" style="font-weight: 600">Ngày tạo đơn hàng : <span
