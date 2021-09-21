@@ -46,10 +46,10 @@
                 </div>
                 <div style="transform: translateY(-65px);padding: 10px">
                     <h4 class="text-center">{{\Illuminate\Support\Facades\Auth::user()->firstname .' '.\Illuminate\Support\Facades\Auth::user()->lastname}}</h4>
-                        <p class="text-center" style="font-weight: 600">Ngày sinh : {{\Illuminate\Support\Facades\Auth::user()->birthday}}</p>
-                        <p class="text-center" style="font-weight: 600">Email : {{\Illuminate\Support\Facades\Auth::user()->email}}</p>
-                        <p class="text-center" style="font-weight: 600">Số điện thoại : {{\Illuminate\Support\Facades\Auth::user()->phone}}</p>
-                        <p class="text-center" style="font-weight: 600">Địa chỉ : {{\Illuminate\Support\Facades\Auth::user()->address}}</p>
+                    <p class="text-center" style="font-weight: 600">Ngày sinh : {{\Illuminate\Support\Facades\Auth::user()->birthday}}</p>
+                    <p class="text-center" style="font-weight: 600">Email : {{\Illuminate\Support\Facades\Auth::user()->email}}</p>
+                    <p class="text-center" style="font-weight: 600">Số điện thoại : {{\Illuminate\Support\Facades\Auth::user()->phone}}</p>
+                    <p class="text-center" style="font-weight: 600">Địa chỉ : {{\Illuminate\Support\Facades\Auth::user()->address}}</p>
                 </div>
                 <div style="transform: translateY(-65px);padding: 10px;text-align: center">
                     <a href="{{route('edit_profile')}}"><button style="margin: 5px" class="btn btn-danger">Chỉnh sửa thông tin <i class="fas fa-cog"></i></button></a>
