@@ -5,6 +5,7 @@
         .table_header {
             position: relative;
         }
+
         .container {
             margin-top: 30px;
             margin-left: 100px;
@@ -22,7 +23,7 @@
         </div>
     @endif
     <div class="container">
-        <div class="row d-flex justify-content-center" >
+        <div class="row d-flex justify-content-center">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                 <h3><b>Địa chỉ nhận hàng:</b></h3>
                 <div class="col-lg-12 p-0">
@@ -68,25 +69,28 @@
                         </thead>
                         <tbody>
                         @foreach($order_details as $order_detail)
-                        <tr>
-                            <td>{{\App\Models\Product::find($order_detail->product_option->product_id)->name}}</td>
-                            <td>{{\App\Models\Color::find($order_detail->product_option->color_id)->name}}</td>
-                            <td><img src="{{$order_detail->product_option->thumbnail}}" alt="" width="50%"></td>
-                            <td>{{$order_detail->product_option->ram}}GB/RAM - {{$order_detail->product_option->rom}}GB/ROM</td>
-                            <td>{{$order_detail->unit_price}}</td>
-                            <td>{{$order_detail->quantity}}</td>
-                        </tr>
+                            <tr>
+                                <td>{{\App\Models\Product::find($order_detail->product_option->product_id)->name}}</td>
+                                <td>{{\App\Models\Color::find($order_detail->product_option->color_id)->name}}</td>
+                                <td><img src="{{$order_detail->product_option->thumbnail}}" alt="" width="50%"></td>
+                                <td>{{$order_detail->product_option->ram}}GB/RAM
+                                    - {{$order_detail->product_option->rom}}GB/ROM
+                                </td>
+                                <td>{{number_format($order_detail->unit_price)}} vnđ</td>
+                                <td>{{$order_detail->quantity}}</td>
+                            </tr>
                         @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                 <h3><b>Chi tiết đơn hàng</b></h3>
                 <div class="col-lg-5 ">
                     <p><strong>Tổng tiền hàng: </strong>{{number_format($order->total_price)}} vnđ</p>
                     <p><strong>Mã đơn hàng: </strong>#{{$order->order_code}}</p>
                     <p><strong>Ngày tạo: </strong>{{$order_detail->created_at}}</p>
+                    <p><strong>Thanh toán: </strong>{{$order->is_checkout == \App\Enums\CheckoutStatus::UNPAID ? 'Chưa thanh toán' : 'Đã thanh toán'}}</p>
                 </div>
             </div>
         </div>

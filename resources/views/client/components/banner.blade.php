@@ -7,11 +7,11 @@
                         @foreach($banner as $item)
                             <div style="background-image: url('{{$item->image}}') ; background-size: cover;position: relative;background-position: center;"
                                  class="swiper-slide">
-                                <h4 style="color: white ; margin-left: 20px">{{$item->content}}</h4>
+                                <p style="color: white ; margin-left: 20px;margin-top: 10px">{{$item->content}}</p>
                                 <div style="position: absolute;bottom: 10px;width: 100%;display: flex ;align-items: center ; justify-content: center;">
                                     <button class="btn_play_video" slot="{{$item->video}}" style="height: 45px;width: 145px;margin: 5px" data-toggle="modal" data-target="#exampleModal">Xem video</button>
                                     <a href="{{$item->link_to_product}}" style="text-decoration: none">
-                                        <button style="height: 45px;width: 145px;margin: 5px">Xem chi tiết</button>
+                                        <button class="btn_go_to_product" style="height: 45px;width: 145px;margin: 5px">Xem chi tiết</button>
                                     </a>
                                 </div>
                             </div>

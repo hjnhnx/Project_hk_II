@@ -75,7 +75,7 @@
 @section('main_content')
     <div class="about-section">
         <h1>Trang giới thiệu</h1>
-        <p>Một số thông tin về website và website làm gì.</p>
+        <p>Một số thông tin về website và đội ngũ phát triển.</p>
     </div>
 
     <h2 style="text-align:center">Đội của chúng tôi</h2>

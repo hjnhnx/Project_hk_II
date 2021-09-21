@@ -84,7 +84,6 @@
                 <a onclick="return confirm('Bạn có chắc muốn xóa hãng này ra khỏi hệ thống , Chọn OK cũng sẽ xóa các sản phẩm thuộc về hãng này')"
                    href="{{route('delete_brand',$item->id)}}" class="on-default remove-row text-danger"><i
                         class="fa fa-trash-o"></i></a>
-                <a href="#" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
             </td>
         </tr>
     @endforeach

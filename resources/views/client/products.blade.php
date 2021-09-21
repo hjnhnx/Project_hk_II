@@ -42,12 +42,14 @@
 @endsection
 @section('main_content')
     <section class="products">
-        <p style="position: fixed;left: 5px;top: 107px" class="btn btn-danger btn_show_filter">
+        <p style="position: fixed;left: 10px;top: 107px;z-index: 100000;width: 40px"
+           class="btn btn-danger btn_show_filter">
             <i class="fas fa-filter"></i>
         </p>
 
-        <div style="background: white;height: 600px;width: 220px;position: fixed;left: 5px;top: 150px;overflow: scroll"
-             class="border filter_container d-none p-3">
+        <div
+            style="background: white;max-height: 400px;width: 220px;position: fixed;left: 10px;top: 150px;overflow: scroll;z-index: 100000;box-shadow: black 1px 2px 3px"
+            class="border filter_container d-none p-3">
             <div style="width: 100%">
                 <button style="background: #fc5353" class="m-1 btn_brand1">Lọc theo hãng</button>
                 <button slot="" class="m-1 btn_brand">Tất cả</button>
@@ -84,7 +86,7 @@
             </div>
 
             <div id="" class="product-area product-area-0">
-                <h3 class="p-3">Tất cả sản phẩm</h3>
+                <h3 class="p-3 text-secondary">{{$brand_s ? 'Sản phẩm của '. $brand_s : 'Tất cả sản phẩm'}}</h3>
                 <div class="product-content">
                     <div class="list-products">
                         @if(sizeof($list) < 1)
@@ -112,8 +114,7 @@
                                         </div>
                                     </div>
                                     <div class="product-bottom">
-                                        <a rel="nofollow" href="https://www.hnammobile.com/cart/add?itemid=21524"
-                                           onclick="" class="btn buy-now">Đặt hàng ngay</a>
+                                        <a slot="{{$item->id}}" rel="nofollow"  class="btn buy-now" data-toggle="modal" data-target="#exampleModalLong">Đặt hàng ngay</a>
                                         <a rel="nofollow"
                                            href="{{route('product_detail',$item->slug)}}"
                                            class="btn pay-0">Xem chi tiết</a>
@@ -121,7 +122,9 @@
                                 </div>
                             @endforeach
                         @endif
-
+                        <div style="width: 100%">
+                            <div style="float: right">{{$list->links()}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -153,8 +156,7 @@
                                     </div>
                                 </div>
                                 <div class="product-bottom">
-                                    <a rel="nofollow" href="https://www.hnammobile.com/cart/add?itemid=21524"
-                                       onclick="" class="btn buy-now">Đặt hàng ngay</a>
+                                    <a slot="{{$item->id}}" rel="nofollow"  class="btn buy-now" data-toggle="modal" data-target="#exampleModalLong">Đặt hàng ngay</a>
                                     <a rel="nofollow"
                                        href="{{route('product_detail',$item->slug)}}"
                                        class="btn pay-0">Xem chi tiết</a>
@@ -192,8 +194,7 @@
                                     </div>
                                 </div>
                                 <div class="product-bottom">
-                                    <a rel="nofollow" href="https://www.hnammobile.com/cart/add?itemid=21524"
-                                       onclick="" class="btn buy-now">Đặt hàng ngay</a>
+                                    <a slot="{{$item->id}}" rel="nofollow"  class="btn buy-now" data-toggle="modal" data-target="#exampleModalLong">Đặt hàng ngay</a>
                                     <a rel="nofollow"
                                        href="{{route('product_detail',$item->slug)}}"
                                        class="btn pay-0">Xem chi tiết</a>
@@ -210,10 +211,17 @@
 @section('custom_js')
 
     <script>
-        $('.btn_show_filter').click(function (){
+        var check_filter = true
+        $('.btn_show_filter').click(function () {
             $('.filter_container').toggleClass('d-none')
+            if (check_filter) {
+                $('.btn_show_filter').html('<i class="fas fa-chevron-left"></i>')
+                check_filter = false
+            } else {
+                $('.btn_show_filter').html('<i class="fas fa-filter"></i>')
+                check_filter = true
+            }
         })
-
         $('.btn_brand').click(function () {
             $('#brand_s').val(this.slot)
             $('#brand_filter').submit()
@@ -222,5 +230,6 @@
             $('#price_s').val(this.slot)
             $('#brand_filter').submit()
         })
+
     </script>
 @endsection

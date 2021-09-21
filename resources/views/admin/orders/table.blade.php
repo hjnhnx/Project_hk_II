@@ -1,6 +1,6 @@
-@section('title','list Order | Admin')
+@section('title','Danh sách đơn hàng | Admin')
 @extends('.admin.layouts.table')
-@section('title_table','Orders table')
+@section('title_table','Danh sách đơn hàng')
 @section('custom_style_level_2')
     .Product_Action{
     min-width:120px;
@@ -32,8 +32,8 @@
         <input value="{{$key_search != null ? $key_search : ''}}" type="text" class="form-control" placeholder="Enter keyword" name="search">
     </div>
     <div class="form-group col-sm-4">
-        <button class="btn btn-primary">Search</button>
-        <button class="btn btn-danger">Clear filter</button>
+        <button class="btn btn-primary">Tìm kiếm</button>
+        <button class="btn btn-danger">Loại bỏ bộ lọc</button>
     </div>
     <div class="form-group col-sm-3">
         <select name="sort" id="" class="form-control sorted">
@@ -47,29 +47,44 @@
 @endsection
 
 @section('extra_filter')
-{{--    <div style="height: 100px" class="col-md-12 row">--}}
-{{--        <div class="form-group col-md-3">--}}
-{{--            <input type="text" class="form-control">--}}
-{{--        </div>--}}
-{{--        <div class="form-group col-md-3">--}}
-{{--            <input type="text" class="form-control">--}}
-{{--        </div>--}}
-{{--        <div class="form-group col-md-3">--}}
-{{--            <input type="text" class="form-control">--}}
-{{--        </div>--}}
-{{--        <div class="form-group col-md-3">--}}
-{{--            <input type="text" class="form-control">--}}
-{{--        </div>--}}
-{{--        <div class="form-group col-md-3">--}}
-{{--            <input type="text" class="form-control">--}}
-{{--        </div>--}}
-{{--        <div class="form-group col-md-3">--}}
-{{--            <input type="text" class="form-control">--}}
-{{--        </div>--}}
-{{--        <div class="form-group col-md-3">--}}
-{{--            <input type="text" class="form-control">--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    <div style="height: 100px" class="col-md-12 row">
+        <form action="" method="get" id="form_filter">
+            <div class="form-group col-md-3">
+                <input type="text" class="form-control" name="user_name" placeholder="Tìm kiếm theo tên người nhận">
+            </div>
+            <div class="form-group col-md-3">
+                <input type="text" class="form-control" name="user_email" placeholder="Tìm kiếm theo email">
+            </div>
+            <div class="form-group col-md-3">
+                <input type="text" class="form-control" name="ship_address" placeholder="Tìm kiếm theo địa chỉ">
+            </div>
+            <div class="form-group col-md-3">
+                <input type="text" class="form-control" name="order_code" placeholder="Tìm kiếm theo mã đơn hàng">
+            </div>
+            <div class="form-group col-md-3">
+                <input type="text" class="form-control" name="user_phone" placeholder="Tìm kiếm theo số điện thoại">
+            </div>
+            <div class="form-group col-md-3">
+                <select name="member" id="is_member" class="form-control">
+                    <option hidden>Lọc theo thành viên</option>
+                    <option value="1">Người dùng là thành viên hệ thống</option>
+                    <option value="2">Người dùng không là thành viên hệ thống</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <select name="date_filter" id="" class="form-control date_filter">
+                    <option value="" hidden>Lọc theo ngày</option>
+                    <option value="now">Hôm nay</option>
+                    <option value="7day">7 ngày gần đây</option>
+                    <option value="15day">15 ngày gần đây</option>
+                    <option value="30day">1 tháng gần đây</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <button class="btn btn-primary form-control">Tất cả</button>
+            </div>
+        </form>
+    </div>
 @endsection
 
 @section('table_head')
@@ -83,7 +98,7 @@
         <th>Trạng thái thanh toán</th>
         <th>Trạng thái đơn hàng</th>
         <th>Ngày tạo</th>
-        <th class="text-center ">Thao tác</th>
+        <th>Thao tác</th>
     </tr>
 @endsection
 @section('table_body')
@@ -109,13 +124,14 @@
                     Đã hủy đơn hàng
                 @endif
             </td>
-            <td>29-08-2021</td>
+            <td>{{date_format($item->created_at,'d/m/Y')}}</td>
             <td class="actions text-center">
                 <a style="color: #4b74fa" href="/admin/order-detail/{{$item->id}}/show" class="on-default remove-row">Chi tiết</a>
             </td>
         </tr>
     @endforeach
     <div style="position: absolute;bottom: 20px">
+        <p>Doanh thu : {{number_format($amount)}} vnđ</p>
         <span style="margin-right: 30px">Check all <input id="check_all" type="checkbox" style="transform: translateY(2px)"></span>
         <select name="order_status" id="order_status" style="width: 130px">
             <option hidden>Change status</option>
@@ -163,6 +179,12 @@
                     $('#form_update_status').submit()
                 }
             })
+        })
+        $('#is_member').change(function (){
+            $('#form_filter').submit()
+        })
+        $('.date_filter').change(function (){
+            $('#form_filter').submit()
         })
     </script>
 @endsection
