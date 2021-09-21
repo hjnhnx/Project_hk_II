@@ -1,11 +1,14 @@
 @extends('client.layouts.master')
 @section('title','Contactus')
 @section('custom_style')
-    <style>
-        .error {
-            color: #f74c4c;
-        }
-    </style>
+
+    <link rel="stylesheet" type="text/css" href="/libs/client/contacts/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="/libs/client/contacts/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/client/contacts/select2/select2.min.css">
+
+
+    <link rel="stylesheet" type="text/css" href="/libs/client/styles/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/libs/client/styles/css/main.css">
 @endsection
 
 @section('main_content')
@@ -15,46 +18,44 @@
         </div>
     @endif
     <section>
-        <div class="container d-flex justify-content-center p-5">
-            <div class="col-11 border row p-0 m-0">
-                <div class="col-4 pt-4 pb-4 border pl-3">
-                    <h2 class="text-danger">Sun mobile</h2>
-                    <br>
-                    <p>Địa chỉ <br> <a href="https://www.google.com/maps/place/FPT+Aptech+H%C3%A0+N%E1%BB%99i/@21.0291324,105.7820464,16z/data=!4m5!3m4!1s0x0:0x26caee8e7662dd9b!8m2!3d21.0286424!4d105.7822534?hl=en-GB">Số 8A,Tôn Thất Thuyết,Mỹ Đình,Nam Từ Liêm,Hà Nội</a></p>
-                    <p>Số điện thoại <br> <a href="tel:0888.888.888">0888.888.888</a></p>
-                    <p>Email <br> <a href="mailto:sunmobile@gmail.com">sunmobile@gmail.com</a></p>
-                    <p>Fanpage <br> <a href="">https://www.facebook.com/MixiGaming</a></p>
-                </div>
-                <div class="col-8 pt-4 pb-4">
-                    <h2 class="text-danger">Để lại liên hệ</h2>
-                    <form action="{{route('contactus_send')}}" class="col-12" method="post" id="contact">
+        <div class="container d-flex justify-content-center pt-5 mobile_container">
+            <div class="contact1">
+                <div class="container-contact1">
+                    <div class="contact1-pic js-tilt" data-tilt>
+                        <img src="/libs/client/images/img-01.png" alt="IMG">
+                    </div>
+
+                    <form action="{{route('contactus_send')}}" method="post" class="contact1-form validate-form">
                         @csrf
-                        <div class="row">
-                            <div class="form-group col-6">
-                                <label for="">Họ và tên</label>
-                                <input type="text" class="form-control" name="name">
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="">Số điện thoại</label>
-                                <input type="text" class="form-control" name="phone">
-                            </div>
+                        <span class="contact1-form-title" style="font-family: Sans-serif">Để lại liên hệ tại đây</span>
+
+                        <div class="wrap-input1 validate-input" data-validate="Name is required">
+                            <input class="input1" type="text" name="name" placeholder="Họ và tên">
+                            <span class="shadow-input1"></span>
                         </div>
-                        <div class="row">
-                            <div class="form-group col-12">
-                                <label for="">Email</label>
-                                <input type="text" class="form-control" name="email">
-                            </div>
+
+                        <div class="wrap-input1 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                            <input class="input1" type="text" name="email" placeholder="Email">
+                            <span class="shadow-input1"></span>
                         </div>
-                        <div class="row">
-                            <div class="form-group col-12">
-                                <label for="">Lời nhắn</label>
-                                <textarea class="form-control" name="message" id="" cols="30" rows="3"></textarea>
-                            </div>
+
+                        <div class="wrap-input1 validate-input" data-validate="Subject is required">
+                            <input class="input1" type="text" name="phone" placeholder="Số điện thoại">
+                            <span class="shadow-input1"></span>
                         </div>
-                        <div class="row">
-                            <div class="form-group col-6">
-                                <button class="btn btn-primary form-control">Gửi</button>
-                            </div>
+
+                        <div class="wrap-input1 validate-input" data-validate="Message is required">
+                            <textarea class="input1" name="message" placeholder="Lời nhắn"></textarea>
+                            <span class="shadow-input1"></span>
+                        </div>
+
+                        <div class="container-contact1-form-btn">
+                            <button class="contact1-form-btn">
+						<span>
+							Send Email
+							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+						</span>
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -67,42 +68,40 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
     <script>
         $('#contact').validate({
-            rules:{
-                name:{
-                    required:true
+            rules: {
+                name: {
+                    required: true
                 },
-                phone:{
-                    required:true,
-                    minlength:8,
-                    maxlength:12,
+                phone: {
+                    required: true,
+                    minlength: 8,
+                    maxlength: 12,
                 },
-                email:{
-                    required:true,
-                    email:true
+                email: {
+                    required: true,
+                    email: true
                 },
-                message:{
-                    required:true
+                message: {
+                    required: true
                 },
             },
-            messages:{
-                name:{
-                    required:'Vui lòng nhập tên'
+            messages: {
+                name: {
+                    required: 'Vui lòng nhập tên'
                 },
-                phone:{
-                    required:'Nhập vào số điện thoại',
-                    minlength:'Sô điện thoại sai định dạng',
-                    maxlength:'Sô điện thoại sai định dạng',
+                phone: {
+                    required: 'Nhập vào số điện thoại',
+                    minlength: 'Sô điện thoại sai định dạng',
+                    maxlength: 'Sô điện thoại sai định dạng',
                 },
-                email:{
-                    required:'Vui lòng nhập email',
-                    email:'Email sai định dạng'
+                email: {
+                    required: 'Vui lòng nhập email',
+                    email: 'Email sai định dạng'
                 },
-                message:{
-                    required:'Vui lòng để lại lời nhắn'
+                message: {
+                    required: 'Vui lòng để lại lời nhắn'
                 },
             }
         })
     </script>
 @endsection
-
-
