@@ -18,14 +18,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $fake = Factory::create();
         DB::table('users')->insert([
             ['firstname'=>'Nguyễn Xuân',
                 'lastname'=>'Hjnh',
                 'avatar'=>'https://kenh14cdn.com/2020/8/28/photo-1-15986171022051518128948.jpg',
                 'address'=>'ha noi viet nam chau a thai binh duong',
                 'phone'=>'0999999999',
-                'birthday'=>$fake->date,
+                'birthday'=>Carbon::now()->addYear(-20),
                 'email'=>'admin@gmail.com',
                 'role'=>Role::ADMIN,
                 'status'=>Status::ACTIVE,
@@ -37,9 +36,21 @@ class DatabaseSeeder extends Seeder
                 'avatar'=>'https://kenh14cdn.com/2020/8/28/photo-1-15986171022051518128948.jpg',
                 'address'=>'ha noi viet nam chau a thai binh duong nguoi dung',
                 'phone'=>'088888888',
-                'birthday'=>$fake->date,
+                'birthday'=>Carbon::now()->addYear(-20),
                 'email'=>'noadmin@gmail.com',
                 'role'=>Role::USER,
+                'status'=>Status::ACTIVE,
+                'password'=>'$2y$10$1xqTYSwqFKNQyQjq1BWLi.Aee4xPHX8xwXTDMcBvH9EL57lOS0kQW',
+                'created_at'=>Carbon::now()
+            ],
+            ['firstname'=>'Nguyen Xuan',
+                'lastname'=>'Hjnh',
+                'avatar'=>'https://kenh14cdn.com/2020/8/28/photo-1-15986171022051518128948.jpg',
+                'address'=>'ha noi viet nam chau a thai binh duong nguoi dung',
+                'phone'=>'088888888',
+                'birthday'=>Carbon::now()->addYear(-20),
+                'email'=>'nguyenhjnh2002@gmail.com',
+                'role'=>Role::ADMIN,
                 'status'=>Status::ACTIVE,
                 'password'=>'$2y$10$1xqTYSwqFKNQyQjq1BWLi.Aee4xPHX8xwXTDMcBvH9EL57lOS0kQW',
                 'created_at'=>Carbon::now()
@@ -50,7 +61,6 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ProductSeeder::class,
             ProductOptionSeeder::class,
-//            UserSeeder::class,
             CategoriesSeeder::class,
             ContactSeeder::class,
             ColorSeeder::class,

@@ -81,49 +81,49 @@
                             <form id="register" class="col-6 pt-3 pl-4 pr-4" action="{{route('register')}}" method="post">
                                 @csrf
                                 <div class="row">
-                                    <div class="form-group col-6">
+                                    <div class="form-group col-12 col-md-6">
                                         <label for="">Họ tên đệm</label>
                                         <input name="firstname" type="text" class="form-control">
                                     </div>
-                                    <div class="form-group col-6">
+                                    <div class="form-group col-12 col-md-6">
                                         <label for="">Tên</label>
                                         <input name="lastname" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-6">
+                                    <div class="form-group col-12 col-md-6">
                                         <label for="">Số điện thoại</label>
                                         <input name="phone" type="text" class="form-control">
                                     </div>
-                                    <div class="form-group col-6">
+                                    <div class="form-group col-12 col-md-6">
                                         <label for="">Ngày sinh</label>
                                         <input name="birthday" type="date" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-6">
+                                    <div class="form-group col-12 col-md-6">
                                         <label for="">Mật khẩu</label>
                                         <input name="password" type="password" class="form-control" id="password">
                                     </div>
-                                    <div class="form-group col-6">
+                                    <div class="form-group col-12 col-md-6">
                                         <label for="">Nhập lại mật khẩu</label>
                                         <input type="password" class="form-control" name="Confirm_Password">
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-12">
+                                    <div class="form-group col-12 col-md-12">
                                         <label for="">Email</label>
                                         <input name="email" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-12">
+                                    <div class="form-group col-12 col-md-12">
                                         <label for="">Địa chỉ</label>
                                         <textarea class="form-control" name="address" id="" cols="30" rows="2"></textarea>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-6">
+                                    <div class="form-group col-12 col-md-6">
                                         <label for="">Avatar</label>
                                         <input type="hidden" name="avatar" value="https://www.minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg">
                                         <button type="button" class="btn btn-warning form-control">Chọn ảnh</button>

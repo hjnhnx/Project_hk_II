@@ -8536,7 +8536,7 @@ section.section-product-detail .left-image .carousel-container:hover .prev, sect
     top: 0;
     width: 100%;
     height: 65px;
-    background: #000000
+    background: #F6F7F8
 }
 
 .header .header-container {
@@ -8563,8 +8563,8 @@ section.section-product-detail .left-image .carousel-container:hover .prev, sect
     display: none;
     cursor: pointer;
     position: absolute;
-    top: 10px;
-    left: 10px
+    top: 20px;
+    right: 10px
 }
 
 .mobile-menu-btn .bar1, .mobile-menu-btn .bar2, .mobile-menu-btn .bar3 {
@@ -9779,9 +9779,6 @@ section.home-about > .container .right-content ul li p {
 }
 
 @media only screen and (max-width: 1199.98px) {
-    .header .search-bar {
-        width: 215px
-    }
 
     .header .header-container {
         max-width: 100%;
@@ -9789,7 +9786,7 @@ section.home-about > .container .right-content ul li p {
     }
 
     .header-right {
-        max-width: 600px
+        max-width: 350px
     }
 
     .header-right > div:not(:nth-last-of-type(1)) {
@@ -14695,8 +14692,8 @@ section.promotion-main-area .item .item-info h4 {
 }
 
 .info-carousel .swiper-slide.swiper-slide-thumb-active {
-    color: #F15A25;
-    border-bottom: 1px solid #f15a25;
+    color: #fe7140;
+    border-bottom: 1px solid #fe7140;
 }
 
 .swiper-container.no-height-init {
@@ -14725,7 +14722,7 @@ section.promotion-main-area .item label {
 }
 
 section.products .product-header {
-    background: #f15a25;
+    background: #fe7140;
 }
 
 section.products .product-header .title {
@@ -14734,7 +14731,7 @@ section.products .product-header .title {
 
 .tablink2 {
     color: #ffffff;
-    background-color: #f15a25;
+    background-color: #fe7140;
 }
 
 .tablink2:hover {
