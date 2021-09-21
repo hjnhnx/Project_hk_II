@@ -8,7 +8,6 @@
         .container {
             margin-top: 30px;
             margin-left: 100px;
-
         }
 
     </style>
@@ -16,6 +15,12 @@
 
 @section('main_content')
     <h2 class="panel-title">Chi tiết đơn hàng</h2>
+    @if(session('message'))
+        <div class="alert alert-success alert-dismissible" style="margin-top: 10px">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Success </strong>{{session('message')}}
+        </div>
+    @endif
     <div class="container">
         <div class="row d-flex justify-content-center" >
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -31,9 +36,18 @@
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                 <h3><b>Thông tin vận chuyển</b></h3>
                 <div class="col-lg-12 p-0">
-                    <p><strong>Phương thức vận chuyển:</strong> Nhanh</p>
-                    <p><strong>Đơn vị vận chuyển:</strong> beatVn</p>
-                    <p><strong>Trạng thái đơn hàng:</strong></p>
+                    <p><strong>Phương thức vận chuyển:</strong> COD</p>
+                    <p><strong>Đơn vị vận chuyển:</strong> GRAB</p>
+                    <p><strong>Trạng thái đơn hàng:</strong> @if($order->status == \App\Enums\OrderStatus::Create)
+                            Chờ lấy hàng
+                        @elseif($order->status == \App\Enums\OrderStatus::Delivery)
+                            Đang giao hàng
+                        @elseif($order->status == \App\Enums\OrderStatus::Complete)
+                            Đã nhận hàng
+                        @elseif($order->status == \App\Enums\OrderStatus::Cancel)
+                            Đã hủy đơn hàng
+                        @endif</p>
+                    <p><strong>Trạng thái thanh toán:</strong>{{$order->is_checkout == \App\Enums\CheckoutStatus::UNPAID ? 'Chưa thanh toán' : 'Đã thanh toán'}}</p>
                 </div>
             </div>
         </div>
@@ -76,7 +90,33 @@
                 </div>
             </div>
         </div>
+      <div class="trangthai col-md-6">
+          <form action="{{route('update_status_order',$order->id)}}" method="post">
+              @csrf
+             <div class="row">
+                 <div class="form-group col-md-4">
+                     <label for=""><b>Trạng thái đơn hàng:</b></label>
+                     <select class="form-control"  name="order_status" id="trangthaidonhang">
+                         <option value="{{\App\Enums\OrderStatus::Create}}">Chờ lấy hàng</option>
+                         <option value="{{\App\Enums\OrderStatus::Delivery}}">Đang giao hàng</option>
+                         <option value="{{\App\Enums\OrderStatus::Complete}}">Đã nhận hàng</option>
+                         <option value="{{\App\Enums\OrderStatus::Cancel}}">Đã hủy đơn hàng</option>
+                     </select>
+                 </div>
+                 <div class="form-group col-md-4">
+                     <label for="trangthaithanhtoan"><b>Trạng thái thanh toán:</b></label>
+                     <select class="form-control"  name="is_checkout" id="trangthaithanhtoan">
+                         <option value="{{\App\Enums\CheckoutStatus::UNPAID}}">Chưa thanh toán</option>
+                         <option value="{{\App\Enums\CheckoutStatus::PAID}}">Đã thanh toán</option>
+                     </select>
+                 </div>
+                 <label for="">.</label>
+                 <div class="form-group col-md-4"><button type="submit" class="btn btn-primary form-control update">Cập nhật</button></div>
+             </div>
+          </form>
+      </div>
     </div>
+    <a href="/admin/order" class="cd-top">trở về</a>
 @endsection
 @section('custom_js')
     <script>
