@@ -93,9 +93,7 @@
         <th>Mã đơn hàng</th>
         <th>Tổng giá</th>
         <th>Họ và tên</th>
-        <th>thành viên</th>
         <th>Số điện thoại</th>
-        <th>Email</th>
         <th>Địa chỉ</th>
         <th>Trạng thái thanh toán</th>
         <th>Trạng thái đơn hàng</th>
@@ -112,9 +110,7 @@
             <td># {{$item->order_code}}</td>
             <td>{{number_format($item->total_price)}} vnđ</td>
             <td>{{$item->ship_name}}</td>
-            <td>{{$item->user_id ? 'YES' : 'NO'}}</td>
             <td>{{$item->ship_phone}}</td>
-            <td>{{$item->ship_email}}</td>
             <td>{{$item->ship_address}}</td>
             <td>{{$item->is_checkout == \App\Enums\CheckoutStatus::UNPAID ? 'Chưa thanh toán' : 'Đã thanh toán'}}</td>
             <td>
@@ -130,7 +126,7 @@
             </td>
             <td>{{date_format($item->created_at,'d/m/Y')}}</td>
             <td class="actions text-center">
-                <a href="/admin/order-detail/{{$item->id}}/show" class="on-default remove-row text-dark"><i class="fa fa-info-circle"></i></a>
+                <a style="color: #4b74fa" href="/admin/order-detail/{{$item->id}}/show" class="on-default remove-row">Chi tiết</a>
             </td>
         </tr>
     @endforeach

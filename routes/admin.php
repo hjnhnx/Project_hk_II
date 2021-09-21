@@ -92,6 +92,8 @@ Route::prefix('order')->group(function () {
 Route::prefix('order-detail')->group(function () {
     Route::get('/', [OrderDetailController::class, 'index'])->name('list_order_detail');
     Route::get('/{id}/show', [OrderDetailController::class, 'showDetail'])->name('informationOrder');
+    Route::post('/{id}/update', [OrderDetailController::class, 'update_status_order'])->name('update_status_order');
+
 });
 
 Route::prefix('product-option')->group(function () {

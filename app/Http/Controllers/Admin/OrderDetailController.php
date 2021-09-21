@@ -32,4 +32,12 @@ class OrderDetailController extends Controller
         $order_details = Order_Detail::query()->where('order_id',$order->id)->with('product_option')->get();
         return view('admin.order_detail.showOrderDetail',['order'=>$order],['order_details'=>$order_details]);
     }
+    public function update_status_order(Request $request, $id){
+        $order = Order::find($id);
+        $order->status = $request->order_status;
+        $order->is_checkout = $request->is_checkout;
+        $order->save();
+        return back()->with('message','cập nhật trạng thái đơn hàng thành công.');
+
+    }
 }
