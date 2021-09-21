@@ -73,14 +73,20 @@
             <hr>
             <p class="text-center">Chọn phương pháp thanh toán</p>
             <div class="row m-0 p-0">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 d-block p-2">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 d-block p-2">
                     <button style="height: 50px;width: 100%"><a class="d-flex justify-content-center align-items-center"
                                                                 href="{{route('mail_send',$order->id)}}"
                                                                 style="height: 100%;width: 100%;text-decoration: none;color: white">Thanh
                             toán khi nhận hàng</a></button>
                 </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 d-block p-2">
-                    <button style="height: 50px;width: 100%"><a href="{{route('payment',$order->id)}}" class="d-flex justify-content-center align-items-center" style="height: 100%;width: 100%;text-decoration: none;color: white">Thanh toán luôn với vnpay</a></button>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 d-block p-2">
+                    <button style="height: 50px;width: 100%;background: #b13030"><a href="{{route('payment',$order->id)}}" class="d-flex justify-content-center align-items-center" style="height: 100%;width: 100%;text-decoration: none;color: white">Thanh toán với vnpay</a></button>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 d-block p-2">
+                    <button style="height: 50px;width: 100%;background: #12ce38"><a href="{{route('payment',$order->id)}}" class="d-flex justify-content-center align-items-center" style="height: 100%;width: 100%;text-decoration: none;color: white">Chuyển Khoản</a></button>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 d-block p-2">
+                    <button style="height: 50px;width: 100%;background: #25319c"><a href="{{route('payment',$order->id)}}" class="d-flex justify-content-center align-items-center" style="height: 100%;width: 100%;text-decoration: none;color: white">Thanh toán với paypal</a></button>
                 </div>
             </div>
         </div>
