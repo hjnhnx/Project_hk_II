@@ -10,7 +10,6 @@
 </head>
 <body>
 <h1>Bạn đã đặt hàng thành công !</h1>
-
 <h2>Thông tin đơn hàng của bạn.</h2>
 <br>
 <div class="container">

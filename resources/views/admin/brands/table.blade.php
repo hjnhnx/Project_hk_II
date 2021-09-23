@@ -61,10 +61,10 @@
 @section('table_head')
     <tr>
         <th>ID</th>
-        <th>Name</th>
-        <th>Status</th>
-        <th>Created at</th>
-        <th class="text-center">Actions</th>
+        <th>Tên</th>
+        <th>Trạng thái</th>
+        <th>Ngày thêm</th>
+        <th class="text-center">Thao tác</th>
     </tr>
 @endsection
 @section('table_body')

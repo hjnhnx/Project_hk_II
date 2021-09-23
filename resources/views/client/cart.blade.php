@@ -44,7 +44,7 @@
                 @foreach($list as $index=>$item)
                     <div id="cart2_id_{{$item->id}}" style="height: 125px" class="col-12 col-sm-12 col-md-6 p-1">
                         <div style="height: 100%; width: 100%;position: relative" class="border row m-0 p-0">
-                            <div onclick="document.getElementById('price_id_{{$item->id}}').click();is_checked(this)" style="z-index: 100;cursor: pointer;height: 23px;width: 23px;border-radius: 50%;position: absolute;bottom: 3px ; right: 3px;border: 1px #747474 solid" class="p-1"></div>
+                            <div onclick="document.getElementById('price_id_{{$item->id}}').click();is_checked(this)" style="z-index: 100;cursor: pointer;height: 23px;width: 23px;border-radius: 50%;position: absolute;bottom: 3px ; right: 3px;border: 1px #747474 solid" class="p-1 checked_option2"></div>
                             <div style="height: 80%;width: 90px" class="mt-2">
                                 <img src="{{$item->thumbnail}}" alt="" style="height: 100%;width: 100%;object-fit: cover">
                             </div>
@@ -86,7 +86,7 @@
                     <tr id="cart_id_{{$item->id}}">
                         <td>
                             <div nonce="{{$item->id}}" id="price_id_{{$item->id}}"
-                                 slot="{{$item->price * $item->quantity}}" class="border btn_choice_option"></div>
+                                 slot="{{$item->price * $item->quantity}}" class="border btn_choice_option checked_option"></div>
                         </td>
                         <td>{{$item->product_name}}</td>
                         <td>
@@ -121,7 +121,7 @@
                 </div>
                 <div class="col-12 col-xl-6 c0l-md-6 col-sm-12 d-flex justify-content-center align-items-center">
                     <p class="text_mini" style="font-size: 18px;font-weight: bold">
-                        Thanh toán : <span class="show_price_is_choice">0</span> vnđ / Tổng số : <span
+                        Thanh toán : <span class="show_price_is_choice">{{number_format($total_price)}}</span> vnđ / Tổng số : <span
                             class="show_total_price"> {{number_format($total_price)}} </span> vnđ
                     </p>
                 </div>
@@ -133,6 +133,12 @@
 @section('custom_js')
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            var checked_count_item = document.querySelectorAll('.checked_option')
+            if (checked_count_item.length !== 0){
+                $('.btn_checkout').prop( "disabled", false )
+            }else {
+                $('.btn_checkout').prop( "disabled", true )
+            }
             $('.btn_choice_option').click(function () {
                 this.classList.toggle('checked_option')
                 var checked_count_item = document.querySelectorAll('.checked_option')

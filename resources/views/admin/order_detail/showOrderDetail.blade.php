@@ -27,7 +27,7 @@
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                 <h3><b>Địa chỉ nhận hàng:</b></h3>
                 <div class="col-lg-12 p-0">
-                    <p><strong>Mã người dùng:</strong>{{$order->user_id}}</p>
+                    <p><strong>Mã người dùng:</strong>{{$order->user_id * 987654}}</p>
                     <p><strong>Họ và tên người dùng:</strong> {{$order->ship_name}}</p>
                     <p><strong>Số điện thoại:</strong> {{$order->ship_phone}}</p>
                     <p><strong>Email:</strong> {{$order->ship_email}}</p>
@@ -94,7 +94,7 @@
                 </div>
             </div>
         </div>
-      <div class="trangthai col-md-6">
+      <div class="trangthai col-md-9">
           <form action="{{route('update_status_order',$order->id)}}" method="post">
               @csrf
              <div class="row">

@@ -206,7 +206,6 @@ class Controller extends BaseController
         $vnp_Amount = $order->total_price * 100;
         $vnp_Locale = "vn";
         $vnp_IpAddr = request()->ip();
-
         $inputData = array(
             "vnp_Version" => "2.1.0",
             "vnp_TmnCode" => $vnp_TmnCode,
@@ -237,13 +236,12 @@ class Controller extends BaseController
             }
             $query .= urlencode($key) . "=" . urlencode($value) . '&';
         }
-
         $vnp_Url = $vnp_Url . "?" . $query;
         if (isset($vnp_HashSecret)) {
             $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret);
             $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
         }
-        return redirect($vnp_Url);
+        return redirect()->route('payment_success',$order->id);
     }
 
 

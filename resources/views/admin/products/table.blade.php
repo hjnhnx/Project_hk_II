@@ -63,15 +63,15 @@
 @section('table_head')
     <tr>
         <th>Id</th>
-        <th>Name</th>
-        <th>Thumbnail</th>
-        <th>Price</th>
-        <th>Discount</th>
-        <th>Brand</th>
-        <th>Category</th>
-        <th>Status</th>
-        <th>Created At</th>
-        <th class="text-center Product_Action">Actions</th>
+        <th>Tên sản phẩm</th>
+        <th>Ảnh đại diện</th>
+        <th>Giá</th>
+        <th>Giảm giá (%)</th>
+        <th>Hãng</th>
+        <th>Danh mục</th>
+        <th>Trạng thái</th>
+        <th>Ngày tạo</th>
+        <th class="text-center Product_Action">Thao tác</th>
     </tr>
 @endsection
 @section('table_body')
@@ -82,7 +82,7 @@
             <td>
                 <img class="show_avatar" src="{{$item->thumbnail}}" alt="">
             </td>
-            <td>{{$item->price}}</td>
+            <td>{{number_format($item->price)}} vnđ</td>
             <td>{{$item->discount}}</td>
             <td>{{\App\Models\Brand::find($item->brand_id)->name}}</td>
             <td>{{\App\Models\Categories::find($item->category_id)->name}}</td>
