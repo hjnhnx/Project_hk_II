@@ -53,9 +53,6 @@
                 <input type="text" class="form-control" name="user_name" placeholder="Tìm kiếm theo tên người nhận">
             </div>
             <div class="form-group col-md-3">
-                <input type="text" class="form-control" name="user_email" placeholder="Tìm kiếm theo email">
-            </div>
-            <div class="form-group col-md-3">
                 <input type="text" class="form-control" name="ship_address" placeholder="Tìm kiếm theo địa chỉ">
             </div>
             <div class="form-group col-md-3">
@@ -63,13 +60,6 @@
             </div>
             <div class="form-group col-md-3">
                 <input type="text" class="form-control" name="user_phone" placeholder="Tìm kiếm theo số điện thoại">
-            </div>
-            <div class="form-group col-md-3">
-                <select name="member" id="is_member" class="form-control">
-                    <option hidden>Lọc theo thành viên</option>
-                    <option value="1">Người dùng là thành viên hệ thống</option>
-                    <option value="2">Người dùng không là thành viên hệ thống</option>
-                </select>
             </div>
             <div class="form-group col-md-3">
                 <select name="date_filter" id="" class="form-control date_filter">
