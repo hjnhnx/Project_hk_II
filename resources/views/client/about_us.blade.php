@@ -77,56 +77,7 @@
         <h1>Trang giới thiệu</h1>
         <p>Một số thông tin về website và đội ngũ phát triển.</p>
     </div>
-
-    <h2 style="text-align:center">Đội của chúng tôi</h2>
-    <div class="row">
-        <div class="column">
-            <div class="card">
-                <img src="https://image-us.24h.com.vn/upload/2-2015/images/2015-06-22/1434977888-hivu13_wxzx.jpg"
-                     alt="Jane" style="width:100%">
-                <div class="container">
-                    <h2>Nguyễn Xuân Hinh</h2>
-                    <p class="title">CEO & Founder</p>
-                    <p>LH:0987465465</p>
-                    <p>Xuanhinh@gmail.com</p>
-                    <p>
-                        <button class="button">Theo dõi</button>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="column">
-            <div class="card">
-                <img src="https://sieupet.com/sites/default/files/cho-pug-bieu-cam_0.jpg" alt="Mike" style="width:100%">
-                <div class="container">
-                    <h2>Lê Thành Đạt</h2>
-                        <p class="title">Art Director</p>
-                        <p>LH:098686123</p>
-                        <p>Thanhdat@gmail.com</p>
-                        <p>
-                            <button class="button">Theo dõi</button>
-                        </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="column">
-            <div class="card">
-                <img src="https://anhdep123.com/wp-content/uploads/2021/02/hinh-anh-hai-huoc-ve-cho.jpg" alt="John"
-                     style="width:100%">
-                <div class="container">
-                    <h2>Nguyễn Mạnh Cường</h2>
-                    <p class="title">Designer</p>
-                    <p>LH:039988465</p>
-                    <p>Vietcuong@gmail.com</p>
-                    <p>
-                        <button class="button">Theo dõi</button>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <h1></h1>
     <div class="container">
         <h2>1/ LỊCH SỬ HÌNH THÀNH VÀ PHÁT TRIỂN</h2>
         <p class="title">- Khởi nghiệp chắc chắn không phải là con đường chỉ toàn màu hồng. Song nó lại là con đường
@@ -201,5 +152,67 @@
                             8/2016.
                             Giải thưởng "Best Nokia - Kênh bán lẻ tốt nhất" do Nokia Vietnam trao tặng – năm 2017.
                         </p>
+    </div>
+    <h2 style="text-align:center">Đội của chúng tôi</h2>
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+            <div class="card">
+                <img src="https://ngk.vn/upload/sanpham/mo-hinh-minion.jpg-2-85532.jpg"
+                     alt="Jane" style="width:100%">
+                <div class="container">
+                    <h3>Nguyễn Xuân Hinh</h3>
+                    <p class="title">CEO & Founder</p>
+                    <p>LH:0369042217</p>
+                    <p>nguyenhjnh2002@gmail.com</p>
+                    <p>
+                        <button class="button">Theo dõi</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+            <div class="card">
+                <img src="https://www.balonky.cz/wh/960-720/img/catalog/img/3001001.jpg">
+                <div class="container">
+                    <h3>Lê Thành Đạt</h3>
+                    <p class="title">Art Director</p>
+                    <p>LH:0388852709</p>
+                    <p>uinhieu123@gmail.com</p>
+                    <p>
+                        <button class="button">Theo dõi</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+            <div class="card">
+                <img src="https://avatarfiles.alphacoders.com/152/152684.jpg" alt="John"
+                     style="width:100%">
+                <div class="container">
+                    <h3>Nguyễn Mạnh Cường</h3>
+                    <p class="title">Designer</p>
+                    <p>LH:0964615565</p>
+                    <p>nguyenmanhcuong0999@gmail.com</p>
+                    <p>
+                        <button class="button">Theo dõi</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+            <div class="card">
+                <img src="https://pbs.twimg.com/profile_images/688767056699899904/jn30tPcZ.jpg" alt="John"
+                     style="width:100%">
+                <div class="container">
+                    <h3>Nguyễn Hoàng Tuấn</h3>
+                    <p class="title">Designer</p>
+                    <p>LH:0399388831</p>
+                    <p>tuannhth2002@gmail.com</p>
+                    <p>
+                        <button class="button">Theo dõi</button>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
