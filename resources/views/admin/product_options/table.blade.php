@@ -54,14 +54,14 @@
 @section('table_head')
     <tr>
         <th>Id</th>
-        <th>Product name</th>
-        <th>Thumbnail</th>
-        <th>Color</th>
-        <th>Storage</th>
-        <th>Quantity</th>
-        <th>Price</th>
-        <th>Created at</th>
-        <th class="text-center Product_Action">Actions</th>
+        <th>Tên sản phẩm</th>
+        <th>Ảnh đại diện</th>
+        <th>Màu sắc</th>
+        <th>Bộ nhớ</th>
+        <th>Số lượng</th>
+        <th>Giá</th>
+        <th>Ngày thêm</th>
+        <th class="text-center Product_Action">Thao tác</th>
     </tr>
 @endsection
 @section('table_body')

@@ -24,7 +24,6 @@ class CreateUsersTable extends Migration
             $table->text('address');
             $table->string('phone');
             $table->string('birthday');
-
             $table->string('password');
             $table->integer('role')->default(Role::USER);
             $table->integer('status')->default(Status::ACTIVE);

@@ -24,12 +24,12 @@
 @section('table_head')
     <tr>
         <th>Id</th>
-        <th>Name</th>
+        <th>Họ và tên</th>
         <th>Email</th>
-        <th>Phone number</th>
-        <th>Message</th>
-        <th>Created At</th>
-        <th class="text-center">Actions</th>
+        <th>Số điện thoại</th>
+        <th>Lời nhắn</th>
+        <th>Ngày gửi</th>
+        <th class="text-center">Thao tác</th>
     </tr>
 @endsection
 @section('table_body')

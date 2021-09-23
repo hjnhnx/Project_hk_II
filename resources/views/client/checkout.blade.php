@@ -6,6 +6,7 @@
             color: #7a7979;
         }
     </style>
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
 @endsection
 @section('main_content')
     <section class="container content_cart">
@@ -42,7 +43,8 @@
                 </p>
                 <p style="font-weight: 600" class="m-0">Mã đơn hàng : #<span class="text-danger"
                                                                              id="order_code"> {{$order->order_code}}</span>
-                    <span onclick="copyToClipboard('order_code')" class="text-primary" style="cursor: pointer">copy</span>
+                    <span onclick="copyToClipboard('order_code')" class="text-primary"
+                          style="cursor: pointer">copy</span>
                 </p>
             </div>
             <br>
@@ -80,13 +82,23 @@
                             toán khi nhận hàng</a></button>
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 d-block p-2">
-                    <button style="height: 50px;width: 100%;background: #b13030"><a href="{{route('payment',$order->id)}}" class="d-flex justify-content-center align-items-center" style="height: 100%;width: 100%;text-decoration: none;color: white">Thanh toán với vnpay</a></button>
+                    <button style="height: 50px;width: 100%;background: #b13030"><a
+                            href="{{route('payment',$order->id)}}"
+                            class="d-flex justify-content-center align-items-center"
+                            style="height: 100%;width: 100%;text-decoration: none;color: white">Thanh toán với vnpay</a>
+                    </button>
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 d-block p-2">
-                    <button style="height: 50px;width: 100%;background: #12ce38"><a href="{{route('payment',$order->id)}}" class="d-flex justify-content-center align-items-center" style="height: 100%;width: 100%;text-decoration: none;color: white">Chuyển Khoản</a></button>
+                    <button style="height: 50px;width: 100%;background: #12ce38"><a
+                            href="{{route('payment',$order->id)}}"
+                            class="d-flex justify-content-center align-items-center"
+                            style="height: 100%;width: 100%;text-decoration: none;color: white">Chuyển Khoản</a>
+                    </button>
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 d-block p-2">
-                    <button style="height: 50px;width: 100%;background: #25319c"><a href="{{route('payment',$order->id)}}" class="d-flex justify-content-center align-items-center" style="height: 100%;width: 100%;text-decoration: none;color: white">Thanh toán với paypal</a></button>
+                    <button style="height: 50px;width: 100%;background: #25319c">
+                        <div id="paypal-button"></div>
+                    </button>
                 </div>
             </div>
         </div>
@@ -118,5 +130,31 @@
             document.getElementById('order_code').classList.remove('text-danger')
 
         }
+
+        paypal.Button.render({
+            env: 'sandbox', // Or 'production'
+            payment: function (data, actions) {
+                return actions.request.post('/paypal_payment/create',{
+                    id:{{$order->id}},
+                })
+                    .then(function (res) {
+                        console.log(res)
+                        return res.id;
+                    });
+            },
+            onAuthorize: function (data, actions) {
+                return actions.request.post('/paypal_payment/execute-payment', {
+                    paymentID: data.paymentID,
+                    payerID: data.payerID
+                })
+                    .then(function (res) {
+                        window.location.href = '{{route('payment_success',$order->id)}}'
+                        console.log(res)
+                        return res
+
+                    });
+            }
+        }, '#paypal-button');
     </script>
+
 @endsection

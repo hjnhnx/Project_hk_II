@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ShoppingCartController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\PaypalController;
 use App\Http\Controllers\Service\ImageUploadController;
 use App\Http\Controllers\UserController as User;
 use App\Http\Middleware\CheckIsAdmin;
@@ -60,3 +61,7 @@ Route::get('/payment/{id}',[Controller::class,'payment'])->name('payment');
 Route::get('/payment/response',function (){
     return redirect('/');
 });
+
+Route::post('/paypal_payment/create',[PaypalController::class,'create_payment'])->name('create_payment');
+Route::post('/paypal_payment/execute-payment',[PaypalController::class,'execute_payment'])->name('execute_payment');
+Route::get('/paypal_payment/success/{id}',[PaypalController::class,'payment_success'])->name('payment_success');

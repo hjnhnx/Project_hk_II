@@ -42,12 +42,12 @@
 @section('table_head')
     <tr>
         <th>Id</th>
-        <th>Name</th>
-        <th>Color Code</th>
-        <th>Color Preview</th>
-        <th>Status</th>
-        <th>Created At</th>
-        <th class="text-center">Actions</th>
+        <th>Tên</th>
+        <th>Mã màu</th>
+        <th>Xem trước</th>
+        <th>Trạng thái</th>
+        <th>Ngày thêm</th>
+        <th class="text-center">Thao tác</th>
     </tr>
 @endsection
 @section('table_body')

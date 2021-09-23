@@ -19,6 +19,10 @@
 
 <p>Chi tiết sản phẩm</p>
 
+@if($order->is_checkout == \App\Enums\CheckoutStatus::PAID)
+    <p style="color: red">Đã thanh toán</p>
+@endif
+
 <table border="1" cellspacing="0" cellpadding="10" width="400">
     <thead>
     <tr>
