@@ -12,14 +12,12 @@
     var chatbox = document.getElementById('fb-customer-chat');
     chatbox.setAttribute("page_id", "104971075277777");
     chatbox.setAttribute("attribution", "biz_inbox");
-
     window.fbAsyncInit = function() {
         FB.init({
             xfbml            : true,
             version          : 'v12.0'
         });
     };
-
     (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
@@ -148,9 +146,7 @@
     @yield('main_content')
 </main>
 @include('client.components.footer')
-
 @include('client.components.script')
 <a class="call_now" href="tel:0369042217"><i class="fas fa-phone-alt"></i></a>
-
 </body>
 </html>

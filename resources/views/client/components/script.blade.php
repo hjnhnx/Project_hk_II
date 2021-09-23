@@ -8,6 +8,7 @@
         crossorigin="anonymous"></script>
 @yield('cart-js')
 @yield('custom_js')
+
 <script>
     $('.btn_play_video').click(function () {
         $('.video_iframe').attr('src', this.slot)
@@ -46,9 +47,6 @@
         }
     });
 
-    document.addEventListener('DOMContentLoaded',function (){
-        console.log(document.getElementById('option_id'))
-    })
     function add_to_cart(id,item) {
         if (id !== '') {
             $.post('{{route('add_to_cart')}}', {
@@ -109,9 +107,7 @@
         } else {
             toastr.error(`Vui lòng kiểm tra lại số lượng và đảm bảo rằng số lượng lớn hơn 0`);
         }
-
     }
-
 
     function remove_cart(code) {
         var check = confirm('Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng')
@@ -159,7 +155,7 @@
     $('.product_image').click(function () {
         $('.show_image').attr('src', this.src)
     })
-    // code api
+
     $('.buy-now').click(function () {
         var url = window.location.origin + `/api/get-data-product/${this.slot}`
         $.get(url, function (data, status) {
@@ -170,7 +166,6 @@
             for (let i = 0; i < images.length; i++) {
                 $('.show_mini_images').append(`<img class="mr-2" onclick="change_img(this)" style="object-fit: cover;height: 100%;width: 85px" src="${images[i]}" alt="">`)
             }
-
             $('.after_price').text(`${formatNumber(Number(data.product.price) + Number(data.product_option[0].price) - ((Number(data.product.price) + Number(data.product_option[0].price)) * Number(data.product.discount) / 100))} vnđ`)
             $('.before_price').text(`${formatNumber(data.product.price + data.product_option[0].price)} vnđ`)
             $('.show_option').html('')
@@ -192,6 +187,7 @@ class="row p-0">
     function change_img(item) {
         $('.show_image').attr('src', item.src)
     }
+
     function choi_option(item){
         $('#option_id').val(item.id)
         $('.option_active').removeClass('option_active')
@@ -204,7 +200,6 @@ class="row p-0">
         $('.sale_price').html(formatNumber(sale_price)+' vnđ')
         $('.price').html(price + ' vnđ')
         $('.total_price').val(Number(sale_price))
-
     }
 
     $('.btn_buy_now').click(function (){
@@ -224,12 +219,8 @@ class="row p-0">
         $('.exampleModal1').click()
     })
 
-
-
-
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     }
-
 
 </script>

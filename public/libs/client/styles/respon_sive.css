@@ -5,8 +5,17 @@
     .hidden_item {
         display: none!important;
     }
+    .d-nonee {
+        display: none;
+    }
 }
 @media only screen and (max-width: 991px) {
+    .d-nonee2 {
+        display: none;
+    }
+    .filter_container{
+        height: 530px!important;
+    }
     .container-contact1 {
         padding: 30px;
     }

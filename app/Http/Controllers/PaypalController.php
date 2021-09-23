@@ -136,7 +136,7 @@ class PaypalController extends Controller
         $order_detail = Order_Detail::query()->where('order_id',$id)->get();
         $toName = $order->ship_name;
         $userEmail = $order->ship_email;
-        Mail::send('send_mail', ['order'=>$order,'order_detail'=>$order_detail], function ($message) use ($toName, $userEmail) {
+        Mail::send('send_mail', ['order'=>$order,'order_details'=>$order_detail], function ($message) use ($toName, $userEmail) {
             $message->to($userEmail, $toName)
                 ->subject('Cảm ơn bạn đã mua hàng tại Sun Mobile.');
             $message->from(env('MAIL_USERNAME'), 'Sun Mobile');
