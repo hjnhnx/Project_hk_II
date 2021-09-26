@@ -16,6 +16,9 @@
     .filter_container{
         height: 530px!important;
     }
+    .success_payment {
+        font-size: 20px;
+    }
     .container-contact1 {
         padding: 30px;
     }
@@ -178,4 +181,7 @@
 }
 .option_active {
     border: #f88989 2px solid !important;
+}
+.show_option > div{
+    cursor: pointer;
 }

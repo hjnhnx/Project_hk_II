@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\BannerType;
 use App\Enums\CheckoutStatus;
 use App\Enums\Status;
+use App\Jobs\SendMail_Create_order;
 use App\Models\Banner;
 use App\Models\Brand;
 use App\Models\Contact;
@@ -131,16 +132,12 @@ class Controller extends BaseController
     }
     public function send_mail($id)
     {
-        $order = Order::find($id);
-        $order_detail = Order_Detail::query()->where('order_id',$id)->get();
-        $toName = $order->ship_name;
-        $userEmail = $order->ship_email;
-        Mail::send('send_mail', ['order'=>$order,'order_details'=>$order_detail], function ($message) use ($toName, $userEmail) {
-            $message->to($userEmail, $toName)
-                ->subject('Cảm ơn bạn đã mua hàng tại Sun Mobile.');
-            $message->from(env('MAIL_USERNAME'), 'Sun Mobile');
-        });
-        return redirect()->route('home_page');
+        $this->dispatch(new SendMail_Create_order($id));
+        return view('client.thank_you_order',[
+            'order_id'=>$id,
+            'banner' => null,
+            'sub_banner' => null,
+        ]);
     }
 
     public function list_order(Request $request)
@@ -179,8 +176,7 @@ class Controller extends BaseController
             'product_option'=>$product_option
         ]);
     }
-    public function get_data_brand(Request $request){
-        $order = Order::query()->where('is_checkout',CheckoutStatus::PAID)->with('order_detail')->get();
+    public function get_data_brand(){
         $brands = Brand::all();
         $data_brands = [];
         foreach ($brands as $i){
@@ -192,6 +188,23 @@ class Controller extends BaseController
         }
         return $data_brands;
     }
+
+    public function get_data_filter(Request $request){
+        $brands = Brand::all();
+        $data_brands = [];
+        foreach ($brands as $i){
+            $count = 0;
+            foreach (Product::query()->where('brand_id',$i->id)->get() as $item){
+                $count += sizeof(Order_Detail::query()->where('product_id',$item->id)->where('created_at','>=',$request->start_time)->where('created_at','<=',$request->end_time)->get());
+            }
+            array_push($data_brands,$count);
+        }
+        return $data_brands;
+    }
+
+
+
+
 
 
     public function payment ($id){
@@ -241,10 +254,8 @@ class Controller extends BaseController
             $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret);
             $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
         }
-        return redirect()->route('payment_success',$order->id);
+        return redirect($vnp_Url);
     }
-
-
     public function ipnResponse(Request $request)
     {
         Log::debug('An informational message.');

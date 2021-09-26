@@ -103,8 +103,8 @@
                                     </div>
                                     <div class="product-mid">
                                         <div class="product-image">
-                                            <img src="{{$item->thumbnail}}"
-                                                 style="height: 100%;width: 100%;object-fit: cover">
+                                            <a href="{{route('product_detail',$item->slug)}}"><img src="{{$item->thumbnail}}"
+                                                                                                   style="height: 100%;width: 100%;object-fit: cover"></a>
                                         </div>
                                         <h3 class="product-name"><a
                                                 href="https://www.hnammobile.com/dien-thoai/samsung-galaxy-s21-ultra-5g-g998-256gb.21524.html">{{$item->name}}</a>
@@ -146,8 +146,8 @@
                                 </div>
                                 <div class="product-mid">
                                     <div class="product-image">
-                                        <img src="{{$item->thumbnail}}"
-                                             style="height: 100%;width: 100%;object-fit: cover">
+                                        <a href="{{route('product_detail',$item->slug)}}"><img src="{{$item->thumbnail}}"
+                                                                                               style="height: 100%;width: 100%;object-fit: cover"></a>
                                     </div>
                                     <h3 class="product-name"><a
                                             href="https://www.hnammobile.com/dien-thoai/samsung-galaxy-s21-ultra-5g-g998-256gb.21524.html">{{$item->name}}</a>
@@ -185,8 +185,8 @@
                                 </div>
                                 <div class="product-mid">
                                     <div class="product-image">
-                                        <img src="{{$item->thumbnail}}"
-                                             style="height: 100%;width: 100%;object-fit: cover">
+                                        <a href="{{route('product_detail',$item->slug)}}"><img src="{{$item->thumbnail}}"
+                                                        style="height: 100%;width: 100%;object-fit: cover"></a>
                                     </div>
                                     <h3 class="product-name"><a
                                             href="https://www.hnammobile.com/dien-thoai/samsung-galaxy-s21-ultra-5g-g998-256gb.21524.html">{{$item->name}}</a>

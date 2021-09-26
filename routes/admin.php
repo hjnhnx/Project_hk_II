@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\DashboadController;
 use App\Http\Controllers\Admin\OrderDetailController;
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
@@ -12,9 +13,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('admin.dashboard.dashboard');
-});
+Route::get('/', [DashboadController::class,'index'])->name('dashboard');
 Route::prefix('user')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('list_user');
     Route::get('/logout',[UserController::class,'logout'])->name('user_logout');
