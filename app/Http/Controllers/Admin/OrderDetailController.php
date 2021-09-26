@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\BannerType;
 use App\Enums\Sort;
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Models\Order;
 use App\Models\Order_Detail;
 use App\Models\Product;
@@ -38,6 +40,15 @@ class OrderDetailController extends Controller
         $order->is_checkout = $request->is_checkout;
         $order->save();
         return back()->with('message','cập nhật trạng thái đơn hàng thành công.');
-
+    }
+    public function show_order_detail($id){
+        $order = Order::query()->where('order_code',$id)->first();
+        $order_details = Order_Detail::query()->where('order_id',$order->id)->with('product_option')->get();
+        return view('client.show_order_detail',[
+            'order'=>$order,
+            'order_details'=>$order_details,
+            'banner' => null,
+            'sub_banner' => null,
+            ]);
     }
 }
