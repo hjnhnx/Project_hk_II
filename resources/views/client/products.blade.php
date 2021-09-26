@@ -44,12 +44,13 @@
     <section class="products">
         <p style="position: fixed;left: 10px;top: 107px;z-index: 100000;width: 40px"
            class="btn btn-danger btn_show_filter">
-            <i class="fas fa-filter"></i>
+            <i class="fas fa-filter d-nonee"></i>
+            <i class="fas fa-chevron-left d-nonee2"></i>
         </p>
 
         <div
-            style="background: white;max-height: 400px;width: 220px;position: fixed;left: 10px;top: 150px;overflow: scroll;z-index: 100000;box-shadow: black 1px 2px 3px"
-            class="border filter_container d-none p-3">
+            style="background: white;max-height: 650px;width: 220px;position: fixed;left: 10px;top: 150px;overflow: scroll;z-index: 100000;box-shadow: black 1px 2px 3px"
+            class="border filter_container d-nonee2 p-3">
             <div style="width: 100%">
                 <button style="background: #fc5353" class="m-1 btn_brand1">Lọc theo hãng</button>
                 <button slot="" class="m-1 btn_brand">Tất cả</button>
@@ -102,8 +103,8 @@
                                     </div>
                                     <div class="product-mid">
                                         <div class="product-image">
-                                            <img src="{{$item->thumbnail}}"
-                                                 style="height: 100%;width: 100%;object-fit: cover">
+                                            <a href="{{route('product_detail',$item->slug)}}"><img src="{{$item->thumbnail}}"
+                                                                                                   style="height: 100%;width: 100%;object-fit: cover"></a>
                                         </div>
                                         <h3 class="product-name"><a
                                                 href="https://www.hnammobile.com/dien-thoai/samsung-galaxy-s21-ultra-5g-g998-256gb.21524.html">{{$item->name}}</a>
@@ -114,7 +115,8 @@
                                         </div>
                                     </div>
                                     <div class="product-bottom">
-                                        <a slot="{{$item->id}}" rel="nofollow"  class="btn buy-now" data-toggle="modal" data-target="#exampleModalLong">Đặt hàng ngay</a>
+                                        <a slot="{{$item->id}}" rel="nofollow" class="btn buy-now" data-toggle="modal"
+                                           data-target="#exampleModalLong">Đặt hàng ngay</a>
                                         <a rel="nofollow"
                                            href="{{route('product_detail',$item->slug)}}"
                                            class="btn pay-0">Xem chi tiết</a>
@@ -144,8 +146,8 @@
                                 </div>
                                 <div class="product-mid">
                                     <div class="product-image">
-                                        <img src="{{$item->thumbnail}}"
-                                             style="height: 100%;width: 100%;object-fit: cover">
+                                        <a href="{{route('product_detail',$item->slug)}}"><img src="{{$item->thumbnail}}"
+                                                                                               style="height: 100%;width: 100%;object-fit: cover"></a>
                                     </div>
                                     <h3 class="product-name"><a
                                             href="https://www.hnammobile.com/dien-thoai/samsung-galaxy-s21-ultra-5g-g998-256gb.21524.html">{{$item->name}}</a>
@@ -156,7 +158,8 @@
                                     </div>
                                 </div>
                                 <div class="product-bottom">
-                                    <a slot="{{$item->id}}" rel="nofollow"  class="btn buy-now" data-toggle="modal" data-target="#exampleModalLong">Đặt hàng ngay</a>
+                                    <a slot="{{$item->id}}" rel="nofollow" class="btn buy-now" data-toggle="modal"
+                                       data-target="#exampleModalLong">Đặt hàng ngay</a>
                                     <a rel="nofollow"
                                        href="{{route('product_detail',$item->slug)}}"
                                        class="btn pay-0">Xem chi tiết</a>
@@ -182,8 +185,8 @@
                                 </div>
                                 <div class="product-mid">
                                     <div class="product-image">
-                                        <img src="{{$item->thumbnail}}"
-                                             style="height: 100%;width: 100%;object-fit: cover">
+                                        <a href="{{route('product_detail',$item->slug)}}"><img src="{{$item->thumbnail}}"
+                                                        style="height: 100%;width: 100%;object-fit: cover"></a>
                                     </div>
                                     <h3 class="product-name"><a
                                             href="https://www.hnammobile.com/dien-thoai/samsung-galaxy-s21-ultra-5g-g998-256gb.21524.html">{{$item->name}}</a>
@@ -194,7 +197,8 @@
                                     </div>
                                 </div>
                                 <div class="product-bottom">
-                                    <a slot="{{$item->id}}" rel="nofollow"  class="btn buy-now" data-toggle="modal" data-target="#exampleModalLong">Đặt hàng ngay</a>
+                                    <a slot="{{$item->id}}" rel="nofollow" class="btn buy-now" data-toggle="modal"
+                                       data-target="#exampleModalLong">Đặt hàng ngay</a>
                                     <a rel="nofollow"
                                        href="{{route('product_detail',$item->slug)}}"
                                        class="btn pay-0">Xem chi tiết</a>
@@ -213,14 +217,26 @@
     <script>
         var check_filter = true
         $('.btn_show_filter').click(function () {
-            $('.filter_container').toggleClass('d-none')
-            if (check_filter) {
-                $('.btn_show_filter').html('<i class="fas fa-chevron-left"></i>')
-                check_filter = false
-            } else {
-                $('.btn_show_filter').html('<i class="fas fa-filter"></i>')
-                check_filter = true
+            $('.filter_container').toggleClass('d-nonee')
+            $('.filter_container').toggleClass('d-nonee2')
+            if (window.innerWidth < 992){
+                if (check_filter) {
+                    $('.btn_show_filter').html('<i class="fas fa-chevron-left"></i>')
+                    check_filter = false
+                } else {
+                    $('.btn_show_filter').html('<i class="fas fa-filter"></i>')
+                    check_filter = true
+                }
+            }else {
+                if (check_filter) {
+                    $('.btn_show_filter').html('<i class="fas fa-filter"></i>')
+                    check_filter = false
+                } else {
+                    $('.btn_show_filter').html('<i class="fas fa-chevron-left"></i>')
+                    check_filter = true
+                }
             }
+
         })
         $('.btn_brand').click(function () {
             $('#brand_s').val(this.slot)

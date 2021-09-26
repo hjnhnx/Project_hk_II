@@ -3,7 +3,7 @@
         <nav id="menu" class="nav-main" role="navigation">
             <ul class="nav nav-main">
                 <li class="nav-active">
-                    <a href="#">
+                    <a href="{{route('dashboard')}}">
                         <i class="fa fa-home" aria-hidden="true"></i>
                         <span>Dashboard</span>
                     </a>
@@ -120,19 +120,6 @@
                     <ul class="nav nav-children">
                         <li>
                             <a href="{{route('list_order')}}">
-                                Xem tất cả
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-parent">
-                    <a>
-                        <i class="fa fa-info" aria-hidden="true"></i>
-                        <span>Chi tiết đơn hàng</span>
-                    </a>
-                    <ul class="nav nav-children">
-                        <li>
-                            <a href="{{route('list_order_detail')}}">
                                 Xem tất cả
                             </a>
                         </li>

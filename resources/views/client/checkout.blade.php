@@ -11,7 +11,7 @@
 @section('main_content')
     <section class="container content_cart">
         <div class="col-12 p-3">
-            <h2>Chi tiết đơn hàng</h2>
+            <h2>Đơn hàng # {{$order->order_code}}</h2>
             <hr>
             <h4>{{$order->ship_name}}</h4>
             <table class="table mt-3 mb-3 table_show_order_destop">
@@ -89,9 +89,7 @@
                     </button>
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 d-block p-2">
-                    <button style="height: 50px;width: 100%;background: #12ce38"><a
-                            href="{{route('payment',$order->id)}}"
-                            class="d-flex justify-content-center align-items-center"
+                    <button data-toggle="modal" data-target="#exampleModall3" style="height: 50px;width: 100%;background: #12ce38"><a class="d-flex justify-content-center align-items-center"
                             style="height: 100%;width: 100%;text-decoration: none;color: white">Chuyển Khoản</a>
                     </button>
                 </div>
@@ -99,6 +97,28 @@
                     <button style="height: 50px;width: 100%;background: #25319c">
                         <div id="paypal-button"></div>
                     </button>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModall3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="width: 100%">
+                        <h5 class="modal-title" id="exampleModalLabel">Thanh toán với hình thức chuyển khoản</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Mã số thẻ : <span style="font-weight: 600">45210000938938</span></p>
+                        <p>Ngân hàng : <span style="font-weight: 600">BIDV</span></p>
+                        <p>Họ tên chủ thẻ : <span style="font-weight: 600">NGUYEN XUAN HINH</span></p>
+                        <p>Nội dung : <span style="font-weight: 600">Thanh toán đơn hàng :(Mã đơn hàng) cho SUN MOBILE</span></p>
+                        <p>Ví dụ : <span style="font-weight: 600">Thanh toán đơn hàng :00009999 cho SUN MOBILE</span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -132,10 +152,14 @@
         }
 
         paypal.Button.render({
+            style: {
+                shape: 'rect',
+                tagline: false
+            },
             env: 'sandbox', // Or 'production'
             payment: function (data, actions) {
-                return actions.request.post('/paypal_payment/create',{
-                    id:{{$order->id}},
+                return actions.request.post('/paypal_payment/create', {
+                    id: {{$order->id}},
                 })
                     .then(function (res) {
                         console.log(res)

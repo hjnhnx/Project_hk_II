@@ -48,7 +48,6 @@
                         @elseif($order->status == \App\Enums\OrderStatus::Cancel)
                             Đã hủy đơn hàng
                         @endif</p>
-                    <p><strong>Trạng thái thanh toán:</strong>{{$order->is_checkout == \App\Enums\CheckoutStatus::UNPAID ? 'Chưa thanh toán' : 'Đã thanh toán'}}</p>
                 </div>
             </div>
         </div>
@@ -101,17 +100,17 @@
                  <div class="form-group col-md-4">
                      <label for=""><b>Trạng thái đơn hàng:</b></label>
                      <select class="form-control"  name="order_status" id="trangthaidonhang">
-                         <option value="{{\App\Enums\OrderStatus::Create}}">Chờ lấy hàng</option>
-                         <option value="{{\App\Enums\OrderStatus::Delivery}}">Đang giao hàng</option>
-                         <option value="{{\App\Enums\OrderStatus::Complete}}">Đã nhận hàng</option>
-                         <option value="{{\App\Enums\OrderStatus::Cancel}}">Đã hủy đơn hàng</option>
+                         <option {{$order_status == \App\Enums\OrderStatus::Create? 'selected': ''}} value="{{\App\Enums\OrderStatus::Create}}">Chờ lấy hàng</option>
+                         <option {{$order_status == \App\Enums\OrderStatus::Delivery? 'selected': ''}} value="{{\App\Enums\OrderStatus::Delivery}}">Đang giao hàng</option>
+                         <option {{$order_status == \App\Enums\OrderStatus::Complete? 'selected': ''}} value="{{\App\Enums\OrderStatus::Complete}}">Đã nhận hàng</option>
+                         <option {{$order_status == \App\Enums\OrderStatus::Cancel? 'selected': ''}} value="{{\App\Enums\OrderStatus::Cancel}}">Đã hủy đơn hàng</option>
                      </select>
                  </div>
                  <div class="form-group col-md-4">
                      <label for="trangthaithanhtoan"><b>Trạng thái thanh toán:</b></label>
                      <select class="form-control"  name="is_checkout" id="trangthaithanhtoan">
-                         <option value="{{\App\Enums\CheckoutStatus::UNPAID}}">Chưa thanh toán</option>
-                         <option value="{{\App\Enums\CheckoutStatus::PAID}}">Đã thanh toán</option>
+                         <option {{$pay_status == \App\Enums\CheckoutStatus::UNPAID ? 'selected' : ''}} value="{{\App\Enums\CheckoutStatus::UNPAID}}">Chưa thanh toán</option>
+                         <option {{$pay_status == \App\Enums\CheckoutStatus::PAID ? 'selected' : ''}} value="{{\App\Enums\CheckoutStatus::PAID}}">Đã thanh toán</option>
                      </select>
                  </div>
                  <label for="">.</label>

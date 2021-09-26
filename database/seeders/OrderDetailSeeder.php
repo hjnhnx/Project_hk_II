@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Order_Detail;
 use App\Models\Product;
 use App\Models\Product_option;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -25,6 +26,7 @@ class OrderDetailSeeder extends Seeder
                 'order_id'=>$i,
                 'quantity'=>2,
                 'unit_price'=>Product::find($product_option->product_id)->price + $product_option->price,
+                'created_at'=>Carbon::now()->subDay($i)
             ]);
         }
         for ($i = 240; $i <= 500; $i++) {
@@ -35,6 +37,7 @@ class OrderDetailSeeder extends Seeder
                 'order_id'=>$i,
                 'quantity'=>2,
                 'unit_price'=>Product::find($product_option->product_id)->price + $product_option->price,
+                'created_at'=>Carbon::now()->subDay($i)
             ]);
         }
     }

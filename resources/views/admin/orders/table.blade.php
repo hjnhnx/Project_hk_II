@@ -29,7 +29,7 @@
 @endsection
 @section('filter_form')
     <div class="form-group col-sm-5">
-        <input value="{{$key_search != null ? $key_search : ''}}" type="text" class="form-control" placeholder="Enter keyword" name="search">
+        <input value="{{$key_search}}" type="text" class="form-control" placeholder="Enter keyword" name="search">
     </div>
     <div class="form-group col-sm-4">
         <button class="btn btn-primary">Tìm kiếm</button>
@@ -50,28 +50,48 @@
     <div style="height: 100px" class="col-md-12 row">
         <form action="" method="get" id="form_filter">
             <div class="form-group col-md-3">
-                <input type="text" class="form-control" name="user_name" placeholder="Tìm kiếm theo tên người nhận">
+                <input type="text" class="form-control" name="user_name" value="{{$user_name}}" placeholder="Tìm kiếm theo tên người nhận">
             </div>
             <div class="form-group col-md-3">
-                <input type="text" class="form-control" name="ship_address" placeholder="Tìm kiếm theo địa chỉ">
+                <input type="text" class="form-control" value="{{$ship_address}}" name="ship_address" placeholder="Tìm kiếm theo địa chỉ">
             </div>
             <div class="form-group col-md-3">
-                <input type="text" class="form-control" name="order_code" placeholder="Tìm kiếm theo mã đơn hàng">
+                <input type="text" class="form-control" value="{{$order_code}}" name="order_code" placeholder="Tìm kiếm theo mã đơn hàng">
             </div>
             <div class="form-group col-md-3">
-                <input type="text" class="form-control" name="user_phone" placeholder="Tìm kiếm theo số điện thoại">
+                <input type="text" class="form-control" value="{{$user_phone}}" name="user_phone" placeholder="Tìm kiếm theo số điện thoại">
             </div>
             <div class="form-group col-md-3">
                 <select name="date_filter" id="" class="form-control date_filter">
-                    <option value="" hidden>Lọc theo ngày</option>
-                    <option value="now">Hôm nay</option>
-                    <option value="7day">7 ngày gần đây</option>
-                    <option value="15day">15 ngày gần đây</option>
-                    <option value="30day">1 tháng gần đây</option>
+                    <option  value="" hidden>Lọc theo ngày</option>
+                    <option {{$date_filter == 'now' ? 'selected' : ''}} value="now">Hôm nay</option>
+                    <option {{$date_filter == '7day' ? 'selected' : ''}} value="7day">7 ngày gần đây</option>
+                    <option {{$date_filter == '15day' ? 'selected' : ''}} value="15day">15 ngày gần đây</option>
+                    <option {{$date_filter == '30day' ? 'selected' : ''}} value="30day">1 tháng gần đây</option>
                 </select>
             </div>
-            <div class="form-group col-md-3">
-                <button class="btn btn-primary form-control">Tất cả</button>
+            <div class="form-group col-md-3 row">
+                <div class="col-md-3">
+                    <label for="">Từ ngày</label>
+                </div>
+                <div class="col-md-9">
+                    <input type="date" class="form-control" placeholder="helo">
+                </div>
+            </div>
+            <div class="form-group col-md-3 row">
+                <div class="col-md-3">
+                    <label for="">Đến ngày</label>
+                </div>
+                <div class="col-md-9">
+                    <input type="date" class="form-control" placeholder="helo">
+                </div>
+            </div>
+
+
+            <div class="form-group col-md-3 row m-0 p-0">
+                <div class="col-md-6 form-group">
+                    <button class="btn btn-primary form-control">Lọc</button>
+                </div>
             </div>
         </form>
     </div>
@@ -105,13 +125,13 @@
             <td>{{$item->is_checkout == \App\Enums\CheckoutStatus::UNPAID ? 'Chưa thanh toán' : 'Đã thanh toán'}}</td>
             <td>
                 @if($item->status == \App\Enums\OrderStatus::Create)
-                    Đã tạo đơn hàng
+                    Người dùng đã tạo đơn hàng
                 @elseif($item->status == \App\Enums\OrderStatus::Delivery)
-                    Đang giao hàng
+                    Cửa hàng đang giao hàng
                 @elseif($item->status == \App\Enums\OrderStatus::Complete)
-                    Đã nhận hàng
+                    Người dùng đã nhận hàng
                 @elseif($item->status == \App\Enums\OrderStatus::Cancel)
-                    Đã hủy đơn hàng
+                    Người dùng đã hủy đơn hàng
                 @endif
             </td>
             <td>{{date_format($item->created_at,'d/m/Y')}}</td>
@@ -124,11 +144,11 @@
         <p>Doanh thu : {{number_format($amount)}} vnđ</p>
         <span style="margin-right: 30px">Check all <input id="check_all" type="checkbox" style="transform: translateY(2px)"></span>
         <select name="order_status" id="order_status" style="width: 130px">
-            <option hidden>Change status</option>
-            <option value="{{\App\Enums\OrderStatus::Cancel}}">Cancel</option>
-            <option value="{{\App\Enums\OrderStatus::Complete}}">Complete</option>
-            <option value="{{\App\Enums\OrderStatus::Delivery}}">Delivery</option>
-            <option value="{{\App\Enums\OrderStatus::Create}}">Create</option>
+            <option hidden>Cập nhật đơn hàng</option>
+            <option value="{{\App\Enums\OrderStatus::Cancel}}">Người dùng đã hủy đơn hàng</option>
+            <option value="{{\App\Enums\OrderStatus::Complete}}">Người dùng đã nhận hàng</option>
+            <option value="{{\App\Enums\OrderStatus::Delivery}}">Cửa hàng đang giao hàng</option>
+            <option value="{{\App\Enums\OrderStatus::Create}}">Người dùng đã tạo đơn hàng</option>
         </select>
         <button class="btn btn-primary btn_submit" style="width: 120px">Apply</button>
         <form action="{{route('update_status')}}" id="form_update_status" method="post" style="width: 0;height: 0;overflow: hidden!important;">

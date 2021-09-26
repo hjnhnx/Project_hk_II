@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\CheckoutStatus;
+use App\Jobs\SendMail_Create_order;
 use App\Models\Order;
 use App\Models\Order_Detail;
 use App\Models\Product;
@@ -132,15 +133,7 @@ class PaypalController extends Controller
     }
 
     public function payment_success($id){
-        $order = Order::find($id);
-        $order_detail = Order_Detail::query()->where('order_id',$id)->get();
-        $toName = $order->ship_name;
-        $userEmail = $order->ship_email;
-        Mail::send('send_mail', ['order'=>$order,'order_detail'=>$order_detail], function ($message) use ($toName, $userEmail) {
-            $message->to($userEmail, $toName)
-                ->subject('Cảm ơn bạn đã mua hàng tại Sun Mobile.');
-            $message->from(env('MAIL_USERNAME'), 'Sun Mobile');
-        });
+        $this->dispatch(new SendMail_Create_order($id));
         return view('client.payment_success',[
             'banner' => null,
             'sub_banner' => null,
