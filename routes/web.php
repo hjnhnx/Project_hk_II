@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\OrderDetailController;
 use App\Http\Controllers\Admin\ShoppingCartController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Controller;
@@ -56,6 +57,7 @@ Route::post('/remove_from_cart',[ShoppingCartController::class,'remove'])->name(
 
 Route::post('/create_order',[ShoppingCartController::class,'create_order'])->name('create_order');
 Route::get('/orders',[Controller::class,'list_order'])->name('list_order_client');
+Route::get('/{id}/show-order-detail',[OrderDetailController::class,'show_order_detail'])->name('show_order_detail');
 
 Route::get('/payment/{id}',[Controller::class,'payment'])->name('payment');
 Route::get('/payment/response',function (){
