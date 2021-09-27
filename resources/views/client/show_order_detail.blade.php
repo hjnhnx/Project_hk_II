@@ -11,8 +11,78 @@
     </style>
 @endsection
 @section('main_content')
-    <h1 class="text-secondary m-12" style="margin-left: 30px" >Chi tiết đơn hàng</h1>
-    <div class="container" style="margin-top: 30px">
+    <div class="container">
+        <h1 class="text-secondary m-12" style="font-size: 35px">Chi tiết đơn hàng</h1>
+    </div>
+    <div class="container mobile_mode" style="display: none">
+        <div style="min-height: 300px" class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 row m-0 p-2">
+            <div style="min-height: 300px;width: 100%" class="border border-secondary p-2">
+                <p class="m-0" style="font-weight: 600">Mã đơn hàng : <span
+                        class="text-danger">#{{$order->order_code}}</span></p>
+                <p class="m-0" style="font-weight: 600">Ngày tạo đơn hàng : <span
+                    >{{date_format($order->created_at,'d/m/Y')}}</span></p>
+                <p class="m-0" style="font-weight: 600">Địa chỉ : <span
+                    >{{$order->ship_address}}</span></p>
+                <p class="m-0" style="font-weight: 600">Tổng giá trị đơn hàng : <span class="text-danger">{{number_format($order->total_price)}} vnđ</span>
+                </p>
+                <p class="m-0" style="font-weight: 600">Thanh toán : <span
+                        class="text-danger">{{$order->is_checkout == \App\Enums\CheckoutStatus::UNPAID ? 'Chưa thanh toán' : 'Đã thanh toán'}}</span>
+                </p>
+                <p class="m-0" style="font-weight: 600">Trạng thái đơn hàng : <span class="text-danger">
+                                    @if($order->status == \App\Enums\OrderStatus::Create)
+                            Chờ lấy hàng
+                        @elseif($order->status == \App\Enums\OrderStatus::Delivery)
+                            Đang giao hàng
+                        @elseif($order->status == \App\Enums\OrderStatus::Complete)
+                            Đã giao hàng
+                        @elseif($order->status == \App\Enums\OrderStatus::Cancel)
+                            Đã hủy đơn hàng
+                        @endif
+                            </span></p>
+                <hr>
+                @foreach($order_details as $itemm)
+                    <div style="min-height: 95px;width: 100%;margin: 3px 0" class="border row p-0">
+                        <div style="height: 90%;width: 80px;padding: 5px">
+                            <img style="height: 100%;width: 100%;object-fit: cover"
+                                 src="{{\App\Models\Product_option::find($itemm->product_option_id)->thumbnail}}"
+                                 alt="">
+                        </div>
+                        <div class="col">
+                            <p class="m-0" style="font-weight: 600;font-size: 14px"><span
+                                    style="display: inline-block;transform: translateY(2px);background: {{\App\Models\Color::find(\App\Models\Product_option::find($itemm->product_option_id)->color_id)->color_code}};height: 13px;width: 13px"></span>
+                                {{\App\Models\Product::find(\App\Models\Product_option::find($itemm->product_option_id)->product_id)->name}} ({{\App\Models\Product_option::find($itemm->product_option_id)->ram}}/ {{\App\Models\Product_option::find($itemm->product_option_id)->rom}}GB)</p>
+                            <p class="m-0" style="font-weight: 500;font-size: 14px">Số lượng : {{$itemm->quantity}}</p>
+                            <p class="m-0" style="font-weight: 500;font-size: 14px">Giá / 1 chiếc : <span
+                                    class="text-danger">{{number_format($itemm->unit_price)}} vnđ</span></p>
+                            <p class="m-0" style="font-weight: 500;font-size: 14px">Thành tiền : <span
+                                    class="text-danger">{{number_format($itemm->unit_price * $itemm->quantity)}} vnđ</span></p>
+                        </div>
+                    </div>
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="container pc_mode" style="margin-top: 30px">
         <div class="row d-flex justify-content-center">
             <div class="text-secondary col-xs-12 col-sm-12 col-md-4 col-lg-6">
                 <h3><b>Địa chỉ nhận hàng:</b></h3>

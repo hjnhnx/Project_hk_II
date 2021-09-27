@@ -60,7 +60,7 @@
     <p>Trạng thái thanh toán : <span style="color: #ff3e3e">
             {{$order->is_checkout == \App\Enums\CheckoutStatus::UNPAID ? 'Chưa thanh toán' : 'Đã thanh toán'}}
         </span></p>
-    <a href="" style="color: #3f3ffd">Xem chi tiết</a>
+    <a href="http://localhost:8000/{{$order->order_code}}/show-order-detail">Xem chi tiết trên web</a>
     <p>Thắc mắc xin liên hệ : <a href="tel:0987987789" style="color: #3f3ffd">0987.987.789</a></p>
     <p>Hoặc phản hồi : <a href="mailto:nguyenhjnh2002@gmail.com" style="color: #3f3ffd">tại đây</a></p>
 </div>

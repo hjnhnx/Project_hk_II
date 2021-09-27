@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Enums\CheckoutStatus;
 use App\Models\Order;
 use App\Models\Order_Detail;
 use Illuminate\Bus\Queueable;
@@ -41,9 +42,9 @@ class SendWelcomeEmail implements ShouldQueue
             $order_detail = Order_Detail::query()->where('order_id',$item)->get();
             $toName = $order->ship_name;
             $userEmail = $order->ship_email;
-            Mail::send('send_mail', ['order'=>$order,'order_details'=>$order_detail], function ($message) use ($toName, $userEmail) {
+            Mail::send('send_mail', ['order'=>$order,'order_details'=>$order_detail], function ($message) use ($order,$toName, $userEmail) {
                 $message->to($userEmail, $toName)
-                    ->subject('Cảm ơn bạn đã mua hàng tại Sun Mobile.');
+                    ->subject($order->is_checkout == CheckoutStatus::PAID ? 'Cảm ơn bạn đã mua hàng tại Sun Mobile.' : 'Cảm ơn bạn đã đặt hàng tại Sun Mobile.');
                 $message->from(env('MAIL_USERNAME'), 'Sun Mobile');
             });
         }

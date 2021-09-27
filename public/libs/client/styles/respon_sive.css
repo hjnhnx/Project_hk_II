@@ -10,6 +10,14 @@
     }
 }
 @media only screen and (max-width: 991px) {
+    .pc_mode {
+        display: none;
+    }
+    .mobile_mode {
+        display: block!important;
+        margin: 0 !important;
+        padding: 0!important;
+    }
     .d-nonee2 {
         display: none;
     }

@@ -83,7 +83,7 @@
                     <p><strong>Tổng tiền hàng: </strong>{{number_format($order->total_price)}} vnđ</p>
                     <p><strong>Mã đơn hàng: </strong>#{{$order->order_code}}</p>
                     <p><strong>Ngày tạo: </strong>{{$order_detail->created_at}}</p>
-                    <a href="">Xem chi tiết</a>
+                    <a href="http://localhost:8000/{{$order->order_code}}/show-order-detail">Xem chi tiết trên web</a>
                 </div>
             </div>
         </div>
