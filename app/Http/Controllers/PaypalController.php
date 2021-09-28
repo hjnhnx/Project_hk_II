@@ -137,6 +137,7 @@ class PaypalController extends Controller
         return view('client.payment_success',[
             'banner' => null,
             'sub_banner' => null,
+            'code'=>Order::find($id)->order_code
         ]);
     }
 

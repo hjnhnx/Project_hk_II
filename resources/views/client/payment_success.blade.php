@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-12 d-flex justify-content-center">
                     <a href="{{route('home_page')}}"><button class="btn btn-primary mr-1">Tiếp tục mua sắm</button></a>
-                    <a href="{{route('home_page')}}"><button class="btn btn-primary">Đến xem đơn hàng</button></a>
+                    <a href="{{route('show_order_detail',$code)}}"><button class="btn btn-primary">Đến xem đơn hàng</button></a>
                 </div>
             </div>
         </section>

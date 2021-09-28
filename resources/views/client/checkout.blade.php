@@ -175,7 +175,6 @@
                         window.location.href = '{{route('payment_success',$order->id)}}'
                         console.log(res)
                         return res
-
                     });
             }
         }, '#paypal-button');

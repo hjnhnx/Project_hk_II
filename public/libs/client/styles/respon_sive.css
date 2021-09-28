@@ -10,6 +10,9 @@
     }
 }
 @media only screen and (max-width: 991px) {
+    .dropbtn {
+        width: 100%!important;
+    }
     .pc_mode {
         display: none;
     }

@@ -1,4 +1,4 @@
-
+@section('title','Đơn hàng # '.$order->order_code)
 @extends('client.layouts.master')
 @section('custom_style')
     <style>
@@ -12,7 +12,7 @@
 @endsection
 @section('main_content')
     <div class="container">
-        <h1 class="text-secondary m-12" style="font-size: 35px">Chi tiết đơn hàng</h1>
+        <h1 class="text-secondary m-12" style="font-size: 35px">Chi tiết đơn hàng : #{{$order->order_code}}</h1>
     </div>
     <div class="container mobile_mode" style="display: none">
         <div style="min-height: 300px" class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 row m-0 p-2">
@@ -48,9 +48,9 @@
                                  alt="">
                         </div>
                         <div class="col">
-                            <p class="m-0" style="font-weight: 600;font-size: 14px"><span
-                                    style="display: inline-block;transform: translateY(2px);background: {{\App\Models\Color::find(\App\Models\Product_option::find($itemm->product_option_id)->color_id)->color_code}};height: 13px;width: 13px"></span>
-                                {{\App\Models\Product::find(\App\Models\Product_option::find($itemm->product_option_id)->product_id)->name}} ({{\App\Models\Product_option::find($itemm->product_option_id)->ram}}/ {{\App\Models\Product_option::find($itemm->product_option_id)->rom}}GB)</p>
+                            <a href="{{route('product_detail',\App\Models\Product::find(\App\Models\Product_option::find($itemm->product_option_id)->product_id)->slug)}}"><p class="m-0" style="font-weight: 600;font-size: 14px"><span
+                                        style="display: inline-block;transform: translateY(2px);background: {{\App\Models\Color::find(\App\Models\Product_option::find($itemm->product_option_id)->color_id)->color_code}};height: 13px;width: 13px"></span>
+                                    {{\App\Models\Product::find(\App\Models\Product_option::find($itemm->product_option_id)->product_id)->name}} ({{\App\Models\Product_option::find($itemm->product_option_id)->ram}}/ {{\App\Models\Product_option::find($itemm->product_option_id)->rom}}GB)</p></a>
                             <p class="m-0" style="font-weight: 500;font-size: 14px">Số lượng : {{$itemm->quantity}}</p>
                             <p class="m-0" style="font-weight: 500;font-size: 14px">Giá / 1 chiếc : <span
                                     class="text-danger">{{number_format($itemm->unit_price)}} vnđ</span></p>
@@ -99,16 +99,18 @@
                 <div class="col-md-12 p-0">
                     <p><strong>Phương thức vận chuyển:</strong> COD</p>
                     <p><strong>Đơn vị vận chuyển:</strong> GRAB</p>
-                    <p><strong>Trạng thái đơn hàng:</strong> @if($order->status == \App\Enums\OrderStatus::Create)
-                            Chờ lấy hàng
-                        @elseif($order->status == \App\Enums\OrderStatus::Delivery)
-                            Đang giao hàng
-                        @elseif($order->status == \App\Enums\OrderStatus::Complete)
-                            Đã nhận hàng
-                        @elseif($order->status == \App\Enums\OrderStatus::Cancel)
-                            Đã hủy đơn hàng
-                        @endif</p>
-                    <p><strong>Trạng thái thanh toán:</strong>{{$order->is_checkout == \App\Enums\CheckoutStatus::UNPAID ? 'Chưa thanh toán' : 'Đã thanh toán'}}</p>
+                    <p><strong>Trạng thái đơn hàng:</strong> <span class="text-danger" style="font-weight: 600">
+                            @if($order->status == \App\Enums\OrderStatus::Create)
+                                Chờ lấy hàng
+                            @elseif($order->status == \App\Enums\OrderStatus::Delivery)
+                                Đang giao hàng
+                            @elseif($order->status == \App\Enums\OrderStatus::Complete)
+                                Đã nhận hàng
+                            @elseif($order->status == \App\Enums\OrderStatus::Cancel)
+                                Đã hủy đơn hàng
+                            @endif
+                        </span></p>
+                    <p><strong >Trạng thái thanh toán:</strong><span class="text-danger" style="font-weight: 600">{{$order->is_checkout == \App\Enums\CheckoutStatus::UNPAID ? 'Chưa thanh toán' : 'Đã thanh toán'}}</span></p>
                 </div>
             </div>
         </div>
@@ -131,7 +133,7 @@
                         <tbody>
                         @foreach($order_details as $order_detail)
                             <tr>
-                                <td>{{\App\Models\Product::find($order_detail->product_option->product_id)->name}}</td>
+                                <td><a href="{{route('product_detail',\App\Models\Product::find($order_detail->product_option->product_id)->slug)}}">{{\App\Models\Product::find($order_detail->product_option->product_id)->name}}</a></td>
                                 <td>{{\App\Models\Color::find($order_detail->product_option->color_id)->name}}</td>
                                 <td><img src="{{$order_detail->product_option->thumbnail}}" alt="" width="120px"></td>
                                 <td>{{$order_detail->product_option->ram}}GB/RAM

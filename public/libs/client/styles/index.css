@@ -5081,19 +5081,6 @@ main#main {
     position: relative
 }
 
-.dropdown .dropbtn:after {
-    content: '';
-    display: block;
-    width: 8px;
-    height: 16px;
-    background-size: 8px auto;
-    background-position: center center;
-    background-image: url(https://stcv4.hnammobile.com/v7/images/icon/chervon_down_grey.svg);
-    background-repeat: no-repeat;
-    position: absolute;
-    right: 6px;
-    top: 12px
-}
 
 .dropdown .dropbtn.type-nav:after {
     background-image: url(https://stcv4.hnammobile.com/v7/images/icon/chervon_right_grey.svg);

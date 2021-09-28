@@ -204,9 +204,6 @@ class Controller extends BaseController
 
 
 
-
-
-
     public function payment ($id){
         $order = Order::find($id);
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
@@ -329,6 +326,45 @@ class Controller extends BaseController
             $returnData['RspCode'] = '99';
             $returnData['Message'] = 'Unknow error';
         }
+    }
+    public function totalRevenue(){
+        $orders =  Order::query()->where('is_checkout',CheckoutStatus::PAID)->get();
+        $times = [];
+        $moneys = [];
+        $total_money = 0;
+        foreach ($orders as $item){
+            $time = floatval(date('Y', strtotime($item->created_at))).'.'.floatval(date('m', strtotime($item->created_at)));
+            $total_money += $item->total_price;
+            if (!in_array($time,$times)){
+                array_push($times,$time);
+                array_push($moneys,$total_money);
+                $total_money = 0;
+            }
+
+        }
+        $data['moneys'] = $moneys;
+        $data['times'] = $times;
+        return $data;
+    }
+
+    public function filter_money(Request $request){
+        $orders =  Order::query()->where('is_checkout',CheckoutStatus::PAID)->where('created_at','>=',$request->start_time)->where('created_at','<=',$request->end_time)->get();
+        $times = [];
+        $moneys = [];
+        $total_money = 0;
+        foreach ($orders as $item){
+            $time = floatval(date('Y', strtotime($item->created_at))).'.'.floatval(date('m', strtotime($item->created_at)));
+            $total_money += $item->total_price;
+            if (!in_array($time,$times)){
+                array_push($times,$time);
+                array_push($moneys,$total_money);
+                $total_money = 0;
+            }
+
+        }
+        $data['moneys'] = $moneys;
+        $data['times'] = $times;
+        return $data;
     }
 
 }

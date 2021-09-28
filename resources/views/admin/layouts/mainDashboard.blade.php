@@ -57,24 +57,23 @@
         </div>
         <div id="piechart" style="width: 1200px; height: 500px;margin: auto"></div>
 
-        <div style="width: 1200px;height: 50px;margin: auto;padding-bottom: 100px!important;">
+        <div style="width: 1200px;height: 50px;margin: auto;padding-bottom: 100px!important;padding-top: 100px">
             <div class="row">
                 <div class="form-group col-md-3">
                     <label for="">Từ ngày</label>
-                    <input type="date" class="form-control">
+                    <input name="money_line_start" id="money_line_start" type="date" class="form-control">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="">Đến ngày</label>
-                    <input type="date" class="form-control">
+                    <input name="money_line_end" id="money_line_end" type="date" class="form-control">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="">Xem kết quả</label>
-                    <button class="btn btn-danger form-control">Xem kết quả</button>
+                    <button class="btn btn-danger form-control chart_filter2">Xem kết quả</button>
                 </div>
             </div>
         </div>
         <div id="chart_div" style="width: 1200px; height: 500px;margin: auto"></div>
-
     </section>
 @endsection
 
@@ -85,6 +84,9 @@
 
             google.charts.load('current', {'packages': ['corechart']});
             google.charts.setOnLoadCallback(drawChart);
+
+            google.charts.load('current', {packages: ['corechart', 'line']});
+            google.charts.setOnLoadCallback(drawBasic);
 
             $('.chart_filter1').click(function () {
                 var start_time = $('#chart_1_start').val()
@@ -146,88 +148,83 @@
                     chart.draw(data, options);
                 });
             }
+
+
+            function drawBasic() {
+
+                var data = new google.visualization.DataTable();
+                var url = window.location.origin
+                $.get(`${url}/api/test`, function (res, status) {
+                    data.addColumn('number', 'X');
+                    data.addColumn('number', 'VNĐ');
+                    var moneys = res.moneys
+                    var date = res.times
+                    var dataa = []
+                    for (let i = 0; i < date.length; i++) {
+                        dataa.push([Number(date[i]), moneys[i]])
+                    }
+                    data.addRows(dataa.sort());
+
+                    var options = {
+                        hAxis: {
+                            title: 'Time',
+                        },
+                        vAxis: {
+                            title: 'doanh thu',
+                        },
+                        title: 'Biều đồ doanh thu của SunMobile',
+                    };
+
+                    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+                    chart.draw(data, options);
+                })
+            }
+
+            $('.chart_filter2').click(function () {
+                var data = new google.visualization.DataTable();
+                var start_time = $('#money_line_start').val()
+                var end_time = $('#money_line_end').val()
+                var url = window.location.origin
+                $.post(`${url}/api/filter-money`,
+                    {
+                        start_time:start_time,
+                        end_time:end_time
+                    },
+                    function (res,status){
+                        console.log(res)
+                        data.addColumn('number', 'X');
+                        data.addColumn('number', 'VNĐ');
+                        var moneys = res.moneys
+
+                        var date = res.times
+                        console.log(date)
+                        var dataa = []
+                        for (let i = 0; i < date.length; i++) {
+                            dataa.push([Number(date[i]), moneys[i]])
+                        }
+
+                        data.addRows(dataa.sort());
+
+                        var options = {
+                            hAxis: {
+                                title: 'Time'
+                            },
+                            vAxis: {
+                                title: 'doanh thu'
+                            },
+                            title: 'Biều đồ doanh thu của SunMobile',
+                        };
+
+                        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+                        chart.draw(data, options);
+                    }
+                )
+            })
+
+
         })
-
-
-        google.charts.load('current', {packages: ['corechart', 'line']});
-        google.charts.setOnLoadCallback(drawBackgroundColor);
-        google.charts.setOnLoadCallback(drawBackgroundColor2);
-
-        function drawBackgroundColor() {
-            var data2 = new google.visualization.DataTable();
-            data2.addColumn('number', 'X');
-            data2.addColumn('number', 'Năm nay');
-            data2.addColumn('number', 'Năm trước');
-
-            data2.addRows([
-                [0, 0, 0],
-                [1, 7867, 8786],
-                [2, 30, 22],
-                [3, 52, 44],
-                [4, 60, 52],
-                [5, 55, 47],
-                [6, 62, 54],
-                [7, 63, 55],
-                [8, 72, 64],
-                [9, 71, 63],
-                [10, 64, 56],
-                [11, 70, 62],
-                [12, 70, 62],
-            ]);
-
-            var options = {
-                title: 'Doanh thu theo năm',
-                hAxis: {
-                    title: 'Tháng'
-                },
-                vAxis: {
-                    title: 'Doanh thu (vnđ)'
-                },
-                backgroundColor: '#ffffff'
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-            chart.draw(data2, options);
-        }
-
-        function drawBackgroundColor2() {
-            var data3 = new google.visualization.DataTable();
-            data3.addColumn('number', 'X');
-            data3.addColumn('number', 'tháng 4');
-            data3.addColumn('number', 'tháng 3');
-
-            data3.addRows([
-                [0, 0, 0],
-                [1, 7867, 8786],
-                [2, 30, 22],
-                [3, 52, 44],
-                [4, 60, 52],
-                [5, 55, 47],
-                [6, 62, 54],
-                [7, 63, 55],
-                [8, 72, 64],
-                [9, 71, 63],
-                [10, 64, 56],
-                [11, 70, 62],
-                [12, 70, 62],
-            ]);
-
-            var options = {
-                title: 'Doanh thu theo tháng',
-                hAxis: {
-                    title: 'Tháng'
-                },
-                vAxis: {
-                    title: 'Doanh thu (vnđ)'
-                },
-                backgroundColor: '#ffffff'
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('chart_div2'));
-            chart.draw(data3, options);
-        }
-
-
     </script>
     @yield('Extra_JS')
 @endsection

@@ -123,9 +123,9 @@ class UserController extends Controller
         $password = $request->password;
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             if (Auth::user()->role == Role::ADMIN) {
-                return redirect()->route('list_user');
+                return redirect()->route('dashboard');
             } else {
-                return redirect()->route('home');
+                return redirect()->route('home_page');
             }
         } else {
             $message = 'Sai tên đăng nhập hoặc mật khẩu !';
