@@ -67,7 +67,7 @@
                     <tbody>
                     @foreach($order_details as $order_detail)
                         <tr>
-                            <td><a href="http://sun-mobile.herokuapp.com/product/{{\App\Models\Product::find($order_detail->product_option->product_id)->slug}}">{{\App\Models\Product::find($order_detail->product_option->product_id)->name}}</a></td>
+                            <td><a href="http://127.0.0.1:8000/product/{{\App\Models\Product::find($order_detail->product_option->product_id)->slug}}">{{\App\Models\Product::find($order_detail->product_option->product_id)->name}}</a></td>
                             <td>{{\App\Models\Color::find($order_detail->product_option->color_id)->name}}</td>
                             <td><img src="{{$order_detail->product_option->thumbnail}}" alt="" width="70px" height="70px" style="object-fit: cover"></td>
                             <td>{{$order_detail->product_option->ram}}GB/RAM
@@ -83,7 +83,7 @@
                     <p><strong>Tổng tiền hàng: </strong>{{number_format($order->total_price)}} vnđ</p>
                     <p><strong>Mã đơn hàng: </strong>#{{$order->order_code}}</p>
                     <p><strong>Ngày tạo: </strong>{{$order_detail->created_at}}</p>
-                    <a href="http://sun-mobile.herokuapp.com/{{$order->order_code}}/show-order-detail">Xem chi tiết trên web</a>
+                    <a href="http://localhost:8000/{{$order->order_code}}/show-order-detail">Xem chi tiết trên web</a>
                 </div>
             </div>
         </div>
