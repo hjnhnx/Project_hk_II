@@ -21,7 +21,7 @@
 <div class="container">
     <div style="width: 50%;border: #b5b5b5 1px solid;margin: auto">
         <h1 style="margin-left: 20px">Bạn đã đặt hàng thành công !</h1>
-        <h2 style="margin-left: 20px">Thông tin đơn hàng của bạn.</h2>
+        <h2 style="margin-left: 20px">Thông tin đơn hàng #{{$order->order_code}}.</h2>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="box-sizing: border-box;width: 50%;padding :20px;float: left">
             <h3><b>Địa chỉ nhận hàng:</b></h3>
             <div class="col-lg-6 p-0">
@@ -67,7 +67,7 @@
                     <tbody>
                     @foreach($order_details as $order_detail)
                         <tr>
-                            <td>{{\App\Models\Product::find($order_detail->product_option->product_id)->name}}</td>
+                            <td><a href="http://sun-mobile.herokuapp.com/product/{{\App\Models\Product::find($order_detail->product_option->product_id)->slug}}">{{\App\Models\Product::find($order_detail->product_option->product_id)->name}}</a></td>
                             <td>{{\App\Models\Color::find($order_detail->product_option->color_id)->name}}</td>
                             <td><img src="{{$order_detail->product_option->thumbnail}}" alt="" width="70px" height="70px" style="object-fit: cover"></td>
                             <td>{{$order_detail->product_option->ram}}GB/RAM
@@ -94,7 +94,5 @@
         </div>
     </div>
 </div>
-
-
 </body>
 </html>

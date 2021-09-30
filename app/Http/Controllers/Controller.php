@@ -13,6 +13,7 @@ use App\Models\Order;
 use App\Models\Order_Detail;
 use App\Models\Product;
 use App\Models\Product_option;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -137,6 +138,7 @@ class Controller extends BaseController
             'order_id'=>$id,
             'banner' => null,
             'sub_banner' => null,
+            'code'=>Order::find($id)->order_code
         ]);
     }
 
@@ -328,12 +330,12 @@ class Controller extends BaseController
         }
     }
     public function totalRevenue(){
-        $orders =  Order::query()->where('is_checkout',CheckoutStatus::PAID)->get();
+        $orders =  Order::query()->where('is_checkout',CheckoutStatus::PAID)->where('created_at','>',Carbon::now()->addDay(-30))->get();
         $times = [];
         $moneys = [];
         $total_money = 0;
         foreach ($orders as $item){
-            $time = floatval(date('Y', strtotime($item->created_at))).'.'.floatval(date('m', strtotime($item->created_at)));
+            $time = floatval(date('Y', strtotime($item->created_at))).'/'.floatval(date('m', strtotime($item->created_at))).'/'.floatval(date('d', strtotime($item->created_at)));
             $total_money += $item->total_price;
             if (!in_array($time,$times)){
                 array_push($times,$time);
@@ -353,7 +355,7 @@ class Controller extends BaseController
         $moneys = [];
         $total_money = 0;
         foreach ($orders as $item){
-            $time = floatval(date('Y', strtotime($item->created_at))).'.'.floatval(date('m', strtotime($item->created_at)));
+            $time = floatval(date('Y', strtotime($item->created_at))).'/'.floatval(date('m', strtotime($item->created_at))).'/'.floatval(date('d', strtotime($item->created_at)));
             $total_money += $item->total_price;
             if (!in_array($time,$times)){
                 array_push($times,$time);

@@ -10,6 +10,9 @@
     }
 }
 @media only screen and (max-width: 991px) {
+    .title_show_order {
+        font-size: 20px!important;
+    }
     .dropbtn {
         width: 100%!important;
     }

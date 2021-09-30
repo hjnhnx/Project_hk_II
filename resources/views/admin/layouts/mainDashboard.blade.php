@@ -155,26 +155,24 @@
                 var data = new google.visualization.DataTable();
                 var url = window.location.origin
                 $.get(`${url}/api/test`, function (res, status) {
-                    data.addColumn('number', 'X');
+                    data.addColumn('string', 'X');
                     data.addColumn('number', 'VNĐ');
                     var moneys = res.moneys
                     var date = res.times
                     var dataa = []
                     for (let i = 0; i < date.length; i++) {
-                        dataa.push([Number(date[i]), moneys[i]])
+                        dataa.push([date[i], moneys[i]])
                     }
                     data.addRows(dataa.sort());
-
                     var options = {
                         hAxis: {
                             title: 'Time',
                         },
                         vAxis: {
-                            title: 'doanh thu',
+                            title: 'Doanh thu vnđ',
                         },
                         title: 'Biều đồ doanh thu của SunMobile',
                     };
-
                     var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 
                     chart.draw(data, options);
@@ -193,7 +191,7 @@
                     },
                     function (res,status){
                         console.log(res)
-                        data.addColumn('number', 'X');
+                        data.addColumn('string', 'X');
                         data.addColumn('number', 'VNĐ');
                         var moneys = res.moneys
 
@@ -201,17 +199,15 @@
                         console.log(date)
                         var dataa = []
                         for (let i = 0; i < date.length; i++) {
-                            dataa.push([Number(date[i]), moneys[i]])
+                            dataa.push([date[i], moneys[i]])
                         }
-
                         data.addRows(dataa.sort());
-
                         var options = {
                             hAxis: {
                                 title: 'Time'
                             },
                             vAxis: {
-                                title: 'doanh thu'
+                                title: 'Doanh thu vnđ'
                             },
                             title: 'Biều đồ doanh thu của SunMobile',
                         };

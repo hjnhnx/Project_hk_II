@@ -23,8 +23,7 @@
 <body>
 <div style="min-height: 300px;width: 600px;border: #c5c5c5 1px solid;margin: 100px auto;padding: 10px">
     <h2 style="margin: 0">Sun mobile</h2>
-    <h3 style="margin: 0">#{{$order->order_code}}</h3>
-    <h4>Đơn hàng của bạn đã được cập nhật</h4>
+    <h4>Đơn hàng <span style="color: red">#{{$order->order_code}}</span> của bạn đã được cập nhật</h4>
     <table cellspacing="0" cellpadding="10"  style="margin: auto;width: 100%">
         <thead>
         <tr>
@@ -38,7 +37,7 @@
 
         @foreach($order_details as $order_detail)
             <tr>
-                <td>{{\App\Models\Product::find($order_detail->product_option->product_id)->name}}</td>
+                <td><a href="http://sun-mobile.herokuapp.com/product/{{\App\Models\Product::find($order_detail->product_option->product_id)->slug}}">{{\App\Models\Product::find($order_detail->product_option->product_id)->name}}</a></td>
                 <td>{{\App\Models\Color::find($order_detail->product_option->color_id)->name}}</td>
                 <td><img src="{{$order_detail->product_option->thumbnail}}" alt="" width="70px" height="70px" style="object-fit: cover"></td>
                 <td>{{$order_detail->product_option->ram}}GB/RAM

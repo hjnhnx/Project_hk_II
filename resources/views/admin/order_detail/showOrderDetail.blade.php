@@ -27,7 +27,6 @@
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                 <h3><b>Địa chỉ nhận hàng:</b></h3>
                 <div class="col-lg-12 p-0">
-                    <p><strong>Mã người dùng:</strong>{{$order->user_id * 987654}}</p>
                     <p><strong>Họ và tên người dùng:</strong> {{$order->ship_name}}</p>
                     <p><strong>Số điện thoại:</strong> {{$order->ship_phone}}</p>
                     <p><strong>Email:</strong> {{$order->ship_email}}</p>
@@ -119,7 +118,7 @@
           </form>
       </div>
     </div>
-    <a href="/admin/order" class="cd-top">trở về</a>
+    <a href="/admin/order" class="cd-top btn btn-primary"><i class="fa fa-long-arrow-left"></i> Trở về</a>
 @endsection
 @section('custom_js')
     <script>

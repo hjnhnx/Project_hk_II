@@ -5,6 +5,13 @@
         .container {
             color: #7a7979;
         }
+        .paypal_btn:after{
+            content: 'Quy đổi tỷ giá : 1$ = 23.000 vnđ';
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+        }
     </style>
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
 @endsection
@@ -93,7 +100,7 @@
                             style="height: 100%;width: 100%;text-decoration: none;color: white">Chuyển Khoản</a>
                     </button>
                 </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 d-block p-2">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 d-block p-2 paypal_btn">
                     <button style="height: 50px;width: 100%;background: #25319c">
                         <div id="paypal-button"></div>
                     </button>

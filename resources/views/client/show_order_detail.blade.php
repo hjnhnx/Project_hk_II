@@ -12,7 +12,7 @@
 @endsection
 @section('main_content')
     <div class="container">
-        <h1 class="text-secondary m-12" style="font-size: 35px">Chi tiết đơn hàng : #{{$order->order_code}}</h1>
+        <h1 class="text-secondary m-12 title_show_order" style="font-size: 35px">Chi tiết đơn hàng : #{{$order->order_code}}</h1>
     </div>
     <div class="container mobile_mode" style="display: none">
         <div style="min-height: 300px" class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 row m-0 p-2">
@@ -63,31 +63,11 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div class="container pc_mode" style="margin-top: 30px">
         <div class="row d-flex justify-content-center">
             <div class="text-secondary col-xs-12 col-sm-12 col-md-4 col-lg-6">
                 <h3><b>Địa chỉ nhận hàng:</b></h3>
                 <div class="col-lg-12 p-0">
-                    <p><strong>Mã người dùng:</strong> {{$order->user_id * 987654}}</p>
                     <p><strong>Họ và tên người dùng:</strong> {{$order->ship_name}}</p>
                     <p><strong>Số điện thoại:</strong> {{$order->ship_phone}}</p>
                     <p><strong>Email:</strong> {{$order->ship_email}}</p>
