@@ -18,9 +18,9 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 876; $i > 0; $i--) {
+        for ($i = 532; $i > 0; $i--) {
             Order::create([
-                'total_price'=>random_int(1000000,25000000),
+                'total_price'=>random_int(12000000,30000000),
                 'order_code'=>random_int(100000000,999999999),
                 'ship_name'=>User::find(random_int(1,103))->firstname . ' ' .User::find(random_int(1,103))->lastname,
                 'ship_phone'=>User::find(random_int(1,103))->phone,
