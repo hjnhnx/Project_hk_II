@@ -1,5 +1,9 @@
 @extends('client.layouts.master')
 @section('title','Trang cá nhân người dùng')
+@section('custom_style')
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-61177547f7ce676c"></script>
+@endsection
+
 @section('main_content')
     <div class="container">
         <div class="col-12 mt-5">

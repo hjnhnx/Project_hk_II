@@ -1,6 +1,7 @@
 @extends('client.layouts.master')
 @section('title','Shopping cart')
 @section('custom_style')
+
     <style>
         .content_cart {
             padding: 20px 0;

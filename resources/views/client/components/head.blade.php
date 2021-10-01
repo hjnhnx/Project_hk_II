@@ -56,5 +56,4 @@
         }
 
     </style>
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-61177547f7ce676c"></script>
 </head>

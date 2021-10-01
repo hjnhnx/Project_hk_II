@@ -1,6 +1,7 @@
 @extends('client.layouts.master')
 @section('title','Trang Chủ')
 @section('custom_style')
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-61177547f7ce676c"></script>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;

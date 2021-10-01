@@ -1,6 +1,7 @@
 @extends('client.layouts.master')
 @section('title','Contactus')
 @section('custom_style')
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-61177547f7ce676c"></script>
 
     <link rel="stylesheet" type="text/css" href="/libs/client/contacts/animate/animate.css">
     <link rel="stylesheet" type="text/css" href="/libs/client/contacts/css-hamburgers/hamburgers.min.css">
